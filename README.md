@@ -13,12 +13,14 @@ This repository collects Claude Skills and portable Markdown personas for use wi
 
 ## Index
 Claude Skills:
+- `claude-skill/constellation-team/`
 - `claude-skill/frontend-design/`
 - `claude-skill/kingmode/`
 - `claude-skill/super-mode/`
 - `claude-skill/ultrathink-frontend/`
 
 Portable docs:
+- `md-personas/CONSTELLATION-TEAM.md`
 - `md-personas/FRONTEND-DESIGN.md`
 - `md-personas/KINGMODE.md`
 - `md-personas/SUPER-MODE.md`
@@ -30,6 +32,12 @@ Portable docs:
 2. Restart Claude Code to load the skill.
 3. Ask "What Skills are available?" to confirm it is loaded.
 4. Trigger the skill by using terms from its `description`.
+
+## LLM configuration files
+- `.claude/agents/` contains Claude Code subagents for the star-team workflow.
+- `GEMINI.md` provides Gemini CLI context instructions.
+- `.clinerules/` and `.clinerules/workflows/` define Cline rules and workflows.
+- `AGENTS.md` provides Codex CLI guidance.
 
 ## Packaging a skill
 To package a skill into a `.skill` archive:

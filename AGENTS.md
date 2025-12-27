@@ -30,3 +30,9 @@ No automated tests are present. Validate changes by reading for clarity, consist
 - Commit messages in history use an emoji prefix plus a type and short description (example: `:tada: feat : add new persona`).
 - Keep commits focused on a single skill or persona update.
 - PRs should include a short summary, the rationale for the change, and a list of updated files (for example, `SKILL.md`).
+
+## AI Agent Instructions
+- For cross-functional planning, use the Constellation Team workflow and role-labeled output (`md-personas/CONSTELLATION-TEAM.md`).
+- For UI/UX tasks, apply frontend-design guidance (`md-personas/FRONTEND-DESIGN.md`).
+- For architecture, security, reliability, or deep reasoning, apply kingmode or super-mode (`md-personas/KINGMODE.md`, `md-personas/SUPER-MODE.md`).
+- Ask for missing requirements, state assumptions explicitly, and do not claim to run tests or commands unless they were executed.
