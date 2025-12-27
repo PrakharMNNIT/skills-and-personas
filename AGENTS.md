@@ -1,11 +1,12 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repo is a small collection of Markdown-based skills and persona specs.
-- `kingmode/SKILL.md` is a Claude Skill (YAML front matter with `name` and `description` only).
-- `kingmode/references/` stores detailed guidance for progressive disclosure.
-- `*.skill` files are packaged Claude Skills (zip archives), for example `ultrathink-frontend.skill`.
-- `*.md` at the repo root are portable docs for other LLMs or persona notes (for example, `KINGMODE.md`).
+This repo is a small collection of skills and persona specs.
+- `clade-skill/<skill-name>/SKILL.md` holds Claude Skill definitions (YAML front matter with `name` and `description` only).
+- `clade-skill/<skill-name>/references/` stores detailed guidance for progressive disclosure.
+- `clade-skill/*.skill` are packaged Claude Skills (zip archives), for example `clade-skill/kingmode.skill`.
+- `md-personas/*.md` are portable docs for other LLMs or persona notes (for example, `md-personas/KINGMODE.md`).
+- `team-personas/` contains shared team persona material.
 Keep skill folders named after the skill (`skill-name/`) and prefer descriptive filenames like `persona-brief.md`.
 
 ## Build, Test, and Development Commands
