@@ -3,11 +3,11 @@
 This repository collects Claude Skills and portable Markdown personas for use with other LLMs.
 
 ## Structure
-- `clade-skill/` holds Claude Skills:
-  - `clade-skill/<skill-name>/SKILL.md` is the source skill definition.
-  - `clade-skill/<skill-name>/references/` stores detailed guidance.
-  - `clade-skill/*.skill` are packaged skill archives.
-  - `clade-skill/legacy/` keeps older drafts for reference.
+- `claude-skill/` holds Claude Skills:
+  - `claude-skill/<skill-name>/SKILL.md` is the source skill definition.
+  - `claude-skill/<skill-name>/references/` stores detailed guidance.
+  - `claude-skill/*.skill` are packaged skill archives.
+  - `claude-skill/legacy/` keeps older drafts for reference.
 - `md-personas/` contains portable Markdown personas.
 - `team-personas/` contains team-specific persona documents.
 

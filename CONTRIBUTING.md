@@ -4,7 +4,7 @@ Thanks for contributing to this repository. Please follow the conventions
 below to keep skills consistent and easy to discover.
 
 ## What to add
-- Claude Skills go in `clade-skill/<skill-name>/`.
+- Claude Skills go in `claude-skill/<skill-name>/`.
 - Portable Markdown personas go in `md-personas/`.
 - Team-specific persona docs go in `team-personas/`.
 
