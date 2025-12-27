@@ -11,6 +11,20 @@ This repository collects Claude Skills and portable Markdown personas for use wi
 - `md-personas/` contains portable Markdown personas.
 - `team-personas/` contains team-specific persona documents.
 
+## Index
+Claude Skills:
+- `claude-skill/frontend-design/`
+- `claude-skill/kingmode/`
+- `claude-skill/super-mode/`
+- `claude-skill/ultrathink-frontend/`
+
+Portable docs:
+- `md-personas/FRONTEND-DESIGN.md`
+- `md-personas/KINGMODE.md`
+- `md-personas/SUPER-MODE.md`
+- `md-personas/ULTRATHINK-FRONTEND.md`
+- `md-personas/gemini-king-mode.md`
+
 ## Using a skill in Claude Code
 1. Copy the skill folder to `~/.claude/skills/<skill-name>/` or `.claude/skills/<skill-name>/`.
 2. Restart Claude Code to load the skill.
@@ -21,7 +35,13 @@ This repository collects Claude Skills and portable Markdown personas for use wi
 To package a skill into a `.skill` archive:
 
 ```bash
-zip -r clade-skill/<skill-name>.skill clade-skill/<skill-name>
+zip -r claude-skill/<skill-name>.skill claude-skill/<skill-name>
+```
+
+Or package all skills and generate portable docs:
+
+```bash
+scripts/build_skills.sh --force-md
 ```
 
 ## Contributing

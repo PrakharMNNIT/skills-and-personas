@@ -19,7 +19,13 @@ below to keep skills consistent and easy to discover.
 To publish a `.skill` archive:
 
 ```bash
-zip -r clade-skill/<skill-name>.skill clade-skill/<skill-name>
+zip -r claude-skill/<skill-name>.skill claude-skill/<skill-name>
+```
+
+To package all skills and regenerate portable docs:
+
+```bash
+scripts/build_skills.sh --force-md
 ```
 
 ## Commit messages
