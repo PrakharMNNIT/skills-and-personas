@@ -10,6 +10,8 @@ This repository collects Claude Skills and portable Markdown personas for use wi
   - `claude-skill/legacy/` keeps older drafts for reference.
 - `md-personas/` contains portable Markdown personas.
 - `team-personas/` contains team-specific persona documents.
+- `assets/` stores images and supporting documents.
+- `archive/` stores legacy or “to review” material.
 
 ## Index
 Claude Skills:
@@ -25,7 +27,10 @@ Portable docs:
 - `md-personas/KINGMODE.md`
 - `md-personas/SUPER-MODE.md`
 - `md-personas/ULTRATHINK-FRONTEND.md`
-- `md-personas/gemini-king-mode.md`
+- `md-personas/GEMINI-KING-MODE.md`
+
+Team personas:
+- `team-personas/constellation-team/`
 
 ## Using a skill in Claude Code
 1. Copy the skill folder to `~/.claude/skills/<skill-name>/` or `.claude/skills/<skill-name>/`.

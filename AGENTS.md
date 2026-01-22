@@ -7,6 +7,8 @@ This repo is a small collection of skills and persona specs.
 - `claude-skill/*.skill` are packaged Claude Skills (zip archives), for example `claude-skill/kingmode.skill`.
 - `md-personas/*.md` are portable docs for other LLMs or persona notes (for example, `md-personas/KINGMODE.md`).
 - `team-personas/` contains shared team persona material.
+- `assets/` stores images and supporting documents.
+- `archive/` stores legacy or “to review” material.
 Keep skill folders named after the skill (`skill-name/`) and prefer descriptive filenames like `persona-brief.md`.
 
 ## Build, Test, and Development Commands

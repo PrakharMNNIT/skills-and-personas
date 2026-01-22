@@ -1,1 +1,51 @@
+# OS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+
+# Secrets (never commit)
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# Local-only vault / personal material
+/🔒Passwords/
+/README copy.md
+/bookmarks/
+/knowledge-packs/
+/notes/
+/personas/
+/prompts/
+/references/
+/skills/
+/assets/docs/
