@@ -1,0 +1,151 @@
+.
+├── .DS_Store
+├── .gitignore
+├── .qodo
+│   ├── agents
+│   └── workflows
+├── bookmarks
+│   ├── comet
+│   │   ├── cleaned
+│   │   │   └── comet_bookmarks_2026-01-04.cleaned.html
+│   │   └── exports
+│   │       └── comet_bookmarks_2026-01-04.html
+│   └── exports
+│       ├── bookmarks_2025-09-17.html
+│       └── bookmarks_2025-10-24.html
+├── knowledge-packs
+│   ├── atlas
+│   │   ├── archives
+│   │   │   └── atlas_knowledge_pack.zip
+│   │   ├── ATLAS_Recursive_Learning_Mentor_Prompt.md
+│   │   └── v2
+│   │       ├── 00_Gabriel_Petersson_Mentor_Prompt.md
+│   │       ├── 01_Prax_Profile.md
+│   │       ├── 02_Java_Quick_Reference.md
+│   │       ├── 03_DSA_Patterns_Map.md
+│   │       ├── 04_Design_Principles_Cheatsheet.md
+│   │       ├── 05_Learning_Tracker_Template.md
+│   │       ├── 06_Gabriel_Petersson_5_Lessons.docx
+│   │       ├── 07_Recursive_Gap_Filling_for_Interviews.docx
+│   │       ├── 08_Recursive_Learning_Modern_Era.docx
+│   │       ├── 09_Top_Down_Path_Blueprint.docx
+│   │       ├── 10_Dropout_to_OpenAI_Slides.pdf
+│   │       └── 11_Learning_Infographic.png
+│   └── gabriel-petersson
+│       ├── archives
+│       │   ├── gabriel_petersson_knowledge_pack_v2.zip
+│       │   └── gabriel_petersson_minimal_pack.zip
+│       └── docs
+│           ├── Dropout_to_OpenAI_The_New_Rules.pdf
+│           ├── Gabriel Petersson Career and Learning Trajectory.xlsx
+│           ├── How to Outlearn a PhD_ 5 Lessons from the High School Dropout Building AI at OpenAI.docx
+│           ├── Recursive Gap Filling_ Mastering Tech Interviews via AI-Led Learning.docx
+│           ├── Recursive Learning_ Mastering Skills in the Age of AI.docx
+│           ├── The Recursive Gap-Filling Roadmap for Advanced Java Mastery.docx
+│           ├── The Recursive Gap-Filling Roadmap for Advanced Java Mastery.pdf
+│           └── The Top-Down Path to OpenAI_ Gabriel Petersson’s Blueprint.docx
+├── notes
+│   ├── dirTree.txt
+│   └── ideas.md
+├── 🔒Passwords
+│   └── Comet Passwords.csv
+├── personas
+│   └── prax-lannister
+│       └── memory-prompt.md
+├── prompts
+│   ├── agents
+│   │   └── AI Therapist Agent Prompt
+│   │       ├── .DS_Store
+│   │       ├── 1 - AI Therapist Agent Prompt - MDD & Adult ADHD Specialist.md
+│   │       ├── 2 - AI Master Therapeutic Agent - MDD & Adult ADHD Specialist (GENERALIZED VERSION).md
+│   │       ├── 3 - AI Master Therapeutic Agent - MDD & Adult ADHD Specialist (v2.1 - WITH VALIDATED SCREENERS).md
+│   │       ├── AI Therapy Assistant Web Application - Complete Project
+│   │       │   ├── .DS_Store
+│   │       │   ├── AI Therapy Assistant Web Application - Complete Project Documentation
+│   │       │   ├── BRD and HLD.md
+│   │       │   ├── Knowledge Base - Tiered Book Priority List.md
+│   │       │   ├── v1 - AI Therapist Agent Prompt (Client-Specific).md
+│   │       │   ├── v2 - AI Master Therapeutic Agent (Generalized).md
+│   │       │   └── v3 - AI Master Therapeutic Agent (Flexible + Session Tracking).md
+│   │       ├── Books
+│   │       │   ├── .DS_Store
+│   │       │   ├── purchase-checklist.md
+│   │       │   ├── Tier 1
+│   │       │   │   ├── ADHD 2.0 (Edward M. Hallowell, M.D. John J. Ratey etc.).pdf
+│   │       │   │   ├── Atomic Habits Tiny Changes, Remarkable Results (James Clear).pdf
+│   │       │   │   ├── Driven to Distraction (Revised) Recognizing and Coping with Attention Deficit Disorder (Edward M Hallowell, John J Ratey).pdf
+│   │       │   │   ├── Feeling Good The New Mood Therapy (David D. Burns).pdf
+│   │       │   │   ├── How to ADHD An Insiders Guide to Working with Your Brain (Not Against It) (Jessica McCabe).pdf
+│   │       │   │   ├── Self-Compassion (Dr. Kristin Neff).pdf
+│   │       │   │   ├── Taking Charge of Adult ADHD Proven Strategies to Succeed at Work, at Home, and in Relationships (2nd edition) (Russell A. Barkley, Christine M. Benton).pdf
+│   │       │   │   ├── The Anxiety and Phobia Workbook (Edmund J. Bourne).pdf
+│   │       │   │   ├── The Dialectical Behavior Therapy Skills Workbook, 2nd Edition (Matthew McKay, Jeffrey C. Wood etc.).pdf
+│   │       │   │   ├── The Happiness Trap How to Stop Struggling and Start Living (Second Edition) (Russ Harris).pdf
+│   │       │   │   ├── The Mindful Way through Depression - Freeing Yourself from Chronic Unhappiness (Mark Williams, John Teasdale, Zindel Segal etc.).pdf
+│   │       │   │   ├── The Smart But Scattered Guide to Success How to Use Your Brain’s Executive Skills to Keep Up, Stay Calm, and Get Organized at… (Peg Dawson, Richard Guare).pdf
+│   │       │   │   ├── Tiny Habits The Small Changes that Change Everything (BJ Fogg).pdf
+│   │       │   │   └── Workbook for James Clears Atomic Habits The Step By Step Guide To Turn Your Goals Into Reality (James Clear).pdf
+│   │       │   └── Tier 2
+│   │       │       ├── ADHD 2.0 (Edward M. Hallowell, M.D. John J. Ratey etc.).pdf
+│   │       │       ├── Anxiety and Depression Workbook For Dummies (Charles H. Elliott, Laura L. Smith etc.).pdf
+│   │       │       ├── Anxiety Depression Workbook For Dummies, 2nd Edition (Laura L. Smith).pdf
+│   │       │       ├── Cognitive Therapy of Depression (Aaron T. Beck, A. John Rush, Brian F. Shaw etc.).pdf
+│   │       │       ├── Cognitive-behavioral Therapy for Adult ADHD. (J. Russell Ramsay, Anthony L. Rostain).pdf
+│   │       │       ├── Dare- The New Way to End Anxiety — Barry McDonagh.pdf
+│   │       │       ├── Dare-the-new-way-to-end-anxiety-by-barry-mcdonagh.pdf
+│   │       │       ├── Get Out of Your Mind and Into Your Life - The New Acceptance and Commitment Therapy (Steven C. Hayes, Spencer Smith).pdf
+│   │       │       ├── Lost Connections Uncovering the Real Causes of Depression and the Unexpected Solutions (Johann Hari).pdf
+│   │       │       ├── Mastering Your Adult ADHD, 2nd ed. A Cognitive-Behavioral Treatment Program (Client Workbook) (Steven A. Safren, Susan E. Sprich etc.).pdf
+│   │       │       ├── More Attention, Less Deficit Success Strategies for Adults with ADHD (Ari Tuckman).pdf
+│   │       │       ├── Organizing Solutions for People With Attention Deficit Disorder (Susan C Pinsky).pdf
+│   │       │       ├── Rewire Your Anxious Brain How to Use the Neuroscience of Fear to End Anxiety, Panic, and Worry (Catherine M Pittman, Elizabeth M. Karle).pdf
+│   │       │       ├── The Adult ADHD Tool Kit Using CBT to Facilitate Coping Inside and Out (J. Russell Ramsay, Anthony L. Rostain).pdf
+│   │       │       ├── The Brain That Changes Itself Stories of Personal Triumph from the Frontiers of Brain Science (Norman Doidge).pdf
+│   │       │       ├── The Depression Cure The 6-Step Program to Beat Depression without Drugs (Stephen S. Ilardi PhD).pdf
+│   │       │       ├── The Disorganized Mind (Nancy A. Ratey).pdf
+│   │       │       ├── The Happiness Trap 2nd Edition (RUSS. HARRIS).pdf
+│   │       │       ├── The Procrastination Equation (Ph.D., Piers Steel).pdf
+│   │       │       ├── The Smart But Scattered Guide to Success How to Use Your Brain’s Executive Skills to Keep Up, Stay Calm, and Get Organized at… (Peg Dawson, Richard Guare).pdf
+│   │       │       ├── The Upward Spiral (Alex Korb).pdf
+│   │       │       └── Undoing depression what therapy doesnt teach you and medication cant give you (OConnor, Richard, Ph. D).pdf
+│   │       └── mindflow-ai-therapy
+│   │           ├── .DS_Store
+│   │           ├── .env.example
+│   │           ├── docs
+│   │           │   ├── 4 - AI Therapist Knowledge Base - Tiered Book List.md
+│   │           │   ├── AI_THERAPIST_SYSTEM_PROMPT.md
+│   │           │   ├── BRD_Business_Requirements.md
+│   │           │   ├── IMPLEMENTATION_GUIDE.md
+│   │           │   └── PROJECT_OVERVIEW.md
+│   │           ├── package.json
+│   │           ├── README.md
+│   │           ├── src
+│   │           │   ├── {components
+│   │           │   │   └── {chat,clinical-file,screening,dashboard,export,intake,safety,layout,ui},services,stores,types,utils,hooks,config,assets}
+│   │           │   └── types
+│   │           ├── tailwind.config.js
+│   │           ├── tsconfig.json
+│   │           └── vite.config.ts
+│   ├── builders
+│   │   └── baron-von-markup
+│   │       └── Baron-von-Markup-Agent-Builder-Prompt.md
+│   ├── rules
+│   │   └── clinerules
+│   │       └── Cline’s Memory Bank v2 — High-Tech Engineering Pro 296ed33b7c0f80eaa935c57a3cb9c6ff.md
+│   └── templates
+│       └── Agent-Session-Tracker.md
+├── README.md
+├── references
+│   ├── agents
+│   │   └── a-practical-guide-to-building-agents.pdf
+│   ├── images
+│   │   └── unnamed.png
+│   └── interview
+│       ├── 👨🏽\20015💻🎖️Professor Alex ™ - Elite FAANG:HFT Interview Mentor.pdf
+│       └── 👨🏽\20015💻🎖️Professor Alex ™ - Elite FAANG:HFT Interview Mentor[2].pdf
+└── skills
+    ├── notes
+    └── packaged
+        └── markdown-note-formatter.skill
+
+46 directories, 103 files

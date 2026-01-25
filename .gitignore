@@ -40,12 +40,6 @@ id_rsa.pub
 
 # Local-only vault / personal material
 /🔒Passwords/
-/README copy.md
-/bookmarks/
-/knowledge-packs/
-/notes/
-/personas/
-/prompts/
-/references/
-/skills/
-/assets/docs/
+
+
+AI_REVIEW.md
