@@ -40,8 +40,8 @@ Use this document with LLMs that do not support .skill packaging.
   Security, Operations, Trade-offs, Roadmap, The Code.
 
 ## References
-- Frontend: claude-skill/kingmode/references/frontend.md
-- Backend: claude-skill/kingmode/references/backend.md
-- Architecture and DevOps: claude-skill/kingmode/references/architecture-devops.md
-- Security and Quality: claude-skill/kingmode/references/security-quality.md
-- Response templates: claude-skill/kingmode/references/response-formats.md
+- Frontend: skills/kingmode/references/frontend.md
+- Backend: skills/kingmode/references/backend.md
+- Architecture and DevOps: skills/kingmode/references/architecture-devops.md
+- Security and Quality: skills/kingmode/references/security-quality.md
+- Response templates: skills/kingmode/references/response-formats.md

@@ -1,25 +1,25 @@
 # Skills and Personas
 
-This repository collects Claude Skills and portable Markdown personas for use with other LLMs.
+This repository collects Skills and portable Markdown personas for use with other LLMs.
 
 ## Structure
-- `claude-skill/` holds Claude Skills:
-  - `claude-skill/<skill-name>/SKILL.md` is the source skill definition.
-  - `claude-skill/<skill-name>/references/` stores detailed guidance.
-  - `claude-skill/*.skill` are packaged skill archives.
-  - `claude-skill/legacy/` keeps older drafts for reference.
+- `skills/` holds Skills:
+  - `skills/<skill-name>/SKILL.md` is the source skill definition.
+  - `skills/<skill-name>/references/` stores detailed guidance.
+  - `skills/*.skill` are packaged skill archives.
+  - `skills/legacy/` keeps older drafts for reference.
 - `md-personas/` contains portable Markdown personas.
 - `team-personas/` contains team-specific persona documents.
 - `assets/` stores images and supporting documents.
 - `archive/` stores legacy or “to review” material.
 
 ## Index
-Claude Skills:
-- `claude-skill/constellation-team/`
-- `claude-skill/frontend-design/`
-- `claude-skill/kingmode/`
-- `claude-skill/super-mode/`
-- `claude-skill/ultrathink-frontend/`
+Skills:
+- `skills/constellation-team/`
+- `skills/frontend-design/`
+- `skills/kingmode/`
+- `skills/super-mode/`
+- `skills/ultrathink-frontend/`
 
 Portable docs:
 - `md-personas/CONSTELLATION-TEAM.md`
@@ -48,7 +48,7 @@ Team personas:
 To package a skill into a `.skill` archive:
 
 ```bash
-zip -r claude-skill/<skill-name>.skill claude-skill/<skill-name>
+zip -r skills/<skill-name>.skill skills/<skill-name>
 ```
 
 Or package all skills and generate portable docs:

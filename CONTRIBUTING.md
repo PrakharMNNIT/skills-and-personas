@@ -4,7 +4,7 @@ Thanks for contributing to this repository. Please follow the conventions
 below to keep skills consistent and easy to discover.
 
 ## What to add
-- Claude Skills go in `claude-skill/<skill-name>/`.
+- Skills go in `skills/<skill-name>/`.
 - Portable Markdown personas go in `md-personas/`.
 - Team-specific persona docs go in `team-personas/`.
 
@@ -19,7 +19,7 @@ below to keep skills consistent and easy to discover.
 To publish a `.skill` archive:
 
 ```bash
-zip -r claude-skill/<skill-name>.skill claude-skill/<skill-name>
+zip -r skills/<skill-name>.skill skills/<skill-name>
 ```
 
 To package all skills and regenerate portable docs:

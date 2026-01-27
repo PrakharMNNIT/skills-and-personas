@@ -2,9 +2,9 @@
 
 ## Project Structure & Module Organization
 This repo is a small collection of skills and persona specs.
-- `claude-skill/<skill-name>/SKILL.md` holds Claude Skill definitions (YAML front matter with `name` and `description` only).
-- `claude-skill/<skill-name>/references/` stores detailed guidance for progressive disclosure.
-- `claude-skill/*.skill` are packaged Claude Skills (zip archives), for example `claude-skill/kingmode.skill`.
+- `skills/<skill-name>/SKILL.md` holds Skill definitions (YAML front matter with `name` and `description` only).
+- `skills/<skill-name>/references/` stores detailed guidance for progressive disclosure.
+- `skills/*.skill` are packaged skill archives (zip archives), for example `skills/kingmode.skill`.
 - `md-personas/*.md` are portable docs for other LLMs or persona notes (for example, `md-personas/KINGMODE.md`).
 - `team-personas/` contains shared team persona material.
 - `assets/` stores images and supporting documents.

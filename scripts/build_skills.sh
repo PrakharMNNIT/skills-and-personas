@@ -5,7 +5,7 @@ usage() {
   cat <<'USAGE'
 Usage: scripts/build_skills.sh [--force-md]
 
-Packages all skills in claude-skill/ into .skill archives.
+Packages all skills in skills/ into .skill archives.
 Generates portable .md files in md-personas/ (overwrite with --force-md).
 USAGE
 }
@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-skill_dir="$root_dir/claude-skill"
+skill_dir="$root_dir/skills"
 md_dir="$root_dir/md-personas"
 
 if ! command -v zip >/dev/null 2>&1; then
