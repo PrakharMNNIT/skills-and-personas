@@ -16,6 +16,8 @@ This repository collects Skills and portable Markdown personas for use with othe
 ## Index
 Skills:
 - `skills/constellation-team/`
+- `skills/backend-pe/`
+- `skills/frontend-pe/`
 - `skills/frontend-design/`
 - `skills/kingmode/`
 - `skills/super-mode/`
