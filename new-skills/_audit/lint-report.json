@@ -1,9 +1,9 @@
 {
   "summary": {
-    "skills_linted": 39,
-    "total_fails": 0,
-    "total_warns": 0,
-    "passed": true
+    "skills_linted": 41,
+    "total_fails": 4,
+    "total_warns": 1,
+    "passed": false
   },
   "lint_results": [
     {
@@ -11,6 +11,28 @@
       "fails": 0,
       "warns": 0,
       "issues": []
+    },
+    {
+      "slug": "autonomous-orchestrion",
+      "fails": 2,
+      "warns": 1,
+      "issues": [
+        {
+          "severity": "WARN",
+          "code": "FRONTMATTER_EXTRA",
+          "msg": "unexpected frontmatter fields: ['aliases']"
+        },
+        {
+          "severity": "FAIL",
+          "code": "TOO_LONG",
+          "msg": "SKILL.md is 1494 lines (max 500)"
+        },
+        {
+          "severity": "FAIL",
+          "code": "TOP_LEVEL_README",
+          "msg": "README.md at skill top level not allowed: /Users/praxlannister/Documents/workspace/skills-and-personas/new-skills/autonomous-orchestrion/README.md"
+        }
+      ]
     },
     {
       "slug": "backend-architecture-standards",
@@ -169,6 +191,23 @@
       "issues": []
     },
     {
+      "slug": "orchestrion-universal-agent-router",
+      "fails": 2,
+      "warns": 0,
+      "issues": [
+        {
+          "severity": "FAIL",
+          "code": "TOO_LONG",
+          "msg": "SKILL.md is 962 lines (max 500)"
+        },
+        {
+          "severity": "FAIL",
+          "code": "TOP_LEVEL_README",
+          "msg": "README.md at skill top level not allowed: /Users/praxlannister/Documents/workspace/skills-and-personas/new-skills/orchestrion-universal-agent-router/README.md"
+        }
+      ]
+    },
+    {
       "slug": "principal-engineer",
       "fails": 0,
       "warns": 0,
@@ -249,6 +288,14 @@
       "desc_chars": 921,
       "status": "OK",
       "refs": 3
+    },
+    {
+      "name": "autonomous-orchestrion",
+      "dir": "autonomous-orchestrion",
+      "lines": 1494,
+      "desc_chars": 552,
+      "status": "OVER",
+      "refs": 0
     },
     {
       "name": "backend-architecture-standards",
@@ -457,6 +504,14 @@
       "desc_chars": 697,
       "status": "OK",
       "refs": 3
+    },
+    {
+      "name": "orchestrion-universal-agent-router",
+      "dir": "orchestrion-universal-agent-router",
+      "lines": 962,
+      "desc_chars": 499,
+      "status": "OVER",
+      "refs": 0
     },
     {
       "name": "principal-engineer",
