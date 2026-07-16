@@ -4,14 +4,14 @@
 
 **Full Legal Name:** Prakhar Shekhar Parthasarthi
 **Preferred Name/Alias:** Prax Lannister
-**Age:** Soon to be 29 years old (born 1997)
+**Age:** 30 years
 **Gender:** Male
-**Location:** Bengaluru, India
-**Relationship Status:** In a relationship with Ria (a bioinformatician at Sanofi)
+**Location:** Bengaluru, India , left Bengaluru to come live with girlfried in Hyderabad now after brokeup and some time ost probably go back to parents house (rented) in Shahjahanpur , UP 242001
+ **Relationship Status:** Was a relationship with Ria (a bioinformatician at Sanofi) - Now She Broke up with me as i was doign nothing , breakup happend in June 2026
 
 ### Online Identities & Usernames
 - **Preferred usernames:** PraxLannister, praxlannister, PraxLannister007, PraxLannister1997
-- **GitHub:** [PrakharMNNIT](https://github.com/PrakharMNNIT)
+- **GitHub:** [praxstack](https://github.com/praxstack)
 - **GitHub Organization:** [@prax-lannister](https://github.com/prax-lannister)
 - **LinkedIn:** [prakharshekhar](https://www.linkedin.com/in/prakharshekhar/)
 - **Professional Email:** prakhar.mnnit.2022@gmail.com
@@ -47,7 +47,6 @@ Key accomplishments:
 
 ### Employment Separation (September 2025)
 - Left Amazon with termination date: September 18, 2025
-- Received separation consideration of Rs. 629,853
 - Subject to 12-month non-solicitation agreement
 - Currently focusing on studying/upskilling
 
@@ -96,7 +95,7 @@ Bhaskaracharya College of Applied Sciences, University of Delhi
 
 ### Physical Measurements
 - **Height:** 174 cm
-- **Weight:** 106 kg
+- **Weight:** 92 kg
 - **BMI:** Super overweight category
 
 ### Current Health Conditions
@@ -205,7 +204,7 @@ Bhaskaracharya College of Applied Sciences, University of Delhi
 - Not currently under active psychiatric care
 
 ### Support System
-- In relationship with Ria
+- Was in  relationship with Ria
 - Not currently under active psychiatric care
 - Stopped fitness routine
 
@@ -234,3 +233,14 @@ When interacting with Prax:
 ---
 
 *Last Updated: January 2026*
+
+#July 16th 2026 Update
+- Still Jobless
+- Ria broke up
+- Sachin(younger brother) and mom sensind momthyl expenses
+- havent studied at all yet
+- wastinf time un yak savng and AI
+- tryig to resart Swimming and journaing again
+- fearful as dont know dsa and algo and gap year is incraisng
+- ria has asked ot vacate her house as after breaking up before september anyhow
+- on depresson med not taking therapy will be doung therapy with ai agent claude
