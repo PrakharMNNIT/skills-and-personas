@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="09-zero-api-visual-runtime-tracker.md">
+  <meta name="source-sha256" content="f6dcd2f3ff2909a8822375035c74e8304a82f0b475d221877563a363921ccbfa">
+  <meta name="generated-at" content="2026-08-04T18:30:00.000Z">
+  <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
+  <meta name="template-version" content="prax-teach-lesson/2.0.0">
+  <title>Prax Teach v2 — Zero-API Visual Runtime Upgrade Tracker</title>
+  <style>
+    :root { color-scheme: light; --paper:#f7f3ea; --ink:#172235; --muted:#5d6674; --accent:#8f3b20; --teal:#176b69; --line:#d7cbb8; --surface:#fffdf8; --code:#1c2837; --code-ink:#f4f1ea; }
+    @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper:#111923; --ink:#edf2f5; --muted:#b4bdc8; --accent:#f19a72; --teal:#72cbc5; --line:#344355; --surface:#182331; --code:#09111a; --code-ink:#edf2f5; } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:var(--accent); text-underline-offset:.16em; }
+    a:focus-visible, [tabindex="0"]:focus-visible, summary:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
+    .skip-link { position:fixed; left:1rem; top:.7rem; transform:translateY(-180%); z-index:10; padding:.6rem .85rem; border-radius:.4rem; background:var(--ink); color:var(--paper); }
+    .skip-link:focus { transform:translateY(0); }
+    header { border-bottom:1px solid var(--line); background:var(--surface); }
+    header div, main, footer { width:min(840px, calc(100% - 2rem)); margin-inline:auto; }
+    header div { display:flex; justify-content:space-between; gap:1rem; padding:1rem 0; }
+    header strong { color:var(--teal); letter-spacing:.04em; }
+    main { padding:clamp(2.4rem,7vw,5rem) 0; }
+    h1,h2,h3,h4 { font-family:ui-serif,Georgia,Cambria,serif; line-height:1.15; text-wrap:balance; scroll-margin-top:2rem; }
+    h1 { max-width:16ch; margin:0 0 1.5rem; font-size:clamp(2.5rem,8vw,4.8rem); letter-spacing:-.04em; }
+    h2 { margin:3.2rem 0 1rem; font-size:clamp(1.7rem,4vw,2.4rem); }
+    h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
+    p,li { max-width:72ch; }
+    blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
+    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
+    pre code { padding:0; border:0; color:inherit; }
+    .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
+    table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
+    th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
+    details { margin:1rem 0; padding:.75rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    summary { cursor:pointer; font-weight:700; }
+    footer { padding:1.2rem 0 2.5rem; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; overflow-wrap:anywhere; }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+    @media print { :root { --paper:#fff; --ink:#000; --surface:#fff; --line:#aaa; } header,.skip-link { display:none; } body { font-size:10.5pt; } main,footer { width:100%; } h1 { max-width:none; font-size:28pt; } pre,table,blockquote { break-inside:avoid; } details > *:not(summary),details::details-content { display:block!important; content-visibility:visible!important; } a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header><div><strong>Prax Teach lesson</strong><a href="./09-zero-api-visual-runtime-tracker.md">Markdown source</a></div></header>
+  <main id="main-content"><h1 id="prax-teach-v2-zero-api-visual-runtime-upgrade-tracker">Prax Teach v2 — Zero-API Visual Runtime Upgrade Tracker</h1>
+<blockquote>
+<p><strong>Human-readable tracker view · initialized 2026-08-05</strong><br />Machine source of truth: <a href="./09-zero-api-visual-runtime-tracker.json"><code>09-zero-api-visual-runtime-tracker.json</code></a><br />Plan: <a href="./08-zero-api-visual-runtime-upgrade-plan.html"><code>08-zero-api-visual-runtime-upgrade-plan.md</code></a> · Autonomous goal: <a href="./10-zero-api-autonomous-goal.html"><code>10-zero-api-autonomous-goal.md</code></a></p>
+</blockquote>
+<h2 id="current-state">Current state</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Track</th>
+<th align="right">Verified</th>
+<th align="right">Total</th>
+<th align="right">Progress</th>
+<th>Claim</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Engineering</td>
+<td align="right">0</td>
+<td align="right">36</td>
+<td align="right">0%</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>External learner evidence</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">0%</td>
+<td>Waiting for real observations</td>
+</tr>
+<tr>
+<td>Overall</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td><strong>NOT_STARTED</strong></td>
+</tr>
+</tbody></table></div>
+<blockquote>
+<p>A green engineering track supports <code>ENGINEERING_COMPLETE / SCIENTIFIC_EVIDENCE_PENDING</code>. Only engineering plus all four genuine external gates supports <code>UPGRADE_100_PERCENT_VERIFIED</code>.</p>
+</blockquote>
+<h2 id="status-key">Status key</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pending</code></td>
+<td>Not started or not yet evidenced</td>
+</tr>
+<tr>
+<td><code>in_progress</code></td>
+<td>One owner is actively working on the atom</td>
+</tr>
+<tr>
+<td><code>blocked</code></td>
+<td>A concrete engineering dependency or repeated failure prevents progress</td>
+</tr>
+<tr>
+<td><code>waiting_external</code></td>
+<td>Requires real people, elapsed time, authorization, or another external event</td>
+</tr>
+<tr>
+<td><code>verified</code></td>
+<td>Acceptance recomputed against the recorded exact bytes</td>
+</tr>
+<tr>
+<td><code>rejected</code></td>
+<td>Optional experiment failed its keep threshold and was safely removed/deferred</td>
+</tr>
+</tbody></table></div>
+<h2 id="update-protocol">Update protocol</h2>
+<p>The JSON file is canonical. After every acceptance atom:</p>
+<ol>
+<li>attach evidence paths, commands, exit codes, hashes, HEAD, dirty state, and limitations;</li>
+<li>change only the completed atom and newly unblocked dependencies;</li>
+<li>append an audit-log event with timestamp, actor class, old/new status, and reason;</li>
+<li>recompute counts from criteria—never type percentages by hand;</li>
+<li>regenerate this Markdown and its HTML companion;</li>
+<li>validate that the rendered views match the JSON and do not overstate the claim.</li>
+</ol>
+<p>No item becomes <code>verified</code> from a plan, partial test, stale receipt, reviewer opinion, or another item’s evidence.</p>
+<h2 id="phase-0-freeze-and-no-api-foundation">Phase 0 — freeze and no-API foundation</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-00</td>
+<td>Freeze and inventory current candidate</td>
+<td><code>pending</code></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-01</td>
+<td>Approve runtime-boundary ADR</td>
+<td><code>pending</code></td>
+<td>ZV-00</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-02</td>
+<td>Enforce no-API and no-network architecture</td>
+<td><code>pending</code></td>
+<td>ZV-01</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-03</td>
+<td>Add capability-adaptive execution policy</td>
+<td><code>pending</code></td>
+<td>ZV-00</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-04</td>
+<td>Define lesson and learning-receipt schemas</td>
+<td><code>pending</code></td>
+<td>ZV-01</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-05</td>
+<td>Freeze static baseline and comparison protocol</td>
+<td><code>pending</code></td>
+<td>ZV-00</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h3 id="phase-0-exit">Phase 0 exit</h3>
+<ul>
+<li>Exact current state and hashes recorded.</li>
+<li>Runtime boundary and rollback approved.</li>
+<li>Any attempted network request fails verification.</li>
+<li>No API, telemetry, remote asset, CDN, or API-key path exists.</li>
+<li>Static behavior and no-script content remain intact.</li>
+</ul>
+<h2 id="phase-1-bounded-floating-point-pilot">Phase 1 — bounded floating-point pilot</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-06</td>
+<td>Scaffold independently versioned runtime</td>
+<td><code>pending</code></td>
+<td>ZV-01, ZV-02, ZV-04</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-07</td>
+<td>Implement accessible state-stepper</td>
+<td><code>pending</code></td>
+<td>ZV-06</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-08</td>
+<td>Implement local receipt panel</td>
+<td><code>pending</code></td>
+<td>ZV-04, ZV-06</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-09</td>
+<td>Implement ordered hint state</td>
+<td><code>pending</code></td>
+<td>ZV-06</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-10</td>
+<td>Build Python floating-point pilot</td>
+<td><code>pending</code></td>
+<td>ZV-07, ZV-08, ZV-09</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-11</td>
+<td>Preserve static, no-script, print, and reduced-motion routes</td>
+<td><code>pending</code></td>
+<td>ZV-10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-12</td>
+<td>Pass pilot browser, accessibility, privacy, and security gates</td>
+<td><code>pending</code></td>
+<td>ZV-02, ZV-10, ZV-11</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-13</td>
+<td>Pilot independent review and stop/go decision</td>
+<td><code>pending</code></td>
+<td>ZV-12</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h3 id="phase-1-stop-rule">Phase 1 stop rule</h3>
+<p>Do not start reusable-MVP work until the complete pilot loop, accessibility engineering gates, receipt round-trip, deterministic build, and exact-byte independent review pass.</p>
+<h2 id="phase-2-reusable-runtime-mvp">Phase 2 — reusable runtime MVP</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-14</td>
+<td>Implement parameter-lab</td>
+<td><code>pending</code></td>
+<td>ZV-13</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-15</td>
+<td>Implement compare-views</td>
+<td><code>pending</code></td>
+<td>ZV-13</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-16</td>
+<td>Harden shared hint engine and deterministic graders</td>
+<td><code>pending</code></td>
+<td>ZV-09, ZV-13</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-17</td>
+<td>Add deterministic lesson builder and manifest</td>
+<td><code>pending</code></td>
+<td>ZV-14, ZV-15, ZV-16</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-18</td>
+<td>Build Rubik’s move laboratory</td>
+<td><code>pending</code></td>
+<td>ZV-17</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-19</td>
+<td>Build lost-update laboratory</td>
+<td><code>pending</code></td>
+<td>ZV-17</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-20</td>
+<td>Prove runtime reuse across three domains</td>
+<td><code>pending</code></td>
+<td>ZV-18, ZV-19</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-21</td>
+<td>Pass full MVP verification</td>
+<td><code>pending</code></td>
+<td>ZV-20</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h3 id="phase-2-exit">Phase 2 exit</h3>
+<ul>
+<li>Python, Rubik’s, and concurrency use the same public components.</li>
+<li>No lesson-specific core forks disguise an overfit runtime.</li>
+<li>Browser, accessibility, security, privacy, property, deterministic-build, and full tests pass on the same bytes.</li>
+</ul>
+<h2 id="phase-3-one-lean-build-time-experiment">Phase 3 — one Lean build-time experiment</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-22</td>
+<td>Approve one-experiment Lean ADR</td>
+<td><code>pending</code></td>
+<td>ZV-21</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-23</td>
+<td>Implement pinned build-time Lean adapter</td>
+<td><code>pending</code></td>
+<td>ZV-22</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-24</td>
+<td>Build proof-state lesson with static equivalent</td>
+<td><code>pending</code></td>
+<td>ZV-23</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-25</td>
+<td>Make evidence-based Lean keep-or-revert decision</td>
+<td><code>pending</code></td>
+<td>ZV-24</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h3 id="phase-3-rule">Phase 3 rule</h3>
+<p><code>rejected</code> is a successful experimental outcome when the adapter fails the declared value threshold and is cleanly removed while the generic formal-receipt boundary remains valid. Do not keep Lean merely because it was expensive to build.</p>
+<h2 id="phase-4-evaluation-machinery-and-real-evidence">Phase 4 — evaluation machinery and real evidence</h2>
+<h3 id="engineering-preparation">Engineering preparation</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-26</td>
+<td>Predeclare evaluation protocol</td>
+<td><code>pending</code></td>
+<td>ZV-05, ZV-21</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-27</td>
+<td>Implement evaluation capture and analysis</td>
+<td><code>pending</code></td>
+<td>ZV-26</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-28</td>
+<td>Prepare representative accessibility field protocol</td>
+<td><code>pending</code></td>
+<td>ZV-12, ZV-21, ZV-26</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-29</td>
+<td>Prepare immediate, delayed, and transfer study operations</td>
+<td><code>pending</code></td>
+<td>ZV-26, ZV-27</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h3 id="external-observations">External observations</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EG-ZV-01</td>
+<td>Representative accessibility field evidence</td>
+<td><code>waiting_external</code></td>
+<td>ZV-28</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EG-ZV-02</td>
+<td>Immediate learner-outcome evidence</td>
+<td><code>waiting_external</code></td>
+<td>ZV-29</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EG-ZV-03</td>
+<td>Delayed 7–14 day retention evidence</td>
+<td><code>waiting_external</code></td>
+<td>EG-ZV-02</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EG-ZV-04</td>
+<td>Novel-transfer and generalization evidence</td>
+<td><code>waiting_external</code></td>
+<td>EG-ZV-03</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<p>These four rows can be satisfied only by genuine observations under the frozen protocol. Fixtures may test the machinery but may never update these rows to <code>verified</code>.</p>
+<h2 id="phase-5-optional-integrations-final-verification-and-packaging">Phase 5 — optional integrations, final verification, and packaging</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Criterion</th>
+<th>Status</th>
+<th>Depends on</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ZV-30</td>
+<td>Gate optional SkillOpt, Flint, and future adapters</td>
+<td><code>pending</code></td>
+<td>ZV-27</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-31</td>
+<td>Synchronize canonical documentation and HTML</td>
+<td><code>pending</code></td>
+<td>ZV-25, ZV-29, ZV-30</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-32</td>
+<td>Run independent code and architecture review</td>
+<td><code>pending</code></td>
+<td>ZV-21, ZV-25, ZV-31</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-33</td>
+<td>Run clean-room full verification</td>
+<td><code>pending</code></td>
+<td>ZV-32</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-34</td>
+<td>Create immutable candidate package and rollback receipt</td>
+<td><code>pending</code></td>
+<td>ZV-33</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ZV-35</td>
+<td>Issue truthful completion and promotion handoff</td>
+<td><code>pending</code></td>
+<td>ZV-34</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<h2 id="completion-decision-table">Completion decision table</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Engineering</th>
+<th>External gates</th>
+<th>Allowed statement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Not started</td>
+<td>Incomplete</td>
+<td>Incomplete</td>
+<td>“The upgrade is planned and tracked.”</td>
+</tr>
+<tr>
+<td>Candidate in progress</td>
+<td>Incomplete</td>
+<td>Any</td>
+<td>“Implementation is in progress; listed evidence only.”</td>
+</tr>
+<tr>
+<td>Engineering complete</td>
+<td>36/36 verified</td>
+<td>Fewer than 4/4</td>
+<td>“Engineering complete; scientific evidence pending.”</td>
+</tr>
+<tr>
+<td>Experiment rejected</td>
+<td>All mandatory criteria verified; optional adapter rejected by rule</td>
+<td>Any</td>
+<td>“Core complete; optional experiment did not earn inclusion.”</td>
+</tr>
+<tr>
+<td>100% verified</td>
+<td>36/36 verified on exact clean HEAD</td>
+<td>4/4 genuine gates verified</td>
+<td>“Upgrade 100% verified within the predeclared scope.”</td>
+</tr>
+</tbody></table></div>
+<h2 id="human-authorization-gates">Human authorization gates</h2>
+<p>The autonomous loop must stop and request approval before:</p>
+<ul>
+<li>merging or pushing;</li>
+<li>deploying or publishing;</li>
+<li>installing/replacing the canonical skill;</li>
+<li>changing global configuration;</li>
+<li>spending API credits or enabling metered services;</li>
+<li>recruiting or contacting external participants;</li>
+<li>deleting material data or touching unrelated dirty work.</li>
+</ul>
+<p>Local branch/worktree edits, project-scoped open-source dependencies, local tests, local browser binaries, documentation, local commits, and candidate packaging are within the implementation scope when current policy permits them.</p>
+<h2 id="next-executable-atom">Next executable atom</h2>
+<p><code>ZV-00 — Freeze and inventory current candidate</code></p>
+<p>The paste-ready command in <a href="./10-zero-api-autonomous-goal.html"><code>10-zero-api-autonomous-goal.md</code></a> starts there, re-checks current state rather than trusting this snapshot, and advances only through dependency-unblocked criteria.</p>
+</main>
+  <footer>
+    Canonical source: <a href="./09-zero-api-visual-runtime-tracker.md">09-zero-api-visual-runtime-tracker.md</a><br>
+    SHA-256: <code>f6dcd2f3ff2909a8822375035c74e8304a82f0b475d221877563a363921ccbfa</code><br>
+    Generated: 2026-08-04T18:30:00.000Z<br>
+    Renderer: prax-teach-markdown/2.2.0<br>
+    Template: prax-teach-lesson/2.0.0
+  </footer>
+</body>
+</html>

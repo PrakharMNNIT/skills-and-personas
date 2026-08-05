@@ -1,0 +1,29 @@
+{
+  "asset_count": 12,
+  "assets": [
+    {"relation": "byte-identical", "source": "GLOSSARY-FORMAT.md", "source_sha256": "d177def491519d97873291f2e860d8f1d60ead78feecb82eee022177958069c6", "target": "GLOSSARY-FORMAT.md", "target_sha256": "d177def491519d97873291f2e860d8f1d60ead78feecb82eee022177958069c6"},
+    {"relation": "byte-identical", "source": "LEARNING-RECORD-FORMAT.md", "source_sha256": "855f81017625256584bbf62bd5edb9b0c86605c4cc1139c56acc36b802595d17", "target": "LEARNING-RECORD-FORMAT.md", "target_sha256": "855f81017625256584bbf62bd5edb9b0c86605c4cc1139c56acc36b802595d17"},
+    {"relation": "byte-identical", "source": "MISSION-FORMAT.md", "source_sha256": "8da6d3ac84eb2eb19f17c260b6acf01c560d3ac7a4501c415eea0e985602f4d7", "target": "MISSION-FORMAT.md", "target_sha256": "8da6d3ac84eb2eb19f17c260b6acf01c560d3ac7a4501c415eea0e985602f4d7"},
+    {"relation": "byte-identical", "source": "RESOURCES-FORMAT.md", "source_sha256": "2bc634a64b0d0daa10904f9222e7aa0d361420dfacabbf092fbe3a72222edc08", "target": "RESOURCES-FORMAT.md", "target_sha256": "2bc634a64b0d0daa10904f9222e7aa0d361420dfacabbf092fbe3a72222edc08"},
+    {"relation": "byte-identical", "source": "references/VISUALIZATION-RESEARCH.md", "source_sha256": "2931faf70bfd631f880444d5cda3a1513f5190ffdfb87ebb41ae580020ac0ed3", "target": "references/VISUALIZATION-RESEARCH.md", "target_sha256": "2931faf70bfd631f880444d5cda3a1513f5190ffdfb87ebb41ae580020ac0ed3"},
+    {"relation": "renamed-byte-identical", "source": "references/VISUALIZATION-ROUTER.md", "source_sha256": "ef22cd7966b4060dff22787710670963a3d91641b6dcc5ae89469e33a8ed88e2", "target": "references/LEGACY-VISUALIZATION-ROUTER.md", "target_sha256": "ef22cd7966b4060dff22787710670963a3d91641b6dcc5ae89469e33a8ed88e2"},
+    {"adaptation": "Replaced source-host absolute path promises with portable relative skill hints and documented current-host runtime probing.", "relation": "portability-adapted", "source": "references/VISUALIZATION-TOOL-REGISTRY.md", "source_sha256": "db4b0e25853fbd358ee1a8e5a4ffb21dcc53758296acd9a109f61c9ad943ee3e", "target": "references/VISUALIZATION-TOOL-REGISTRY.md", "target_sha256": "89c7d2e7dc7c34ee11663a87357bd66b122cac6ce4539a803903e2f88ec76c8e"},
+    {"adaptation": "Converted six source-host installed absolute-path records to portable relative probe metadata while retaining all 38 catalog entries.", "relation": "portability-adapted", "source": "references/visualization-tool-registry.json", "source_sha256": "15e364e86933cdfe83fc7353efa10df3d251cd3b2606f4860e17ecf6e420f65d", "target": "references/visualization-tool-registry.json", "target_sha256": "e662357502ef4d8e4d4137d0c3aa6f14e6533663f6d70961a17f2001caefc3b6"},
+    {"adaptation": "Added current-host resolution of relative skill paths through configurable probe roots and rejection of embedded static installed or absolute-path claims.", "relation": "portability-adapted", "source": "scripts/find_visualization_tool.py", "source_sha256": "20f5463e64b5244f389f4d25fdf854c7f8571cdd1d5a96eb50ac5c9ba9b8b2ad", "target": "scripts/find_visualization_tool.py", "target_sha256": "2fcf10a2682850e0bb9de5dd3e94c1e849c288f8847e8091fe13ed0e4120db63"},
+    {"adaptation": "Replaced the source-host existence assertion with portability and temporary-root runtime-probe regressions; the registry suite now has nine tests.", "relation": "portability-adapted", "source": "scripts/test_visualization_registry.py", "source_sha256": "a3119a65194a5c60e6d137b417613cec1d32613a3066bf65f04dfa9fcb3ac3e3", "target": "scripts/test_visualization_registry.py", "target_sha256": "49c1dffee866b9de870f469a1e3e75a94d8f92b7d85812464cd6b893a3a32968"},
+    {"relation": "byte-identical", "source": "assets/visualization-router.svg", "source_sha256": "03a817b95ee2236cfd32d8ea54e8578abe8d3f080317adf2719ff125a59e7370", "target": "assets/visualization-router.svg", "target_sha256": "03a817b95ee2236cfd32d8ea54e8578abe8d3f080317adf2719ff125a59e7370"},
+    {"relation": "byte-identical", "source": "assets/visualization-router.png", "source_sha256": "1711b1f4a685c0fb648c9b7e01125b60fa397ce89a78df68e87e6b9b47c9c1bd", "target": "assets/visualization-router.png", "target_sha256": "1711b1f4a685c0fb648c9b7e01125b60fa397ce89a78df68e87e6b9b47c9c1bd"}
+  ],
+  "registry": {
+    "expected_tool_count": 38,
+    "query_check_command": ["python3", "scripts/find_visualization_tool.py", "--check"],
+    "query_check_expected": "registry valid: 38 tools",
+    "test_command": ["python3", "scripts/test_visualization_registry.py"],
+    "test_count": 9
+  },
+  "schema_version": 1,
+  "source_commit": "3aeb81cdb7421569a02bd5b111d3b1771f268916",
+  "source_root": "/Users/prax/Developer/agent-stack/skills/prax-teach",
+  "source_worktree_clean_for_path": true,
+  "verification_date": "2026-08-04"
+}

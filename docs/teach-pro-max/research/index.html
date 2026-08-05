@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Prax Teach Lab · Research and candidate skill</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+
+.hub-main { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(3rem, 8vw, 7rem) 0 5rem; }
+.hero { max-width: 58rem; padding-bottom: 3rem; }
+.hero h1 { max-width: 12ch; }
+.hero .lede { max-width: 48rem; color: var(--muted); font: 1.18rem/1.65 var(--sans); }
+.verdict { margin-top: 2rem; padding: 1.2rem 1.35rem; border-left: .35rem solid var(--teal); border-radius: .2rem .75rem .75rem .2rem; background: var(--surface); box-shadow: var(--shadow); }
+.hub-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.35rem; }
+.hub-actions a { display:inline-block; padding:.68rem .95rem; border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--ink); font-weight:750; text-decoration:none; }
+.hub-actions a:first-child { border-color:var(--accent); background:var(--accent); color:#fff; }
+.hub-section { margin-top: 3.5rem; }
+.hub-section h2 { margin-top: 0; }
+.hub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.hub-card { min-height: 10.5rem; display: flex; flex-direction: column; padding: 1.25rem; border: 1px solid var(--line); border-radius: .8rem; background: var(--surface); color: var(--ink); text-decoration: none; box-shadow: 0 10px 34px rgba(65,48,29,.06); }
+.hub-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.hub-card span { color: var(--teal); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.hub-card strong { margin: .7rem 0 auto; font: 1.35rem/1.2 var(--serif); }
+.hub-card small { margin-top: 1rem; color: var(--muted); overflow-wrap: anywhere; }
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 0; list-style: none; }
+.principles li { padding: 1rem; border-top: 3px solid var(--accent); background: color-mix(in srgb, var(--surface) 80%, transparent); }
+.principles strong { display: block; margin-bottom: .35rem; }
+@media (max-width: 760px) { .hub-grid, .principles { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions"><button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button></div>
+    </div>
+  </header>
+  <main id="main-content" class="hub-main">
+    <section class="hero" aria-labelledby="hub-title">
+      <p class="eyebrow">Deep research · engineering release verified 5 August 2026</p>
+      <h1 id="hub-title">A teaching system that earns the name.</h1>
+      <p class="lede">A source-ranked audit of Sidechat’s proposal, more than twenty teaching skills and systems, the learning-science evidence behind them, and a reviewed, reproducibly packaged <code>prax-teach-v2</code> engineering candidate with matching HTML companions. The update evaluates Microsoft SkillOpt and Flint at guarded optional boundaries.</p>
+      <div class="verdict"><strong>The conclusion:</strong> keep quick / lesson / course and the visual router; add anti-crutch teaching behavior, correctable concept evidence, real review scheduling, deterministic Markdown-to-HTML parity, delayed retention/transfer evaluation, staged SkillOpt proposals, and accessible Flint chart fallbacks.</div>
+      <div class="hub-actions"><a href="./07-prax-teach-v2-implementation-status.html">Read final status</a><a href="./prax-teach-v2-8c26440a0402.zip">Download reviewed candidate</a></div>
+    </section>
+
+    <section class="hub-section" aria-labelledby="reports-title">
+      <h2 id="reports-title">Research dossier</h2>
+      <div class="hub-grid"><a class="hub-card" href="01-sidechat-audit.html">
+  <span>Report 1</span>
+  <strong>Sidechat response audit</strong>
+  <small>01-sidechat-audit.md</small>
+</a><a class="hub-card" href="02-teaching-systems-landscape.html">
+  <span>Report 2</span>
+  <strong>Teaching skills and systems landscape</strong>
+  <small>02-teaching-systems-landscape.md</small>
+</a><a class="hub-card" href="03-prax-teach-v2-blueprint.html">
+  <span>Report 3</span>
+  <strong>Prax Teach v2 blueprint</strong>
+  <small>03-prax-teach-v2-blueprint.md</small>
+</a><a class="hub-card" href="04-evaluation-and-rollout.html">
+  <span>Report 4</span>
+  <strong>Evaluation and rollout plan</strong>
+  <small>04-evaluation-and-rollout.md</small>
+</a><a class="hub-card" href="05-skillopt-and-flint-integration.html">
+  <span>Report 5</span>
+  <strong>SkillOpt and Flint integration decision</strong>
+  <small>05-skillopt-and-flint-integration.md</small>
+</a><a class="hub-card" href="06-teach-prax-teach-v2-comparison.html">
+  <span>Report 6</span>
+  <strong>Teach, canonical Prax Teach, Prax Tech Eval, and Prax Teach v2</strong>
+  <small>06-teach-prax-teach-v2-comparison.md</small>
+</a><a class="hub-card" href="07-prax-teach-v2-implementation-status.html">
+  <span>Report 7</span>
+  <strong>Prax Teach v2 — final implementation and release status</strong>
+  <small>07-prax-teach-v2-implementation-status.md</small>
+</a></div>
+    </section>
+
+    <section class="hub-section" aria-labelledby="upgrade-title">
+      <h2 id="upgrade-title">Next upgrade · Zero-API Visual Lab</h2>
+      <p>A bounded, subscription-only route from the current static fallback to a separately versioned offline interactive runtime—with exact gates for engineering completion and real learner evidence.</p>
+      <div class="hub-grid"><a class="hub-card" href="08-zero-api-visual-runtime-upgrade-plan.html">
+  <span>Upgrade plan</span>
+  <strong>Architecture, learning experience, phases, tests, and promotion gates</strong>
+  <small>08-zero-api-visual-runtime-upgrade-plan.md</small>
+</a><a class="hub-card" href="09-zero-api-visual-runtime-tracker.html">
+  <span>Live tracker</span>
+  <strong>36 engineering criteria + 4 genuine external-evidence gates</strong>
+  <small>09-zero-api-visual-runtime-tracker.json</small>
+</a><a class="hub-card" href="10-zero-api-autonomous-goal.html">
+  <span>Autonomous goal</span>
+  <strong>Paste-ready implementation, test, review, repair, and verification loop</strong>
+  <small>10-zero-api-autonomous-goal.md</small>
+</a><a class="hub-card" href="09-zero-api-visual-runtime-tracker.json">
+  <span>Machine control plane</span>
+  <strong>Canonical criterion DAG and evidence ledger</strong>
+  <small>09-zero-api-visual-runtime-tracker.json</small>
+</a></div>
+    </section>
+
+    <section class="hub-section" aria-labelledby="principles-title">
+      <h2 id="principles-title">The system in three moves</h2>
+      <ol class="principles">
+        <li><strong>Retrieve before reveal</strong>Turn explanation into effort, targeted feedback, and another attempt.</li>
+        <li><strong>Store evidence, not labels</strong>Track what the learner demonstrated, with uncertainty and correction.</li>
+        <li><strong>Test independence later</strong>Delayed unseen retention and transfer decide whether teaching worked.</li>
+      </ol>
+    </section>
+
+    <section class="hub-section" aria-labelledby="skill-title">
+      <h2 id="skill-title">Candidate skill package</h2>
+      <p>The package is intentionally uninstalled so it remains a clean candidate for validation against the frozen current skills.</p>
+      <div class="hub-grid"><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/accessible-interaction-fallback.html">
+  <span>Skill entrypoint</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Visual essential static</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-1/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-2-driver-draft/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-2-driver-draft/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-3/MISSING-EVIDENCE.html">
+  <span>Skill reference</span>
+  <strong>Attempt 3 historical evidence gap</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-3/MISSING-EVIDENCE.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson: attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson: attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Static lost-update interleaving</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/README.html">
+  <span>Skill reference</span>
+  <strong>Attempt 4 — failed</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-4/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-4/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Focused lesson: diagnosing a two-thread lost update</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Static lost-update interleaving</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-5-composite/README.html">
+  <span>Skill reference</span>
+  <strong>Attempt 5 — independently passed, release-ineligible composite</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-5-composite/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Visual route: essential static</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-6/README.html">
+  <span>Skill reference</span>
+  <strong>Attempt 6 — failed and stopped</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-6/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson: attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Visual route: essential static</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-7/README.html">
+  <span>Skill reference</span>
+  <strong>Forward attempt 7 — passed, then invalidated by source changes</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-7/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Hash-table load-factor lab</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Visual essential static</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/README.html">
+  <span>Skill reference</span>
+  <strong>Forward attempt 8 — driver-context contamination</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-8-driver-context/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Accessible interaction fallback</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson: attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Visual route: essential static</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/attempts/attempt-9/README.html">
+  <span>Skill reference</span>
+  <strong>Forward attempt 9 — passed, then invalidated</strong>
+  <small>prax-teach-v2/evidence/forward/attempts/attempt-9/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/accessible-interaction-fallback.html">
+  <span>Skill reference</span>
+  <strong>Hash-table load-factor practice</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/accessible-interaction-fallback.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/answer-now-override.html">
+  <span>Skill reference</span>
+  <strong>Answer-now override</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/answer-now-override.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/course-consent-boundary.html">
+  <span>Skill reference</span>
+  <strong>Course consent boundary</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/course-consent-boundary.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/lesson-attempt-before-transfer-answer.html">
+  <span>Skill reference</span>
+  <strong>Lesson: attempt before transfer answer</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/lesson-attempt-before-transfer-answer.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/quick-bounded-explanation.html">
+  <span>Skill reference</span>
+  <strong>Quick bounded explanation</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/quick-bounded-explanation.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/resume-hinted-evidence.html">
+  <span>Skill reference</span>
+  <strong>Resume hinted evidence</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/resume-hinted-evidence.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/visual-essential-static.html">
+  <span>Skill reference</span>
+  <strong>Static lost-update interleaving</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/visual-essential-static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/outputs/visual-none.html">
+  <span>Skill reference</span>
+  <strong>Visual route: none</strong>
+  <small>prax-teach-v2/evidence/forward/outputs/visual-none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/evidence/forward/README.html">
+  <span>Skill reference</span>
+  <strong>Forward behavior evidence</strong>
+  <small>prax-teach-v2/evidence/forward/README.md</small>
+</a><a class="hub-card" href="prax-teach-v2/fixtures/visual-verification/interactive.html">
+  <span>Skill reference</span>
+  <strong>Visual verification: interactive request</strong>
+  <small>prax-teach-v2/fixtures/visual-verification/interactive.md</small>
+</a><a class="hub-card" href="prax-teach-v2/fixtures/visual-verification/motion.html">
+  <span>Skill reference</span>
+  <strong>Visual verification: motion request</strong>
+  <small>prax-teach-v2/fixtures/visual-verification/motion.md</small>
+</a><a class="hub-card" href="prax-teach-v2/fixtures/visual-verification/none.html">
+  <span>Skill reference</span>
+  <strong>Visual verification: none</strong>
+  <small>prax-teach-v2/fixtures/visual-verification/none.md</small>
+</a><a class="hub-card" href="prax-teach-v2/fixtures/visual-verification/static.html">
+  <span>Skill reference</span>
+  <strong>Visual verification: static</strong>
+  <small>prax-teach-v2/fixtures/visual-verification/static.md</small>
+</a><a class="hub-card" href="prax-teach-v2/GLOSSARY-FORMAT.html">
+  <span>Skill reference</span>
+  <strong>GLOSSARY.md Format</strong>
+  <small>prax-teach-v2/GLOSSARY-FORMAT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/LEARNING-RECORD-FORMAT.html">
+  <span>Skill reference</span>
+  <strong>Learning Record Format</strong>
+  <small>prax-teach-v2/LEARNING-RECORD-FORMAT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/MISSION-FORMAT.html">
+  <span>Skill reference</span>
+  <strong>MISSION.md Format</strong>
+  <small>prax-teach-v2/MISSION-FORMAT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/ARTIFACT-CONTRACT.html">
+  <span>Skill reference</span>
+  <strong>Markdown and HTML artifact contract</strong>
+  <small>prax-teach-v2/references/ARTIFACT-CONTRACT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/EVALUATION.html">
+  <span>Skill reference</span>
+  <strong>Evaluation contract</strong>
+  <small>prax-teach-v2/references/EVALUATION.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/FLINT-CHARTS.html">
+  <span>Skill reference</span>
+  <strong>Optional Flint charts</strong>
+  <small>prax-teach-v2/references/FLINT-CHARTS.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/LEARNER-STATE.html">
+  <span>Skill reference</span>
+  <strong>Learner-state contract</strong>
+  <small>prax-teach-v2/references/LEARNER-STATE.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/LEGACY-VISUALIZATION-ROUTER.html">
+  <span>Skill reference</span>
+  <strong>Visualization Router</strong>
+  <small>prax-teach-v2/references/LEGACY-VISUALIZATION-ROUTER.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/MODE-CONTRACT.html">
+  <span>Skill reference</span>
+  <strong>Mode contract</strong>
+  <small>prax-teach-v2/references/MODE-CONTRACT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/OPERATIONS.html">
+  <span>Skill reference</span>
+  <strong>Operations and evidence guide</strong>
+  <small>prax-teach-v2/references/OPERATIONS.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/SKILLOPT-OPTIMIZATION.html">
+  <span>Skill reference</span>
+  <strong>Optional SkillOpt optimization</strong>
+  <small>prax-teach-v2/references/SKILLOPT-OPTIMIZATION.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/SOURCES-AND-PRIVACY.html">
+  <span>Skill reference</span>
+  <strong>Sources and privacy</strong>
+  <small>prax-teach-v2/references/SOURCES-AND-PRIVACY.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/TEACHING-PROTOCOL.html">
+  <span>Skill reference</span>
+  <strong>Teaching protocol</strong>
+  <small>prax-teach-v2/references/TEACHING-PROTOCOL.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/VISUALIZATION-RESEARCH.html">
+  <span>Skill reference</span>
+  <strong>Visualization Research Notes</strong>
+  <small>prax-teach-v2/references/VISUALIZATION-RESEARCH.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/VISUALIZATION-ROUTER.html">
+  <span>Skill reference</span>
+  <strong>Visualization router</strong>
+  <small>prax-teach-v2/references/VISUALIZATION-ROUTER.md</small>
+</a><a class="hub-card" href="prax-teach-v2/references/VISUALIZATION-TOOL-REGISTRY.html">
+  <span>Skill reference</span>
+  <strong>Visualization Tool and Agent Resource Registry</strong>
+  <small>prax-teach-v2/references/VISUALIZATION-TOOL-REGISTRY.md</small>
+</a><a class="hub-card" href="prax-teach-v2/RESOURCES-FORMAT.html">
+  <span>Skill reference</span>
+  <strong>RESOURCES.md Format</strong>
+  <small>prax-teach-v2/RESOURCES-FORMAT.md</small>
+</a><a class="hub-card" href="prax-teach-v2/SKILL.html">
+  <span>Skill reference</span>
+  <strong>Prax Teach v2</strong>
+  <small>prax-teach-v2/SKILL.md</small>
+</a><a class="hub-card" href="prax-teach-v2/STATUS.html">
+  <span>Skill reference</span>
+  <strong>Prax Teach v2 release status</strong>
+  <small>prax-teach-v2/STATUS.md</small>
+</a></div>
+    </section>
+  </main>
+  <footer class="site-footer">7 dossier documents · 94 candidate documents · separate verified renderers · no external runtime assets</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

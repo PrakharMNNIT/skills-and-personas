@@ -1,0 +1,32 @@
+{
+  "bundled_renderer_supported": false,
+  "default_medium": "semantic table, exact SVG, or diagram-as-code",
+  "delivery_reason": "The requested rich route is a learning-job recommendation only; deliver the complete static fallback until a separately versioned, tested, and manually reviewed runtime is available.",
+  "delivery_route": "static",
+  "delivery_surface": "host-chat-plus-static-fallback",
+  "fallback": "Captions, transcript, poster, and ordered static states with reduced motion.",
+  "flint_eligible": false,
+  "flint_required": false,
+  "reason": "Explicit motion route override; the caller remains responsible for accuracy and accessibility.",
+  "requested_medium": "learner-controlled sequence with captions and transcript",
+  "retrieval_safety": {
+    "checks_performed": false,
+    "required": true,
+    "required_checks": [
+      "attempt_before_reveal",
+      "accessible_reveal",
+      "fallback_preserves_order"
+    ],
+    "surfaces_to_check": [
+      "visible_labels",
+      "alt_text",
+      "captions",
+      "default_state",
+      "poster_frame",
+      "source_code"
+    ],
+    "verification_status": "not_run"
+  },
+  "route": "motion",
+  "runtime_requirement": "separately-versioned-tested-and-manually-reviewed"
+}

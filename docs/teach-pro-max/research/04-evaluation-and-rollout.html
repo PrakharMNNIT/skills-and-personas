@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="04-evaluation-and-rollout.md">
+  <meta name="source-sha256" content="7b4c961e8f8fc7234bfe1e8ab57899b11e98f05419c6b95d5cdb7c4eb97867aa">
+  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <title>Evaluation and rollout plan · Prax Teach research</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions">
+        <a class="quiet-link" href="./04-evaluation-and-rollout.md">Markdown source</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+      </div>
+    </div>
+  </header>
+  <noscript><p class="noscript">The complete document is available without JavaScript; theme, progress, and copy-button enhancements are disabled.</p></noscript>
+  <main id="main-content" class="layout">
+    <article class="document">
+      <p class="eyebrow">Research dossier · generated companion</p>
+      
+      <h1 id="evaluation-and-rollout-plan">Evaluation and rollout plan<a class="heading-anchor" href="#evaluation-and-rollout-plan" aria-label="Link to Evaluation and rollout plan">#</a></h1>
+<p><em>The evaluation must distinguish “better tutor behavior” from “better learning.”</em></p>
+<h2 id="claims-ladder">Claims ladder<a class="heading-anchor" href="#claims-ladder" aria-label="Link to Claims ladder">#</a></h2>
+<p>Do not collapse these claims:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Claim</th>
+<th>Suitable evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Package is structurally valid</td>
+<td>Skill validator, schema validation, script tests</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Skill triggers at the right time</td>
+<td>Positive, negative, and boundary trigger fixtures</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tutor follows the intended policy</td>
+<td>Deterministic forbidden-behavior checks, blinded artifact graders, traces</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Artifacts are correct, usable, and accessible</td>
+<td>Factual graders, keyboard/manual accessibility review, HTML parity checks</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Learners perform better immediately</td>
+<td>Randomized active-control study with unseen parallel items</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Learners retain and transfer better</td>
+<td>Delayed tests and novel transfer, blind scoring, confidence intervals</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Benefits generalize safely</td>
+<td>Replication across topics, learners, models, accessibility needs, and time</td>
+</tr>
+</tbody></table></div>
+<p>The installed automated evaluator can support levels 1–3. SkillOpt may search level-2 behavior more systematically, but only learner studies can establish levels 4–6.</p>
+<h2 id="part-a-agent-level-ablation">Part A — agent-level ablation<a class="heading-anchor" href="#part-a-agent-level-ablation" aria-label="Link to Part A — agent-level ablation">#</a></h2>
+<h3 id="conditions">Conditions<a class="heading-anchor" href="#conditions" aria-label="Link to Conditions">#</a></h3>
+<p>Run two matched experiments against the same clean baseline because the current evaluator estimates one target skill at a time:</p>
+<ol>
+<li>normal agent vs frozen <code>teach</code>;</li>
+<li>normal agent vs fingerprinted <code>prax-teach-v2</code>.</li>
+</ol>
+<p>Optionally add a descriptive <code>teach</code> vs <code>prax-teach-v2</code> comparison after those causal ablations. Do not contaminate the no-skill control with skill excerpts, expected outcomes, prior traces, or memory.</p>
+<h3 id="isolation-contract">Isolation contract<a class="heading-anchor" href="#isolation-contract" aria-label="Link to Isolation contract">#</a></h3>
+<p>Hold constant:</p>
+<ul>
+<li>exact model/deployment and sampling settings;</li>
+<li>system prompt and all non-target skills;</li>
+<li>tools, network policy, permissions, dependency versions, and budgets;</li>
+<li>fixture bytes and starting Git state;</li>
+<li>hidden graders and evaluation items;</li>
+<li>fresh context and fresh workspace for every run.</li>
+</ul>
+<p>Fingerprint the complete target directory. Keep treatment outputs outside any later run’s visible workspace. Use randomized run order. Preserve full run receipts and exit codes.</p>
+<h3 id="case-matrix">Case matrix<a class="heading-anchor" href="#case-matrix" aria-label="Link to Case matrix">#</a></h3>
+<p>Use at least these strata:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Cases</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mode</td>
+<td>terse quick question; quick with useful visual; one lesson; course initialization; course resume</td>
+</tr>
+<tr>
+<td>Visual need</td>
+<td>none; static; interactive; motion; ambiguous; visual would leak answer</td>
+</tr>
+<tr>
+<td>Learner</td>
+<td>novice; expert; incorrect high confidence; low confidence but correct; accessibility need</td>
+</tr>
+<tr>
+<td>Pedagogy</td>
+<td>retrieval before reveal; worked example; progressive hint; misconception repair; teach-back; transfer</td>
+</tr>
+<tr>
+<td>Trigger</td>
+<td>explicit teaching request; implicit “help me understand”; ordinary factual answer; task completion not teaching; ambiguous boundary</td>
+</tr>
+<tr>
+<td>Failure</td>
+<td>missing source; contradictory source; learner frustration; “answer now”; unsafe/high-stakes topic; no JavaScript; failed visual render</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>no consent; accepted lesson state; durable course; resume with stale/contradictory evidence; deletion/export</td>
+</tr>
+</tbody></table></div>
+<h3 id="observable-outcome-rubric">Observable outcome rubric<a class="heading-anchor" href="#observable-outcome-rubric" aria-label="Link to Observable outcome rubric">#</a></h3>
+<p>Score dimensions separately before any composite:</p>
+<ul>
+<li>factual correctness and source quality;</li>
+<li>outcome alignment and level calibration;</li>
+<li>appropriate mode and persistence decision;</li>
+<li>retrieval/prediction before reveal when useful;</li>
+<li>hint progression and answer restraint;</li>
+<li>feedback specificity;</li>
+<li>transfer quality;</li>
+<li>evidence-honest mastery update;</li>
+<li>visual-route appropriateness and correctness;</li>
+<li>accessibility and static fallback;</li>
+<li>unnecessary ceremony, files, latency, tokens, and cost.</li>
+</ul>
+<h3 id="forbidden-outcomes">Forbidden outcomes<a class="heading-anchor" href="#forbidden-outcomes" aria-label="Link to Forbidden outcomes">#</a></h3>
+<p>Treat any hard failure as a release blocker even if the average score improves:</p>
+<ul>
+<li>reveals the answer before the learner’s attempt without request or necessity;</li>
+<li>leaks answers through suggestions, previews, alt text, captions, source code, or tool output;</li>
+<li>silently writes durable learner state;</li>
+<li>records sensitive or irrelevant traits;</li>
+<li>claims mastery from one response, completion, confidence, or time-on-page;</li>
+<li>fabricates a citation, source claim, scheduler rating, or learner observation;</li>
+<li>uses a decorative or inaccessible visual when the required route is none;</li>
+<li>removes essential information under reduced motion, no JavaScript, print, zoom, or keyboard use;</li>
+<li>continues Socratic questioning after <strong>Answer now</strong>;</li>
+<li>presents a model inference as learner-authored fact.</li>
+</ul>
+<h3 id="trial-policy">Trial policy<a class="heading-anchor" href="#trial-policy" aria-label="Link to Trial policy">#</a></h3>
+<p>For nondeterministic agent behavior:</p>
+<ul>
+<li>predeclare a ceiling of five trials per arm;</li>
+<li>run three per arm as a smoke and stability stage;</li>
+<li>stop and repair any integrity or hard-guardrail failure;</li>
+<li>expand inconclusive cases to trials four and five without changing substantive settings;</li>
+<li>treat this as an engineering decision procedure, not a formal statistical learning claim.</li>
+</ul>
+<p>Use case-level bootstrap intervals for the aggregate and show every stratum. An overall average must not hide regressions in quick, no-visual, accessibility, or high-cost cases.</p>
+<h3 id="forward-tests-performed-on-this-candidate">Forward tests performed on this candidate<a class="heading-anchor" href="#forward-tests-performed-on-this-candidate" aria-label="Link to Forward tests performed on this candidate">#</a></h3>
+<p>These are behavioral development checks, not learner-outcome evidence:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Fresh-agent request</th>
+<th>First result</th>
+<th>Revision</th>
+<th>Clean retry</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Five-minute composite-index explanation</td>
+<td>Good explanation, but a “Quick check” was immediately followed by its answer</td>
+<td>Added a hard live-turn boundary: end on the check unless a self-contained answer key was requested</td>
+<td>Passed: concise explanation ended at the unanswered retrieval question; no files or course setup</td>
+</tr>
+<tr>
+<td>Six-week OS course with “do not save anything”</td>
+<td>Honored the refusal, explained ephemeral limits, proposed a route, and asked one diagnostic</td>
+<td>No revision required</td>
+<td>Passed without durable files or consent pressure</td>
+</tr>
+<tr>
+<td>Beginner, keyboard-accessible race-condition lesson</td>
+<td>Began inventing <code>:::</code> directives and a one-off renderer; Markdown appeared, but the requested HTML did not complete promptly</td>
+<td>Defaulted artifacts to GFM + native semantic HTML + bundled renderer; prohibited a custom DSL/framework for one lesson; clarified that sequence does not automatically justify motion</td>
+<td>Passed: produced Markdown plus self-contained HTML, native keyboard disclosures, exact static tables, source provenance, no persistence, matching SHA-256, and clean workspace/freshness checks</td>
+</tr>
+</tbody></table></div>
+<p>The retry lesson was also rendered through macOS Quick Look for a visual spot check. Its typography, table treatment, dark color palette, and source link rendered cleanly. The HTML remains fully useful without JavaScript.</p>
+<p>These tests demonstrate that the contract can change agent behavior and that the render/validation path works. They also reveal non-trivial lesson-mode overhead: a fresh agent must load several references before authoring. Optimize that latency before calling the package production-ready.</p>
+<h2 id="part-a2-skillopt-gated-optimization">Part A2 — SkillOpt-gated optimization<a class="heading-anchor" href="#part-a2-skillopt-gated-optimization" aria-label="Link to Part A2 — SkillOpt-gated optimization">#</a></h2>
+<p>Use <a href="https://github.com/microsoft/SkillOpt">SkillOpt</a> only after the frozen candidate has a stable baseline. Its authors report strong agent-benchmark gains, but the project trains one text artifact and its showcased runs used roughly 20.8M–213.8M training tokens. This is a deliberate experiment, not a routine editing command. <a href="https://arxiv.org/abs/2605.23904">Paper</a></p>
+<p>Required design:</p>
+<ol>
+<li>Treat bundled fixtures as public development material.</li>
+<li>Keep selection, test, OOD prompts, answers, rubrics, and graders outside target-visible workspaces.</li>
+<li>Clone the full candidate per rollout and replace only the cloned <code>SKILL.md</code>.</li>
+<li>Apply deterministic hard guardrails before a soft quality score.</li>
+<li>Use repeated paired trials and require a gain larger than measured noise.</li>
+<li>Open the untouched test only after freezing the candidate.</li>
+<li>Test at least one different model or harness.</li>
+<li>Stage <code>best_skill.md</code>, human-review the diff, regenerate HTML, and rerun all validators/forward checks.</li>
+</ol>
+<p>Reject any optimizer proposal with answer leakage, silent persistence, fabricated source/state, false mastery, accessibility loss, hidden-grader exposure, or destructive action. These failures cannot be averaged away. Do not auto-adopt, and do not start with learner-transcript harvesting.</p>
+<h2 id="part-b-html-and-artifact-acceptance">Part B — HTML and artifact acceptance<a class="heading-anchor" href="#part-b-html-and-artifact-acceptance" aria-label="Link to Part B — HTML and artifact acceptance">#</a></h2>
+<h3 id="deterministic-parity">Deterministic parity<a class="heading-anchor" href="#deterministic-parity" aria-label="Link to Deterministic parity">#</a></h3>
+<p>Every Markdown artifact must have an HTML file with the same basename. Validate:</p>
+<ul>
+<li>source SHA-256 in HTML equals current Markdown bytes;</li>
+<li>title and heading hierarchy are preserved;</li>
+<li>local links and anchors resolve;</li>
+<li>citations remain clickable and near the supported claim;</li>
+<li>code, tables, lists, blockquotes, and emphasis survive rendering;</li>
+<li>regeneration produces byte-identical output except an explicitly excluded timestamp, or uses <code>SOURCE_DATE_EPOCH</code> for full reproducibility.</li>
+</ul>
+<h3 id="accessibility-gates">Accessibility gates<a class="heading-anchor" href="#accessibility-gates" aria-label="Link to Accessibility gates">#</a></h3>
+<p>Target <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a> AA and supplement it with <a href="https://www.w3.org/TR/coga-usable/">W3C cognitive-accessibility guidance</a>.</p>
+<p>Automated checks:</p>
+<ul>
+<li>valid language, title, viewport, landmarks, skip link;</li>
+<li>heading order;</li>
+<li>contrast and visible focus tokens;</li>
+<li>labels/names for controls;</li>
+<li>no duplicate IDs;</li>
+<li>images with appropriate alternatives;</li>
+<li>reduced-motion CSS and print CSS;</li>
+<li>no unexpected external network dependency.</li>
+</ul>
+<p>Manual checks:</p>
+<ul>
+<li>complete keyboard path and logical focus order;</li>
+<li>200% and 400% zoom/reflow;</li>
+<li>narrow mobile viewport;</li>
+<li>screen-reader landmark and heading navigation;</li>
+<li>no-script and failed-media comprehension;</li>
+<li>reduced-motion equivalence;</li>
+<li>print legibility;</li>
+<li>retrieval prompts do not expose their answer;</li>
+<li>testing with representative disabled and neurodivergent learners.</li>
+</ul>
+<p>Automated scanners cannot certify accessibility by themselves.</p>
+<h3 id="flint-chart-acceptance">Flint chart acceptance<a class="heading-anchor" href="#flint-chart-acceptance" aria-label="Link to Flint chart acceptance">#</a></h3>
+<p>For a Flint-derived chart, also verify:</p>
+<ul>
+<li>the prepared data and transformation provenance;</li>
+<li>pinned Flint/backend version and dependency lock;</li>
+<li>editable <code>.flint.json</code>, rendered asset, and manifest hashes;</li>
+<li>every compiler/render warning, including filtered categories or unsupported backend features;</li>
+<li>exact units, axes, domains, baselines, labels, missingness, and uncertainty;</li>
+<li>a complete semantic table or extended description;</li>
+<li>color-independent meaning, zoom/reflow, print, screen-reader, and no-script behavior;</li>
+<li>no pre-attempt answer leakage.</li>
+</ul>
+<p>Flint&#39;s live editor may help authoring but is not the durable lesson. Prefer a local build-time SVG and fail back to a table or verified native SVG when the optional dependency is absent.</p>
+<h2 id="part-c-learner-outcome-study">Part C — learner-outcome study<a class="heading-anchor" href="#part-c-learner-outcome-study" aria-label="Link to Part C — learner-outcome study">#</a></h2>
+<h3 id="primary-design">Primary design<a class="heading-anchor" href="#primary-design" aria-label="Link to Primary design">#</a></h3>
+<p>Use a user-level, three-arm, parallel randomized study:</p>
+<ol>
+<li>normal agent with an active teaching prompt but no teaching skill;</li>
+<li>frozen <code>teach</code>;</li>
+<li><code>prax-teach-v2</code>.</li>
+</ol>
+<p>A crossover is not the main design because knowledge acquired in one condition cannot be washed out. For a personal N-of-1 pilot, alternate matched, non-overlapping concepts and counterbalance condition order; interpret the result as personal product evidence only.</p>
+<h3 id="evidence-centered-assessment">Evidence-centered assessment<a class="heading-anchor" href="#evidence-centered-assessment" aria-label="Link to Evidence-centered assessment">#</a></h3>
+<p>For each topic, predeclare:</p>
+<ul>
+<li><strong>competency claim:</strong> what the learner should later know or do;</li>
+<li><strong>evidence:</strong> what observable performance supports that claim;</li>
+<li><strong>task:</strong> an unseen prompt that elicits the evidence without repeating lesson wording.</li>
+</ul>
+<p>Use the <a href="https://www.ets.org/research/policy_research_reports/publications/report/2003/hsgs.html">Evidence-Centered Design</a> model and the <a href="https://www.testingstandards.net/">Standards for Educational and Psychological Testing</a> for validity, reliability, fairness, and intended score use.</p>
+<h3 id="outcomes">Outcomes<a class="heading-anchor" href="#outcomes" aria-label="Link to Outcomes">#</a></h3>
+<p>Primary:</p>
+<ul>
+<li>delayed retention on unseen parallel items at a horizon appropriate to the goal, usually 7–14 days;</li>
+<li>blind-scored transfer to novel problems with different surface features.</li>
+</ul>
+<p>Secondary:</p>
+<ul>
+<li>immediate comprehension;</li>
+<li>time and attempts to evidence-supported mastery;</li>
+<li>recurrence of target misconceptions;</li>
+<li>confidence calibration;</li>
+<li>hint dependence;</li>
+<li>voluntary continuation and return.</li>
+</ul>
+<p>Guardrails:</p>
+<ul>
+<li>dropout, frustration, or excessive session time;</li>
+<li>incorrect tutor claims and fabricated sources;</li>
+<li>accessibility failures;</li>
+<li>false-mastered classifications;</li>
+<li>learner-model correction/deletion frequency;</li>
+<li>subgroup outcome and calibration gaps;</li>
+<li>token, latency, and monetary cost.</li>
+</ul>
+<h3 id="measurement-schedule">Measurement schedule<a class="heading-anchor" href="#measurement-schedule" aria-label="Link to Measurement schedule">#</a></h3>
+<ol>
+<li>Pretest before instruction.</li>
+<li>Immediate posttest with unseen parallel items.</li>
+<li>Primary delayed retention/transfer around 7–14 days.</li>
+<li>Optional 30-day check for important durable learning.</li>
+</ol>
+<p>Set the delay from the intended real-world retention horizon. The earlier 48–72 hour suggestion is acceptable only for a short-horizon pilot, not as a universal standard.</p>
+<h3 id="analysis-safeguards">Analysis safeguards<a class="heading-anchor" href="#analysis-safeguards" aria-label="Link to Analysis safeguards">#</a></h3>
+<ul>
+<li>Use an active control with comparable topic exposure and session time.</li>
+<li>Stratify or adjust for pretest performance.</li>
+<li>Keep assessment items hidden from lesson generation and skill prompts.</li>
+<li>Use parallel forms and blind graders.</li>
+<li>Preregister the primary outcome, delay, exclusions, and analysis.</li>
+<li>Analyze learners as assigned and report attrition and implementation fidelity.</li>
+<li>Report effect sizes and confidence intervals, not only pass rates.</li>
+<li>Power the study from pilot variance and the smallest educationally meaningful effect.</li>
+<li>When evaluating learner models, hold out learners and later time periods; report calibration and false-mastery rates.</li>
+<li>Follow current <a href="https://ies.ed.gov/ncee/wwc/Handbooks">What Works Clearinghouse standards</a> for causal-study quality where applicable.</li>
+</ul>
+<h2 id="release-decision-table">Release decision table<a class="heading-anchor" href="#release-decision-table" aria-label="Link to Release decision table">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Ship requirement</th>
+<th>If it fails</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Structural</td>
+<td>Skill and schemas validate; all scripts pass</td>
+<td>Fix before any forward test</td>
+</tr>
+<tr>
+<td>Triggering</td>
+<td>Within predeclared over/under-trigger limits in every critical stratum</td>
+<td>Narrow description or routing</td>
+</tr>
+<tr>
+<td>Hard guardrails</td>
+<td>Zero critical answer-leakage, privacy, fabrication, and accessibility failures</td>
+<td>Block release</td>
+</tr>
+<tr>
+<td>Quick mode</td>
+<td>Non-inferior correctness and clarity; materially less ceremony than current course-first behavior</td>
+<td>Simplify router and intake</td>
+</tr>
+<tr>
+<td>No-visual cases</td>
+<td>Non-inferior learning/artifact score and lower or equal overhead</td>
+<td>Tighten visual router</td>
+</tr>
+<tr>
+<td>Visual-benefit cases</td>
+<td>Better representation choice and transfer-task quality</td>
+<td>Revise visual brief/tool routing</td>
+</tr>
+<tr>
+<td>Flint chart cases</td>
+<td>Exact chart, zero unresolved warnings, reproducible spec/data/output, complete accessible equivalent</td>
+<td>Fall back to table/native SVG and repair the adapter</td>
+</tr>
+<tr>
+<td>SkillOpt proposal</td>
+<td>Hidden hard gates pass; repeated lift exceeds measured noise; untouched test and cross-model check pass; human approves diff</td>
+<td>Reject proposal and keep frozen candidate</td>
+</tr>
+<tr>
+<td>Multi-session cases</td>
+<td>State survives resume, remains correctable, and drives relevant review</td>
+<td>Fix state contract before course rollout</td>
+</tr>
+<tr>
+<td>Human pilot</td>
+<td>No guardrail regression; credible signal on delayed retention/transfer</td>
+<td>Retain as experimental or iterate</td>
+</tr>
+<tr>
+<td>General release</td>
+<td>Replicated benefit or a narrowly worded claim limited to the validated contexts</td>
+<td>Limit triggers and claims</td>
+</tr>
+</tbody></table></div>
+<h2 id="threshold-policy">Threshold policy<a class="heading-anchor" href="#threshold-policy" aria-label="Link to Threshold policy">#</a></h2>
+<p>The current evaluator’s 10% minimum lift and 5% regression/over-trigger values may be used as provisional engineering defaults for agent-level experiments. They should not be described as empirically validated learning thresholds.</p>
+<p>Before data collection:</p>
+<ol>
+<li>identify which metric each threshold applies to;</li>
+<li>set hard zero-tolerance failures separately;</li>
+<li>define a smallest educationally meaningful learner-outcome effect;</li>
+<li>use pilot data to estimate variance and sample size;</li>
+<li>freeze thresholds and analysis before inspecting treatment results.</li>
+</ol>
+<h2 id="rollout-sequence">Rollout sequence<a class="heading-anchor" href="#rollout-sequence" aria-label="Link to Rollout sequence">#</a></h2>
+<h3 id="stage-1-candidate-only">Stage 1 — candidate only<a class="heading-anchor" href="#stage-1-candidate-only" aria-label="Link to Stage 1 — candidate only">#</a></h3>
+<ul>
+<li>Keep the new package outside the installed skill directory.</li>
+<li>Validate package structure, generated HTML parity, and fixtures.</li>
+<li>Freeze current <code>teach</code> and <code>prax-teach</code> fingerprints.</li>
+</ul>
+<h3 id="stage-2-isolated-forward-tests">Stage 2 — isolated forward tests<a class="heading-anchor" href="#stage-2-isolated-forward-tests" aria-label="Link to Stage 2 — isolated forward tests">#</a></h3>
+<ul>
+<li>Test quick, lesson, course, answer-now, visual-none, visual-essential, state-resume, and accessibility cases.</li>
+<li>Use fresh agents and workspaces without leaking the intended answer.</li>
+<li>Repair forbidden behaviors before optimizing average scores.</li>
+</ul>
+<h3 id="stage-3-matched-ablations">Stage 3 — matched ablations<a class="heading-anchor" href="#stage-3-matched-ablations" aria-label="Link to Stage 3 — matched ablations">#</a></h3>
+<ul>
+<li>Run no-skill vs <code>teach</code> and no-skill vs candidate.</li>
+<li>Inspect stratum results, cost, and traces—not just the composite verdict.</li>
+</ul>
+<h3 id="stage-4-bounded-optional-tool-pilots">Stage 4 — bounded optional-tool pilots<a class="heading-anchor" href="#stage-4-bounded-optional-tool-pilots" aria-label="Link to Stage 4 — bounded optional-tool pilots">#</a></h3>
+<ul>
+<li>Compare one verified Flint chart lesson with its table-only version; keep the clearer representation.</li>
+<li>Run a budgeted SkillOpt pilot on public development tasks with edit budget one.</li>
+<li>Keep hidden gates external, never auto-adopt, and do not use learner transcripts.</li>
+</ul>
+<h3 id="stage-5-opt-in-personal-beta">Stage 5 — opt-in personal beta<a class="heading-anchor" href="#stage-5-opt-in-personal-beta" aria-label="Link to Stage 5 — opt-in personal beta">#</a></h3>
+<ul>
+<li>Enable the candidate only on explicit invocation or selected workspaces.</li>
+<li>Show and allow editing/deletion of learner state.</li>
+<li>Collect structured corrections and failure reports.</li>
+</ul>
+<h3 id="stage-6-learner-pilot">Stage 6 — learner pilot<a class="heading-anchor" href="#stage-6-learner-pilot" aria-label="Link to Stage 6 — learner pilot">#</a></h3>
+<ul>
+<li>Run the parallel-group study.</li>
+<li>Publish the protocol, exclusions, uncertainty, and negative results.</li>
+</ul>
+<h3 id="stage-7-production-decision">Stage 7 — production decision<a class="heading-anchor" href="#stage-7-production-decision" aria-label="Link to Stage 7 — production decision">#</a></h3>
+<ul>
+<li>Make the candidate canonical only if it passes guardrails, quick/no-visual non-inferiority, and the predeclared learning claim.</li>
+<li>Freeze the old <code>teach</code> as an evaluation fixture after replacement.</li>
+<li>Consider renaming <code>prax-tech-eval</code> in a separate compatibility-preserving maintenance change.</li>
+</ul>
+<h2 id="honest-success-statement">Honest success statement<a class="heading-anchor" href="#honest-success-statement" aria-label="Link to Honest success statement">#</a></h2>
+<p>Until learner data exists, the strongest defensible claim is:</p>
+<blockquote>
+<p><code>prax-teach-v2</code> implements a more explicit, inspectable, and testable tutoring policy with lighter one-off behavior, evidence-backed learner state, review scheduling, visual restraint, deterministic accessible artifacts, and optional gated SkillOpt/Flint integration contracts.</p>
+</blockquote>
+<p>Do not yet claim that it “teaches better.” That conclusion belongs to delayed retention and transfer evidence.</p>
+
+      <div class="provenance">
+        <strong>Canonical source:</strong> <a href="./04-evaluation-and-rollout.md">04-evaluation-and-rollout.md</a><br>
+        <strong>SHA-256:</strong> <code>7b4c961e8f8fc7234bfe1e8ab57899b11e98f05419c6b95d5cdb7c4eb97867aa</code><br>
+        <strong>Generated:</strong> 2026-08-04T12:00:00.000Z
+      </div>
+    </article>
+    <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ol><li class="toc-l2"><a href="#claims-ladder">Claims ladder</a></li><li class="toc-l2"><a href="#part-a-agent-level-ablation">Part A — agent-level ablation</a></li><li class="toc-l3"><a href="#conditions">Conditions</a></li><li class="toc-l3"><a href="#isolation-contract">Isolation contract</a></li><li class="toc-l3"><a href="#case-matrix">Case matrix</a></li><li class="toc-l3"><a href="#observable-outcome-rubric">Observable outcome rubric</a></li><li class="toc-l3"><a href="#forbidden-outcomes">Forbidden outcomes</a></li><li class="toc-l3"><a href="#trial-policy">Trial policy</a></li><li class="toc-l3"><a href="#forward-tests-performed-on-this-candidate">Forward tests performed on this candidate</a></li><li class="toc-l2"><a href="#part-a2-skillopt-gated-optimization">Part A2 — SkillOpt-gated optimization</a></li><li class="toc-l2"><a href="#part-b-html-and-artifact-acceptance">Part B — HTML and artifact acceptance</a></li><li class="toc-l3"><a href="#deterministic-parity">Deterministic parity</a></li><li class="toc-l3"><a href="#accessibility-gates">Accessibility gates</a></li><li class="toc-l3"><a href="#flint-chart-acceptance">Flint chart acceptance</a></li><li class="toc-l2"><a href="#part-c-learner-outcome-study">Part C — learner-outcome study</a></li><li class="toc-l3"><a href="#primary-design">Primary design</a></li><li class="toc-l3"><a href="#evidence-centered-assessment">Evidence-centered assessment</a></li><li class="toc-l3"><a href="#outcomes">Outcomes</a></li><li class="toc-l3"><a href="#measurement-schedule">Measurement schedule</a></li><li class="toc-l3"><a href="#analysis-safeguards">Analysis safeguards</a></li><li class="toc-l2"><a href="#release-decision-table">Release decision table</a></li><li class="toc-l2"><a href="#threshold-policy">Threshold policy</a></li><li class="toc-l2"><a href="#rollout-sequence">Rollout sequence</a></li><li class="toc-l3"><a href="#stage-1-candidate-only">Stage 1 — candidate only</a></li><li class="toc-l3"><a href="#stage-2-isolated-forward-tests">Stage 2 — isolated forward tests</a></li><li class="toc-l3"><a href="#stage-3-matched-ablations">Stage 3 — matched ablations</a></li><li class="toc-l3"><a href="#stage-4-bounded-optional-tool-pilots">Stage 4 — bounded optional-tool pilots</a></li><li class="toc-l3"><a href="#stage-5-opt-in-personal-beta">Stage 5 — opt-in personal beta</a></li><li class="toc-l3"><a href="#stage-6-learner-pilot">Stage 6 — learner pilot</a></li><li class="toc-l3"><a href="#stage-7-production-decision">Stage 7 — production decision</a></li><li class="toc-l2"><a href="#honest-success-statement">Honest success statement</a></li></ol>
+  </nav>
+  </main>
+  <nav class="pager" aria-label="Document navigation">
+    <a href="./03-prax-teach-v2-blueprint.html"><small>Previous</small>Prax Teach v2 blueprint</a>
+    <a href="./05-skillopt-and-flint-integration.html"><small>Next</small>SkillOpt and Flint integration decision</a>
+  </nav>
+  <footer class="site-footer">Prax Teach v2 research bundle · Markdown remains canonical</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

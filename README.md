@@ -1,5 +1,7 @@
 # Skills and Personas
 
+[![skills.sh](https://skills.sh/b/praxstack/skills-and-personas)](https://skills.sh/praxstack/skills-and-personas)
+
 A curated portfolio of [Agent Skills](https://agentskills.io) for Claude Code, plus the raw personas and knowledge packs they were distilled from.
 
 The canonical, production-ready portfolio lives in `new-skills/` — 38 skills that pass a deterministic linter, a council-reviewed safety gate, and a runtime smoke test. The original source material (personas, md-personas, team-personas, knowledge-packs) is preserved so anyone can see how each skill was derived.
@@ -18,6 +20,8 @@ The canonical, production-ready portfolio lives in `new-skills/` — 38 skills t
 | `new-skills/` | **Canonical portfolio** — 38 production-ready skills, each a directory with SKILL.md + references/ |
 | `new-skills/_audit/` | Audit trail — inventory, judge rubric scores, lint report, smoke-test report, council review, code-review report, session log, reusable tooling (lint.py, fix_lint_issues.py, smoke_test.py, install.sh, check_links.py, pytest suite) |
 | `skills/` | Original skills — superseded by `new-skills/` but preserved for reference and as the source material for several `new-skills/` entries |
+| `skills/teach-pro-max/` | Public, skills.sh-discoverable adaptive teaching system with runtime tools, schemas, tests, and optional integrations |
+| `docs/teach-pro-max/` | Teach Pro Max research dossier, historical evidence, original release archives, and source manifest |
 | `personas/` | Multi-file persona packs (system prompts + domain knowledge + examples + platform configs) |
 | `md-personas/` | Single-file Markdown persona prompts |
 | `team-personas/constellation-team/` | Six role-based team skills (principal, backend-system-design, frontend-uiux, devops-sre, product, QA-security) |
@@ -27,6 +31,30 @@ The canonical, production-ready portfolio lives in `new-skills/` — 38 skills t
 | `.clinerules/` | Cline rules and workflows |
 | `opencode-setup/` | OpenCode configuration |
 | `SAFETY.md` | Mental-health content scope, crisis resources, instrument attribution |
+
+## Teach Pro Max
+
+`teach-pro-max` is the public distribution of the evidence-oriented teaching
+system developed in the repository's Prax Teach research work. It supports
+quick explanations, focused lessons, and consent-based multi-session courses;
+preserves attempt-before-answer and progressive-hint behavior; tracks evidence
+instead of unsupported mastery labels; creates accessible Markdown/HTML
+artifacts; and includes deterministic learner-state, scheduling, evaluation,
+export, visualization-routing, Flint, and SkillOpt tooling.
+
+Install only this skill:
+
+```bash
+npx skills add praxstack/skills-and-personas --skill teach-pro-max
+```
+
+- [Installable skill](skills/teach-pro-max/SKILL.md)
+- [Research and evidence archive](docs/teach-pro-max/README.md)
+- [skills.sh page](https://skills.sh/praxstack/skills-and-personas/teach-pro-max)
+
+The historical receipts in `docs/teach-pro-max/` bind the original candidate
+bytes. They establish lineage, not a fresh release receipt for the renamed
+public package and not proof of superior human learning.
 
 ## Install the portfolio locally
 

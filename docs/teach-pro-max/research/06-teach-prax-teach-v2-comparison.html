@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="06-teach-prax-teach-v2-comparison.md">
+  <meta name="source-sha256" content="a2cc2ade8c79af4b2e8b0a03d0e589099d34c751bd4d47dff618850806f1f641">
+  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <title>Teach, canonical Prax Teach, Prax Tech Eval, and Prax Teach v2 · Prax Teach research</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions">
+        <a class="quiet-link" href="./06-teach-prax-teach-v2-comparison.md">Markdown source</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+      </div>
+    </div>
+  </header>
+  <noscript><p class="noscript">The complete document is available without JavaScript; theme, progress, and copy-button enhancements are disabled.</p></noscript>
+  <main id="main-content" class="layout">
+    <article class="document">
+      <p class="eyebrow">Research dossier · generated companion</p>
+      
+      <h1 id="teach-canonical-prax-teach-prax-tech-eval-and-prax-teach-v2">Teach, canonical Prax Teach, Prax Tech Eval, and Prax Teach v2<a class="heading-anchor" href="#teach-canonical-prax-teach-prax-tech-eval-and-prax-teach-v2" aria-label="Link to Teach, canonical Prax Teach, Prax Tech Eval, and Prax Teach v2">#</a></h1>
+<p><em>Complete current-candidate comparison and blueprint audit. Snapshot: 2026-08-05.</em></p>
+<h2 id="executive-answer">Executive answer<a class="heading-anchor" href="#executive-answer" aria-label="Link to Executive answer">#</a></h2>
+<p>The three teaching systems are <code>teach</code>, canonical <code>prax-teach</code>, and the candidate <code>prax-teach-v2</code>. The fourth requested skill is an evaluator, not a tutor: the installed local name is <strong><code>prax-tech-eval</code></strong> (not <code>prax-teach-eval</code>).</p>
+<pre><code class="language-text">teach
+  course-first workspace, mission, trusted resources, retrieval, HTML lessons
+    +
+prax-teach
+  visual routing, editable sources, provenance, accessibility fallbacks,
+  a 38-tool registry, query helper, tests, and router assets
+    -&gt;
+prax-teach-v2
+  quick | lesson | course routing, an operational teaching loop,
+  consent-first executable state, real FSRS scheduling, deterministic
+  Markdown/HTML, evaluator and study machinery, ecosystem exports,
+  all 12 inventoried legacy assets, and guarded Flint/SkillOpt adapters
+
+prax-tech-eval
+  reusable skill-on versus skill-off ablation harness
+    -&gt; evaluates teach, prax-teach, or prax-teach-v2; does not teach learners
+</code></pre>
+<p>The previous “contracts only / adapters unrun / legacy assets missing” description is stale. The current candidate is an <strong>engineering candidate</strong>: every locally reachable mechanism in its frozen implementation contract is present and testable at an explicit evidence level. All <strong>12</strong> inventoried legacy assets are restored with provenance.</p>
+<p>The engineering candidate is now frozen at commit <code>8c26440a0402c88c366d68d680aef2b3fe20fc7c</code>. Three independent exact-payload reviews, a unanimous three-person architecture council, trusted zero-skip full verification, and the immutable Git-blob package gate passed. Two independently built archives are byte-for-byte identical at SHA-256 <code>c25625c1112d33c125df8c7866c0b00e16ed799dd849d71f96f353a74ec9e992</code>. This completes the local release lifecycle; it does not complete the external scientific gates.</p>
+<p>That engineering closure does not answer the scientific question. Every external gate EG-01 through EG-06 remains individually parked where applicable. There is no basis to call v2 the best tutor, claim learner gain, claim held-out quality, certify field accessibility, or describe the system as scientifically supported.</p>
+<p>The exact North Star answer is:</p>
+<ul>
+<li>encoded in the tutoring and evidence design: <strong>yes</strong>;</li>
+<li>local machinery to collect and analyze the evidence implemented: <strong>yes</strong>;</li>
+<li>demonstrated by real delayed learner evidence: <strong>no</strong>.</li>
+</ul>
+<p>See the candidate&#39;s <a href="./prax-teach-v2/STATUS.html">release status</a> and machine-readable <a href="./prax-teach-v2/STATUS.json">status record</a>.</p>
+<p>The complete final evidence summary is in <a href="./07-prax-teach-v2-implementation-status.html">implementation and release status</a>. The reviewed archive is <a href="./prax-teach-v2-8c26440a0402.zip">prax-teach-v2-8c26440a0402.zip</a>, with a non-circular <a href="./prax-teach-v2-8c26440a0402.release.json">release receipt</a>.</p>
+<h2 id="sources-compared">Sources compared<a class="heading-anchor" href="#sources-compared" aria-label="Link to Sources compared">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Role in this comparison</th>
+<th>Current source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>teach</code></td>
+<td>Original course-workspace foundation</td>
+<td><a href="../../../../../.agents/skills/teach/SKILL.html">teach/SKILL.md</a></td>
+</tr>
+<tr>
+<td><code>prax-teach</code></td>
+<td>Canonical custom skill: <code>teach</code> plus the visual-production subsystem</td>
+<td><a href="../../../../../Developer/agent-stack/skills/prax-teach/SKILL.html">prax-teach/SKILL.md</a></td>
+</tr>
+<tr>
+<td><code>prax-tech-eval</code></td>
+<td>Separate controlled skill-ablation evaluator; the user referred to it as <code>prax-teach-eval</code></td>
+<td><a href="../../../../../Developer/agent-stack/skills/prax-tech-eval/SKILL.html">prax-tech-eval/SKILL.md</a></td>
+</tr>
+<tr>
+<td><code>prax-teach-v2</code></td>
+<td>Uninstalled, reviewed, reproducibly packaged second-generation engineering candidate</td>
+<td><a href="./prax-teach-v2/SKILL.html">candidate SKILL.md</a> and <a href="./prax-teach-v2-8c26440a0402.zip">release ZIP</a></td>
+</tr>
+</tbody></table></div>
+<p><code>techtutor</code> remains out of scope because it was not one of the requested skills.</p>
+<h3 id="where-prax-tech-eval-fits">Where <code>prax-tech-eval</code> fits<a class="heading-anchor" href="#where-prax-tech-eval-fits" aria-label="Link to Where prax-tech-eval fits">#</a></h3>
+<p><code>prax-tech-eval</code> does not compete with the three tutors. It asks a different question: <strong>what marginal value does a target skill add when the task, model, tools, fixtures, harness, and graders are held fixed?</strong></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th><code>prax-tech-eval</code></th>
+<th><code>prax-teach-v2</code> evaluator</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product role</td>
+<td>Reusable evaluator for any agent skill</td>
+<td>Candidate-specific evaluation subsystem shipped inside the tutor package</td>
+</tr>
+<tr>
+<td>Learner-facing tutoring</td>
+<td>None</td>
+<td>Quick, lesson, and course tutoring are the main product</td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td>True skill-off control versus skill-on treatment</td>
+<td>No-skill, frozen-<code>teach</code>, and candidate arms are supported by the local plan/run/report machinery</td>
+</tr>
+<tr>
+<td>Isolation contract</td>
+<td>Fresh contexts/workspaces, treatment-only read-only skill mount, matched harness, paired randomized order</td>
+<td>Fresh package/workspace clones, external hidden banks, content-bound inputs, default-deny macOS runner, forbidden-behavior hard gates</td>
+</tr>
+<tr>
+<td>Statistics</td>
+<td>Paired repeated trials, hierarchical case/trial bootstrap, wins/ties/losses, trigger and regression metrics</td>
+<td>Hard-gate-first reports, paired matrices, learner-level or case-level uncertainty according to the evaluation surface</td>
+</tr>
+<tr>
+<td>Current evidence</td>
+<td>The skill defines a reusable A/B method and scripts</td>
+<td>The candidate-specific machinery and containment path have been exercised on public/synthetic fixtures</td>
+</tr>
+<tr>
+<td>What remains</td>
+<td>A real target-skill ablation in the chosen provider/harness</td>
+<td>EG-01: matched real-provider comparison against external held-out graders</td>
+</tr>
+</tbody></table></div>
+<p>The clean future use is complementary: run <code>prax-tech-eval</code> as the external comparison discipline around frozen <code>teach</code>, canonical <code>prax-teach</code>, and immutable <code>prax-teach-v2</code> packages. Neither evaluator can manufacture learner-outcome evidence; EG-04 through EG-06 still require real learners and delayed blind-scored outcomes.</p>
+<h2 id="complete-capability-comparison">Complete capability comparison<a class="heading-anchor" href="#complete-capability-comparison" aria-label="Link to Complete capability comparison">#</a></h2>
+<h3 id="product-shape-and-teaching-behavior">Product shape and teaching behavior<a class="heading-anchor" href="#product-shape-and-teaching-behavior" aria-label="Link to Product shape and teaching behavior">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th><code>teach</code></th>
+<th>Canonical <code>prax-teach</code></th>
+<th><code>prax-teach-v2</code> candidate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary purpose</td>
+<td>Persistent multi-session teaching workspace</td>
+<td>Persistent multi-session teaching workspace with content-driven visual production</td>
+<td>Adaptive tutoring across one answer, one focused lesson, or a persistent course</td>
+</tr>
+<tr>
+<td>Invocation posture</td>
+<td>Explicit-only metadata (<code>disable-model-invocation: true</code>)</td>
+<td>Discoverable for deep, multi-session learning, lessons, courses, and intuition</td>
+<td>Broad teaching triggers plus a negative rule for ordinary task completion</td>
+</tr>
+<tr>
+<td>Route selection</td>
+<td>One stateful course shape</td>
+<td>One stateful course shape</td>
+<td>Executable least-cost <code>quick</code>, <code>lesson</code>, or <code>course</code> router</td>
+</tr>
+<tr>
+<td>Default persistence</td>
+<td>Assumed</td>
+<td>Assumed</td>
+<td>None in quick; opt-in and minimal in lesson; explicit consent for course state</td>
+</tr>
+<tr>
+<td>Intake</td>
+<td>Establish the mission before meaningful teaching when unclear</td>
+<td>Same</td>
+<td>At most one high-value question when the request is otherwise clear</td>
+</tr>
+<tr>
+<td>Mission</td>
+<td>Central to every lesson</td>
+<td>Central to every lesson</td>
+<td>Required and persisted for course; proportionate in quick/lesson</td>
+</tr>
+<tr>
+<td>Lesson unit</td>
+<td>Short, authored HTML tied to the mission</td>
+<td>Same, enriched by visual planning and assets</td>
+<td>Mode-scaled chat or canonical Markdown with a generated HTML companion</td>
+</tr>
+<tr>
+<td>Teaching loop</td>
+<td>Knowledge first, then practice with a tight feedback loop; retrieval, spacing, and interleaving</td>
+<td>Same core loop plus orientation, worked visual state, progressive state, retrieval, and transfer guidance</td>
+<td>Nine explicit phases: outcome, diagnosis, effort before reveal, minimal model/example, progressive hints, specific feedback, unseen transfer/discrimination, teach-back, next retrieval</td>
+</tr>
+<tr>
+<td>Attempt before reveal</td>
+<td>Encouraged through retrieval practice</td>
+<td>Encouraged; visual answer leakage is discussed</td>
+<td>Explicit policy and executable/public behavior evidence; retrieval surfaces and fallbacks are checked</td>
+</tr>
+<tr>
+<td>Direct-answer override</td>
+<td>Not explicit</td>
+<td>Not explicit</td>
+<td><strong>Answer now</strong> immediately selects direct quick response and stops forced Socratic questioning</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Tight and ideally automatic</td>
+<td>Same</td>
+<td>Must identify what was correct, the precise gap, the governing principle, and the next action</td>
+</tr>
+<tr>
+<td>Transfer</td>
+<td>Flexibility is a goal</td>
+<td>Visual sequence ends with transfer</td>
+<td>Unseen application, discrimination, debugging, or transfer is an explicit teaching phase</td>
+</tr>
+<tr>
+<td>Learner agency</td>
+<td>Mission changes require confirmation</td>
+<td>Same</td>
+<td>Mode overrides, consent, inspect, correct, retest, export, delete, review controls, and no forced dialogue</td>
+</tr>
+</tbody></table></div>
+<p>Primary teaching evidence: <a href="../../../../../.agents/skills/teach/SKILL.html">teach entrypoint</a>, <a href="../../../../../Developer/agent-stack/skills/prax-teach/SKILL.html">canonical Prax Teach entrypoint</a>, <a href="./prax-teach-v2/SKILL.html">v2 entrypoint</a>, and <a href="./prax-teach-v2/references/TEACHING-PROTOCOL.html">v2 teaching protocol</a>.</p>
+<h3 id="state-scheduling-artifacts-and-ecosystem">State, scheduling, artifacts, and ecosystem<a class="heading-anchor" href="#state-scheduling-artifacts-and-ecosystem" aria-label="Link to State, scheduling, artifacts, and ecosystem">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th><code>teach</code></th>
+<th>Canonical <code>prax-teach</code></th>
+<th><code>prax-teach-v2</code> candidate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Workspace state</td>
+<td><code>MISSION.md</code>, <code>RESOURCES.md</code>, prose learning records, lessons, assets, references, <code>NOTES.md</code></td>
+<td>Same, with visual/video/component/data asset folders</td>
+<td>Course initializer creates mission/resources, lessons/reference/assets, and private <code>state/</code>; JSON/JSONL is the primary evidence layer</td>
+</tr>
+<tr>
+<td>Evidence model</td>
+<td>Informal prose records used to infer the zone of proximal development</td>
+<td>Same</td>
+<td>Observable append-only events plus deterministic concept and misconception projections across recognition, recall, explanation, application, discrimination/debugging, and transfer</td>
+</tr>
+<tr>
+<td>Mastery caution</td>
+<td>Distinguishes fluency from storage strength; record learning after demonstrated understanding</td>
+<td>Same</td>
+<td>Rejects mastery from completion, confidence, time, one response, or heavy scaffolding; preserves uncertainty, hint level, contradictions, and versions</td>
+</tr>
+<tr>
+<td>Correction and deletion</td>
+<td>Manual document editing</td>
+<td>Manual document editing</td>
+<td>Executable correction, misconception rejection, version invalidation, scoped physical deletion, deterministic rebuild, and portable learner export</td>
+</tr>
+<tr>
+<td>FSRS</td>
+<td>Conceptual spacing only</td>
+<td>Conceptual spacing only</td>
+<td>Real pinned FSRS adapter with replayable review log, horizon-derived policy, due queue, snooze/reschedule, and enable/disable controls</td>
+</tr>
+<tr>
+<td>FSRS evidence limit</td>
+<td>No scheduler</td>
+<td>No scheduler</td>
+<td>Dependency-exercised with real library and golden vectors; scheduling quality for real learners is uncalibrated</td>
+</tr>
+<tr>
+<td>Visual route</td>
+<td>General beautiful HTML/components</td>
+<td>Explicit <code>none</code> / static / interactive / motion router</td>
+<td>Executable <code>none</code> / static / interactive / motion router with least-cost and retrieval-safety outputs</td>
+</tr>
+<tr>
+<td>Visual tools</td>
+<td>No registry</td>
+<td>38-tool progressively disclosed registry, query helper, registry tests, router SVG/PNG</td>
+<td>All 12 inventoried legacy assets are restored, including the registry/helper/tests/router assets, plus the v2 router and optional Flint path</td>
+</tr>
+<tr>
+<td>Visual provenance</td>
+<td>Minimal</td>
+<td>Editable source, render command, data/source, attribution/license, fallbacks, and inspection</td>
+<td>Retains the legacy subsystem and adds artifact hashes, warning policy, retrieval safety, renderer validation, and optional Flint manifests</td>
+</tr>
+<tr>
+<td>Authored format</td>
+<td>HTML lessons and references</td>
+<td>HTML lessons and references</td>
+<td>Markdown is canonical; same-basename HTML is generated</td>
+</tr>
+<tr>
+<td>Renderer</td>
+<td>No bundled canonical renderer</td>
+<td>No bundled canonical renderer</td>
+<td>Pinned Marked plus allowlist sanitization, atomic writes, source hash, full-byte freshness check, landmarks, local/offline delivery, responsive tables, focus, print, and reduced-motion CSS</td>
+</tr>
+<tr>
+<td>Artifact validation</td>
+<td>Manual</td>
+<td>Render-and-inspect visual rules</td>
+<td>Executable link, metadata, schema, security, accessibility-structure, parity, provenance, and package checks</td>
+</tr>
+<tr>
+<td>Accessibility evidence</td>
+<td>Mostly implicit</td>
+<td>Explicit visual-specific keyboard/text/static/caption/transcript/reduced-motion rules</td>
+<td>Automated structural/security checks and public forward cases; representative assistive-technology and learner evidence remains EG-03</td>
+</tr>
+<tr>
+<td>Evaluator</td>
+<td>None</td>
+<td>Visual-registry tests, not a tutoring evaluator</td>
+<td>Executable isolated paired evaluator with fresh package/workspace clones, hard-gate-first scoring, fingerprints, and measured macOS containment path</td>
+</tr>
+<tr>
+<td>Study machinery</td>
+<td>None</td>
+<td>None</td>
+<td>Executable protocol validation, seeded user-level allocation, external-key blinding, intention-to-treat analysis, attrition/fidelity reporting, and learner-level bootstrap intervals</td>
+</tr>
+<tr>
+<td>Study evidence limit</td>
+<td>No study</td>
+<td>No study</td>
+<td>Machinery evaluated on synthetic inputs only; no human outcome evidence</td>
+</tr>
+<tr>
+<td>Ecosystem exports</td>
+<td>None</td>
+<td>None</td>
+<td>Deterministic validated Anki text import, QTI 2.2, LiaScript, and thin H5P packages</td>
+</tr>
+<tr>
+<td>Flint</td>
+<td>None</td>
+<td>General chart tools through the registry</td>
+<td>Real pinned compile/render adapter dependency-exercised on a synthetic fixture; no chart-correctness or learner-benefit claim</td>
+</tr>
+<tr>
+<td>SkillOpt</td>
+<td>None</td>
+<td>None</td>
+<td>Real pinned upstream adapter and sandbox dependency-exercised; five-bank binding tested with synthetic documents, only synthetic <code>test</code> recorded as exercised; no optimization run or gain claim</td>
+</tr>
+<tr>
+<td>Migration / backward compatibility</td>
+<td>Original workspace format</td>
+<td>Additive visual extension; core templates retain the <code>teach</code> shape</td>
+<td>All 12 inventoried assets restored, but structured state and generated artifacts make v2 a migration rather than a drop-in replacement; no canonical migration has run</td>
+</tr>
+<tr>
+<td>Runtime / platform surface</td>
+<td>Instruction and workspace files</td>
+<td>Adds a standard-library registry query helper</td>
+<td>Standard-library teaching kernel; pinned Python environment for FSRS; Node for rendering/Flint; separate SkillOpt environment; claim-eligible built-in sandbox path is macOS-specific</td>
+</tr>
+<tr>
+<td>Cost / latency evidence</td>
+<td>Not measured here</td>
+<td>Not measured here</td>
+<td>Quick mode avoids persistence and optional integrations by design, but matched provider latency, token, and cost measurements remain EG-01</td>
+</tr>
+<tr>
+<td>Current full-package verification</td>
+<td>No package-wide harness</td>
+<td>Registry-focused checks</td>
+<td>Durable receipts bind earlier recorded executions; fresh verification of the current package byte set is not claimed in this report</td>
+</tr>
+<tr>
+<td>Current status</td>
+<td>Canonical legacy source</td>
+<td>Canonical custom source</td>
+<td>Engineering candidate; not the canonical installed replacement and not scientifically supported</td>
+</tr>
+</tbody></table></div>
+<p>Implementation evidence: <a href="./prax-teach-v2/references/OPERATIONS.html">operations guide</a>, <a href="./prax-teach-v2/scripts/praxteach/state.py">state engine</a>, <a href="./prax-teach-v2/scripts/praxteach/scheduler.py">scheduler</a>, <a href="./prax-teach-v2/scripts/render_markdown.mjs">renderer</a>, <a href="./prax-teach-v2/scripts/validate_workspace.py">validator</a>, <a href="./prax-teach-v2/scripts/evaluate.py">evaluator</a>, <a href="./prax-teach-v2/scripts/study.py">study machinery</a>, and <a href="./prax-teach-v2/scripts/export_learning.py">ecosystem exporter</a>.</p>
+<h2 id="purpose-and-routing-in-practical-terms">Purpose and routing in practical terms<a class="heading-anchor" href="#purpose-and-routing-in-practical-terms" aria-label="Link to Purpose and routing in practical terms">#</a></h2>
+<h3 id="teach"><code>teach</code><a class="heading-anchor" href="#teach" aria-label="Link to teach">#</a></h3>
+<p><code>teach</code> assumes the learner is beginning or continuing a stateful course. Its compact strengths are mission grounding, trusted sources, short lessons, retrieval practice, spacing, interleaving, and a tight feedback loop. Its product shape is the limitation: the smallest request still enters a persistent-workspace model, with authored HTML as the main lesson unit and prose records as state.</p>
+<h3 id="canonical-prax-teach">Canonical <code>prax-teach</code><a class="heading-anchor" href="#canonical-prax-teach" aria-label="Link to Canonical prax-teach">#</a></h3>
+<p>Canonical <code>prax-teach</code> preserves that course-first pedagogy and adds a detailed visual-production system. It asks what the learner must see, compare, predict, manipulate, or watch change; selects the smallest useful medium; preserves editable sources; and requires accessibility, provenance, fallback, and render inspection. Its <a href="../../../../../Developer/agent-stack/skills/prax-teach/references/VISUALIZATION-ROUTER.html">visual router</a> and <a href="../../../../../Developer/agent-stack/skills/prax-teach/references/VISUALIZATION-TOOL-REGISTRY.html">tool registry</a> are documented additions, but they do not create calibrated learner state or learning-outcome evidence.</p>
+<h3 id="prax-teach-v2"><code>prax-teach-v2</code><a class="heading-anchor" href="#prax-teach-v2" aria-label="Link to prax-teach-v2">#</a></h3>
+<p>V2 changes the product boundary. <a href="./prax-teach-v2/scripts/praxteach/routing.py">routing.py</a> operationalizes the lightest sufficient mode, ordinary-task exclusion, explicit <strong>Answer now</strong>, consent-required courses, and the semantic visual route. The entrypoint then invokes one teaching kernel at different depths instead of treating every request as course administration.</p>
+<p>The forward outputs in <a href="./prax-teach-v2/evidence/forward/run.json">evidence/forward</a> are fresh-context public behavior evidence. They cover representative mode, consent, attempt-before-reveal, resume, visual-restraint, and fallback cases. They are not held-out quality evidence, provider ablation evidence, accessibility field evidence, or learner outcomes.</p>
+<h2 id="state-and-fsrs-implemented-not-merely-specified">State and FSRS: implemented, not merely specified<a class="heading-anchor" href="#state-and-fsrs-implemented-not-merely-specified" aria-label="Link to State and FSRS: implemented, not merely specified">#</a></h2>
+<p>V2&#39;s <a href="./prax-teach-v2/scripts/praxteach/state.py">state engine</a> creates no persistent byte before explicit consent. A consented course initializes private mission/resource files and stable lesson/reference/asset/state directories. Practice observations are appended to <code>sessions.jsonl</code>; concept and misconception documents are deterministic projections rather than an untraceable mutable score.</p>
+<p>The engine also implements:</p>
+<ul>
+<li>evidence validation and cautious mastery projection;</li>
+<li>learner-reported versus tutor-inferred misconception provenance;</li>
+<li>compensating correction and misconception rejection;</li>
+<li>source/item-version invalidation;</li>
+<li>dry-run and confirmed scoped physical deletion;</li>
+<li>deterministic rebuild and inspectable learner export;</li>
+<li>path containment, private permissions, locking, and fail-closed validation.</li>
+</ul>
+<p>The <a href="./prax-teach-v2/scripts/praxteach/scheduler.py">scheduler</a> loads the exact pinned FSRS dependency with no heuristic fallback. Review events remain separate from concept mastery, replay into a learner-visible due queue, record the scheduler policy and transition, and expose snooze, reschedule, disable, and enable controls. This supports the evidence label <strong>dependency-exercised</strong>. It does not show that the chosen retention targets or intervals are optimal for real learners.</p>
+<h2 id="visuals-and-assets-the-12-asset-correction">Visuals and assets: the 12-asset correction<a class="heading-anchor" href="#visuals-and-assets-the-12-asset-correction" aria-label="Link to Visuals and assets: the 12-asset correction">#</a></h2>
+<p>The candidate no longer has a legacy migration gap. The <a href="./prax-teach-v2/evidence/provenance/legacy-assets.json">legacy provenance manifest</a> inventories all <strong>12</strong> restored assets against canonical <code>prax-teach</code>:</p>
+<ul>
+<li>the four workspace templates: glossary, learning record, mission, and resources;</li>
+<li>visualization research, the legacy visualization router, the registry guide, and the 38-tool registry JSON;</li>
+<li>the visualization query helper and its canonical registry tests, changed only by formatting where recorded;</li>
+<li>the reusable router SVG and PNG.</li>
+</ul>
+<p>Most restored files are byte-identical; the original router is preserved under <code>LEGACY-VISUALIZATION-ROUTER.md</code> so v2 can also ship its new retrieval-aware router. Every relation, source path, target path, and content digest is recorded in the manifest.</p>
+<p>Therefore these stale statements are false:</p>
+<ul>
+<li>“the four workspace templates do not ship”;</li>
+<li>“the 38-tool registry and query helper are not bundled”;</li>
+<li>“the reusable router assets were not migrated.”</li>
+</ul>
+<p>V2 now combines those legacy assets with an executable least-cost visual route and the optional <a href="./prax-teach-v2/integrations/flint/render_flint.mjs">Flint adapter</a>. The Flint smoke proves the real package compile/render API ran through a Vega-Lite fixture; it does not prove that an MCP server or transport session ran. Its <a href="./prax-teach-v2/evidence/integrations/flint-smoke/manifest.json">manifest</a> explicitly declines chart-correctness, network-isolation, and learner-benefit claims.</p>
+<h2 id="renderer-and-html-delivery">Renderer and HTML delivery<a class="heading-anchor" href="#renderer-and-html-delivery" aria-label="Link to Renderer and HTML delivery">#</a></h2>
+<p><code>teach</code> and canonical <code>prax-teach</code> ask the agent to author HTML directly. V2 makes Markdown the source of truth and generates a same-basename companion.</p>
+<p>The current <a href="./prax-teach-v2/scripts/render_markdown.mjs">renderer</a> is executable engineering, not a template sketch. It:</p>
+<ul>
+<li>parses GFM through a pinned renderer and sanitizes reviewed HTML through an allowlist;</li>
+<li>rejects unsupported tags, attributes, executable URL schemes, remote image assets, and silent sanitizer-only rewrites;</li>
+<li>writes atomically and records source path, source hash, renderer/template versions, and generation time;</li>
+<li>checks the entire expected HTML byte stream for drift;</li>
+<li>supplies semantic landmarks, a skip link, focus styles, responsive tables, print behavior, and reduced-motion behavior without required CDN/runtime fetching.</li>
+</ul>
+<p>The <a href="./prax-teach-v2/scripts/validate_workspace.py">workspace validator</a> checks companions, links, anchors, metadata, schemas, security properties, accessibility structure, legacy provenance, optional-integration artifacts, and the candidate evidence contract. This supports implemented structural/parity/security claims. It is not a field accessibility certification; EG-03 remains parked.</p>
+<h2 id="evaluator-study-machinery-exports-and-optional-adapters">Evaluator, study machinery, exports, and optional adapters<a class="heading-anchor" href="#evaluator-study-machinery-exports-and-optional-adapters" aria-label="Link to Evaluator, study machinery, exports, and optional adapters">#</a></h2>
+<h3 id="agent-evaluator">Agent evaluator<a class="heading-anchor" href="#agent-evaluator" aria-label="Link to Agent evaluator">#</a></h3>
+<p>The <a href="./prax-teach-v2/scripts/evaluate.py">evaluator</a> runs arms in fresh workspaces with read-only package clones, separates public machinery fixtures from candidate-quality scopes, applies forbidden-behavior hard gates before soft scores, fingerprints inputs and outputs, and has a measured default-deny macOS sandbox path. The durable <a href="./prax-teach-v2/evidence/integrations/evaluator-sandbox/report.json">containment receipt</a> supports containment-mechanism engineering only. This is the candidate&#39;s specialized executable counterpart to the reusable <code>prax-tech-eval</code> method; it does not make that separate skill obsolete. A matched real-provider ablation with external held-out graders has not run; EG-01 remains parked.</p>
+<h3 id="learner-study-machinery">Learner-study machinery<a class="heading-anchor" href="#learner-study-machinery" aria-label="Link to Learner-study machinery">#</a></h3>
+<p>The <a href="./prax-teach-v2/scripts/study.py">study CLI</a> validates a frozen parallel protocol, creates seeded user-level assignments, generates HMAC-blinded assessment identifiers from an external key, enforces delayed assessment windows, retains assigned learners under a predeclared intention-to-treat missing-outcome policy, and bootstraps learners rather than correlated outcome rows.</p>
+<p>Those mechanisms have been exercised on synthetic inputs. They make a real study possible; they are not themselves immediate, delayed, transfer, or generalization evidence. EG-04, EG-05, and EG-06 remain parked.</p>
+<h3 id="exports">Exports<a class="heading-anchor" href="#exports" aria-label="Link to Exports">#</a></h3>
+<p>The <a href="./prax-teach-v2/scripts/praxexports/core.py">export layer</a> validates one reviewed learning-item model and emits deterministic:</p>
+<ul>
+<li>Anki text-import files—not falsely labeled <code>.apkg</code> files;</li>
+<li>QTI 2.2 content packages;</li>
+<li>LiaScript Markdown;</li>
+<li>a thin H5P package that still requires a compatible host runtime.</li>
+</ul>
+<p>The evidence level is implemented format compatibility, not universal interoperability across every downstream host.</p>
+<h3 id="skillopt-and-flint">SkillOpt and Flint<a class="heading-anchor" href="#skillopt-and-flint" aria-label="Link to SkillOpt and Flint">#</a></h3>
+<p>The <a href="./prax-teach-v2/integrations/skillopt/prax_teach_adapter.py">SkillOpt adapter</a> and <a href="./prax-teach-v2/integrations/skillopt/prepare_source.py">source preparer</a> exercise the real pinned upstream <code>EnvAdapter</code> boundary, five-bank interface, full-package cloning, integrity checks, and measured sandbox controls. Only public train/selection fixtures ship; the hidden smoke banks are synthetic/generated and remain controller-side. No optimization campaign or measurable lift exists. The <a href="./prax-teach-v2/integrations/skillopt/stage_proposal.py">staging helper</a> treats caller-supplied score JSON as self-attested and can write only a quarantine receipt that is ineligible for evidence or adoption. No real optimized or quarantined proposal artifact ships.</p>
+<p>The Flint adapter exercises the real pinned compile/render dependency and emits durable editable/provenance artifacts from a synthetic fixture. It does not establish chart correctness, field accessibility, or learning value. See the full <a href="./05-skillopt-and-flint-integration.html">SkillOpt/Flint decision</a>.</p>
+<p>The integration receipts are byte-bound historical execution evidence for their recorded synthetic snapshots, not a substitute for fresh full-package verification of later candidate bytes.</p>
+<h2 id="what-v2-adds">What v2 adds<a class="heading-anchor" href="#what-v2-adds" aria-label="Link to What v2 adds">#</a></h2>
+<p>Compared with <code>teach</code> and canonical <code>prax-teach</code>, v2 adds:</p>
+<ol>
+<li>executable quick/lesson/course and visual routing;</li>
+<li>immediate <strong>Answer now</strong> and ordinary-task exclusion;</li>
+<li>a nine-phase teaching loop with progressive hints, precise feedback, unseen transfer, and cautious mastery;</li>
+<li>consent-first JSON/JSONL state, deterministic projections, correction, invalidation, deletion, and learner export;</li>
+<li>a real pinned FSRS adapter and learner-controlled review queue;</li>
+<li>canonical Markdown, sanitized deterministic HTML, security/parity/accessibility-structure validation, and reproducibility metadata;</li>
+<li>isolated agent-evaluation and blinded learner-study machinery;</li>
+<li>deterministic Anki, QTI, LiaScript, and H5P exports;</li>
+<li>real-dependency Flint and SkillOpt adapter boundaries;</li>
+<li>a machine-readable claim ladder and individually parked external gates;</li>
+<li>restoration and provenance for all 12 assets in the legacy migration inventory.</li>
+</ol>
+<h2 id="what-v2-removes-or-replaces">What v2 removes or replaces<a class="heading-anchor" href="#what-v2-removes-or-replaces" aria-label="Link to What v2 removes or replaces">#</a></h2>
+<p>No inventoried legacy package asset remains missing. The meaningful removals are operating-policy changes:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Previous behavior</th>
+<th>V2 replacement</th>
+<th>Consequence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Every teaching request begins as persistent multi-session work</td>
+<td>Quick is ephemeral; lesson is bounded; course requires consent</td>
+<td>Less ceremony and no silent state</td>
+</tr>
+<tr>
+<td>Mission interview precedes useful teaching</td>
+<td>Mission depth is proportional to mode; at most one high-value intake question</td>
+<td>Faster bounded help while retaining a course mission</td>
+</tr>
+<tr>
+<td>HTML is independently authored</td>
+<td>Markdown is canonical and HTML is generated</td>
+<td>Reviewable source and enforceable parity</td>
+</tr>
+<tr>
+<td>Prose learning records are primary state</td>
+<td>Append-only observations plus deterministic JSON projections</td>
+<td>More inspectable and machine-checkable, but a larger implementation surface</td>
+</tr>
+<tr>
+<td>Reusable component construction is the default</td>
+<td>Native GFM/semantic HTML first; custom code only for a concrete learner action</td>
+<td>Lower one-off framework cost</td>
+</tr>
+<tr>
+<td>Multiple-choice options should match length</td>
+<td>Cross-surface answer-leakage checks</td>
+<td>Covers labels, alternatives, previews, source, and default state rather than one brittle heuristic</td>
+</tr>
+<tr>
+<td>Never trust parametric knowledge as a universal instruction</td>
+<td>Risk-based source hierarchy and live verification triggers</td>
+<td>Matches verification effort to instability and stakes</td>
+</tr>
+<tr>
+<td>Community interaction is a core pillar/default delegation</td>
+<td>Community and lived-experience sources are optional, lower-tier inputs</td>
+<td>Preserves agency without treating social participation as mandatory</td>
+</tr>
+<tr>
+<td><code>NOTES.md</code> is a named default workspace file</td>
+<td>The initializer omits an ad-hoc scratchpad; reviewed evidence uses consented structured state</td>
+<td>Removes unscoped working notes from the default durable learner record</td>
+</tr>
+</tbody></table></div>
+<p>The restored legacy learning-record template remains available for compatibility and migration, but it is no longer the primary evidence engine.</p>
+<h2 id="pros-and-cons">Pros and cons<a class="heading-anchor" href="#pros-and-cons" aria-label="Link to Pros and cons">#</a></h2>
+<h3 id="teach-2"><code>teach</code><a class="heading-anchor" href="#teach-2" aria-label="Link to teach">#</a></h3>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Small, legible, and easy to invoke deliberately.</li>
+<li>Explicit mission grounding and durable-learning fundamentals.</li>
+<li>Clear course workspace, trusted-resource posture, and short lesson unit.</li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul>
+<li>Forces a multi-session course shape onto bounded teaching requests.</li>
+<li>No explicit direct-answer escape or ordinary-task exclusion.</li>
+<li>Prose state is not a calibrated, executable evidence model.</li>
+<li>No explicit consent/deletion/export boundary, real scheduler, evaluator, study machinery, or canonical renderer.</li>
+</ul>
+<h3 id="canonical-prax-teach-2">Canonical <code>prax-teach</code><a class="heading-anchor" href="#canonical-prax-teach-2" aria-label="Link to Canonical prax-teach">#</a></h3>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Preserves the compact <code>teach</code> foundation.</li>
+<li>Explicit semantic visual routing, editable-source discipline, provenance, fallbacks, and inspection rules.</li>
+<li>Progressive tool discovery across spatial, quantitative, interactive, and temporal learning jobs.</li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul>
+<li>Inherits the course-first and prose-state model.</li>
+<li>Visual-production quality can be mistaken for teaching quality if claims are not separated.</li>
+<li>The tool registry is a dated capability snapshot that requires maintenance.</li>
+<li>No executable learner consent/state/scheduler/evaluator/study or learner-outcome evidence.</li>
+</ul>
+<h3 id="prax-tech-eval"><code>prax-tech-eval</code><a class="heading-anchor" href="#prax-tech-eval" aria-label="Link to prax-tech-eval">#</a></h3>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Enforces a genuine skill-off control instead of merely telling an agent not to use a skill.</li>
+<li>Predeclares outcomes, guardrails, budgets, paired randomization, repeated trials, trigger behavior, cost, latency, and regression reporting.</li>
+<li>Reusable across teaching and non-teaching skills without coupling evaluation logic to the target package.</li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul>
+<li>It is not a tutor, learner-state system, renderer, scheduler, or course workspace.</li>
+<li>It still needs a real harness that can mount the treatment skill and remove it completely from control runs.</li>
+<li>Three-to-six trials are an engineering screen, not universal statistical or learner-outcome proof.</li>
+<li>It evaluates marginal skill value but does not itself fix a weak skill or authorize adoption.</li>
+</ul>
+<h3 id="prax-teach-v2-2"><code>prax-teach-v2</code><a class="heading-anchor" href="#prax-teach-v2-2" aria-label="Link to prax-teach-v2">#</a></h3>
+<p><strong>Pros</strong></p>
+<ul>
+<li>Covers bounded answers, lessons, and persistent courses without forcing one product shape.</li>
+<li>Operationalizes routing, attempt-before-reveal, learner agency, feedback, transfer, state, scheduling, and claim boundaries.</li>
+<li>Restores all 12 inventoried legacy visual/template assets with provenance.</li>
+<li>Ships executable state, FSRS, deterministic artifacts, evaluation/study machinery, exports, and guarded real-dependency adapters.</li>
+<li>Makes evidence limits machine-readable and fail-closed at important boundaries.</li>
+</ul>
+<p><strong>Cons</strong></p>
+<ul>
+<li>Considerably larger implementation and dependency surface than either canonical skill.</li>
+<li>Candidate rather than canonical installed replacement.</li>
+<li>Deterministic routing and public/synthetic evaluations do not establish universal behavior quality.</li>
+<li>Real FSRS use does not establish scheduling calibration.</li>
+<li>Automated accessibility structure does not establish representative field accessibility.</li>
+<li>Flint and SkillOpt dependency exercises do not establish chart value or optimization lift.</li>
+<li>No real human study supports immediate benefit, delayed retention, transfer, generalization, or “best tutor” language.</li>
+</ul>
+<h2 id="blueprint-phase-by-phase-status">Blueprint phase-by-phase status<a class="heading-anchor" href="#blueprint-phase-by-phase-status" aria-label="Link to Blueprint phase-by-phase status">#</a></h2>
+<p>The phase label reports the maturity of locally reachable machinery, not completion of every phase outcome. It never upgrades a parked subclaim.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Blueprint phase</th>
+<th>Current local machinery state</th>
+<th>Implemented or exercised now</th>
+<th>Still external or conditional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phase 0 — freeze and measure</td>
+<td><strong>Implemented</strong></td>
+<td>Frozen source fingerprints and original inventory; executable evaluator and forbidden-behavior gates</td>
+<td>Matched real-provider trigger, latency, token, and behavior baselines (EG-01)</td>
+</tr>
+<tr>
+<td>Phase 1 — minimum lovable tutor</td>
+<td><strong>Evaluated on public forward cases</strong></td>
+<td>Three-mode and <strong>Answer now</strong> routing; teaching/hint policy; deterministic renderer with automated accessibility-structure checks; fresh-context behavior outputs</td>
+<td>Representative assistive-technology and learner evidence (EG-03)</td>
+</tr>
+<tr>
+<td>Phase 2 — durable learner loop</td>
+<td><strong>Dependency-exercised</strong></td>
+<td>Consent-first JSON/JSONL evidence; deterministic concept/misconception projections; correction, invalidation, export, deletion; real pinned FSRS</td>
+<td>Calibration against real learner scheduling outcomes</td>
+</tr>
+<tr>
+<td>Phase 3 — evidence and adaptation</td>
+<td><strong>Machinery evaluated on public or synthetic inputs</strong></td>
+<td>Isolated agent evaluator; randomized blinded study preparation/analysis; uncertainty receipts</td>
+<td>Matched agent ablations (EG-01); immediate/delayed human evidence (EG-04/05); calibration; knowledge tracing only if justified</td>
+</tr>
+<tr>
+<td>Phase 4 — optional ecosystem adapters</td>
+<td><strong>Dependency-exercised</strong></td>
+<td>Real pinned Flint and SkillOpt boundaries; Anki, QTI, LiaScript, and H5P exports</td>
+<td>Flint learner comparison; measured SkillOpt lift (EG-02); voice/animation/classroom modules only for a concrete learning job</td>
+</tr>
+</tbody></table></div>
+<p>Phase 3&#39;s “evaluated” means public or synthetic machinery receipts exist. It does not mean the candidate passed a human learner-outcome study. Phase 4&#39;s “dependency-exercised” means real dependencies ran through guarded adapters. It does not mean those dependencies improved learning.</p>
+<h2 id="external-gates-all-individually-parked">External gates: all individually parked<a class="heading-anchor" href="#external-gates-all-individually-parked" aria-label="Link to External gates: all individually parked">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Status</th>
+<th>Exact unblock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EG-01 — provider ablation</td>
+<td><strong>Parked</strong></td>
+<td>Matched real-provider no-skill, frozen-<code>teach</code>, and candidate trials against external held-out graders</td>
+</tr>
+<tr>
+<td>EG-02 — SkillOpt gain</td>
+<td><strong>Parked</strong></td>
+<td>Budgeted optimization whose repeated hidden lift exceeds measured noise and passes cross-model hard gates</td>
+</tr>
+<tr>
+<td>EG-03 — accessibility field evidence</td>
+<td><strong>Parked</strong></td>
+<td>Manual assistive-technology checks and representative disabled and neurodivergent learner sessions</td>
+</tr>
+<tr>
+<td>EG-04 — immediate learner benefit</td>
+<td><strong>Parked</strong></td>
+<td>Consented randomized active-control human posttest</td>
+</tr>
+<tr>
+<td>EG-05 — delayed North Star</td>
+<td><strong>Parked</strong></td>
+<td>Blind-scored delayed retention and novel-transfer outcomes from real learners</td>
+</tr>
+<tr>
+<td>EG-06 — generalization</td>
+<td><strong>Parked</strong></td>
+<td>Replication across topics, models, learners, accessibility needs, and time</td>
+</tr>
+</tbody></table></div>
+<p>These gates are individually applicable even though the phase-level engineering work exists. A local verification receipt cannot pass an external evidence gate by substitution.</p>
+<h2 id="exact-north-star-audit">Exact North Star audit<a class="heading-anchor" href="#exact-north-star-audit" aria-label="Link to Exact North Star audit">#</a></h2>
+<p>The North Star is:</p>
+<blockquote>
+<p>The learner can later retrieve, explain, apply, discriminate, and transfer the idea without the tutor—and the system can show honest evidence for that claim.</p>
+</blockquote>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Exact current answer</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Is the North Star encoded in the tutoring and evidence design?</td>
+<td><strong>Yes</strong></td>
+<td>The teaching loop and state model explicitly represent later retrieval, explanation, application, discrimination, transfer, scaffolding, uncertainty, and contradictions</td>
+</tr>
+<tr>
+<td>Is the local machinery needed to collect and analyze the evidence implemented?</td>
+<td><strong>Yes</strong></td>
+<td>State, scheduler, evaluator, study preparation/analysis, artifact validation, and exports are executable at their stated evidence levels</td>
+</tr>
+<tr>
+<td>Has real delayed learner evidence demonstrated the North Star?</td>
+<td><strong>No</strong></td>
+<td>EG-04 through EG-06 remain parked; no real delayed retention/novel-transfer study or replication exists</td>
+</tr>
+</tbody></table></div>
+<p>No public fixture, synthetic study, agent output review, scheduler smoke, Flint render, SkillOpt import, or self-attested score receipt may be promoted into a human-learning claim.</p>
+<h2 id="final-judgment">Final judgment<a class="heading-anchor" href="#final-judgment" aria-label="Link to Final judgment">#</a></h2>
+<p><code>teach</code> is the compact course-workspace foundation. Canonical <code>prax-teach</code> is that foundation plus a visual-production subsystem. <code>prax-tech-eval</code> is the separate reusable skill-ablation evaluator. <code>prax-teach-v2</code> is a much broader engineering candidate that now implements and exercises the locally reachable mechanisms described by its blueprint, including restoration of all 12 inventoried legacy assets and a candidate-specific evaluator that complements rather than replaces <code>prax-tech-eval</code>.</p>
+<p>The accurate current label is:</p>
+<blockquote>
+<p>An engineering candidate with implemented, evaluated, and dependency-exercised mechanisms at explicit evidence levels.</p>
+</blockquote>
+<p>The inaccurate labels are:</p>
+<blockquote>
+<p>Best tutor; proven learner gain; held-out winner; field-accessibility certified; scientifically supported; or automatic replacement for canonical <code>prax-teach</code>.</p>
+</blockquote>
+<p>The candidate has completed local engineering review and reproducible packaging and is ready for explicit installation review or the next external evidence stages. It is not installed, has not replaced canonical <code>prax-teach</code>, and is not ready for claims those external stages have not earned.</p>
+
+      <div class="provenance">
+        <strong>Canonical source:</strong> <a href="./06-teach-prax-teach-v2-comparison.md">06-teach-prax-teach-v2-comparison.md</a><br>
+        <strong>SHA-256:</strong> <code>a2cc2ade8c79af4b2e8b0a03d0e589099d34c751bd4d47dff618850806f1f641</code><br>
+        <strong>Generated:</strong> 2026-08-04T12:00:00.000Z
+      </div>
+    </article>
+    <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ol><li class="toc-l2"><a href="#executive-answer">Executive answer</a></li><li class="toc-l2"><a href="#sources-compared">Sources compared</a></li><li class="toc-l3"><a href="#where-prax-tech-eval-fits">Where prax-tech-eval fits</a></li><li class="toc-l2"><a href="#complete-capability-comparison">Complete capability comparison</a></li><li class="toc-l3"><a href="#product-shape-and-teaching-behavior">Product shape and teaching behavior</a></li><li class="toc-l3"><a href="#state-scheduling-artifacts-and-ecosystem">State, scheduling, artifacts, and ecosystem</a></li><li class="toc-l2"><a href="#purpose-and-routing-in-practical-terms">Purpose and routing in practical terms</a></li><li class="toc-l3"><a href="#teach">teach</a></li><li class="toc-l3"><a href="#canonical-prax-teach">Canonical prax-teach</a></li><li class="toc-l3"><a href="#prax-teach-v2">prax-teach-v2</a></li><li class="toc-l2"><a href="#state-and-fsrs-implemented-not-merely-specified">State and FSRS: implemented, not merely specified</a></li><li class="toc-l2"><a href="#visuals-and-assets-the-12-asset-correction">Visuals and assets: the 12-asset correction</a></li><li class="toc-l2"><a href="#renderer-and-html-delivery">Renderer and HTML delivery</a></li><li class="toc-l2"><a href="#evaluator-study-machinery-exports-and-optional-adapters">Evaluator, study machinery, exports, and optional adapters</a></li><li class="toc-l3"><a href="#agent-evaluator">Agent evaluator</a></li><li class="toc-l3"><a href="#learner-study-machinery">Learner-study machinery</a></li><li class="toc-l3"><a href="#exports">Exports</a></li><li class="toc-l3"><a href="#skillopt-and-flint">SkillOpt and Flint</a></li><li class="toc-l2"><a href="#what-v2-adds">What v2 adds</a></li><li class="toc-l2"><a href="#what-v2-removes-or-replaces">What v2 removes or replaces</a></li><li class="toc-l2"><a href="#pros-and-cons">Pros and cons</a></li><li class="toc-l3"><a href="#teach-2">teach</a></li><li class="toc-l3"><a href="#canonical-prax-teach-2">Canonical prax-teach</a></li><li class="toc-l3"><a href="#prax-tech-eval">prax-tech-eval</a></li><li class="toc-l3"><a href="#prax-teach-v2-2">prax-teach-v2</a></li><li class="toc-l2"><a href="#blueprint-phase-by-phase-status">Blueprint phase-by-phase status</a></li><li class="toc-l2"><a href="#external-gates-all-individually-parked">External gates: all individually parked</a></li><li class="toc-l2"><a href="#exact-north-star-audit">Exact North Star audit</a></li><li class="toc-l2"><a href="#final-judgment">Final judgment</a></li></ol>
+  </nav>
+  </main>
+  <nav class="pager" aria-label="Document navigation">
+    <a href="./05-skillopt-and-flint-integration.html"><small>Previous</small>SkillOpt and Flint integration decision</a>
+    <a href="./07-prax-teach-v2-implementation-status.html"><small>Next</small>Prax Teach v2 — final implementation and release status</a>
+  </nav>
+  <footer class="site-footer">Prax Teach v2 research bundle · Markdown remains canonical</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="01-sidechat-audit.md">
+  <meta name="source-sha256" content="3f04f343539e6b9bdd683ddce2018835326e3f4e5dd248f3d734d4ec45e9eef1">
+  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <title>Sidechat response audit · Prax Teach research</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions">
+        <a class="quiet-link" href="./01-sidechat-audit.md">Markdown source</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+      </div>
+    </div>
+  </header>
+  <noscript><p class="noscript">The complete document is available without JavaScript; theme, progress, and copy-button enhancements are disabled.</p></noscript>
+  <main id="main-content" class="layout">
+    <article class="document">
+      <p class="eyebrow">Research dossier · generated companion</p>
+      
+      <h1 id="sidechat-response-audit">Sidechat response audit<a class="heading-anchor" href="#sidechat-response-audit" aria-label="Link to Sidechat response audit">#</a></h1>
+<p><em>Research snapshot: 2026-08-03</em></p>
+<h2 id="bottom-line">Bottom line<a class="heading-anchor" href="#bottom-line" aria-label="Link to Bottom line">#</a></h2>
+<p>Sidechat’s response is directionally strong and materially better than treating <code>prax-teach</code> as course-only. Its best contribution is the <code>quick</code> / <code>lesson</code> / <code>course</code> split with visualization available in every mode. I would keep that.</p>
+<p>I would not ship its rollout unchanged. It specifies formats more clearly than it specifies learning. The missing center is an evidence-bearing learner model and a teaching policy that prevents the model from becoming an answer machine. Its proposed crossover study is also unsuitable as the primary causal design because learning carries over permanently between conditions.</p>
+<p><strong>Verdict: 7.5/10 as a product direction; 5/10 as an implementation and validation plan.</strong></p>
+<h2 id="claim-by-claim-decision">Claim-by-claim decision<a class="heading-anchor" href="#claim-by-claim-decision" aria-label="Link to Claim-by-claim decision">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Sidechat proposal</th>
+<th>Decision</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Add <code>quick</code>, <code>lesson</code>, and <code>course</code> modes</td>
+<td><strong>Keep</strong></td>
+<td>It removes needless setup from one-off questions while preserving multi-session depth. OpenAI Study Mode similarly supports guided learning without requiring a persistent course workspace. <a href="https://help.openai.com/en/articles/11780217-study-mode">OpenAI Study Mode</a></td>
+</tr>
+<tr>
+<td>Infer the lightest suitable mode and allow override</td>
+<td><strong>Keep, specify precisely</strong></td>
+<td>Routing needs an explicit contract, a visible override, and permission before durable persistence. Quick mode may adapt within the current conversation without writing learner records.</td>
+</tr>
+<tr>
+<td>Run the visual router in all modes</td>
+<td><strong>Keep</strong></td>
+<td>Visual need is independent of persistence. The existing <code>prax-teach</code> router’s <code>none</code> / <code>static</code> / <code>interactive</code> / <code>motion</code> choice is stronger than “always add a diagram.”</td>
+</tr>
+<tr>
+<td>Choose the smallest sufficient representation</td>
+<td><strong>Keep as a hard rule</strong></td>
+<td>Decorative or split-attention visuals can add cognitive load. Worked examples and integrated explanations help novices when they are instructionally aligned, not merely attractive. <a href="https://pubmed.ncbi.nlm.nih.gov/34458621/">Lange et al., 2021</a></td>
+</tr>
+<tr>
+<td>Separate artifact quality from learning outcomes</td>
+<td><strong>Keep</strong></td>
+<td>Expert preference can evaluate pedagogical behavior, but it is not retention or transfer. LearnLM reports expert-preference gains; that is a different claim from learner outcome. <a href="https://arxiv.org/abs/2412.16429">LearnLM</a></td>
+</tr>
+<tr>
+<td>Compare no skill vs <code>teach</code>, then no skill vs <code>prax-teach</code></td>
+<td><strong>Keep for agent-level ablation</strong></td>
+<td>The installed evaluator estimates one target skill’s marginal effect and requires a genuinely skill-absent control. Two matched experiments are compatible with that contract.</td>
+</tr>
+<tr>
+<td>Use a small crossover human study</td>
+<td><strong>Replace as the primary design</strong></td>
+<td>Exposure in the first condition changes the learner for later conditions. Use parallel-group randomization for the main claim; use N-of-1 alternating topics only as exploratory personal evidence with counterbalancing and non-overlapping concepts.</td>
+</tr>
+<tr>
+<td>Test delayed recall at 48–72 hours</td>
+<td><strong>Replace with horizon-based timing</strong></td>
+<td>There is no universal correct delay. Spacing depends on the intended retention interval. Use a predeclared 7–14 day primary delay and, for important learning, a 30-day check. <a href="https://pubmed.ncbi.nlm.nih.gov/16719566/">Cepeda et al., 2006</a></td>
+</tr>
+<tr>
+<td>Begin with three trials per arm and expand to five</td>
+<td><strong>Keep for harness debugging, not learning claims</strong></td>
+<td>This is a reasonable staged engineering decision for nondeterministic agent runs. It is not a powered human-learning study.</td>
+</tr>
+<tr>
+<td>Start with 10% lift and 5% regression limits</td>
+<td><strong>Keep only as provisional engineering gates</strong></td>
+<td>These thresholds are author-chosen, not validated educational effect thresholds. Preregister and calibrate them before observing results.</td>
+</tr>
+<tr>
+<td>Rename <code>prax-tech-eval</code> to <code>prax-skill-eval</code> now</td>
+<td><strong>Defer</strong></td>
+<td>The current package is a generic skill evaluator, so the name is imperfect. Renaming adds migration work but does not improve teaching and is not a prerequisite for evaluation.</td>
+</tr>
+<tr>
+<td>Eventually freeze <code>teach</code> as a fixture</td>
+<td><strong>Keep conditionally</strong></td>
+<td>Freeze its content fingerprint now for comparison; retire it as a production tutor only after <code>prax-teach</code> passes both non-inferiority and learning-outcome gates.</td>
+</tr>
+</tbody></table></div>
+<h2 id="what-sidechat-got-especially-right">What Sidechat got especially right<a class="heading-anchor" href="#what-sidechat-got-especially-right" aria-label="Link to What Sidechat got especially right">#</a></h2>
+<h3 id="one-off-teaching-is-still-teaching">One-off teaching is still teaching<a class="heading-anchor" href="#one-off-teaching-is-still-teaching" aria-label="Link to One-off teaching is still teaching">#</a></h3>
+<p>The original <code>teach</code> and current <code>prax-teach</code> both assume a stateful learning workspace. That is appropriate for sustained learning but excessive for “explain database indexes in five minutes.” The proposed <code>quick</code> mode fixes this without weakening the course path.</p>
+<p>The key distinction is <strong>persistence</strong>, not pedagogical quality:</p>
+<ul>
+<li><code>quick</code>: no disk state by default; still diagnoses lightly, adapts in-turn, checks understanding, and may use a visual.</li>
+<li><code>lesson</code>: one bounded outcome; persistence is opt-in or confined to a user-selected workspace.</li>
+<li><code>course</code>: durable learner state, concept graph, review queue, sources, and session history.</li>
+</ul>
+<h3 id="visual-restraint-is-better-than-visual-quotas">Visual restraint is better than visual quotas<a class="heading-anchor" href="#visual-restraint-is-better-than-visual-quotas" aria-label="Link to Visual restraint is better than visual quotas">#</a></h3>
+<p>Sidechat correctly preserves “no visual” as a valid route. This matters because visual production has latency, accessibility, factual-verification, and maintenance costs. A representation should earn its place by improving a specific cognitive job: orient, compare, predict, manipulate, or watch state change.</p>
+<p>That is also where some otherwise impressive course generators are weaker. <a href="https://github.com/zarazhangrui/codebase-to-course"><code>codebase-to-course</code></a> produces polished interactive HTML, but its module requirements can mandate visuals and interactions even when prose plus practice would be clearer. <code>prax-teach</code> should borrow its modular course assembly, not its visual quota.</p>
+<h3 id="artifact-evaluation-and-learning-evaluation-are-different-claims">Artifact evaluation and learning evaluation are different claims<a class="heading-anchor" href="#artifact-evaluation-and-learning-evaluation-are-different-claims" aria-label="Link to Artifact evaluation and learning evaluation are different claims">#</a></h3>
+<p>Sidechat’s two-level framing is essential. The installed <code>prax-tech-eval</code> can test triggering, outputs, cost, and regressions under a clean skill-on/skill-off design. It cannot prove durable learning.</p>
+<p>This distinction is supported by the research landscape:</p>
+<ul>
+<li>LearnLM’s expert-preference evaluation measures pedagogical instruction following, not retention. <a href="https://arxiv.org/abs/2412.16429">LearnLM</a></li>
+<li>CodeAid’s 12-week deployment with 700 programming students established feasibility and design lessons, but not causal learning gains. <a href="https://arxiv.org/abs/2401.11314">CodeAid</a></li>
+<li>Tutor CoPilot’s preregistered live-tutoring RCT did measure mastery and found a 4 percentage-point overall lift, with larger gains for lower-rated tutors. Its intervention helped human tutors ask guiding questions and give away answers less often. <a href="https://arxiv.org/abs/2410.03017">Tutor CoPilot</a></li>
+</ul>
+<h2 id="the-important-omissions">The important omissions<a class="heading-anchor" href="#the-important-omissions" aria-label="Link to The important omissions">#</a></h2>
+<h3 id="1-no-learner-state-contract">1. No learner-state contract<a class="heading-anchor" href="#1-no-learner-state-contract" aria-label="Link to 1. No learner-state contract">#</a></h3>
+<p>“Read prior records and adapt” is not enough. A tutor needs explicit, correctable state at the concept level:</p>
+<ul>
+<li>the learning objective and prerequisites;</li>
+<li>evidence for recall, explanation, application, discrimination/debugging, and transfer;</li>
+<li>misconceptions and the observation that supports each one;</li>
+<li>hint dependence and confidence calibration;</li>
+<li>uncertainty and contradictory evidence;</li>
+<li>due review items and why they are due;</li>
+<li>learner-authored notes kept separate from agent inference.</li>
+</ul>
+<p>DeepTutor’s current platform has inspectable multi-layer memory, but its own learner-model RFC candidly proposes moving beyond profile/chat summaries toward evidence-backed concept state. <a href="https://github.com/HKUDS/DeepTutor">DeepTutor</a> and <a href="https://github.com/HKUDS/DeepTutor/issues/397">learner-model RFC #397</a></p>
+<h3 id="2-no-anti-crutch-contract">2. No anti-crutch contract<a class="heading-anchor" href="#2-no-anti-crutch-contract" aria-label="Link to 2. No anti-crutch contract">#</a></h3>
+<p>Unrestricted assistance can improve supported practice performance while harming later unassisted performance. In a large high-school mathematics experiment, guardrailed tutoring mitigated much of the harm seen with unrestricted GPT assistance. <a href="https://doi.org/10.1073/pnas.2422633122">Generative AI without guardrails can harm learning</a></p>
+<p>The skill therefore needs forbidden behaviors, not just aspirations:</p>
+<ul>
+<li>do not reveal the complete solution before a meaningful attempt unless the learner explicitly asks for it;</li>
+<li>do not let suggestions, previews, tool output, or hidden UI affordances leak the answer;</li>
+<li>do not ask five questions at once;</li>
+<li>do not repeat the same explanation after an error;</li>
+<li>do not infer mastery from fluency, confidence, completion, or one correct item;</li>
+<li>do not force Socratic questioning when the learner chooses <strong>Answer now</strong>.</li>
+</ul>
+<p>The <code>learn-codebase</code> project has a concrete report of answer leakage through client prompt suggestions, showing that this must be tested at the whole-interface level. <a href="https://github.com/ktaletsk/learn-codebase/issues/4">Issue #4</a></p>
+<h3 id="3-no-real-review-scheduler">3. No real review scheduler<a class="heading-anchor" href="#3-no-real-review-scheduler" aria-label="Link to 3. No real review scheduler">#</a></h3>
+<p>“Use spacing” is a principle, not an implementation. Fixed schedules are easy but poorly matched to different retention horizons and learner performance. Use a scheduler such as <a href="https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler">FSRS</a> for review timing, while keeping conceptual mastery separate and explainable. A model must never invent an FSRS rating from a vague impression.</p>
+<h3 id="4-the-human-experiment-has-carryover-bias">4. The human experiment has carryover bias<a class="heading-anchor" href="#4-the-human-experiment-has-carryover-bias" aria-label="Link to 4. The human experiment has carryover bias">#</a></h3>
+<p>A crossover design assumes the effects of one condition can wash out. Learning does not. Once a learner acquires the concept, the next condition inherits that change.</p>
+<p>For a real comparative claim, use three parallel groups:</p>
+<ol>
+<li>normal agent without a teaching skill;</li>
+<li><code>teach</code>;</li>
+<li><code>prax-teach-v2</code>.</li>
+</ol>
+<p>Pretest, balance or stratify by prior knowledge, use unseen parallel items, measure delayed retention and transfer, blind graders, and report attrition and confidence intervals. Personal N-of-1 trials remain useful for product feedback, but they should use matched non-overlapping topics and make no population claim.</p>
+<h3 id="5-generated-html-needs-a-canonical-source-rule">5. Generated HTML needs a canonical-source rule<a class="heading-anchor" href="#5-generated-html-needs-a-canonical-source-rule" aria-label="Link to 5. Generated HTML needs a canonical-source rule">#</a></h3>
+<p>Hand-maintaining Markdown and HTML creates two truths. The correct contract is:</p>
+<ol>
+<li>Markdown is canonical.</li>
+<li>HTML is generated deterministically.</li>
+<li>Each HTML page records the source path and SHA-256.</li>
+<li>The build fails when a Markdown file lacks a companion or the recorded hash is stale.</li>
+<li>Keyboard, focus, reflow, reduced motion, print, no-script fallback, and semantic structure are release gates under <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>.</li>
+</ol>
+<h2 id="corrected-rollout">Corrected rollout<a class="heading-anchor" href="#corrected-rollout" aria-label="Link to Corrected rollout">#</a></h2>
+<ol>
+<li>Freeze fingerprints of the current <code>teach</code> and <code>prax-teach</code> packages.</li>
+<li>Add explicit <code>quick</code>, <code>lesson</code>, and <code>course</code> routing with a user override and persistence consent.</li>
+<li>Add the anti-crutch teaching loop: diagnose → predict/retrieve → minimal scaffold → explain/apply → transfer → schedule review.</li>
+<li>Add inspectable concept state and learner correction before adding a complex knowledge-tracing model.</li>
+<li>Generate HTML from canonical Markdown with a source hash and automated parity checks.</li>
+<li>Run deterministic behavioral and trigger tests, including forbidden outcomes and answer-leakage cases.</li>
+<li>Run clean skill-on/skill-off agent ablations for <code>teach</code> and <code>prax-teach-v2</code> against the same baseline.</li>
+<li>Require non-inferiority for quick/no-visual tasks and superiority for selected sustained-learning tasks.</li>
+<li>Pilot a parallel-group human study with delayed retention and novel transfer as primary outcomes.</li>
+<li>Decide production replacement only after the evidence; treat the evaluator rename as separate maintenance.</li>
+</ol>
+<h2 id="final-judgment">Final judgment<a class="heading-anchor" href="#final-judgment" aria-label="Link to Final judgment">#</a></h2>
+<p>Sidechat found the right product shape. The next version should keep its three modes and visual router, but shift the center of gravity from <strong>artifact generation</strong> to <strong>evidence of learning</strong>. The decisive feature is not “more HTML” or “more personalization.” It is a disciplined loop that turns explanation into effortful retrieval, targeted feedback, spaced return, and transfer—while letting the learner inspect and correct what the system believes about them.</p>
+<h2 id="2026-08-04-integration-addendum">2026-08-04 integration addendum<a class="heading-anchor" href="#2026-08-04-integration-addendum" aria-label="Link to 2026-08-04 integration addendum">#</a></h2>
+<p><a href="https://github.com/microsoft/SkillOpt">Microsoft SkillOpt</a> and <a href="https://github.com/microsoft/flint-chart">Microsoft Flint</a> strengthen two missing implementation layers without changing this judgment.</p>
+<ul>
+<li>SkillOpt supplies a disciplined offline proposal/validation loop for agent instructions. It should optimize a cloned <code>SKILL.md</code> against hidden gates and stage a human-reviewed diff, not rewrite the live tutor or stand in for learner outcomes.</li>
+<li>Flint supplies a compact semantic chart language after the visual router chooses a chart-worthy quantitative job. It should produce a pinned static asset with source data, warnings, provenance, and an accessible table/text equivalent—not make visuals mandatory.</li>
+</ul>
+<p>Both tools make the system more testable. Neither repairs missing learner-state semantics, consent, delayed retention, or transfer evidence by itself.</p>
+
+      <div class="provenance">
+        <strong>Canonical source:</strong> <a href="./01-sidechat-audit.md">01-sidechat-audit.md</a><br>
+        <strong>SHA-256:</strong> <code>3f04f343539e6b9bdd683ddce2018835326e3f4e5dd248f3d734d4ec45e9eef1</code><br>
+        <strong>Generated:</strong> 2026-08-04T12:00:00.000Z
+      </div>
+    </article>
+    <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ol><li class="toc-l2"><a href="#bottom-line">Bottom line</a></li><li class="toc-l2"><a href="#claim-by-claim-decision">Claim-by-claim decision</a></li><li class="toc-l2"><a href="#what-sidechat-got-especially-right">What Sidechat got especially right</a></li><li class="toc-l3"><a href="#one-off-teaching-is-still-teaching">One-off teaching is still teaching</a></li><li class="toc-l3"><a href="#visual-restraint-is-better-than-visual-quotas">Visual restraint is better than visual quotas</a></li><li class="toc-l3"><a href="#artifact-evaluation-and-learning-evaluation-are-different-claims">Artifact evaluation and learning evaluation are different claims</a></li><li class="toc-l2"><a href="#the-important-omissions">The important omissions</a></li><li class="toc-l3"><a href="#1-no-learner-state-contract">1. No learner-state contract</a></li><li class="toc-l3"><a href="#2-no-anti-crutch-contract">2. No anti-crutch contract</a></li><li class="toc-l3"><a href="#3-no-real-review-scheduler">3. No real review scheduler</a></li><li class="toc-l3"><a href="#4-the-human-experiment-has-carryover-bias">4. The human experiment has carryover bias</a></li><li class="toc-l3"><a href="#5-generated-html-needs-a-canonical-source-rule">5. Generated HTML needs a canonical-source rule</a></li><li class="toc-l2"><a href="#corrected-rollout">Corrected rollout</a></li><li class="toc-l2"><a href="#final-judgment">Final judgment</a></li><li class="toc-l2"><a href="#2026-08-04-integration-addendum">2026-08-04 integration addendum</a></li></ol>
+  </nav>
+  </main>
+  <nav class="pager" aria-label="Document navigation">
+    <span></span>
+    <a href="./02-teaching-systems-landscape.html"><small>Next</small>Teaching skills and systems landscape</a>
+  </nav>
+  <footer class="site-footer">Prax Teach v2 research bundle · Markdown remains canonical</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

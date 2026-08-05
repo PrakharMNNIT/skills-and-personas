@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="08-zero-api-visual-runtime-upgrade-plan.md">
+  <meta name="source-sha256" content="af9965e46c227eb5898ad362241e4894a563dae70403e3e447ca3e78fae78fdd">
+  <meta name="generated-at" content="2026-08-04T18:30:00.000Z">
+  <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
+  <meta name="template-version" content="prax-teach-lesson/2.0.0">
+  <title>Prax Teach v2 — Zero-API Visual Runtime Upgrade</title>
+  <style>
+    :root { color-scheme: light; --paper:#f7f3ea; --ink:#172235; --muted:#5d6674; --accent:#8f3b20; --teal:#176b69; --line:#d7cbb8; --surface:#fffdf8; --code:#1c2837; --code-ink:#f4f1ea; }
+    @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper:#111923; --ink:#edf2f5; --muted:#b4bdc8; --accent:#f19a72; --teal:#72cbc5; --line:#344355; --surface:#182331; --code:#09111a; --code-ink:#edf2f5; } }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:17px/1.68 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:var(--accent); text-underline-offset:.16em; }
+    a:focus-visible, [tabindex="0"]:focus-visible, summary:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
+    .skip-link { position:fixed; left:1rem; top:.7rem; transform:translateY(-180%); z-index:10; padding:.6rem .85rem; border-radius:.4rem; background:var(--ink); color:var(--paper); }
+    .skip-link:focus { transform:translateY(0); }
+    header { border-bottom:1px solid var(--line); background:var(--surface); }
+    header div, main, footer { width:min(840px, calc(100% - 2rem)); margin-inline:auto; }
+    header div { display:flex; justify-content:space-between; gap:1rem; padding:1rem 0; }
+    header strong { color:var(--teal); letter-spacing:.04em; }
+    main { padding:clamp(2.4rem,7vw,5rem) 0; }
+    h1,h2,h3,h4 { font-family:ui-serif,Georgia,Cambria,serif; line-height:1.15; text-wrap:balance; scroll-margin-top:2rem; }
+    h1 { max-width:16ch; margin:0 0 1.5rem; font-size:clamp(2.5rem,8vw,4.8rem); letter-spacing:-.04em; }
+    h2 { margin:3.2rem 0 1rem; font-size:clamp(1.7rem,4vw,2.4rem); }
+    h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
+    p,li { max-width:72ch; }
+    blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
+    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
+    pre code { padding:0; border:0; color:inherit; }
+    .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
+    table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
+    th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { font-size:.78rem; text-transform:uppercase; letter-spacing:.03em; }
+    details { margin:1rem 0; padding:.75rem 1rem; border:1px solid var(--line); border-radius:.6rem; background:var(--surface); }
+    summary { cursor:pointer; font-weight:700; }
+    footer { padding:1.2rem 0 2.5rem; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; overflow-wrap:anywhere; }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } }
+    @media print { :root { --paper:#fff; --ink:#000; --surface:#fff; --line:#aaa; } header,.skip-link { display:none; } body { font-size:10.5pt; } main,footer { width:100%; } h1 { max-width:none; font-size:28pt; } pre,table,blockquote { break-inside:avoid; } details > *:not(summary),details::details-content { display:block!important; content-visibility:visible!important; } a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header><div><strong>Prax Teach lesson</strong><a href="./08-zero-api-visual-runtime-upgrade-plan.md">Markdown source</a></div></header>
+  <main id="main-content"><h1 id="prax-teach-v2-zero-api-visual-runtime-upgrade">Prax Teach v2 — Zero-API Visual Runtime Upgrade</h1>
+<blockquote>
+<p><strong>Canonical implementation plan · 2026-08-05</strong><br />Build an immersive, deterministic local visual-learning runtime around <code>prax-teach-v2</code>, while keeping ChatGPT/Codex as a human-operated subscription tutor—not a hidden API.</p>
+</blockquote>
+<h2 id="executive-decision">Executive decision</h2>
+<p>Build <strong>Prax Visual Lab</strong> as a separately versioned, tested local runtime inside the <code>prax-teach-v2</code> candidate. Keep the existing static renderer as the universal fallback. Add one optional <strong>Lean build-time adapter</strong> only after the visual runtime proves reusable. Make agent execution <strong>capability-adaptive</strong>: the skill describes roles, evidence, budgets, and authorization boundaries; each harness decides how to provide them.</p>
+<p>The plan is intentionally ambitious about learner experience and intentionally conservative about claims, cost, privacy, and formal-method scope.</p>
+<h3 id="what-100-complete-means">What “100% complete” means</h3>
+<p>There are two completion lines, and they must never be conflated:</p>
+<ol>
+<li><strong>Engineering complete:</strong> every in-scope runtime, lesson, security, accessibility, deterministic-build, test, review, packaging, and documentation criterion passes on the exact candidate bytes.</li>
+<li><strong>North Star demonstrated:</strong> real learners also pass the predeclared immediate, delayed 7–14 day, and novel-transfer gates.</li>
+</ol>
+<p>An autonomous agent can finish the first line. It can prepare and analyze the second, but it cannot fabricate participants, time delays, accessibility field use, or learning outcomes. Until those observations exist, the only honest terminal state is:</p>
+<pre><code class="language-text">ENGINEERING_COMPLETE / SCIENTIFIC_EVIDENCE_PENDING
+</code></pre>
+<p>The stronger <code>UPGRADE_100_PERCENT_VERIFIED</code> state is reserved for exact-byte engineering closure <strong>and</strong> genuine external learner evidence.</p>
+<h2 id="north-star-and-upgrade-outcome">North Star and upgrade outcome</h2>
+<blockquote>
+<p>The learner can later retrieve, explain, apply, discriminate, and transfer the idea without the tutor—and the system can show honest evidence for that claim.</p>
+</blockquote>
+<p>The upgrade should make that outcome more likely by letting learners predict, manipulate, compare, step through, explain, and transfer—not by adding decoration.</p>
+<p>At the end of the upgrade:</p>
+<ul>
+<li>a learner can use three substantially different interactive lessons entirely offline;</li>
+<li>each lesson preserves an accessible static/no-script route;</li>
+<li>local interaction emits an inspectable, deletable learning receipt;</li>
+<li>the learner deliberately copies that receipt to ChatGPT/Codex when human-like interpretation is useful;</li>
+<li>the runtime never calls OpenAI or any model provider;</li>
+<li>formal verification is an optional authoring-time evidence source, not an omnipresent learner dependency;</li>
+<li>the teaching skill adapts to the host harness without hardcoded model or CLI commands;</li>
+<li>every completion claim points to exact evidence.</li>
+</ul>
+<h2 id="non-negotiable-constraints">Non-negotiable constraints</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Boundary</th>
+<th>Required behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model cost</td>
+<td>No API key, API billing, metered model backend, or hidden pay-as-you-go route</td>
+</tr>
+<tr>
+<td>Subscription use</td>
+<td>Human-operated ChatGPT/Codex and explicitly authorized subscription-backed tooling only</td>
+</tr>
+<tr>
+<td>Runtime network</td>
+<td>Zero requests, zero telemetry, zero CDN, zero remote fonts, zero cloud dependency</td>
+</tr>
+<tr>
+<td>Learner data</td>
+<td>Local by default; explicit export/import; inspectable and deletable; no silent upload</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>WCAG 2.2 AA engineering target, COGA-aware design, keyboard path, zoom/reflow, reduced motion, no-script fallback, and field evidence kept separate</td>
+</tr>
+<tr>
+<td>Truthfulness</td>
+<td>Synthetic, agent, fixture, and automated results never become human-learning claims</td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>Core policy names capabilities and invariants—not provider-specific commands</td>
+</tr>
+<tr>
+<td>Delegation</td>
+<td>Smallest useful, authorized, bounded delegation; primary agent owns synthesis and evidence</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>No canonical install, merge, push, deploy, or replacement without the explicit promotion gate</td>
+</tr>
+</tbody></table></div>
+<h2 id="system-architecture">System architecture</h2>
+<pre><code class="language-mermaid">flowchart TB
+    T["Subscription tutor plane\nChatGPT / Codex"] --&gt;|"authors lesson spec"| S["Versioned lesson specification"]
+    S --&gt;|"optional, content-appropriate"| F["Build-time formal verifier"]
+    S --&gt; B["Deterministic local build"]
+    F --&gt;|"verified receipt + proof states"| B
+    B --&gt; R["Prax Visual Lab runtime"]
+    R --&gt; I["Offline interactive HTML"]
+    R --&gt; X["Accessible static / no-script fallback"]
+    I --&gt; L["Local learning receipt"]
+    X --&gt; L
+    L --&gt;|"learner explicitly copies"| T
+
+    F --&gt; L1["Lean first"]
+    F -. "only when a course demands it" .-&gt; L2["TLA+ / Alloy / Dafny later"]
+</code></pre>
+<h3 id="plane-a-subscription-tutor-and-authoring">Plane A — subscription tutor and authoring</h3>
+<p>The host conversation remains responsible for:</p>
+<ul>
+<li>natural-language teaching and Socratic dialogue;</li>
+<li>interpreting open explanations;</li>
+<li>diagnosing misconceptions;</li>
+<li>progressive feedback and alternative examples;</li>
+<li>authoring and reviewing lesson specifications;</li>
+<li>interpreting a receipt only when the learner deliberately shares it.</li>
+</ul>
+<p>The subscription is <strong>not</strong> a programmatic runtime backend. Do not automate the ChatGPT browser, scrape the product, or disguise subscription access as an API.</p>
+<h3 id="plane-b-local-deterministic-visual-learning">Plane B — local deterministic visual learning</h3>
+<p>The local artifact owns:</p>
+<ul>
+<li>state transitions and learner-controlled stepping;</li>
+<li>exact calculations and structural checks;</li>
+<li>parameter manipulation and synchronized views;</li>
+<li>predefined, ordered hints;</li>
+<li>deterministic feedback for exact/structural tasks;</li>
+<li>local ephemeral state and explicit receipt import/export;</li>
+<li>accessible static and print equivalents.</li>
+</ul>
+<p>It does not claim to understand arbitrary natural language.</p>
+<h3 id="communication-boundary">Communication boundary</h3>
+<p>The bridge between planes is an explicit, inspectable receipt:</p>
+<pre><code class="language-json">{
+  "schema_version": "prax.learning-receipt/v1",
+  "lesson_id": "python-float-001",
+  "lesson_version": "1.0.0",
+  "attempts": 3,
+  "prediction": "0.3 exactly",
+  "observed_result": "0.30000000000000004",
+  "highest_hint_level": 1,
+  "learner_explanation": "0.1 cannot terminate in binary",
+  "transfer": { "item_id": "float-transfer-02", "result": "pass" },
+  "created_at": "2026-08-05T14:20:00+05:30"
+}
+</code></pre>
+<p>The runtime must support copy, JSON download, JSON import, inspect, and delete. Automatic upload is forbidden.</p>
+<h2 id="target-repository-shape">Target repository shape</h2>
+<p>The exact tree may be adjusted by a small ADR if current repository constraints demand it, but the architectural boundaries may not be collapsed.</p>
+<pre><code class="language-text">prax-teach-v2/
+├── SKILL.md
+├── references/
+│   ├── NO-API-ARCHITECTURE.md
+│   ├── CAPABILITY-ADAPTIVE-EXECUTION.md
+│   ├── VISUAL-RUNTIME.md
+│   └── FORMAL-VERIFICATION.md
+├── schemas/
+│   ├── visual-lesson.schema.json
+│   ├── learning-receipt.schema.json
+│   └── formal-verification-receipt.schema.json
+├── runtime/
+│   └── prax-visual-lab/
+│       ├── package.json
+│       ├── src/
+│       │   ├── core/
+│       │   ├── components/
+│       │   ├── receipts/
+│       │   └── accessibility/
+│       ├── tests/
+│       └── README.md
+├── examples/
+│   └── visual-lab/
+│       ├── python-floating-point/
+│       ├── rubiks-move-lab/
+│       ├── lost-update-lab/
+│       └── lean-proof-state/
+└── integrations/
+    └── formal/
+        └── lean/
+</code></pre>
+<p><code>runtime/prax-visual-lab</code> is independently versioned. The bundled Markdown renderer remains static. If the runtime is absent, incompatible, or unverified, the existing router must continue to fail closed to static/host chat.</p>
+<h2 id="capability-adaptive-agent-execution">Capability-adaptive agent execution</h2>
+<p>The core skill must specify behavior, not invocation syntax.</p>
+<h3 id="decision-sequence">Decision sequence</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A["Would independent work materially help?"] --&gt;|"No"| M["Primary agent executes"]
+    A --&gt;|"Yes"| N{"Authorized native delegation exposed?"}
+    N --&gt;|"Yes"| D["Use smallest bounded native team"]
+    N --&gt;|"No"| C{"Approved subscription CLI available, authenticated, quota-safe, and non-interactive?"}
+    C --&gt;|"Yes"| Q["Use one bounded CLI delegate"]
+    C --&gt;|"No or uncertain"| M
+    D --&gt; V["Primary agent verifies and synthesizes"]
+    Q --&gt; V
+    M --&gt; V
+</code></pre>
+<h3 id="normative-policy">Normative policy</h3>
+<p>Before delegating, the agent must:</p>
+<ol>
+<li>identify genuinely independent work;</li>
+<li>inspect exposed tools and governing policy instead of guessing;</li>
+<li>verify authorization separately from capability presence;</li>
+<li>use the smallest useful worker count;</li>
+<li>assign bounded ownership, evidence, permissions, and a stop condition;</li>
+<li>prevent recursive delegation unless explicitly supported and authorized;</li>
+<li>keep private learner data and secrets out of delegate prompts;</li>
+<li>keep the primary agent accountable for integration, testing, truthfulness, accessibility, and final claims;</li>
+<li>continue single-agent without lowering quality when delegation is unavailable.</li>
+</ol>
+<p>Provider- or harness-specific examples may live in a non-normative reference. They must be labeled as examples and verified against current help before use.</p>
+<h3 id="cost-and-quota-shield">Cost and quota shield</h3>
+<p>For this upgrade:</p>
+<ul>
+<li>default to one primary agent;</li>
+<li>use at most two native subagents concurrently, depth one;</li>
+<li>default external CLI delegates to zero; maximum one at a time and two total for the entire run;</li>
+<li>use no broad council and no recursive CLI-to-CLI delegation;</li>
+<li>use a delegate only for an isolated task with a measurable payoff;</li>
+<li>stop identical retries after three failures, preserve the full failure evidence, and reroute;</li>
+<li>allow at most two review-repair rounds per phase unless a new failing test introduces new evidence;</li>
+<li>never spend separate API credits;</li>
+<li>if authentication mode or quota impact is uncertain, do not invoke the tool.</li>
+</ul>
+<h2 id="learning-experience-design-language">Learning-experience design language</h2>
+<p>Every interactive lesson must follow the same cognitive rhythm:</p>
+<ol>
+<li><strong>Orient:</strong> name the observable outcome without revealing the answer.</li>
+<li><strong>Predict:</strong> require a meaningful learner commitment.</li>
+<li><strong>Manipulate:</strong> expose only controls that change the underlying model.</li>
+<li><strong>Compare:</strong> synchronize two or more representations.</li>
+<li><strong>Explain:</strong> ask the learner to connect cause and result.</li>
+<li><strong>Transfer:</strong> use a structurally related but unfamiliar case.</li>
+<li><strong>Reflect:</strong> expose evidence, uncertainty, and the next retrieval horizon.</li>
+</ol>
+<h3 id="core-components">Core components</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Learning job</th>
+<th>Minimum contract</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>state-stepper</code></td>
+<td>Traverse causal states one step at a time</td>
+<td>Previous/next/jump/reset; stable state labels; URL-free deterministic state; keyboard and static sequence</td>
+</tr>
+<tr>
+<td><code>parameter-lab</code></td>
+<td>Manipulate one or more variables and see consequences</td>
+<td>Native labeled controls; exact value display; reset; announced result; bounded valid ranges</td>
+</tr>
+<tr>
+<td><code>compare-views</code></td>
+<td>Link symbolic, numerical, spatial, or temporal representations</td>
+<td>Synchronized selection; explicit mapping; table/text equivalent; no color-only correspondence</td>
+</tr>
+<tr>
+<td><code>hint-engine</code></td>
+<td>Reveal the next-needed support after an attempt</td>
+<td>Ordered hint levels; one level at a time; no transfer-answer leakage; receipt records highest level</td>
+</tr>
+<tr>
+<td><code>receipt-panel</code></td>
+<td>Give the learner ownership of evidence</td>
+<td>Preview, copy, download, import validation, delete, and plain-language privacy statement</td>
+</tr>
+</tbody></table></div>
+<h3 id="visual-quality-rules">Visual quality rules</h3>
+<ul>
+<li>Interaction exists only when learner control changes understanding.</li>
+<li>Motion explains a change; it never runs merely for atmosphere.</li>
+<li>Every animation has pause/replay or step control and a reduced-motion equivalent.</li>
+<li>Exact labels, equations, geometry, data, and state remain semantic and machine-checkable.</li>
+<li>Each view answers one learner question; synchronized views make mappings explicit.</li>
+<li>Progressive disclosure reduces overload without hiding accessibility information.</li>
+<li>Delight comes from agency, surprise, responsive explanation, and earned progress—not points, confetti, or manipulative streaks.</li>
+<li>The artifact never leaks retrieval answers through captions, defaults, DOM order, source data shown before attempt, thumbnails, or static fallbacks.</li>
+</ul>
+<h2 id="phased-delivery-plan">Phased delivery plan</h2>
+<h3 id="phase-0-freeze-measure-and-enforce-the-no-api-boundary">Phase 0 — Freeze, measure, and enforce the no-API boundary</h3>
+<p><strong>Purpose:</strong> establish the exact baseline and make forbidden runtime behavior mechanically testable.</p>
+<p>Deliver:</p>
+<ul>
+<li>current-tree inventory, HEAD, dirty-state, toolchain, and static-route baseline;</li>
+<li><code>NO-API-ARCHITECTURE.md</code> with threat model and trust boundaries;</li>
+<li>dependency and asset allowlist;</li>
+<li>strict local CSP suitable for built artifacts;</li>
+<li>network interception test that fails on any request;</li>
+<li>no telemetry, API-key, CDN, remote font, service-worker update, or dynamic import path;</li>
+<li>local-data, consent, export, and deletion policy;</li>
+<li>the lesson and learning-receipt schemas;</li>
+<li>frozen static comparison lesson and baseline learner-task protocol.</li>
+</ul>
+<p>Exit gates:</p>
+<ul>
+<li><code>ZV-00</code> through <code>ZV-05</code> pass;</li>
+<li>JavaScript-disabled content remains usable;</li>
+<li>an attempted network call makes verification fail;</li>
+<li>current static behavior remains unchanged.</li>
+</ul>
+<h3 id="phase-1-one-bounded-python-floating-point-pilot">Phase 1 — One bounded Python floating-point pilot</h3>
+<p><strong>Purpose:</strong> prove the complete learner loop with the smallest reusable runtime surface.</p>
+<p>Build only:</p>
+<ul>
+<li>runtime package scaffold;</li>
+<li><code>state-stepper</code>;</li>
+<li><code>receipt-panel</code>;</li>
+<li>ordered hint state;</li>
+<li>one floating-point lesson;</li>
+<li>deterministic static/no-script fallback;</li>
+<li>browser, keyboard, reduced-motion, zoom/reflow, print, and answer-leakage tests.</li>
+</ul>
+<p>Lesson sequence:</p>
+<ol>
+<li>predict whether <code>0.1 + 0.2</code> equals <code>0.3</code> exactly;</li>
+<li>construct the binary fraction through repeated steps;</li>
+<li>compare decimal intent, stored approximation, and evaluated result;</li>
+<li>move a rounding boundary;</li>
+<li>explain how representation produces the discrepancy;</li>
+<li>solve an unfamiliar floating-point transfer case;</li>
+<li>export and inspect the receipt.</li>
+</ol>
+<p>Stop rule: do not build the MVP components until the pilot passes its usability walkthrough, accessibility engineering gates, receipt round-trip, deterministic rebuild, and independent review.</p>
+<h3 id="phase-2-reusable-visual-runtime-mvp">Phase 2 — Reusable visual-runtime MVP</h3>
+<p><strong>Purpose:</strong> test the abstraction across different domains instead of overfitting to one lesson.</p>
+<p>Add:</p>
+<ul>
+<li><code>parameter-lab</code>;</li>
+<li><code>compare-views</code>;</li>
+<li>shared <code>hint-engine</code>;</li>
+<li>exact and structural graders with explicit limits;</li>
+<li>lesson-spec validator and deterministic build manifest;</li>
+<li>receipt import/export migration and corruption handling.</li>
+</ul>
+<p>Then build:</p>
+<ul>
+<li><strong>Rubik’s move laboratory:</strong> manipulate a legal cube state, compare notation/permutation/spatial views, and test a novel move sequence;</li>
+<li><strong>Lost-update laboratory:</strong> interleave two operations, compare timelines and state tables, identify the race, and transfer to an unfamiliar schedule.</li>
+</ul>
+<p>MVP exit gate:</p>
+<ul>
+<li>all three lessons use the shared components without lesson-specific forks in core logic;</li>
+<li>all work offline from a local server and packaged artifact;</li>
+<li>the no-script route preserves the complete conceptual sequence;</li>
+<li>property tests cover cube invariants, state-stepper transitions, receipt round trips, and concurrency schedules;</li>
+<li>a manual browser matrix is recorded honestly.</li>
+</ul>
+<h3 id="phase-3-one-lean-build-time-experiment">Phase 3 — One Lean build-time experiment</h3>
+<p><strong>Purpose:</strong> measure whether formal verification adds trustworthy teaching value without infecting ordinary lessons with formal complexity.</p>
+<p>Deliver:</p>
+<ul>
+<li>an ADR explaining why Lean is selected and what would make it removable;</li>
+<li>a pinned local Lean toolchain and dependency manifest;</li>
+<li>one small theorem lesson;</li>
+<li>formal-verification receipt schema and validator;</li>
+<li>proof-state JSON export;</li>
+<li>visual proof-state playback with static equivalent;</li>
+<li>exact source, toolchain, imports, axioms, warnings, and hash provenance.</li>
+</ul>
+<p>The browser does not contain a live Lean engine. The build checks Lean; the artifact visualizes preverified states.</p>
+<p>Keep Lean only if it:</p>
+<ul>
+<li>catches or prevents a material content error, or</li>
+<li>produces a proof-state representation learners can use,</li>
+</ul>
+<p>without unacceptable authoring, build, maintenance, accessibility, or cognitive cost. Otherwise retain the generic formal-receipt interface and remove/defer the adapter.</p>
+<p>TLA+, Alloy, Dafny, Agda, and F* are explicitly out of scope. Add one later only when a named course, misconception, and evaluation plan justify it.</p>
+<h3 id="phase-4-evaluation-and-honest-evidence">Phase 4 — Evaluation and honest evidence</h3>
+<p><strong>Purpose:</strong> decide whether the runtime helps learning instead of merely looking impressive.</p>
+<p>Engineering evaluation:</p>
+<ul>
+<li>predeclare outcomes, exclusions, stopping rules, and hard failures;</li>
+<li>compare the frozen static lesson against the interactive pilot;</li>
+<li>record task completion, error recovery, hint use, answer leakage, build determinism, bundle size, and accessibility findings;</li>
+<li>blind artifact review where practical;</li>
+<li>keep synthetic machinery results labeled synthetic.</li>
+</ul>
+<p>Human evaluation:</p>
+<ul>
+<li>small think-aloud pilot for comprehension and confusion;</li>
+<li>representative keyboard, zoom, reduced-motion, and assistive-technology field checks;</li>
+<li>immediate retrieval/explanation/application/discrimination/transfer measures;</li>
+<li>delayed 7–14 day unassisted retrieval and novel transfer;</li>
+<li>qualitative evidence about agency, cognitive load, trust, and fun.</li>
+</ul>
+<p>Hard failures:</p>
+<ul>
+<li>inaccessible essential control;</li>
+<li>runtime network request or telemetry;</li>
+<li>answer leakage before attempt;</li>
+<li>receipt loss, cross-lesson corruption, or silent upload;</li>
+<li>animation with no equivalent path;</li>
+<li>false mastery or human-learning claim;</li>
+<li>non-deterministic exact output;</li>
+<li>failure to preserve static fallback.</li>
+</ul>
+<h3 id="phase-5-selective-optimization-and-expansion">Phase 5 — Selective optimization and expansion</h3>
+<p>Only after Phase 4 shows a real bottleneck:</p>
+<ul>
+<li>use SkillOpt against a frozen, representative teaching benchmark—not subjective prompt preference;</li>
+<li>accept an instruction edit only when it beats the baseline and all hard gates;</li>
+<li>use Flint only when a chart is the right semantic job and the accessible table remains primary evidence;</li>
+<li>add another formal backend only for a named content need;</li>
+<li>add components only when two or more lessons need the same learner action.</li>
+</ul>
+<p>No automatic self-rewriting, optimizer, formal language, or visualization library belongs in the default runtime merely because it exists.</p>
+<h2 id="verification-strategy">Verification strategy</h2>
+<h3 id="test-pyramid">Test pyramid</h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Schema</td>
+<td>positive/negative fixtures; unknown-field and version rejection; stable canonical serialization</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>reducers, state transitions, graders, hint order, receipt validation, deletion, migrations</td>
+</tr>
+<tr>
+<td>Property</td>
+<td>state-stepper reachability, cube invariants, schedule interleavings, receipt round trips, idempotent builds</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>lesson spec → build → artifact → receipt; static fallback; formal receipt → proof-state artifact</td>
+</tr>
+<tr>
+<td>Browser</td>
+<td>Chromium/WebKit/Firefox where available; keyboard-only; JS-off; CSP; no-network interception; print; reduced motion</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>semantic structure, focus order, names, contrast, zoom/reflow, screen-reader walkthrough, COGA checks</td>
+</tr>
+<tr>
+<td>Security/privacy</td>
+<td>CSP, dependency audit, no secrets, no unexpected storage, corrupt import isolation, HTML injection fixtures</td>
+</tr>
+<tr>
+<td>Determinism</td>
+<td>two clean builds produce identical declared artifacts and manifests</td>
+</tr>
+<tr>
+<td>Review</td>
+<td>independent code, architecture, learning design, accessibility, privacy, and claim review on exact bytes</td>
+</tr>
+<tr>
+<td>Human learning</td>
+<td>predeclared immediate and delayed outcomes; never substituted by agent scores</td>
+</tr>
+</tbody></table></div>
+<h3 id="required-browser-matrix">Required browser matrix</h3>
+<p>At minimum, record:</p>
+<ul>
+<li>one current Chromium-family browser;</li>
+<li>WebKit/Safari behavior on macOS;</li>
+<li>Firefox when available;</li>
+<li>keyboard-only route;</li>
+<li>200% and 400% zoom/reflow;</li>
+<li><code>prefers-reduced-motion</code>;</li>
+<li>JavaScript disabled;</li>
+<li>one screen-reader walkthrough on macOS;</li>
+<li>print/PDF static result.</li>
+</ul>
+<p>A missing environment is <code>UNVERIFIED</code>, not <code>PASS</code>.</p>
+<h3 id="exact-byte-receipts">Exact-byte receipts</h3>
+<p>Every phase receipt must bind:</p>
+<ul>
+<li>repository HEAD and dirty-state;</li>
+<li>source and artifact hashes;</li>
+<li>dependency lock hash;</li>
+<li>commands and exit codes;</li>
+<li>test counts and failures;</li>
+<li>browser/tool versions;</li>
+<li>reviewer identity or harness class;</li>
+<li>criterion IDs satisfied;</li>
+<li>known gaps and parked external gates.</li>
+</ul>
+<h2 id="acceptance-ledger">Acceptance ledger</h2>
+<p>The tracker is the authoritative mutable status surface: <a href="./09-zero-api-visual-runtime-tracker.json"><code>09-zero-api-visual-runtime-tracker.json</code></a>. Its Markdown and HTML files are generated human views.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Scope</th>
+<th>Completion rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ZV-00</code>–<code>ZV-05</code></td>
+<td>Baseline and no-API foundation</td>
+<td>Exact tests prove the boundary and preserve static behavior</td>
+</tr>
+<tr>
+<td><code>ZV-06</code>–<code>ZV-13</code></td>
+<td>Pilot</td>
+<td>One complete, accessible, deterministic learner loop passes review</td>
+</tr>
+<tr>
+<td><code>ZV-14</code>–<code>ZV-21</code></td>
+<td>Reusable MVP</td>
+<td>Shared runtime succeeds across Python, Rubik’s, and concurrency</td>
+</tr>
+<tr>
+<td><code>ZV-22</code>–<code>ZV-25</code></td>
+<td>Formal experiment</td>
+<td>Lean adapter is measured and explicitly kept or reverted</td>
+</tr>
+<tr>
+<td><code>ZV-26</code>–<code>ZV-29</code></td>
+<td>Evaluation machinery</td>
+<td>Protocols, analysis, and evidence separation are executable</td>
+</tr>
+<tr>
+<td><code>EG-ZV-01</code>–<code>EG-ZV-04</code></td>
+<td>External learner evidence</td>
+<td>Real accessibility, immediate, delayed, and generalization evidence</td>
+</tr>
+<tr>
+<td><code>ZV-30</code>–<code>ZV-35</code></td>
+<td>Final verification and packaging</td>
+<td>Immutable validation, review, docs, archive, and exact receipt</td>
+</tr>
+</tbody></table></div>
+<h2 id="autonomous-implementation-loop">Autonomous implementation loop</h2>
+<p>The execution artifact is <a href="./10-zero-api-autonomous-goal.html"><code>10-zero-api-autonomous-goal.md</code></a>. Its loop is deliberately durable and bounded:</p>
+<pre><code class="language-mermaid">flowchart LR
+    R["Re-read plan, tracker, current tree"] --&gt; A["Select one unblocked atom"]
+    A --&gt; I["Implement smallest coherent change"]
+    I --&gt; T["Run focused tests"]
+    T --&gt;|"fail"| F["Record full failure + repair/reroute"]
+    F --&gt; I
+    T --&gt;|"pass"| Q["Run phase gates + review"]
+    Q --&gt;|"finding"| I
+    Q --&gt;|"clean"| E["Attach exact evidence; update tracker"]
+    E --&gt; C{"More unblocked atoms?"}
+    C --&gt;|"yes"| R
+    C --&gt;|"human-only"| P["Prepare protocol; park honestly"]
+    C --&gt;|"no"| V["Independent final validator"]
+</code></pre>
+<p>Each iteration works on one acceptance atom, updates durable state, and leaves a reproducible next action. Fresh context is preferred when the harness supports it; continuity lives in the plan, tracker, <code>SPEC.md</code>, <code>prd.json</code>, progress log, and exact evidence—not in conversational memory.</p>
+<h2 id="promotion-and-rollback">Promotion and rollback</h2>
+<h3 id="promotion-gate">Promotion gate</h3>
+<p>The candidate may be proposed for canonical installation only when:</p>
+<ul>
+<li>all engineering criteria are <code>verified</code> on one exact clean HEAD;</li>
+<li>independent final validation recomputes the receipts;</li>
+<li>no critical or high review finding remains;</li>
+<li>static behavior and rollback package are preserved;</li>
+<li>the user explicitly approves promotion.</li>
+</ul>
+<p>Merge, push, deployment, canonical skill replacement, and global installation are separate gated actions.</p>
+<h3 id="rollback">Rollback</h3>
+<ul>
+<li>Keep the existing static renderer and route contract intact.</li>
+<li>Package the runtime separately so it can be removed without invalidating ordinary teaching.</li>
+<li>Keep lesson specs and receipts versioned and migratable.</li>
+<li>On runtime validation failure, route to static/host chat and expose the reason.</li>
+<li>On a formal-adapter failure, preserve the ordinary lesson and mark formal verification unavailable.</li>
+</ul>
+<h2 id="explicit-non-goals">Explicit non-goals</h2>
+<ul>
+<li>an embedded AI chatbot;</li>
+<li>API keys or model-provider SDKs;</li>
+<li>browser automation of ChatGPT as a backend;</li>
+<li>a live Lean engine in every artifact;</li>
+<li>implementations of every proof or specification language;</li>
+<li>VR/AR, 3D spectacle, badges, streaks, leaderboards, or ambient animation;</li>
+<li>a new DSL for one lesson;</li>
+<li>automatic optimizer-driven instruction mutation before a benchmark exists;</li>
+<li>claiming the North Star from synthetic tests or agent review;</li>
+<li>replacing the current skill before exact verification and explicit approval.</li>
+</ul>
+<h2 id="deliverables">Deliverables</h2>
+<ol>
+<li>Versioned <code>prax-visual-lab</code> runtime and documented boundary.</li>
+<li>No-API architecture, capability-adaptive execution, visual-runtime, and formal-verification references.</li>
+<li>Lesson, learning-receipt, and formal-receipt schemas with fixtures.</li>
+<li>Five core components with static equivalents.</li>
+<li>Python floating-point, Rubik’s move, and lost-update lessons.</li>
+<li>One keep-or-revert Lean build-time experiment.</li>
+<li>Deterministic builders, validators, browser/accessibility/security/property tests, and exact receipts.</li>
+<li>Predeclared learner-study protocol and analysis path.</li>
+<li>Canonical tracker JSON with synchronized Markdown and HTML views.</li>
+<li>Copy-paste autonomous <code>/goal</code> command with budget, authorization, test, review, and truthfulness gates.</li>
+</ol>
+<h2 id="final-success-statement">Final success statement</h2>
+<p>This upgrade is successful when it creates a delightful local laboratory that helps learners form and test mental models, remains useful and accessible without JavaScript or a model backend, respects subscription and privacy boundaries, adapts across agent harnesses, and can support—not merely assert—the Prax Teach North Star.</p>
+<p>The system earns the word <strong>complete</strong> only at the evidence level it actually reached.</p>
+</main>
+  <footer>
+    Canonical source: <a href="./08-zero-api-visual-runtime-upgrade-plan.md">08-zero-api-visual-runtime-upgrade-plan.md</a><br>
+    SHA-256: <code>af9965e46c227eb5898ad362241e4894a563dae70403e3e447ca3e78fae78fdd</code><br>
+    Generated: 2026-08-04T18:30:00.000Z<br>
+    Renderer: prax-teach-markdown/2.2.0<br>
+    Template: prax-teach-lesson/2.0.0
+  </footer>
+</body>
+</html>

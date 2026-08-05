@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="03-prax-teach-v2-blueprint.md">
+  <meta name="source-sha256" content="1180883c1ef91b472f014486f8f850da3375c8e0be7396cd95f586b7d22de6f0">
+  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <title>Prax Teach v2 blueprint · Prax Teach research</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions">
+        <a class="quiet-link" href="./03-prax-teach-v2-blueprint.md">Markdown source</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+      </div>
+    </div>
+  </header>
+  <noscript><p class="noscript">The complete document is available without JavaScript; theme, progress, and copy-button enhancements are disabled.</p></noscript>
+  <main id="main-content" class="layout">
+    <article class="document">
+      <p class="eyebrow">Research dossier · generated companion</p>
+      
+      <h1 id="prax-teach-v2-blueprint">Prax Teach v2 blueprint<a class="heading-anchor" href="#prax-teach-v2-blueprint" aria-label="Link to Prax Teach v2 blueprint">#</a></h1>
+<p><em>A small teaching kernel that scales from a five-minute explanation to a durable course.</em></p>
+<h2 id="north-star">North star<a class="heading-anchor" href="#north-star" aria-label="Link to North star">#</a></h2>
+<p><code>prax-teach-v2</code> should optimize for this outcome:</p>
+<blockquote>
+<p>The learner can later retrieve, explain, apply, discriminate, and transfer the idea without the tutor—and the system can show honest evidence for that claim.</p>
+</blockquote>
+<p>That definition changes the product. A beautiful lesson is useful only when it helps create durable independent performance. Personalization is useful only when it is based on inspectable evidence. A visual is useful only when it serves a cognitive job.</p>
+<h2 id="design-principles">Design principles<a class="heading-anchor" href="#design-principles" aria-label="Link to Design principles">#</a></h2>
+<ol>
+<li><strong>Answer every scale of request.</strong> Multi-session learning is an optimization, not a prerequisite.</li>
+<li><strong>Use the lightest mode that can achieve the requested outcome.</strong> The learner can override the route at any time.</li>
+<li><strong>Attempt before reveal.</strong> Preserve productive effort, with an explicit <strong>Answer now</strong> escape hatch.</li>
+<li><strong>Treat feedback as instruction.</strong> Identify what was correct, the specific gap, the relevant principle, and the next attempt.</li>
+<li><strong>Store evidence, not personality judgments.</strong> Every inferred concept state must link to observations and remain correctable.</li>
+<li><strong>Separate mastery from scheduling.</strong> Concept evidence says what the learner can do; FSRS-like scheduling says when to revisit an item.</li>
+<li><strong>Use visuals semantically.</strong> Choose none, static, interactive, or motion from the learning task—not from a media quota.</li>
+<li><strong>Keep Markdown canonical.</strong> Generate accessible HTML with a source hash; never edit both as independent truth.</li>
+<li><strong>Make uncertainty visible.</strong> “Not enough evidence” is better than false mastery.</li>
+<li><strong>Measure delayed independence.</strong> Immediate satisfaction and polish are secondary outcomes.</li>
+</ol>
+<h2 id="the-three-modes">The three modes<a class="heading-anchor" href="#the-three-modes" aria-label="Link to The three modes">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Property</th>
+<th><code>quick</code></th>
+<th><code>lesson</code></th>
+<th><code>course</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default trigger</td>
+<td>Bounded explanation or one question</td>
+<td>One focused competency or artifact</td>
+<td>Sustained goal, sequence, or return across sessions</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>None by default</td>
+<td>Ask once; minimal if accepted</td>
+<td>Explicit consent; full workspace</td>
+</tr>
+<tr>
+<td>Intake</td>
+<td>At most one high-value question; infer the rest</td>
+<td>Goal, prior knowledge, constraint</td>
+<td>Mission, target performance, horizon, constraints, source policy</td>
+</tr>
+<tr>
+<td>Teaching depth</td>
+<td>Explain + example + one check</td>
+<td>Full teaching loop + transfer</td>
+<td>Diagnostic path + lessons + review queue + cumulative transfer</td>
+</tr>
+<tr>
+<td>Visual router</td>
+<td>Always available</td>
+<td>Always available</td>
+<td>Always available</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Chat, optional inline visual</td>
+<td>Canonical <code>.md</code> plus generated <code>.html</code> when an artifact helps</td>
+<td>Versioned lessons, references, state, reviews, and HTML companions</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Ephemeral in-turn adaptation</td>
+<td>Optional session summary</td>
+<td>Evidence-backed concept and session state</td>
+</tr>
+<tr>
+<td>Exit</td>
+<td>“Want the answer, a check, or a deeper lesson?”</td>
+<td>Summary + next retrieval</td>
+<td>Updated evidence + scheduled review + next branch</td>
+</tr>
+</tbody></table></div>
+<h3 id="mode-selection-rule">Mode selection rule<a class="heading-anchor" href="#mode-selection-rule" aria-label="Link to Mode selection rule">#</a></h3>
+<p>Select the lightest mode that satisfies the user’s stated outcome.</p>
+<p>Choose <code>quick</code> unless one of these is true:</p>
+<ul>
+<li>the user explicitly requests a lesson artifact;</li>
+<li>success requires several activities or a transfer task;</li>
+<li>the user wants to resume later;</li>
+<li>the topic depends on a durable source library or cumulative concept graph.</li>
+</ul>
+<p>Choose <code>lesson</code> for a bounded competency. Escalate to <code>course</code> only with explicit multi-session intent or when the learner accepts persistence after the need is explained. Demote immediately when the learner asks for a concise answer.</p>
+<h2 id="the-teaching-kernel">The teaching kernel<a class="heading-anchor" href="#the-teaching-kernel" aria-label="Link to The teaching kernel">#</a></h2>
+<p>Every mode uses a compressed or expanded version of the same loop:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Tutor action</th>
+<th>Learner evidence</th>
+<th>Failure-safe behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Orient</td>
+<td>Confirm the outcome and useful context</td>
+<td>Goal, constraints, current attempt</td>
+<td>Do not interview when the request is already clear</td>
+</tr>
+<tr>
+<td>2. Diagnose</td>
+<td>Ask one discriminating question or inspect work</td>
+<td>Prior knowledge, misconception, “I don’t know”</td>
+<td>Never punish uncertainty; skip when urgency demands direct instruction</td>
+</tr>
+<tr>
+<td>3. Retrieve / predict</td>
+<td>Ask for an effortful response before reveal</td>
+<td>Recall, prediction, chosen strategy</td>
+<td>Offer a smaller entry point or accessibility alternative</td>
+</tr>
+<tr>
+<td>4. Model</td>
+<td>Give the minimum explanation and an aligned worked example</td>
+<td>Learner can identify the principle and why it applies</td>
+<td>For experts, remove redundant scaffolding</td>
+</tr>
+<tr>
+<td>5. Guide</td>
+<td>Use a progressive hint ladder</td>
+<td>Increasingly independent attempts</td>
+<td>Do not dump all hints or repeat the same explanation</td>
+</tr>
+<tr>
+<td>6. Feedback</td>
+<td>Name correctness, gap, principle, and next move</td>
+<td>Revision quality and confidence</td>
+<td>Avoid generic praise and person-level judgments</td>
+</tr>
+<tr>
+<td>7. Transfer</td>
+<td>Change the surface form, context, or competing case</td>
+<td>Novel application or discrimination</td>
+<td>Do not certify mastery from a copied pattern</td>
+</tr>
+<tr>
+<td>8. Reflect</td>
+<td>Ask for teach-back or a concise learner summary</td>
+<td>Learner-authored mental model</td>
+<td>Store agent inference separately</td>
+</tr>
+<tr>
+<td>9. Schedule</td>
+<td>Select the next retrieval from performance and horizon</td>
+<td>Due item with reason</td>
+<td>Quick mode only offers; it does not persist silently</td>
+</tr>
+</tbody></table></div>
+<p>Retrieval practice, spacing, formative feedback, and evaluated intelligent tutoring systems support this structure, with important implementation and domain limits. See the <a href="./02-teaching-systems-landscape.html">research landscape</a>.</p>
+<h2 id="hint-ladder">Hint ladder<a class="heading-anchor" href="#hint-ladder" aria-label="Link to Hint ladder">#</a></h2>
+<p>Use the smallest hint that lets the learner make the next meaningful move:</p>
+<ol>
+<li><strong>Orienting prompt:</strong> point to the goal or relevant representation.</li>
+<li><strong>Principle cue:</strong> name the rule, relationship, or diagnostic question.</li>
+<li><strong>Partial step:</strong> supply one subgoal or intermediate representation.</li>
+<li><strong>Worked step:</strong> demonstrate the blocked step and ask the learner to continue.</li>
+<li><strong>Complete solution:</strong> provide when explicitly requested, necessary for safety/access, or further struggle has no learning value.</li>
+</ol>
+<p>Record the highest hint level used. A correct response after a worked step is weaker mastery evidence than an unassisted transfer response.</p>
+<h2 id="evidence-dimensional-mastery">Evidence-dimensional mastery<a class="heading-anchor" href="#evidence-dimensional-mastery" aria-label="Link to Evidence-dimensional mastery">#</a></h2>
+<p>Do not compress learner state to <code>beginner</code>, <code>intermediate</code>, <code>advanced</code>, or one confidence score. For each concept, track dimensions separately:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Observable evidence</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Recognition</td>
+<td>Identifies the applicable concept among alternatives</td>
+<td>Chooses an index problem rather than a caching problem</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>Produces the idea without cues</td>
+<td>Defines a B-tree property from memory</td>
+</tr>
+<tr>
+<td>Explanation</td>
+<td>Gives a causal or mechanistic account</td>
+<td>Explains why range scans benefit</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Uses the concept in a familiar task</td>
+<td>Selects an index for a known query pattern</td>
+</tr>
+<tr>
+<td>Discrimination / debugging</td>
+<td>Distinguishes confusable cases or repairs an error</td>
+<td>Rejects an index that cannot support the predicate order</td>
+</tr>
+<tr>
+<td>Transfer</td>
+<td>Applies it in a novel surface context</td>
+<td>Designs indexing for a previously unseen workload</td>
+</tr>
+</tbody></table></div>
+<p>Each observation records item, response or rubric, hint level, confidence, timestamp, content version, and source. Store uncertainty and contradictory evidence. The learner can correct or delete inferred state and request a retest.</p>
+<h3 id="mastery-rule">Mastery rule<a class="heading-anchor" href="#mastery-rule" aria-label="Link to Mastery rule">#</a></h3>
+<p>Use a conservative default:</p>
+<ul>
+<li>never mark mastered from one item;</li>
+<li>require evidence across at least two dimensions;</li>
+<li>require at least one unassisted application, discrimination, or transfer item;</li>
+<li>require later-session retrieval for <strong>durable</strong> mastery;</li>
+<li>degrade confidence when evidence is old, contradicted, or heavily scaffolded;</li>
+<li>never hard-lock the learner from a topic based on an uncertain estimate.</li>
+</ul>
+<p>These are product defaults to evaluate, not universal psychometric thresholds.</p>
+<h2 id="scheduler-contract">Scheduler contract<a class="heading-anchor" href="#scheduler-contract" aria-label="Link to Scheduler contract">#</a></h2>
+<p>Use a real review scheduler such as <a href="https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler">FSRS</a> for item timing. Keep these rules:</p>
+<ul>
+<li>derive the review rating from observable learner performance, not model sentiment;</li>
+<li>keep item scheduling separate from concept mastery;</li>
+<li>tie the desired retention probability to the learner’s horizon;</li>
+<li>shorten after failure or high hint dependence;</li>
+<li>lengthen after successful unassisted retrieval;</li>
+<li>let the learner snooze, reschedule, export, or disable reviews;</li>
+<li>log the scheduler input and decision so it is explainable.</li>
+</ul>
+<p>Quick mode may recommend a review prompt but must not create reminders or files without permission.</p>
+<h2 id="visual-router">Visual router<a class="heading-anchor" href="#visual-router" aria-label="Link to Visual router">#</a></h2>
+<p>Ask one question first: <strong>What must the learner see, compare, predict, manipulate, or watch change?</strong></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Use when</th>
+<th>Default medium</th>
+<th>Required fallback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>None</td>
+<td>Prose plus an example is already clearer</td>
+<td>Text and code</td>
+<td>Not applicable</td>
+</tr>
+<tr>
+<td>Static</td>
+<td>Structure, hierarchy, spatial relation, comparison, exact worked state</td>
+<td>Semantic HTML table, exact SVG, diagram-as-code; optional Flint-compiled SVG for quantitative charts</td>
+<td>Text reading order; data table for quantitative figures</td>
+</tr>
+<tr>
+<td>Interactive</td>
+<td>Manipulation, prediction, filtering, testing, traversal</td>
+<td>Native HTML controls, SVG/Canvas simulation</td>
+<td>Equivalent static state and explanation; no-script path</td>
+</tr>
+<tr>
+<td>Motion</td>
+<td>Sequence, causality, synchronization, transformation, state over time</td>
+<td>Seekable deterministic animation or video</td>
+<td>Captions, transcript, poster/static sequence, reduced-motion mode</td>
+</tr>
+</tbody></table></div>
+<p>Visuals must not expose an answer before the learner attempts retrieval. Exact labels, equations, charts, and relationships must use deterministic media, not image generation.</p>
+<p>Flint is an optional compiler after routing, not a new route. Use it only when a quantitative chart is more useful than a table; pin the version, transform and verify data upstream, inspect warnings, preserve the semantic spec and render hashes, and ship a complete table/text equivalent. The live chart editor is an authoring aid, not the durable lesson runtime.</p>
+<h2 id="persistence-and-privacy">Persistence and privacy<a class="heading-anchor" href="#persistence-and-privacy" aria-label="Link to Persistence and privacy">#</a></h2>
+<h3 id="consent-boundary">Consent boundary<a class="heading-anchor" href="#consent-boundary" aria-label="Link to Consent boundary">#</a></h3>
+<p>Before creating durable learner state, explain in one sentence:</p>
+<ul>
+<li>what will be stored;</li>
+<li>where it will be stored;</li>
+<li>how it improves later sessions;</li>
+<li>how to inspect, correct, export, or delete it.</li>
+</ul>
+<p>Do not persist sensitive traits, inferred ability labels, health information, or irrelevant conversation. Use a learner pseudonym or local identifier. For minors, require an explicit deployment-specific privacy policy rather than relying on prompt prose.</p>
+<h3 id="workspace-structure">Workspace structure<a class="heading-anchor" href="#workspace-structure" aria-label="Link to Workspace structure">#</a></h3>
+<pre><code class="language-text">learning-workspace/
+├── MISSION.md                 # learner-approved goal and horizon
+├── RESOURCES.md               # source provenance and versions
+├── lessons/
+│   ├── 0001-topic.md          # canonical lesson
+│   └── 0001-topic.html        # generated companion with source hash
+├── reference/
+│   ├── concept-map.md
+│   └── concept-map.html
+├── state/
+│   ├── learner.json           # preferences and consent, not mastery claims
+│   ├── concepts.json          # current evidence-derived state
+│   ├── misconceptions.json    # specific, evidenced, correctable
+│   ├── reviews.jsonl          # scheduler events and decisions
+│   └── sessions.jsonl         # append-only activity/provenance log
+└── assets/                    # editable visual/interaction sources; optional data/spec/render manifests
+</code></pre>
+<p>Keep raw observations append-only. Derive current concept state from them so a bad inference can be corrected without rewriting history.</p>
+<h2 id="markdown-to-html-contract">Markdown-to-HTML contract<a class="heading-anchor" href="#markdown-to-html-contract" aria-label="Link to Markdown-to-HTML contract">#</a></h2>
+<p>Every instructional Markdown file must have a generated HTML companion with the same basename. The Markdown remains canonical.</p>
+<p>Each HTML page must include:</p>
+<ul>
+<li>semantic landmarks and a skip link;</li>
+<li>synchronized headings and stable anchors;</li>
+<li>a visible source path, generation time, and SHA-256;</li>
+<li>responsive tables and readable line lengths;</li>
+<li>strong focus styles and full keyboard operation;</li>
+<li>progressive hints before solutions;</li>
+<li>explanations for correct and incorrect answers;</li>
+<li>reduced-motion, print, zoom/reflow, and no-script fallbacks;</li>
+<li>nearby citations and media provenance;</li>
+<li>no mandatory CDN or tracking;</li>
+<li>a link back to the Markdown source.</li>
+</ul>
+<p>The build must fail when:</p>
+<ul>
+<li>a Markdown file lacks HTML;</li>
+<li>the HTML source hash is stale;</li>
+<li>heading order is invalid;</li>
+<li>a required landmark, skip link, language, title, or viewport is missing;</li>
+<li>an interaction is pointer-only;</li>
+<li>essential information disappears with JavaScript or reduced motion.</li>
+</ul>
+<p>Automated checks are necessary but insufficient; perform keyboard, screen-reader spot checks, print review, narrow-viewport review, and testing with target learners, including disabled and neurodivergent learners. <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a> and <a href="https://www.w3.org/TR/coga-usable/">W3C COGA</a></p>
+<h2 id="source-and-provenance-policy">Source and provenance policy<a class="heading-anchor" href="#source-and-provenance-policy" aria-label="Link to Source and provenance policy">#</a></h2>
+<p>For factual teaching:</p>
+<ol>
+<li>prefer the learner’s selected authoritative source;</li>
+<li>otherwise prefer primary and official sources;</li>
+<li>record URL, title, retrieval date, applicable version, and license/attribution where relevant;</li>
+<li>distinguish source-backed fact, inference, example, and uncertainty;</li>
+<li>never teach from parametric memory alone when the fact is unstable, niche, high-stakes, or disputed;</li>
+<li>version source-grounded items so changed source material invalidates or flags dependent assessments.</li>
+</ol>
+<h2 id="system-layers">System layers<a class="heading-anchor" href="#system-layers" aria-label="Link to System layers">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Interface</th>
+<th>Replaceable implementation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mode router</td>
+<td>request → mode, reason, persistence decision</td>
+<td>deterministic rules plus agent judgment</td>
+</tr>
+<tr>
+<td>Teaching policy</td>
+<td>learner turn + context → next pedagogical move</td>
+<td>core skill plus subject strategy</td>
+</tr>
+<tr>
+<td>Learner-state store</td>
+<td>observations ↔ evidence-derived concept state</td>
+<td>local JSON/JSONL first; database later</td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>item performance + horizon → next due time</td>
+<td>FSRS-compatible adapter</td>
+</tr>
+<tr>
+<td>Source library</td>
+<td>concept/item → versioned evidence</td>
+<td>files, RAG, or linked vault</td>
+</tr>
+<tr>
+<td>Artifact renderer</td>
+<td>canonical Markdown → self-contained HTML</td>
+<td>verified GFM renderer and templates</td>
+</tr>
+<tr>
+<td>Quantitative visual compiler</td>
+<td>reviewed rows + semantic spec → verified chart asset</td>
+<td>optional pinned Flint-to-SVG adapter</td>
+</tr>
+<tr>
+<td>Evaluator</td>
+<td>fixtures + conditions → artifact and outcome reports</td>
+<td><code>prax-tech-eval</code> plus human-study pipeline</td>
+</tr>
+<tr>
+<td>Offline optimizer</td>
+<td>scored isolated trajectories → staged <code>SKILL.md</code> proposal</td>
+<td>optional SkillOpt experiment harness</td>
+</tr>
+</tbody></table></div>
+<p>This boundary keeps quick mode fast: it can invoke only the router and teaching policy. A course can add all layers without rewriting the teaching loop.</p>
+<h2 id="implementation-sequence">Implementation sequence<a class="heading-anchor" href="#implementation-sequence" aria-label="Link to Implementation sequence">#</a></h2>
+<h3 id="phase-0-freeze-and-measure">Phase 0 — freeze and measure<a class="heading-anchor" href="#phase-0-freeze-and-measure" aria-label="Link to Phase 0 — freeze and measure">#</a></h3>
+<ul>
+<li>Fingerprint <code>teach</code> and current <code>prax-teach</code>.</li>
+<li>Capture trigger, latency, token, artifact, and forbidden-behavior baselines.</li>
+<li>Do not rename the evaluator yet.</li>
+</ul>
+<h3 id="phase-1-minimum-lovable-tutor">Phase 1 — minimum lovable tutor<a class="heading-anchor" href="#phase-1-minimum-lovable-tutor" aria-label="Link to Phase 1 — minimum lovable tutor">#</a></h3>
+<ul>
+<li>Implement three-mode routing and <strong>Answer now</strong>.</li>
+<li>Implement the teaching kernel and hint ladder.</li>
+<li>Add explicit forbidden behaviors and deterministic tests.</li>
+<li>Generate accessible HTML from canonical Markdown.</li>
+</ul>
+<h3 id="phase-2-durable-learner-loop">Phase 2 — durable learner loop<a class="heading-anchor" href="#phase-2-durable-learner-loop" aria-label="Link to Phase 2 — durable learner loop">#</a></h3>
+<ul>
+<li>Add consented JSON/JSONL state.</li>
+<li>Add concept evidence, misconceptions, learner corrections, and versioned items.</li>
+<li>Add scheduler adapter and due-review policy.</li>
+</ul>
+<h3 id="phase-3-evidence-and-adaptation">Phase 3 — evidence and adaptation<a class="heading-anchor" href="#phase-3-evidence-and-adaptation" aria-label="Link to Phase 3 — evidence and adaptation">#</a></h3>
+<ul>
+<li>Run clean agent ablations.</li>
+<li>Pilot learner-outcome evaluation.</li>
+<li>Calibrate concept-state rules and scheduler inputs.</li>
+<li>Add an interpretable knowledge-tracing model only if it outperforms the transparent baseline and its adaptations improve learning.</li>
+</ul>
+<h3 id="phase-4-optional-ecosystem-adapters">Phase 4 — optional ecosystem adapters<a class="heading-anchor" href="#phase-4-optional-ecosystem-adapters" aria-label="Link to Phase 4 — optional ecosystem adapters">#</a></h3>
+<ul>
+<li>Pin Flint and validate one table-vs-chart lesson before broader chart use.</li>
+<li>Build a SkillOpt <code>prax_teach</code> adapter with hidden split banks, non-compensatory hard gates, and no auto-adopt.</li>
+<li>Anki export.</li>
+<li>QTI assessment export.</li>
+<li>Richer LiaScript/H5P authoring.</li>
+<li>Voice, animation, or multi-agent classroom modules when a specific learning job justifies them.</li>
+</ul>
+<h2 id="what-ships-in-this-deliverable">What ships in this deliverable<a class="heading-anchor" href="#what-ships-in-this-deliverable" aria-label="Link to What ships in this deliverable">#</a></h2>
+<p>The companion <code>prax-teach-v2</code> candidate package contains:</p>
+<ul>
+<li>a concise installable <code>SKILL.md</code>;</li>
+<li>mode, teaching, learner-state, artifact, source/privacy, evaluation, SkillOpt, and Flint references;</li>
+<li>a dependency-light workspace validator;</li>
+<li>public behavioral evaluation fixtures, explicitly excluded from held-out claims;</li>
+<li>generated HTML companions for every Markdown instruction file.</li>
+</ul>
+<p>It is deliberately a candidate, not an automatic replacement for the installed <code>prax-teach</code>. That preserves a clean evaluation and approval boundary.</p>
+
+      <div class="provenance">
+        <strong>Canonical source:</strong> <a href="./03-prax-teach-v2-blueprint.md">03-prax-teach-v2-blueprint.md</a><br>
+        <strong>SHA-256:</strong> <code>1180883c1ef91b472f014486f8f850da3375c8e0be7396cd95f586b7d22de6f0</code><br>
+        <strong>Generated:</strong> 2026-08-04T12:00:00.000Z
+      </div>
+    </article>
+    <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ol><li class="toc-l2"><a href="#north-star">North star</a></li><li class="toc-l2"><a href="#design-principles">Design principles</a></li><li class="toc-l2"><a href="#the-three-modes">The three modes</a></li><li class="toc-l3"><a href="#mode-selection-rule">Mode selection rule</a></li><li class="toc-l2"><a href="#the-teaching-kernel">The teaching kernel</a></li><li class="toc-l2"><a href="#hint-ladder">Hint ladder</a></li><li class="toc-l2"><a href="#evidence-dimensional-mastery">Evidence-dimensional mastery</a></li><li class="toc-l3"><a href="#mastery-rule">Mastery rule</a></li><li class="toc-l2"><a href="#scheduler-contract">Scheduler contract</a></li><li class="toc-l2"><a href="#visual-router">Visual router</a></li><li class="toc-l2"><a href="#persistence-and-privacy">Persistence and privacy</a></li><li class="toc-l3"><a href="#consent-boundary">Consent boundary</a></li><li class="toc-l3"><a href="#workspace-structure">Workspace structure</a></li><li class="toc-l2"><a href="#markdown-to-html-contract">Markdown-to-HTML contract</a></li><li class="toc-l2"><a href="#source-and-provenance-policy">Source and provenance policy</a></li><li class="toc-l2"><a href="#system-layers">System layers</a></li><li class="toc-l2"><a href="#implementation-sequence">Implementation sequence</a></li><li class="toc-l3"><a href="#phase-0-freeze-and-measure">Phase 0 — freeze and measure</a></li><li class="toc-l3"><a href="#phase-1-minimum-lovable-tutor">Phase 1 — minimum lovable tutor</a></li><li class="toc-l3"><a href="#phase-2-durable-learner-loop">Phase 2 — durable learner loop</a></li><li class="toc-l3"><a href="#phase-3-evidence-and-adaptation">Phase 3 — evidence and adaptation</a></li><li class="toc-l3"><a href="#phase-4-optional-ecosystem-adapters">Phase 4 — optional ecosystem adapters</a></li><li class="toc-l2"><a href="#what-ships-in-this-deliverable">What ships in this deliverable</a></li></ol>
+  </nav>
+  </main>
+  <nav class="pager" aria-label="Document navigation">
+    <a href="./02-teaching-systems-landscape.html"><small>Previous</small>Teaching skills and systems landscape</a>
+    <a href="./04-evaluation-and-rollout.html"><small>Next</small>Evaluation and rollout plan</a>
+  </nav>
+  <footer class="site-footer">Prax Teach v2 research bundle · Markdown remains canonical</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

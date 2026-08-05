@@ -1,0 +1,11 @@
+{
+  "archive": "/Users/prax/Documents/Codex/2026-08-03/hey/outputs/prax-teach-v2-8c26440a0402-repro.zip",
+  "archive_sha256": "c25625c1112d33c125df8c7866c0b00e16ed799dd849d71f96f353a74ec9e992",
+  "commit": "8c26440a0402c88c366d68d680aef2b3fe20fc7c",
+  "entries": 343,
+  "git_metadata_included": false,
+  "release_gate": "passed",
+  "schema_version": 1,
+  "source": "immutable_git_blobs",
+  "status": "packaged"
+}

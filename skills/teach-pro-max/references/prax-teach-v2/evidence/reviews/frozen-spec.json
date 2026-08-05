@@ -1,0 +1,25 @@
+{
+  "attestation": {
+    "cryptographic_authorship_verified": false,
+    "orchestration_task_identity_recorded": true,
+    "threat_model": "orchestration task identity is structurally recorded; cryptographic authorship is not verified"
+  },
+  "findings": [],
+  "fixes": [],
+  "payload": "evidence/reviews/payload.json",
+  "payload_file_sha256": "23ea646a9e92c2d11f6fd8c17b8c42b467392d16ed5b23a7e57e515cac8e9439",
+  "payload_manifest_sha256": "0891015a8444d1dbee389191cff2e5913fc77e9e808afb057e108d887db740d9",
+  "recheck": {
+    "reviewer_confirmed": true,
+    "status": "passed"
+  },
+  "review_type": "frozen-spec",
+  "reviewer": {
+    "identity": "independent frozen-spec reviewer",
+    "independent_from_implementation": true,
+    "task": "/root/final2_frozen_spec_review"
+  },
+  "schema_version": 2,
+  "status": "passed",
+  "unresolved_actionable": []
+}

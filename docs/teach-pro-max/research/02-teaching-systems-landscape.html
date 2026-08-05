@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="source-path" content="02-teaching-systems-landscape.md">
+  <meta name="source-sha256" content="b337b89c21bc068c72da159f43498c01adaf4db3a54ea810a443ffb07780eca1">
+  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <title>Teaching skills and systems landscape · Prax Teach research</title>
+  <style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-deep: #efe7d7;
+  --ink: #172235;
+  --muted: #5d6674;
+  --accent: #a44424;
+  --accent-strong: #7d2f17;
+  --teal: #176b69;
+  --line: #d7cbb8;
+  --surface: rgba(255, 253, 248, .82);
+  --code: #1c2837;
+  --code-ink: #f4f1ea;
+  --shadow: 0 16px 48px rgba(65, 48, 29, .10);
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #111923;
+  --paper-deep: #182331;
+  --ink: #edf2f5;
+  --muted: #b4bdc8;
+  --accent: #f19a72;
+  --accent-strong: #ffc0a2;
+  --teal: #72cbc5;
+  --line: #344355;
+  --surface: rgba(24, 35, 49, .86);
+  --code: #09111a;
+  --code-ink: #edf2f5;
+  --shadow: 0 20px 56px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 3%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
+    linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.68;
+  min-height: 100vh;
+}
+a { color: var(--accent-strong); text-decoration-thickness: .08em; text-underline-offset: .16em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: .75rem;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: .65rem .9rem;
+  border-radius: .45rem;
+}
+.skip-link:focus { transform: translateY(0); }
+.progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 80; background: transparent; }
+.progress > span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--teal)); }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(16px);
+}
+.topbar {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand { display: flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 780; letter-spacing: -.015em; }
+.brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; color: #fff; background: linear-gradient(145deg, var(--accent), var(--teal)); box-shadow: var(--shadow); }
+.top-actions { display: flex; gap: .55rem; align-items: center; }
+.quiet-link, .theme-toggle {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .48rem .78rem;
+  background: var(--surface);
+  color: var(--ink);
+  font: 650 .84rem/1 var(--sans);
+  text-decoration: none;
+}
+.theme-toggle { cursor: pointer; }
+.layout {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 17rem;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2.5rem, 7vw, 6.5rem) 0 5rem;
+  align-items: start;
+}
+.document { max-width: 49rem; min-width: 0; }
+.eyebrow { margin: 0 0 1.1rem; color: var(--teal); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.13; text-wrap: balance; scroll-margin-top: 6rem; }
+h1 { font-size: clamp(2.55rem, 7vw, 5rem); letter-spacing: -.045em; margin: 0 0 1.5rem; max-width: 14ch; }
+h2 { font-size: clamp(1.75rem, 4vw, 2.55rem); letter-spacing: -.025em; margin: 3.6rem 0 1rem; padding-top: .2rem; }
+h3 { font-size: 1.38rem; margin: 2.3rem 0 .65rem; }
+h4 { font-size: 1.08rem; margin: 1.8rem 0 .5rem; }
+.heading-anchor { margin-left: .35em; font-family: var(--sans); font-size: .55em; font-weight: 500; opacity: 0; text-decoration: none; }
+h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor, h4:hover .heading-anchor, .heading-anchor:focus { opacity: .65; }
+p, li { max-width: 72ch; }
+p { margin: .78rem 0 1.15rem; }
+strong { color: color-mix(in srgb, var(--ink) 92%, var(--accent)); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
+blockquote {
+  margin: 1.5rem 0;
+  padding: .8rem 1.25rem;
+  border-left: .3rem solid var(--accent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-radius: 0 .7rem .7rem 0;
+}
+blockquote > :first-child { margin-top: 0; }
+blockquote > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 1.35rem; }
+li { margin: .34rem 0; }
+li::marker { color: var(--accent); font-weight: 700; }
+code { padding: .12em .34em; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: .32rem; background: color-mix(in srgb, var(--surface) 70%, var(--paper-deep)); font: .88em/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+pre { position: relative; overflow: auto; margin: 1.35rem 0; padding: 1.1rem 1.2rem; border-radius: .75rem; background: var(--code); color: var(--code-ink); box-shadow: var(--shadow); }
+pre code { padding: 0; border: 0; background: none; color: inherit; font-size: .86rem; }
+.copy-code { position: absolute; top: .55rem; right: .55rem; border: 1px solid rgba(255,255,255,.25); border-radius: .4rem; padding: .35rem .55rem; background: rgba(0,0,0,.25); color: #fff; font: 650 .72rem/1 var(--sans); cursor: pointer; }
+.table-wrap { overflow-x: auto; margin: 1.4rem 0 2rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); box-shadow: 0 8px 28px rgba(65,48,29,.06); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; line-height: 1.5; }
+th, td { padding: .78rem .86rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+th { background: color-mix(in srgb, var(--paper-deep) 75%, var(--surface)); font-size: .78rem; letter-spacing: .025em; text-transform: uppercase; }
+tr:last-child td { border-bottom: 0; }
+.metadata-card { margin: 1.3rem 0 2.2rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+.metadata-card p { margin: .55rem 0 0; color: var(--muted); font-size: .92rem; }
+.metadata-label { display: block; margin-bottom: .5rem; color: var(--teal); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.toc { position: sticky; top: 6rem; max-height: calc(100vh - 8rem); overflow: auto; padding-left: 1.2rem; border-left: 1px solid var(--line); font-size: .82rem; line-height: 1.38; }
+.toc-title { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { margin: .52rem 0; }
+.toc-l3 { padding-left: .8rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a[aria-current="true"] { color: var(--accent-strong); }
+.provenance { margin-top: 4rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+.provenance code { word-break: break-all; }
+.pager { width: min(1180px, calc(100% - 2rem)); margin: 0 auto 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pager a { display: block; min-height: 5rem; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); color: var(--ink); text-decoration: none; }
+.pager a:last-child { text-align: right; }
+.pager small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.site-footer { padding: 1.5rem 1rem 2.8rem; color: var(--muted); text-align: center; font-size: .8rem; }
+.noscript { margin: 0; padding: .5rem 1rem; background: var(--paper-deep); color: var(--muted); text-align: center; font-size: .8rem; }
+
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .document { max-width: 100%; }
+  .toc { position: static; grid-row: 1; max-height: none; padding: 1rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--surface); }
+  h1 { max-width: 16ch; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .topbar { width: min(100% - 1rem, 1180px); }
+  .quiet-link { display: none; }
+  .layout { width: min(100% - 1.25rem, 1180px); padding-top: 2rem; }
+  .pager { width: min(100% - 1.25rem, 1180px); grid-template-columns: 1fr; }
+  .pager a:last-child { text-align: left; }
+  th, td { min-width: 11rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { --paper: #fff; --paper-deep: #fff; --ink: #000; --muted: #333; --line: #aaa; --surface: #fff; }
+  body { background: #fff; font-size: 10.5pt; }
+  .site-header, .toc, .progress, .pager, .copy-code, .noscript, .heading-anchor { display: none !important; }
+  .layout { display: block; width: 100%; padding: 0; }
+  .document { max-width: none; }
+  h1 { max-width: none; font-size: 28pt; }
+  h2 { break-after: avoid; }
+  pre, blockquote, table { break-inside: avoid; box-shadow: none; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="reading-progress"></span></div>
+  <header class="site-header">
+    <div class="topbar">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">P</span><span>Prax Teach Lab</span></a>
+      <div class="top-actions">
+        <a class="quiet-link" href="./02-teaching-systems-landscape.md">Markdown source</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
+      </div>
+    </div>
+  </header>
+  <noscript><p class="noscript">The complete document is available without JavaScript; theme, progress, and copy-button enhancements are disabled.</p></noscript>
+  <main id="main-content" class="layout">
+    <article class="document">
+      <p class="eyebrow">Research dossier · generated companion</p>
+      
+      <h1 id="teaching-skills-and-systems-landscape">Teaching skills and systems landscape<a class="heading-anchor" href="#teaching-skills-and-systems-landscape" aria-label="Link to Teaching skills and systems landscape">#</a></h1>
+<p><em>Snapshot: 2026-08-04. Repository activity, releases, and popularity are time-sensitive; pedagogy claims were ranked by source quality, not stars.</em></p>
+<h2 id="executive-finding">Executive finding<a class="heading-anchor" href="#executive-finding" aria-label="Link to Executive finding">#</a></h2>
+<p>There is no single repository that should replace <code>prax-teach</code>. The best design is a small, composable teaching contract built from several proven or inspectable ideas:</p>
+<ul>
+<li><strong>pedagogical behavior:</strong> Education Agent Skills, Tutor CoPilot, CodeAid;</li>
+<li><strong>concept state and adaptation:</strong> OATutor, DeepTutor’s learner-model RFC, Oppia;</li>
+<li><strong>multi-session lifecycle:</strong> Fluent, Learn FASTER, <code>learn-codebase</code>;</li>
+<li><strong>review timing:</strong> FSRS;</li>
+<li><strong>canonical Markdown and interactive delivery:</strong> LiaScript, <code>paper-to-course</code>, <code>codebase-to-course</code>;</li>
+<li><strong>instruction optimization:</strong> SkillOpt as a staged, hidden-benchmark proposal generator;</li>
+<li><strong>quantitative visuals:</strong> Flint as an optional semantic chart compiler behind the visual router;</li>
+<li><strong>evaluation:</strong> <code>prax-tech-eval</code> for agent ablation plus a separate learner-outcome study.</li>
+</ul>
+<p>The central architectural choice is to keep those capabilities replaceable. Copying an entire AI classroom platform would add complexity faster than learning value.</p>
+<h2 id="research-method">Research method<a class="heading-anchor" href="#research-method" aria-label="Link to Research method">#</a></h2>
+<p>The search covered GitHub repositories and issues, arXiv and peer-reviewed studies, standards bodies, official product documentation, X, Reddit, Hacker News, skill registries, and project sites. Sources were screened with this evidence ladder:</p>
+<ol>
+<li><strong>Outcome evidence:</strong> randomized or controlled learner outcomes, systematic reviews, meta-analyses.</li>
+<li><strong>Deployment evidence:</strong> real learners, duration, usage data, and documented limitations.</li>
+<li><strong>Inspectable implementation:</strong> source, tests, state schemas, and issue history.</li>
+<li><strong>Maintainer claims:</strong> useful for features, not effectiveness.</li>
+<li><strong>Social signal:</strong> useful only for discovery, failure reports, and ecosystem attention.</li>
+</ol>
+<p>No star count, marketplace install count, testimonial, or polished demo was treated as proof of learning.</p>
+<h2 id="the-three-local-packages">The three local packages<a class="heading-anchor" href="#the-three-local-packages" aria-label="Link to The three local packages">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>What it actually is</th>
+<th>Strengths</th>
+<th>Main limitation</th>
+<th>Recommended role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>teach</code></td>
+<td>Explicit-only, persistent teaching-workspace skill</td>
+<td>Strong mission grounding, trusted sources, retrieval/spacing/interleaving, short interactive HTML lessons, learning records</td>
+<td>Assumes multi-session intent; weak operational accessibility, learner-state, review-scheduling, and evaluation contracts</td>
+<td>Freeze as a lean behavioral baseline</td>
+</tr>
+<tr>
+<td><code>prax-teach</code></td>
+<td><code>teach</code> plus a researched visual-production router and tool registry</td>
+<td>Keeps the pedagogical core and adds semantic <code>none</code> / <code>static</code> / <code>interactive</code> / <code>motion</code> routing, provenance, editable sources, accessibility fallbacks</td>
+<td>Still begins from “stateful request”; visual system is more mature than learner modeling</td>
+<td>Evolve into the production tutor</td>
+</tr>
+<tr>
+<td><code>prax-tech-eval</code></td>
+<td>Generic skill-on/skill-off ablation framework despite its name</td>
+<td>Fingerprinted target, clean control requirements, paired randomized matrix, trigger and regression gates, provenance checks</td>
+<td>No harness runner and no learner-outcome measurement</td>
+<td>Retain as the agent-level evaluator; rename later if worthwhile</td>
+</tr>
+</tbody></table></div>
+<p>The earlier name <code>prax-teach-eval</code> is not the installed package name. The inspected package is <code>prax-tech-eval</code>.</p>
+<h3 id="verified-local-snapshot">Verified local snapshot<a class="heading-anchor" href="#verified-local-snapshot" aria-label="Link to Verified local snapshot">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th align="right">Result on 2026-08-03</th>
+<th>What it proves</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>teach/SKILL.md</code></td>
+<td align="right">140 lines; 6 package files</td>
+<td>A compact but course-first instruction package; no executable validation suite found</td>
+</tr>
+<tr>
+<td><code>prax-teach/SKILL.md</code></td>
+<td align="right">188 lines; 14 package files</td>
+<td>The core remains concise while visual guidance is progressively disclosed</td>
+</tr>
+<tr>
+<td>Visualization registry</td>
+<td align="right">38 tool entries; <strong>8/8 tests passed</strong></td>
+<td>Registry schema, routing, installed-path checks, and technology coverage work—not that lessons improve learning</td>
+</tr>
+<tr>
+<td><code>prax-tech-eval/SKILL.md</code></td>
+<td align="right">167 lines; 8 package files</td>
+<td>A compact runner-neutral experiment contract</td>
+</tr>
+<tr>
+<td>Evaluator suite</td>
+<td align="right"><strong>29/29 tests passed</strong></td>
+<td>Fingerprints, matrix/provenance validation, guardrails, and reporting logic work—not that a real harness or learner study has run</td>
+</tr>
+</tbody></table></div>
+<p>The test distinction matters: the local packages are operationally healthier than the Sidechat prose alone suggests, but their passing tests validate machinery, not teaching effectiveness.</p>
+<h2 id="ranked-adoption-shortlist">Ranked adoption shortlist<a class="heading-anchor" href="#ranked-adoption-shortlist" aria-label="Link to Ranked adoption shortlist">#</a></h2>
+<h3 id="tier-a-adopt-the-ideas-now">Tier A — adopt the ideas now<a class="heading-anchor" href="#tier-a-adopt-the-ideas-now" aria-label="Link to Tier A — adopt the ideas now">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What is inspectable or evidenced</th>
+<th>What <code>prax-teach-v2</code> should borrow</th>
+<th>Do not copy blindly</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/GarethManning/education-agent-skills">Education Agent Skills</a></td>
+<td>Large library of typed pedagogical primitives across many domains; includes retrieval-first, progressive hints, teach-back, transfer, productive failure, evidence-strength, and exclusion fields</td>
+<td>A vocabulary of semantic lesson blocks and explicit “use / do not use” conditions</td>
+<td>The repository says its prompts are not themselves empirically validated; CC BY-SA obligations matter if copying text</td>
+</tr>
+<tr>
+<td><a href="https://github.com/CAHLR/OATutor">OATutor</a></td>
+<td>Open intelligent tutoring system with explicit knowledge components, Bayesian Knowledge Tracing, weakest-skill selection, structured hints, logging, and accessibility; connected to CHI 2023 and later learning-gain research</td>
+<td>Concept IDs, prerequisite mapping, item-to-skill links, hint ladders, and evidence-aware adaptation</td>
+<td>It is strongest for step-based mathematics; its parameters do not transfer automatically to arbitrary topics</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rosewang2008/tutor-copilot">Tutor CoPilot</a> and <a href="https://arxiv.org/abs/2410.03017">paper</a></td>
+<td>Preregistered live-tutoring RCT with roughly 900 tutors and 1,800 K–12 students; reported 4 percentage-point overall mastery lift and 9 points for learners of lower-rated tutors</td>
+<td>Guiding questions, timely intervention, and “avoid giving away the answer” as measurable policy</td>
+<td>The demo repository is small and the outcomes are context-specific</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2401.11314">CodeAid</a></td>
+<td>12-week deployment with 700 programming students and about 8,000 uses; conceptual responses, pseudocode, annotated student code, follow-up steering</td>
+<td>Distinct response modes, authoritative technical sources, transparent uncertainty, learner steering</td>
+<td>It did not establish causal test-score gains; novices may be unable to detect factual errors</td>
+</tr>
+<tr>
+<td><a href="https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler">FSRS</a></td>
+<td>Open scheduling algorithm and implementations based on difficulty, stability, and retrievability</td>
+<td>A real review queue with serializable state and performance-derived ratings</td>
+<td>Scheduling is not mastery; the model must not fabricate ratings</td>
+</tr>
+<tr>
+<td><a href="https://github.com/LiaScript/LiaScript">LiaScript</a></td>
+<td>Mature Markdown-first interactive course system with quizzes, cloze tasks, live code, TTS, offline/PWA and LMS-oriented features</td>
+<td>Canonical Markdown, semantic interactive blocks, portable course rendering</td>
+<td>Its extended syntax/runtime is a dependency; generated accessibility still requires verification</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ktaletsk/learn-codebase">learn-codebase</a></td>
+<td>Narrow Socratic codebase tutor with prediction before reveal, active recall, mastery colors, review queue, and persistent journal</td>
+<td>Compact multi-session journal, learner-authored mental models, open questions, “aha” moments, and predict-before-reveal</td>
+<td>Small project with anecdotal outcome claims; prompt adherence and client UI can leak answers</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Far-200/think-before-code">Think Before Code</a></td>
+<td>Ten stage-specific Socratic DSA skills with positive/negative activation cases, forbidden behaviors, validators, and CI</td>
+<td>Test negative behavior: premature answers, excessive hints, answer leakage, skipped reasoning, and missing transfer</td>
+<td>Early project; behavioral specs are not learner-outcome graders</td>
+</tr>
+<tr>
+<td><a href="https://github.com/microsoft/SkillOpt">Microsoft SkillOpt</a> and <a href="https://arxiv.org/abs/2605.23904">paper</a></td>
+<td>Text-space optimizer with scored rollouts, bounded edits, selection gating, rejected-edit history, and a deployable <code>best_skill.md</code>; authors report best/tied results in 52 tested settings</td>
+<td>A reproducible offline instruction-improvement loop with hidden train/selection/test banks and staged diffs</td>
+<td>It optimizes one document, is alpha and costly, can overfit a repeatedly queried selection set, and provides agent-task—not learner—evidence</td>
+</tr>
+<tr>
+<td><a href="https://github.com/microsoft/flint-chart">Microsoft Flint</a> and <a href="https://arxiv.org/abs/2607.20775">paper</a></td>
+<td>Semantics-driven chart compiler with human-editable specs and Vega-Lite, ECharts, Chart.js, Plotly, Excel, and MCP paths</td>
+<td>Optional pinned build-time chart compilation after the router chooses a quantitative visual</td>
+<td>It is not a data-wrangling or accessibility system; warnings, provenance, table/text alternatives, and backend coverage remain our responsibility</td>
+</tr>
+</tbody></table></div>
+<h3 id="tier-b-borrow-selectively">Tier B — borrow selectively<a class="heading-anchor" href="#tier-b-borrow-selectively" aria-label="Link to Tier B — borrow selectively">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Valuable pattern</th>
+<th>Limitation / risk</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/HKUDS/DeepTutor">DeepTutor</a></td>
+<td>Connected learning context, versioned knowledge bases, quizzes, question banks, living books, skill registry, inspectable three-layer memory, source provenance, and a universal <strong>Answer now</strong> path</td>
+<td>Large, fast-moving platform; product breadth is not outcome evidence. Its strongest concept-level learner model is still proposed in <a href="https://github.com/HKUDS/DeepTutor/issues/397">RFC #397</a></td>
+</tr>
+<tr>
+<td><a href="https://eduhub.deeptutor.info/">EduHub</a></td>
+<td>Inspectable education-skill registry and an ecosystem model for composable teaching capabilities</td>
+<td>Registry presence is not pedagogical validation; imported skills require provenance and security checks</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Li-Evan/Bloom">Bloom</a></td>
+<td>Syllabus → lesson → annotation/questions → adaptive next lesson; supports source, topic, and project modes</td>
+<td>“2-sigma” positioning is aspirational without equivalent repository evidence</td>
+</tr>
+<tr>
+<td><a href="https://github.com/m98/fluent">Fluent</a></td>
+<td>Local learner profile, mistakes, mastery, session log, spaced review, and backups</td>
+<td>Language-learning-specific; several science/performance claims are not independently validated</td>
+</tr>
+<tr>
+<td><a href="https://github.com/hluaguo/learn-faster-kit">Learn FASTER</a></td>
+<td>Portable <code>.learning/</code> workspace, executable scheduler, resume/fork semantics, balanced/exam/theory/practical modes</td>
+<td>Runtime requirements and heuristic claims; more machinery than quick mode needs</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zijinz456/OpenTutor">OpenTutor</a></td>
+<td>Local-first block workspace, concept graph, FSRS review, quizzes, notes, and analytics</td>
+<td>Public beta; autonomous and graph features remain experimental</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TovTechOrg/Tov-learn">Tov-learn</a></td>
+<td>Canonical learner records plus HTML progress and architecture dashboards</td>
+<td>Fixed review intervals are less defensible than a performance-based scheduler</td>
+</tr>
+<tr>
+<td><a href="https://github.com/claude-code-best/claude-code/blob/main/.claude/skills/teach-me/SKILL.html"><code>teach-me</code></a></td>
+<td>Diagnose-first concept map, misconception lifecycle, mastery requiring explain/apply/distinguish/debug, retest on resume</td>
+<td>Multiple-choice-heavy checks can cue answers; parent-repository popularity is not skill evidence</td>
+</tr>
+<tr>
+<td><a href="https://github.com/koukekoukej-glitch/feynman-tutor"><code>feynman-tutor</code></a></td>
+<td>Learner-explains-first loop, concept graph, error severity</td>
+<td>Small project and little outcome evaluation</td>
+</tr>
+<tr>
+<td><a href="https://github.com/yarikleto/claude-teacher-plugin"><code>claude-teacher-plugin</code></a></td>
+<td>Project opt-in, misconception-first quizzes, reasoning checks, session hooks, animated HTML diagrams</td>
+<td>CDN-dependent HTML, simple scheduling, and unsupported learning-style assumptions</td>
+</tr>
+</tbody></table></div>
+<h3 id="tier-c-use-as-an-export-target-or-design-reference">Tier C — use as an export target or design reference<a class="heading-anchor" href="#tier-c-use-as-an-export-target-or-design-reference" aria-label="Link to Tier C — use as an export target or design reference">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Useful reference</th>
+<th>Why it should not become the core</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/zarazhangrui/codebase-to-course"><code>codebase-to-course</code></a></td>
+<td>Polished modular HTML courses, code-to-English explanations, transfer-oriented quizzes, keyboard navigation</td>
+<td>Narrow persona and an over-eager requirement for visuals/interactions in every module</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KaguraTart/paper-to-course"><code>paper-to-course</code></a></td>
+<td>Source verification before authoring and coordinated Markdown, HTML, and slide outputs</td>
+<td>Research-paper-specific; multi-format parity still needs a canonical source/build contract</td>
+</tr>
+<tr>
+<td><a href="https://github.com/THU-MAIC/OpenMAIC">OpenMAIC</a></td>
+<td>Multi-agent classroom, slides, simulations, quizzes, whiteboard, speech, HTML/PPTX export</td>
+<td>Spectacle, latency, and operational footprint exceed what a core teaching skill needs</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oppia/oppia">Oppia</a></td>
+<td>Branching exploration state machine and response-specific feedback</td>
+<td>Full learning platform, far too heavy for a skill dependency</td>
+</tr>
+<tr>
+<td><a href="https://github.com/h5p/h5p-php-library">H5P</a></td>
+<td>Reusable HTML5 interaction ecosystem and LMS interoperability</td>
+<td>GPL/integration complexity; better as an export adapter</td>
+</tr>
+<tr>
+<td><a href="https://www.1edtech.org/standards/qti/index">QTI</a></td>
+<td>Portable assessment items, tests, and results; QTI 3 supports web-component patterns</td>
+<td>Premature for a local v1; use later for assessment export</td>
+</tr>
+<tr>
+<td><a href="https://www.1edtech.org/standards/caliper">Caliper Analytics</a> and <a href="https://github.com/adlnet/xAPI-Spec">xAPI</a></td>
+<td>Event vocabulary and interoperability</td>
+<td>Activity telemetry is not evidence of learning; full standards add overhead</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ankimcp/anki-mcp-server">Anki MCP Server</a></td>
+<td>Optional bridge to an established review application</td>
+<td>Do not make an external flashcard system mandatory</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Simon-Initiative/oli-torus">OLI Torus</a></td>
+<td>Versioned course publication, instrumentation, and analytics</td>
+<td>Institution-scale course platform</td>
+</tr>
+</tbody></table></div>
+<h2 id="systems-that-are-influential-but-not-sufficient-evidence">Systems that are influential but not sufficient evidence<a class="heading-anchor" href="#systems-that-are-influential-but-not-sufficient-evidence" aria-label="Link to Systems that are influential but not sufficient evidence">#</a></h2>
+<h3 id="mr-ranedeer">Mr. Ranedeer<a class="heading-anchor" href="#mr-ranedeer" aria-label="Link to Mr. Ranedeer">#</a></h3>
+<p><a href="https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor">Mr. Ranedeer</a> is an influential configurable tutor prompt with depth, style, tone, and course commands. Its popularity demonstrates demand and prompt portability. GitHub issues about prompt forgetting and context limits also show why one large prompt is not a durable learner system. Treat it as interaction inspiration, not a state or evaluation architecture.</p>
+<h3 id="study-buddy">Study Buddy<a class="heading-anchor" href="#study-buddy" aria-label="Link to Study Buddy">#</a></h3>
+<p><a href="https://github.com/michaelborck/study-buddy">Study Buddy</a> deliberately stays local/private and single-session, grounds answers in user-selected or web sources, and does not build a persistent knowledge base. It is an excellent counterexample to course-first design: privacy-conscious quick tutoring is a legitimate complete product mode.</p>
+<h3 id="open-tutor-ai-community-edition">Open Tutor AI Community Edition<a class="heading-anchor" href="#open-tutor-ai-community-edition" aria-label="Link to Open Tutor AI Community Edition">#</a></h3>
+<p><a href="https://github.com/Open-TutorAi/open-tutor-ai-CE">Open Tutor AI CE</a> offers local RAG, many providers, a PWA, and voice/video/avatar interfaces. It shows delivery options, but the interfaces should remain optional adapters rather than define the teaching core.</p>
+<h2 id="what-github-issues-reveal-that-readme-files-do-not">What GitHub issues reveal that README files do not<a class="heading-anchor" href="#what-github-issues-reveal-that-readme-files-do-not" aria-label="Link to What GitHub issues reveal that README files do not">#</a></h2>
+<p>Public failure reports were unusually valuable:</p>
+<ul>
+<li><code>learn-codebase</code> users reported answer leakage from client prompt suggestions, not the skill prompt itself. <a href="https://github.com/ktaletsk/learn-codebase/issues/4">Issue #4</a></li>
+<li>Rewind/clean operations can erase a repository-local journal. <a href="https://github.com/ktaletsk/learn-codebase/issues/2">Issue #2</a></li>
+<li>Different agents can create state silos; a proposed repo-keyed global vault separates timeline, mental model, and durable gotchas. <a href="https://github.com/ktaletsk/learn-codebase/issues/3">Issue #3</a></li>
+<li>DeepTutor’s learner-model RFC says profile/chat-summary memory is not enough for recognition, recall, application, transfer, explanation, misconceptions, and evidence IDs. <a href="https://github.com/HKUDS/DeepTutor/issues/397">RFC #397</a></li>
+</ul>
+<p>These point to two operational requirements: put durable state outside disposable client context, and test the entire answer surface—not just the tutor’s final prose.</p>
+<h2 id="x-and-community-signals">X and community signals<a class="heading-anchor" href="#x-and-community-signals" aria-label="Link to X and community signals">#</a></h2>
+<p>X was useful for discovering what attracts attention, not for ranking effectiveness.</p>
+<ul>
+<li>A widely circulated <a href="https://x.com/lucas_flatwhite/status/2041894141643440626/photo/1">DeepTutor post on X</a> emphasizes uploaded-source grounding, generated practice, guided learning, visualization, and persistent tutor personas. Those feature claims were checked against the repository before inclusion.</li>
+<li>Brilliant’s Koji launch pattern—also discussed in an <a href="https://x.com/suekhim/status/2060378988606878147">X post</a>—shows a compelling interaction: the tutor observes work in the same surface, points or annotates in context, and asks before telling. This is vendor/product evidence, not an independent learning study.</li>
+<li>Reddit and skill-marketplace posts surfaced <code>grill-me</code>, IELTS-tutor, Beginner Tutor, and other narrow prompts. Their useful patterns were already represented by stronger inspectable sources; numeric thresholds and “science-backed” labels without citations were not adopted.</li>
+</ul>
+<p>Social attention is best treated as a lead generator. The research ranking came from primary repositories, papers, issues, and standards.</p>
+<h2 id="evidence-from-learning-science">Evidence from learning science<a class="heading-anchor" href="#evidence-from-learning-science" aria-label="Link to Evidence from learning science">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Evidence summary</th>
+<th>Design consequence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Retrieval practice</td>
+<td>Classroom meta-analysis across 48,478 students and 222 studies found a medium benefit, with implementation moderators. <a href="https://pubmed.ncbi.nlm.nih.gov/33683913/">Yang et al., 2021</a></td>
+<td>Require production before reveal; repeat important knowledge; give corrective explanation; include transfer forms</td>
+</tr>
+<tr>
+<td>Spacing</td>
+<td>Large syntheses show benefits and that the useful interval depends on the target retention interval. <a href="https://pubmed.ncbi.nlm.nih.gov/16719566/">Cepeda et al., 2006</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/26173288/">Dunlosky et al., 2013</a></td>
+<td>Schedule every important concept; no universal fixed cadence</td>
+</tr>
+<tr>
+<td>Interleaving</td>
+<td>Meta-analysis found a moderate overall effect but domain-sensitive results, including ambiguous or negative categories. <a href="https://pubmed.ncbi.nlm.nih.gov/31556629/">Brunmair &amp; Richter, 2019</a></td>
+<td>Interleave confusable cases to train discrimination; do not shuffle unrelated content</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Meta-analysis of 435 studies found a positive average with substantial heterogeneity. <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.03087/full">Wisniewski et al., 2020</a></td>
+<td>State the goal, specific gap, applicable strategy, and next action; avoid generic praise</td>
+</tr>
+<tr>
+<td>Intelligent tutoring systems</td>
+<td>Reviews report sizable effects for evaluated ITS packages, often larger on locally aligned tests. <a href="https://eric.ed.gov/?id=EJ1090502">Kulik &amp; Fletcher, 2016</a></td>
+<td>Borrow step-level diagnosis and hints; do not generalize the effect to any conversational LLM</td>
+</tr>
+<tr>
+<td>Mastery learning</td>
+<td>Promising average impact, but evidence security is rated low and thresholds vary. <a href="https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/mastery-learning">EEF mastery review</a></td>
+<td>Require multiple demonstrations and delayed evidence; avoid hard lockouts from uncertain estimates</td>
+</tr>
+<tr>
+<td>Knowledge tracing</td>
+<td>BKT is interpretable and deep models can predict responses, but predictive accuracy does not prove beneficial adaptation. <a href="https://act-r.psy.cmu.edu/?p=14344&amp;post_type=publications">Corbett &amp; Anderson</a>, <a href="https://papers.nips.cc/paper_files/paper/2015/hash/bac9162b47c56fc8a4d2a519803d51b3-Abstract.html">DKT</a></td>
+<td>Start interpretable; calibrate and hold out learners/time; separately test whether adaptation improves delayed learning</td>
+</tr>
+</tbody></table></div>
+<h2 id="standards-and-governance-worth-adopting">Standards and governance worth adopting<a class="heading-anchor" href="#standards-and-governance-worth-adopting" aria-label="Link to Standards and governance worth adopting">#</a></h2>
+<ul>
+<li><a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a> AA as a web release gate, supplemented by <a href="https://www.w3.org/TR/coga-usable/">W3C cognitive-accessibility guidance</a>.</li>
+<li><a href="https://udlguidelines.cast.org/">CAST UDL 3.0</a> as design guidance for equivalent ways to engage, perceive, and respond—without claiming the entire framework has one uniform causal effect.</li>
+<li><a href="https://www.jisc.ac.uk/guides/code-of-practice-for-learning-analytics">Jisc’s learning analytics code</a> for transparency, review, correction, and data minimization.</li>
+<li><a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research?hub=195885">UNESCO guidance on generative AI in education</a> for human-centered use, privacy, and age-appropriate governance.</li>
+</ul>
+<h2 id="recommended-synthesis">Recommended synthesis<a class="heading-anchor" href="#recommended-synthesis" aria-label="Link to Recommended synthesis">#</a></h2>
+<p>Build <code>prax-teach-v2</code> as seven replaceable layers:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Core responsibility</th>
+<th>Strongest reference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Teaching policy</td>
+<td>diagnose, retrieve, scaffold, explain, transfer, reflect</td>
+<td>Tutor CoPilot, CodeAid, Education Agent Skills</td>
+</tr>
+<tr>
+<td>Learner state</td>
+<td>evidence-backed concept state, misconceptions, uncertainty, correction</td>
+<td>OATutor, DeepTutor RFC, <code>learn-codebase</code></td>
+</tr>
+<tr>
+<td>Scheduler</td>
+<td>choose review timing from actual performance and retention goal</td>
+<td>FSRS and spacing research</td>
+</tr>
+<tr>
+<td>Artifact renderer</td>
+<td>generate accessible HTML from canonical Markdown</td>
+<td>LiaScript, <code>paper-to-course</code>, WCAG</td>
+</tr>
+<tr>
+<td>Quantitative visual compiler</td>
+<td>semantic chart spec → verified static asset + accessible equivalent</td>
+<td>Flint behind the existing visual router</td>
+</tr>
+<tr>
+<td>Evaluator</td>
+<td>behavioral ablation plus separate learner outcomes</td>
+<td><code>prax-tech-eval</code>, evidence-centered design, testing standards</td>
+</tr>
+<tr>
+<td>Offline optimizer</td>
+<td>scored trajectories → staged instruction proposal</td>
+<td>SkillOpt with hidden gates and human approval</td>
+</tr>
+</tbody></table></div>
+<p>Keep quick mode able to operate with only the teaching-policy layer. Add state, scheduling, and richer artifacts as the learner’s requested commitment grows.</p>
+<h2 id="what-not-to-build-yet">What not to build yet<a class="heading-anchor" href="#what-not-to-build-yet" aria-label="Link to What not to build yet">#</a></h2>
+<ul>
+<li>A multi-agent classroom by default.</li>
+<li>A proprietary knowledge-tracing model before an interpretable baseline is calibrated.</li>
+<li>A new flashcard app instead of an optional Anki export.</li>
+<li>Full QTI, Caliper, or xAPI conformance in the first release.</li>
+<li>Mandatory animation, avatar, voice, or gamification.</li>
+<li>A dashboard that treats clicks, time-on-page, or file count as learning.</li>
+<li>A hand-maintained HTML copy of every Markdown file.</li>
+<li>Automatic adoption of optimizer edits or transcript harvesting without explicit review and consent.</li>
+<li>A mandatory chart runtime when a table or prose is clearer.</li>
+</ul>
+<p>The best near-term system is intentionally smaller: a precise teaching loop, correctable state, real review scheduling, deterministic accessible artifacts, and evaluation that measures durable learning rather than presentation quality alone.</p>
+
+      <div class="provenance">
+        <strong>Canonical source:</strong> <a href="./02-teaching-systems-landscape.md">02-teaching-systems-landscape.md</a><br>
+        <strong>SHA-256:</strong> <code>b337b89c21bc068c72da159f43498c01adaf4db3a54ea810a443ffb07780eca1</code><br>
+        <strong>Generated:</strong> 2026-08-04T12:00:00.000Z
+      </div>
+    </article>
+    <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ol><li class="toc-l2"><a href="#executive-finding">Executive finding</a></li><li class="toc-l2"><a href="#research-method">Research method</a></li><li class="toc-l2"><a href="#the-three-local-packages">The three local packages</a></li><li class="toc-l3"><a href="#verified-local-snapshot">Verified local snapshot</a></li><li class="toc-l2"><a href="#ranked-adoption-shortlist">Ranked adoption shortlist</a></li><li class="toc-l3"><a href="#tier-a-adopt-the-ideas-now">Tier A — adopt the ideas now</a></li><li class="toc-l3"><a href="#tier-b-borrow-selectively">Tier B — borrow selectively</a></li><li class="toc-l3"><a href="#tier-c-use-as-an-export-target-or-design-reference">Tier C — use as an export target or design reference</a></li><li class="toc-l2"><a href="#systems-that-are-influential-but-not-sufficient-evidence">Systems that are influential but not sufficient evidence</a></li><li class="toc-l3"><a href="#mr-ranedeer">Mr. Ranedeer</a></li><li class="toc-l3"><a href="#study-buddy">Study Buddy</a></li><li class="toc-l3"><a href="#open-tutor-ai-community-edition">Open Tutor AI Community Edition</a></li><li class="toc-l2"><a href="#what-github-issues-reveal-that-readme-files-do-not">What GitHub issues reveal that README files do not</a></li><li class="toc-l2"><a href="#x-and-community-signals">X and community signals</a></li><li class="toc-l2"><a href="#evidence-from-learning-science">Evidence from learning science</a></li><li class="toc-l2"><a href="#standards-and-governance-worth-adopting">Standards and governance worth adopting</a></li><li class="toc-l2"><a href="#recommended-synthesis">Recommended synthesis</a></li><li class="toc-l2"><a href="#what-not-to-build-yet">What not to build yet</a></li></ol>
+  </nav>
+  </main>
+  <nav class="pager" aria-label="Document navigation">
+    <a href="./01-sidechat-audit.html"><small>Previous</small>Sidechat response audit</a>
+    <a href="./03-prax-teach-v2-blueprint.html"><small>Next</small>Prax Teach v2 blueprint</a>
+  </nav>
+  <footer class="site-footer">Prax Teach v2 research bundle · Markdown remains canonical</footer>
+  <script>
+(() => {
+  const root = document.documentElement;
+  const button = document.querySelector('#theme-toggle');
+  let stored = null;
+  try { stored = localStorage.getItem('prax-theme'); } catch { stored = null; }
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+  const setLabel = () => {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    button.textContent = dark ? 'Light theme' : 'Dark theme';
+    button.setAttribute('aria-pressed', String(dark));
+  };
+  button?.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('prax-theme', root.dataset.theme); } catch { /* File origins may disable storage. */ }
+    setLabel();
+  });
+  setLabel();
+
+  const bar = document.querySelector('#reading-progress');
+  const updateProgress = () => {
+    if (!bar) return;
+    const available = document.documentElement.scrollHeight - innerHeight;
+    const percent = available > 0 ? Math.min(100, Math.max(0, scrollY / available * 100)) : 100;
+    bar.style.width = percent + '%';
+  };
+  addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  document.querySelectorAll('pre').forEach((pre) => {
+    const code = pre.querySelector('code');
+    if (!code) return;
+    const copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-code';
+    copy.textContent = 'Copy';
+    copy.setAttribute('aria-label', 'Copy code block');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(code.textContent || '');
+        copy.textContent = 'Copied';
+        setTimeout(() => { copy.textContent = 'Copy'; }, 1600);
+      } catch {
+        copy.textContent = 'Select text';
+      }
+    });
+    pre.prepend(copy);
+  });
+
+  const tocLinks = [...document.querySelectorAll('.toc a')];
+  const targets = tocLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && targets.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      const escaped = window.CSS && CSS.escape ? CSS.escape(visible.target.id) : visible.target.id.replace(/[^a-zA-Z0-9_-]/g, '');
+      document.querySelector('.toc a[href="#' + escaped + '"]')?.setAttribute('aria-current', 'true');
+    }, { rootMargin: '-18% 0px -72% 0px' });
+    targets.forEach((target) => observer.observe(target));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "attempted_at": "2026-08-04T20:15:00Z",
+  "surface": "Codex in-app browser",
+  "status": "blocked",
+  "reason": "The browser URL-security policy rejected local file URL navigation. No alternate browser surface or indirect bypass was attempted.",
+  "planned_pages": [
+    {
+      "path": "STATUS.html",
+      "sha256": "d1c8f0a3d83955d9772cca66dc0b0872f1e6e6487e3966c090dc9366f7e02afe"
+    },
+    {
+      "path": "SKILL.html",
+      "sha256": "cfad8ef675c5ee4efa54248a05b84213318c02b0708a929ed05cf1c62005a597"
+    },
+    {
+      "path": "evidence/forward/outputs/lesson-attempt-before-transfer-answer.html",
+      "sha256": "00b6acb64ed9714ce07a11271ce928cb9d7850bf4b1b30458db73459b07200ce"
+    },
+    {
+      "path": "evidence/forward/outputs/accessible-interaction-fallback.html",
+      "sha256": "a9acdb24c3ce2f93a9b62718ab2b13b2a6d14d8a34f2270a457058d31b6c45f9"
+    }
+  ],
+  "observed_runtime_pages": 0,
+  "console_checked": false,
+  "responsive_viewports_checked": false,
+  "accessibility_tree_checked": false,
+  "manual_assistive_technology_checked": false,
+  "supports_field_accessibility_claim": false,
+  "claim_boundary": "This blocked attempt is retained for auditability. Automated renderer, parity, security, landmark, heading, control-label, print and reduced-motion checks remain engineering evidence only; live browser and representative accessibility field evidence remain unverified."
+}
