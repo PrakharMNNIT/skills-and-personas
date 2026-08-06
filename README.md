@@ -22,6 +22,7 @@ The canonical, production-ready portfolio lives in `new-skills/` — 38 skills t
 | `skills/` | Original skills — superseded by `new-skills/` but preserved for reference and as the source material for several `new-skills/` entries |
 | `skills/teach-pro-max/` | Public, skills.sh-discoverable adaptive teaching system with runtime tools, schemas, tests, and optional integrations |
 | `docs/teach-pro-max/` | Teach Pro Max research dossier, historical evidence, original release archives, and source manifest |
+| `personas/teach-pro-max-agent-persona/` | Cross-harness Teach Pro Max identity, user-context, tool, heartbeat, bootstrap, and agent-operation files |
 | `personas/` | Multi-file persona packs (system prompts + domain knowledge + examples + platform configs) |
 | `md-personas/` | Single-file Markdown persona prompts |
 | `team-personas/constellation-team/` | Six role-based team skills (principal, backend-system-design, frontend-uiux, devops-sre, product, QA-security) |
@@ -49,12 +50,28 @@ npx skills add praxstack/skills-and-personas --skill teach-pro-max
 ```
 
 - [Installable skill](skills/teach-pro-max/SKILL.md)
+- [Detailed usage guide](docs/teach-pro-max/USAGE-GUIDE.md) ([visual HTML](docs/teach-pro-max/USAGE-GUIDE.html))
+- [Cross-harness persona](personas/teach-pro-max-agent-persona/README.md)
 - [Research and evidence archive](docs/teach-pro-max/README.md)
 - [skills.sh page](https://skills.sh/praxstack/skills-and-personas/teach-pro-max)
 
 The historical receipts in `docs/teach-pro-max/` bind the original candidate
 bytes. They establish lineage, not a fresh release receipt for the renamed
 public package and not proof of superior human learning.
+
+## Additional public skills
+
+These portable skills live in `skills/` and can be installed independently:
+
+| Skill | Purpose | Install |
+|---|---|---|
+| [`superimprove`](skills/superimprove/SKILL.md) | Bounded audit-fix-review-verify loop with non-destructive recovery and honest exit states | `npx skills add praxstack/skills-and-personas --skill superimprove` |
+| [`coding-agent-leadership-principles`](skills/coding-agent-leadership-principles/SKILL.md) | Evidence, ownership, scoped authority, and engineering-completion operating floor | `npx skills add praxstack/skills-and-personas --skill coding-agent-leadership-principles` |
+| [`cross-agent-handoff`](skills/cross-agent-handoff/SKILL.md) | Privacy-safe, independently verifiable transfers across agents and harnesses | `npx skills add praxstack/skills-and-personas --skill cross-agent-handoff` |
+
+The public `superimprove` edition intentionally rejects destructive reset/clean
+recovery, automatic rescue commits, unapproved dependency installation, and
+unbounded review loops.
 
 ## Install the portfolio locally
 

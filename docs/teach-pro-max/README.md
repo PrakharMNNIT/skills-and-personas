@@ -9,6 +9,8 @@ upgrade-planning, and historical-evidence trail behind the public
 | Path | Contents | Install status |
 |---|---|---|
 | `../../skills/teach-pro-max/` | Public wrapper plus the complete byte-preserved engine, distribution verifier, and manifest | Installed by the skills CLI |
+| `USAGE-GUIDE.md` and `USAGE-GUIDE.html` | Canonical invocation, installation, visualization, evidence, privacy, and persona deployment guide | Documentation only |
+| `../../personas/teach-pro-max-agent-persona/` | OpenClaw-, Hermes-, Codex-, and Gemini-adaptable persona bundle | Copy selectively after reviewing existing workspace identity |
 | `research/` | Reports 01–10 in canonical Markdown with HTML companions, tracker JSON, browser index, and the site renderer | Documentation only |
 | `historical/evidence/` | Original forward attempts, integration receipts, reviews, provenance, and verification artifacts | Historical evidence only |
 | `historical/STATUS.*` | Original candidate's release-status statement in Markdown, HTML, and JSON | Historical snapshot only |
@@ -51,11 +53,12 @@ https://skills.sh/praxstack/skills-and-personas/teach-pro-max
 
 ## Read in order
 
-1. `research/06-teach-prax-teach-v2-comparison.md`
-2. `research/07-prax-teach-v2-implementation-status.md`
-3. `research/08-zero-api-visual-runtime-upgrade-plan.md`
-4. `research/09-zero-api-visual-runtime-tracker.md`
-5. `research/10-zero-api-autonomous-goal.md`
+1. `USAGE-GUIDE.md` (or its self-contained `USAGE-GUIDE.html` companion)
+2. `research/06-teach-prax-teach-v2-comparison.md`
+3. `research/07-prax-teach-v2-implementation-status.md`
+4. `research/08-zero-api-visual-runtime-upgrade-plan.md`
+5. `research/09-zero-api-visual-runtime-tracker.md`
+6. `research/10-zero-api-autonomous-goal.md`
 
 The upgrade plan is a plan, not a claim that the future interactive visual
 runtime or external learner-evidence gates are complete.
