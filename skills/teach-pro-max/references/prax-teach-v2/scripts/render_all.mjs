@@ -6,15 +6,20 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const SKIP_DIRECTORIES = new Set([
+  ".agent",
+  ".agents",
   ".git",
   ".mypy_cache",
   ".pytest_cache",
   ".ruff_cache",
   ".venv",
   "__pycache__",
+  "attempts",
   "learner-workspaces",
   "node_modules",
   "private-banks",
+  "openspec",
+  "runtime",
   "runs",
 ]);
 

@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="source-path" content="accessible-interaction-fallback.md">
-  <meta name="source-sha256" content="e67a68b6916c420fc62f4fe1d568dc2da32b18f8bda70fcd5eb6fc75fbe9c0ce">
-  <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
+  <meta name="source-path" content="visual-essential-static.md">
+  <meta name="source-sha256" content="6762c1d56ae409da7686e4a321bb052bcb30433cd6db9fc892f8e101d3eb6142">
+  <meta name="generated-at" content="2026-08-19T09:21:21.978Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
-  <title>Hash-table load-factor practice</title>
+  <title>Two-thread lost update</title>
   <style>
     :root { color-scheme: light; --paper:#f7f3ea; --ink:#172235; --muted:#5d6674; --accent:#8f3b20; --teal:#176b69; --line:#d7cbb8; --surface:#fffdf8; --code:#1c2837; --code-ink:#f4f1ea; }
     @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper:#111923; --ink:#edf2f5; --muted:#b4bdc8; --accent:#f19a72; --teal:#72cbc5; --line:#344355; --surface:#182331; --code:#09111a; --code-ink:#edf2f5; } }
@@ -47,29 +47,27 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header><div><strong>Prax Teach lesson</strong><a href="./accessible-interaction-fallback.md">Markdown source</a></div></header>
-  <main id="main-content"><h1 id="hash-table-load-factor-practice">Hash-table load-factor practice</h1>
-<p>This practice runs in host chat with no custom controls or scripts. Reduced-motion mode is inherent: there are no animations or transitions. The complete static path is the plain-text prompt below. There is no timer or automatic advance.</p>
-<p>The host UI’s keyboard navigation, focus visibility, reduced-motion behavior, and assistive-technology support remain unverified.</p>
-<h2 id="round-1-threshold-boundary">Round 1 — Threshold boundary</h2>
-<p>An open-addressed hash table has:</p>
-<ul>
-<li>Capacity: 16 slots</li>
-<li>Live entries before the operation: 11</li>
-<li>Operation: insert one new, unique key</li>
-<li>Resize check: after the insertion</li>
-<li>Resize rule: resize when the load factor is at least 0.75</li>
-</ul>
-<p><strong>Action 1 — Calculate:</strong> Find the load factor immediately after the insertion.</p>
-<p><strong>Action 2 — Decide:</strong> Should the table resize?</p>
-<p><strong>Action 3 — Reply:</strong> Type:</p>
-<p><code>LOAD = [equation] = [decimal]; RESIZE = YES or NO; BECAUSE = [brief reason]</code></p>
-<p>You may instead type <code>I DON'T KNOW — HINT 1</code> or <code>ANSWER NOW</code>.</p>
+  <header><div><strong>Prax Teach lesson</strong><a href="./visual-essential-static.md">Markdown source</a></div></header>
+  <main id="main-content"><h1 id="two-thread-lost-update">Two-thread lost update</h1>
+<p>Initial state: <code>counter = 0</code></p>
+<p>Both threads execute: <code>counter = counter + 1</code></p>
+<pre><code class="language-text">Step   Thread 1                  Thread 2                  Shared counter
+----   ------------------------  ------------------------  --------------
+1      reads counter: 0                                    0
+2                               reads counter: 0            0
+3      computes 0 + 1 = 1                                  0
+4                               computes 0 + 1 = 1          0
+5      writes 1                                            1
+6                               writes 1                    1
+</code></pre>
+<p>Both threads read the same old value, <code>0</code>. Each computes <code>1</code>, and Thread 2 overwrites Thread 1’s write with <code>1</code>.</p>
+<p>Expected result: <code>2</code><br />Actual result: <code>1</code></p>
+<p>The increment is a read–modify–write sequence, not one indivisible operation. A lock or atomic increment is required to prevent this interleaving.</p>
 </main>
   <footer>
-    Canonical source: <a href="./accessible-interaction-fallback.md">accessible-interaction-fallback.md</a><br>
-    SHA-256: <code>e67a68b6916c420fc62f4fe1d568dc2da32b18f8bda70fcd5eb6fc75fbe9c0ce</code><br>
-    Generated: 2026-08-04T12:00:00.000Z<br>
+    Canonical source: <a href="./visual-essential-static.md">visual-essential-static.md</a><br>
+    SHA-256: <code>6762c1d56ae409da7686e4a321bb052bcb30433cd6db9fc892f8e101d3eb6142</code><br>
+    Generated: 2026-08-19T09:21:21.978Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0
   </footer>

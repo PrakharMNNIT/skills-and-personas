@@ -12,6 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ENGINE = ROOT / "references" / "prax-teach-v2"
 MANIFEST = ROOT / "references" / "ENGINE-MANIFEST.json"
+CACHE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".venv", "node_modules"}
+CONTROL_DIRS = {".agent", ".agents", "openspec"}
 
 
 def sha256(path: Path) -> str:
@@ -61,10 +63,13 @@ def main() -> int:
 
     actual: dict[str, Path] = {}
     for path in ENGINE.rglob("*"):
+        relative = path.relative_to(ENGINE)
+        if any(part in CACHE_DIRS | CONTROL_DIRS for part in relative.parts):
+            continue
         if path.is_symlink():
             fail(f"symlink is not allowed in embedded engine: {path}")
         if path.is_file():
-            actual[path.relative_to(ENGINE).as_posix()] = path
+            actual[relative.as_posix()] = path
 
     missing = sorted(set(expected) - set(actual))
     extra = sorted(set(actual) - set(expected))

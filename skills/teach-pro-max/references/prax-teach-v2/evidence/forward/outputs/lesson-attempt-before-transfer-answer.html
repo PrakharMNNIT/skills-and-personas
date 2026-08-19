@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="lesson-attempt-before-transfer-answer.md">
-  <meta name="source-sha256" content="587d46a704fd40323c1ec85dcd9d9276a3f880d0f499ea97963e17b07f26cedd">
+  <meta name="source-sha256" content="7870522539c9acf4f9e8dd3b487e8b1d876895cb9dc50eec884109071bd47103">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
-  <title>Lesson: attempt before transfer answer</title>
+  <title>Lost-update lesson</title>
   <style>
     :root { color-scheme: light; --paper:#f7f3ea; --ink:#172235; --muted:#5d6674; --accent:#8f3b20; --teal:#176b69; --line:#d7cbb8; --surface:#fffdf8; --code:#1c2837; --code-ink:#f4f1ea; }
     @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper:#111923; --ink:#edf2f5; --muted:#b4bdc8; --accent:#f19a72; --teal:#72cbc5; --line:#344355; --surface:#182331; --code:#09111a; --code-ink:#edf2f5; } }
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -48,123 +48,73 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header><div><strong>Prax Teach lesson</strong><a href="./lesson-attempt-before-transfer-answer.md">Markdown source</a></div></header>
-  <main id="main-content"><h1 id="lesson-attempt-before-transfer-answer">Lesson: attempt before transfer answer</h1>
-<h2 id="tutor-turn-1">Tutor turn 1</h2>
-<p>We’ll build toward this outcome: given a two-thread execution trace, you can identify a lost update and explain precisely where it occurs. After guided practice, I’ll give you an unseen transfer task; its answer will remain hidden until you attempt it.</p>
-<h3 id="first-diagnosis">First diagnosis</h3>
-<p>A shared balance starts at <code>100</code>.</p>
-<pre><code class="language-text">T1 reads balance → 100
-T2 reads balance → 100
-T1 computes 100 + 20
-T1 writes balance → 120
-T2 computes 100 - 10
-T2 writes balance → 90
+  <main id="main-content"><h1 id="lost-update-lesson">Lost-update lesson</h1>
+<h2 id="user">User</h2>
+<p>Create a focused lesson that teaches me to diagnose a two-thread lost update. Include an unseen transfer task and do not reveal its answer before my attempt.</p>
+<h2 id="assistant">Assistant</h2>
+<p>We’ll build one skill: diagnose a lost update from the exact reads and writes. After this trace and a repair exercise, you’ll get an unseen money-transfer task; its answer stays hidden until you attempt it.</p>
+<p>An inventory starts at <code>stock = 10</code>:</p>
+<pre><code class="language-text">T1 (sell 3)                 T2 (restock 5)
+a = read(stock)  // 10
+                            b = read(stock)  // 10
+write(stock, a - 3) // 7
+                            write(stock, b + 5) // 15
 </code></pre>
-<p>Assume ordinary reads and writes—no locks, transactions, or atomic update operation.</p>
-<p>In a few lines, diagnose:</p>
-<ol>
-<li>The final stored balance.</li>
-<li>Which update was lost.</li>
-<li>Why the trace permits that loss.</li>
-</ol>
-<p>“I don’t know yet” is a valid answer.</p>
-<h2 id="learner-turn-1">Learner turn 1</h2>
-<p>The final balance is 90. T1’s +20 update was lost. Both threads read the same starting 100; T2 later wrote 90 from its stale copy, overwriting T1’s 120 instead of incorporating it.</p>
-<h2 id="tutor-turn-2">Tutor turn 2</h2>
-<p>Exactly right—and unassisted. You reconstructed both the stored result and the causal mechanism: T2’s write was based on a stale read, so it replaced rather than composed with T1’s update.</p>
-<p>The diagnostic rule is:</p>
-<blockquote>
-<p>A lost update occurs when overlapping read–modify–write operations derive new values from the same old state, and a later write overwrites an earlier operation’s effect.</p>
-</blockquote>
-<p>Contrast that with this safe interleaving:</p>
-<pre><code class="language-text">score starts at 40
-T1 reads 40, adds 5, writes 45
-T2 reads 45, subtracts 3, writes 42
+<p>Diagnose this run: what value is stored, what value should reflect both operations, and which update disappeared? Explain in 2–4 lines—or say “I don’t know.”</p>
+<h2 id="user-2">User</h2>
+<p>The stored value is 15 and it should be 12. I think the restock disappeared because T2 wrote last, but I’m not fully sure.</p>
+<h2 id="assistant-2">Assistant</h2>
+<p>Your values are correct: stored <code>15</code>, expected <code>12</code>.</p>
+<p>Hint: compare the final <code>15</code> with each operation’s standalone result—sale-only gives <code>7</code>, restock-only gives <code>15</code>.</p>
+<p>Which update disappeared? Revise just that part.</p>
+<h2 id="user-3">User</h2>
+<p>The sale disappeared. T2 calculated 15 from its stale read of 10, then its last write overwrote T1’s sale result of 7.</p>
+<h2 id="assistant-3">Assistant</h2>
+<p>Correct. T2’s write preserved its own <code>+5</code> but replaced the entire shared value, erasing T1’s <code>−3</code>.</p>
+<p>The diagnostic pattern is: both threads read the same old value, independently compute new values, then write whole replacements. The later write can overwrite the earlier update.</p>
+<p>Now compare this schedule:</p>
+<pre><code class="language-text">T1 reads 10
+T1 writes 7
+T2 reads 7
+T2 writes 12
 </code></pre>
-<p>No update is lost because T2 reads the result of T1’s completed write.</p>
-<h3 id="guided-practice">Guided practice</h3>
-<pre><code class="language-text">stock starts at 12
-T1 reads stock → 12
-T2 reads stock → 12
-T2 computes 12 - 4
-T2 writes stock → 8
-T1 computes 12 + 3
-T1 writes stock → 15
-</code></pre>
-<p>Diagnose the final stored value, which operation—if any—was lost, and what the final value would have been if both operations had been preserved.</p>
-<h2 id="learner-turn-2">Learner turn 2</h2>
-<p>The final stored value is 15. T2’s subtraction of 4 was lost when T1 wrote 15 from its stale read of 12. If both changes were preserved, the result would be 12 - 4 + 3 = 11.</p>
-<h2 id="tutor-turn-3">Tutor turn 3</h2>
-<p>Correct again, unassisted. You tracked the write order, identified the stale snapshot, and compared the observed result (<code>15</code>) with the correctly composed result (<code>11</code>). That is the full diagnostic method.</p>
-<h3 id="unseen-transfer-task">Unseen transfer task</h3>
-<p>A profile service stores this document:</p>
-<pre><code class="language-json">{
-  "theme": "light",
-  "email": "old@example.com"
-}
-</code></pre>
-<p>Two request threads use whole-document read–modify–write operations:</p>
-<pre><code class="language-text">T1 reads the document
-T2 reads the document
-T1 changes theme to "dark"
-T1 writes its whole document
-T2 changes email to "new@example.com"
-T2 writes its whole document
-</code></pre>
-<p>Without assuming any automatic merge, diagnose:</p>
-<ol>
-<li>The final stored document.</li>
-<li>Whether a lost update occurred and precisely what was lost.</li>
-<li>The trace evidence that distinguishes this from two safe updates to different fields.</li>
-</ol>
-<h2 id="learner-turn-3">Learner turn 3</h2>
-<p>The final document is <code>{"theme":"light","email":"new@example.com"}</code>. Yes, T1’s theme change to dark was lost. T2’s whole-document write used the stale copy that still had theme light and overwrote T1’s later state; different logical fields are not safe when each thread replaces the entire document.</p>
-<h2 id="tutor-turn-4">Tutor turn 4</h2>
-<p>Correct. The key transfer insight is that the overwrite unit is the whole document, not the individual field. T2’s stale document therefore restores <code>"theme": "light"</code> while saving its email change.</p>
-<p>Lesson outcome met for this session: you correctly diagnosed three traces, including a changed-domain transfer case, all without hints. You demonstrated application, causal explanation, and transfer—not merely recognition.</p>
-<p>Your learner-authored decision rule was especially strong:</p>
-<blockquote>
-<p>Different logical fields are not safe when each thread replaces the entire document.</p>
-</blockquote>
-<p>What remains uncertain is retention over time and whether you can distinguish lost-update prevention mechanisms; neither was tested. For a one-week retention goal, try one fresh, unassisted trace in 2–3 days. No learner state or files were created.</p>
-<h2 id="learner-turn-4">Learner turn 4</h2>
-<p>I’m still unsure about prevention mechanisms. Before we close, give me one short compare-and-set or retry trace to diagnose.</p>
-<h2 id="tutor-turn-5">Tutor turn 5</h2>
-<h3 id="compare-and-set-retry-trace">Compare-and-set retry trace</h3>
-<pre><code class="language-text">balance starts at (value=100, version=7)
+<p>Is this still a lost update? Point to the decisive evidence in the trace.</p>
+<h2 id="user-4">User</h2>
+<p>No. T2 reads 7 after T1’s write, so its final 12 incorporates both the sale and restock instead of overwriting a result computed from stale state.</p>
+<h2 id="assistant-4">Assistant</h2>
+<p>Correct. The decisive evidence is that T2 reads the value produced by T1, so its computation includes both changes.</p>
+<p>Unseen transfer task:</p>
+<pre><code class="language-text">Initial: A = $100, B = $40, C = $60
 
-T1 reads (100, v7) and computes 120
-T2 reads (100, v7) and computes 90
+T1: transfer $30 from A to B
+T2: transfer $20 from A to C
 
-T1 compare-and-set(expected=v7, new=120) → succeeds; version becomes v8
-T2 compare-and-set(expected=v7, new=90)  → fails
-
-T2 rereads (120, v8) and recomputes 110
-T2 compare-and-set(expected=v8, new=110) → succeeds; version becomes v9
+T1 reads A → 100
+T2 reads A → 100
+T1 reads B → 40
+T2 reads C → 60
+T1 writes A → 70
+T1 writes B → 70
+T2 writes A → 80
+T2 writes C → 80
 </code></pre>
-<p>What is the final balance, did a lost update occur, and which event prevented or repaired the dangerous stale write?</p>
-<h2 id="learner-turn-5">Learner turn 5</h2>
-<p>The final balance is 110, but T1’s +20 was lost because T2 eventually wrote 110 instead of leaving T1’s 120.</p>
-<h2 id="tutor-turn-6">Tutor turn 6</h2>
-<p>Your final balance of <code>110</code> is correct.</p>
-<p>Hint: judge preservation by whether both intended changes are represented in the final value—not by whether T1’s intermediate value of <code>120</code> remains unchanged.</p>
-<p>Revise only this part: was either update actually lost, and what in the trace supports your answer?</p>
-<h2 id="learner-turn-6">Learner turn 6</h2>
-<p>No update was lost. The final 110 equals 100 + 20 - 10, so both changes are represented. T2’s stale compare-and-set failed at version 7; after rereading version 8 it recomputed from 120 and successfully applied the subtraction.</p>
-<h2 id="tutor-turn-7">Tutor turn 7</h2>
-<p>Correct on revision. The failed compare-and-set rejected T2’s stale write; rereading and recomputing rebased the subtraction onto T1’s result.</p>
+<p>Diagnose the execution: give the observed final balances, the balances if both transfers took effect, the exact lost update, and one invariant that exposes the bug.</p>
+<h2 id="user-5">User</h2>
+<p>Observed balances are A=$80, B=$70, C=$80. If both transfers took effect they should be A=$50, B=$70, C=$80. T2’s write of A=$80 overwrote T1’s earlier A=$70, so T1’s $30 debit from A was lost even though its credit to B remained. The total-balance invariant exposes it: observed total is $230 instead of the conserved $200.</p>
+<h2 id="assistant-5">Assistant</h2>
+<p>Exactly right. You diagnosed the unseen transfer unassisted: final state, intended state, overwritten debit, and violated conservation invariant.</p>
 <p>Evidence observed:</p>
 <ul>
-<li>Three lost-update diagnoses, including cross-domain transfer: correct and unassisted.</li>
-<li>Compare-and-set/retry diagnosis: correct after one principle cue, so this is scaffolded evidence.</li>
-<li>Remaining uncertainty: unassisted recognition of prevention mechanisms after a delay.</li>
+<li>Inventory diagnosis: correct after one orienting hint.</li>
+<li>Safe interleaving discrimination: correct unassisted.</li>
+<li>Novel transfer diagnosis: correct unassisted.</li>
 </ul>
-<p>Your useful decision rule is: check whether every intended change survives in the final state, not whether an intermediate value remains unchanged.</p>
-<p>For a one-week retention goal, diagnose a fresh compare-and-set trace without hints in 2–3 days. No learner state or files were created.</p>
+<p>Your decision rule: trace each read’s source, then check whether a later whole-value write erases an earlier update; use invariants to catch impossible outcomes.</p>
+<p>Retention horizon: provisionally one week. Re-test in 48 hours using raw logs where you must reconstruct the reads and writes. Durable mastery remains unverified until delayed retrieval. No files or learner state were created.</p>
 </main>
   <footer>
     Canonical source: <a href="./lesson-attempt-before-transfer-answer.md">lesson-attempt-before-transfer-answer.md</a><br>
-    SHA-256: <code>587d46a704fd40323c1ec85dcd9d9276a3f880d0f499ea97963e17b07f26cedd</code><br>
+    SHA-256: <code>7870522539c9acf4f9e8dd3b487e8b1d876895cb9dc50eec884109071bd47103</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

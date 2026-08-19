@@ -45,8 +45,8 @@ a learner-outcome study was run.
 
 | Capability | Evidence level | Claim limit |
 |---|---|---|
-| Legacy templates and 38-tool visual registry | Implemented | 8 assets are byte-identical or renamed-byte-identical; 4 registry/helper assets are explicitly portability-adapted; 9 registry tests pass; no learner-benefit claim |
-| Mode, teaching, and visual behavior | Evaluated | Frozen public rubric passed 8/8 on fresh all-case attempt 10; not held-out quality, provider ablation, field accessibility, or learner outcomes |
+| Legacy templates and 38-tool visual registry | Implemented | 5 assets remain byte-identical; 7 registry/router/helper assets are explicitly portability-adapted; 12 registry tests pass; no learner-benefit claim |
+| Mode, teaching, and visual behavior | Evaluated | Attempt 21 passed 8/8 with 20 exact bindings, replayable execution, and independent item-level review; not held-out quality, provider ablation, field accessibility, or learner outcomes |
 | Learner state, correction, deletion, and export | Implemented | Synthetic workspace, crash-recovery, and containment tests; not representative field use |
 | FSRS review scheduling | Dependency-exercised | Real `fsrs==6.3.1`, performance-bound ratings, replay validation, and golden vectors; not outcome calibration |
 | Markdown-to-HTML artifacts | Implemented | Automated parity, security, and accessibility-structure checks; not browser, WCAG-conformance, or field-accessibility certification |
@@ -83,8 +83,9 @@ clean-HEAD commit/archive event.
 
 ## Forward behavior history
 
-The public AC-23 gate is green only because a complete post-fix rerun passed;
-earlier failures were not erased:
+The public AC-23 gate passed on attempt 21: all eight cases were regenerated in
+distinct fresh tasks, hash-bound, and independently scored. Earlier failures and
+superseded passes are not erased:
 
 | Attempt | Result | Evidence treatment |
 |---|---:|---|
@@ -97,22 +98,34 @@ earlier failures were not erased:
 | 7 | 8/8, later invalidated | Passed, then `SKILL.md` and the artifact contract changed; the exact stale-source run is retained |
 | 8 | Unscored after 7 cases | Runner prompt confused the read-only package with the learner workspace; retained and rejected |
 | 9 | 8/8, later invalidated | Passed, then final visual, isolation, scheduler, and routing remediation changed the exact source bytes; retained and rejected |
-| 10 | **8/8** | All eight cases regenerated against the remediated source; all 18 bindings independently verified |
+| 10 | 8/8, later invalidated | Passed, then the practical-learning and visual-runtime contracts changed; retained as historical evidence only |
+| 11 | Reported 8/8, rejected | Frozen-spec review found no bound execution and an incomplete project-takeover prohibition |
+| 12 | 7/8 | Explicit retrieval horizon missing; review also exposed two routing defects |
+| 13 | 7/8 | Corrected routes, but the lesson still called its horizon unspecified |
+| 14 | Reported 8/8, rejected | Frozen-spec review found transfer before explicit learner explanation; the over-optimistic receipt and exact bytes are retained |
+| 15 | 8/8, later invalidated | Passed, then final runtime security remediation changed the bound routing source; retained as historical evidence |
+| 16 | 8/8, later invalidated | Passed, then the runtime contracts tree was added to the bound routing source; exact evidence retained |
+| 17 | 8/8, later invalidated | Passed, then the direct-model, canonical-route, and consent-source changes altered bound bytes; exact evidence retained |
+| 18 | 7/8 | Rejected because the course response omitted an explicit ephemeral alternative; exact failed corpus retained |
+| 19 | 8/8, later invalidated | Passed, then final routing security and lesson-capability binding changed the bound source; exact evidence retained |
+| 20 | 8/8, later invalidated | Passed, then formatter-only normalization changed the bound routing source; exact evidence retained |
+| 21 | 8/8 | Current release-eligible fresh-context run for the exact 20 bound artifacts |
 
-The current lesson transcript contains unassisted diagnosis and discrimination,
-an unseen whole-document transfer, a learner-authored teach-back, a later learner
-error, exactly one next-needed hint followed by a turn boundary, and scaffolded
-repair. Its closing judgment separates unassisted from scaffolded evidence and
-explicitly leaves delayed recall untested.
+The current lesson transcript contains an initial learner error, exactly one
+next-needed hint followed by a turn boundary, scaffolded repair, an unseen
+unassisted transfer, and a provisional one-week horizon with a 48-hour re-test. The practical case completes
+predict, run, inspect, modify, debug, explain, and transfer in six tutor and
+six learner turns against one replayable model with three exact command/output
+replays. Both cases separate engineering output from learning evidence and leave
+delayed recall untested.
 See [forward evidence](./evidence/forward/README.md).
 
 ## Accessibility inspection boundary
 
-The in-app browser rejected local-file navigation. The blocked receipt records
-zero observed runtime pages and no keyboard, focus, responsive, accessibility
-tree, or assistive-technology checks. Automated structure gates passed, but
-browser and representative field accessibility remain unverified; EG-03 stays
-parked.
+Five named package pages, including Prax Visual Lab, passed real-Chrome console, responsive-layout, and
+accessibility-tree checks at desktop and narrow viewports. Manual
+assistive-technology, WCAG-conformance, and representative-user evidence remain
+unverified; EG-03 stays parked.
 
 ## External gates
 

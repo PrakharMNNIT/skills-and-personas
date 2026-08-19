@@ -14,7 +14,7 @@
       "evidence": [
         "four byte-identical workspace templates",
         "38-tool portable visualization registry",
-        "9 passing deterministic registry tests",
+        "12 passing deterministic registry tests",
         "byte-identical router SVG and PNG"
       ],
       "id": "legacy-assets",
@@ -25,8 +25,8 @@
       "evidence": [
         "scripts/prax_teach.py route and visual-route",
         "fixtures/routing-cases.json",
-        "fresh all-case attempt 10 passed 8 of 8 after attempts 1 through 9 were retained with their exact limitations",
-        "independent reviewer verified all 18 declared rubric, run, source, context, and output bindings"
+        "fresh all-case attempt 21 passed 8 of 8 after failed and invalidated attempts were retained with their exact limitations",
+        "independent reviewer verified all 20 declared rubric, run, source, context, output, and execution bindings"
       ],
       "id": "mode-and-visual-routing",
       "state": "evaluated"
@@ -54,12 +54,12 @@
       "state": "dependency-exercised"
     },
     {
-      "claim_limit": "Automated structure, security, and parity checks passed; browser behavior, WCAG conformance, and representative assistive-technology testing remain unverified.",
+      "claim_limit": "Named pages passed real-Chrome console, responsive-layout, and accessibility-tree checks; WCAG conformance, manual assistive-technology testing, and representative-user evidence remain unverified.",
       "evidence": [
         "pinned Marked and sanitize-html renderer",
         "full-byte deterministic parity checks",
         "artifact security and accessibility-structure validator",
-        "blocked browser receipt with zero runtime observations"
+        "real-Chrome inspection receipt for five named pages"
       ],
       "id": "markdown-html-artifacts",
       "state": "implemented"
@@ -209,7 +209,7 @@
         {
           "kind": "path",
           "path": "fixtures/routing-cases.json",
-          "sha256": "91d7065489c0bceeed501bab18057d22ed20bd42ef37ae927746521906a3fda2"
+          "sha256": "50324e8229ea6041f1c352c764b0d9d317a4002145df05b98c2662e05efa0cf5"
         },
         {
           "kind": "receipt",
@@ -255,7 +255,7 @@
         {
           "kind": "path",
           "path": "tests/test_state_contract_hardening.py",
-          "sha256": "85b3e91c0d90ad425bd2b537d5db0024736a9038a34b98501f584f9e7deee72b"
+          "sha256": "66b2dcd8407cb19ea982501fec26a1dad2fc875009371a1faa866afb3ad62073"
         }
       ],
       "id": "AC-05",
@@ -274,7 +274,7 @@
         {
           "kind": "path",
           "path": "tests/test_state_contract_hardening.py",
-          "sha256": "85b3e91c0d90ad425bd2b537d5db0024736a9038a34b98501f584f9e7deee72b"
+          "sha256": "66b2dcd8407cb19ea982501fec26a1dad2fc875009371a1faa866afb3ad62073"
         }
       ],
       "id": "AC-06",
@@ -288,7 +288,7 @@
         {
           "kind": "path",
           "path": "tests/test_state_contract_hardening.py",
-          "sha256": "85b3e91c0d90ad425bd2b537d5db0024736a9038a34b98501f584f9e7deee72b"
+          "sha256": "66b2dcd8407cb19ea982501fec26a1dad2fc875009371a1faa866afb3ad62073"
         }
       ],
       "id": "AC-07",
@@ -302,7 +302,7 @@
         {
           "kind": "path",
           "path": "tests/test_state_security.py",
-          "sha256": "4444efcc74c50fb338fc970236b87b038d2f673a5d2442eb5324cdbf09e4eba0"
+      "sha256": "ca827271c0b584aba4438051d8ec5adc4b2166d37a34c4ce8f0763753612aa10"
         }
       ],
       "id": "AC-08",
@@ -358,7 +358,7 @@
         {
           "kind": "path",
           "path": "tests/render_markdown.test.mjs",
-          "sha256": "f94872e189cf2c479193cf30a9ddf951139bb2bffa89da072950e68bf7e89751"
+          "sha256": "6a253f40b54527aa45e6ad59afe57294098e2320f46bc4afa904f04c0b2b938d"
         }
       ],
       "id": "AC-12",
@@ -378,7 +378,7 @@
         {
           "kind": "path",
           "path": "tests/test_visual_verification.py",
-          "sha256": "48bbcd57c911a2fb0e698d531ce664ffe3129c15f97551219b213e365c5c49fa"
+          "sha256": "0c859e550c42f9c0842be7c3b1728365d2dad4072888bf5082adcfe101454cc5"
         }
       ],
       "id": "AC-13",
@@ -474,7 +474,7 @@
         {
           "kind": "path",
           "path": "scripts/validate_workspace.py",
-          "sha256": "bc9e96726f6bd644bffe9ecc8f3594279ed85cb2e6eadb6014105c6768238b22"
+          "sha256": "e718c7f0929d231d226efb236534a01b90ab580eaaf01478288ff0cdb22e7017"
         }
       ],
       "id": "AC-20",
@@ -488,12 +488,12 @@
         {
           "kind": "path",
           "path": "STATUS.md",
-          "sha256": "22bc36398196c5d3b08c6457bc759f17b417096030348609faf732502486298f"
+      "sha256": "71dc754ecc7e80e18ddf5b6b67cdf58b2385ec00c7980e327afc3b5f2871d423"
         },
         {
           "kind": "path",
           "path": "STATUS.html",
-          "sha256": "d1c8f0a3d83955d9772cca66dc0b0872f1e6e6487e3966c090dc9366f7e02afe"
+      "sha256": "8ab4b5ce5f164143f077b87c9b757277979a1e9d847b7908b17c9f62fb883961"
         }
       ],
       "id": "AC-21",
@@ -510,7 +510,7 @@
         }
       ],
       "id": "AC-22",
-      "state": "passed"
+      "state": "pending"
     },
     {
       "capabilities": [
@@ -544,7 +544,7 @@
         }
       ],
       "id": "AC-24",
-      "state": "passed"
+      "state": "pending"
     },
     {
       "capabilities": [
@@ -554,17 +554,17 @@
         {
           "kind": "path",
           "path": "scripts/build_package.py",
-          "sha256": "84ebad2f1e5735118a84936726324fbd1b35f7a1eeb74b91106aab5ca646b012"
+          "sha256": "ec3497493f5454afff4983f882698661b9cfd4722ec751cdbb15d64387e0d587"
         },
         {
           "kind": "path",
           "path": "tests/test_build_package.py",
-          "sha256": "8d07254f04a8683df89c0a9ae60fe1bfb92f62aed66a7a971bf3ccae3f7aa23d"
+          "sha256": "a99f7aad9536e29fd4194a81fef3e4ec695c7900a91dec58de23feb97b539ffa"
         },
         {
           "kind": "path",
           "path": "references/OPERATIONS.md",
-          "sha256": "1dafb4f28f8c84a64203a5afa5079fc51614dcfd81c356010cce992a8944a3da"
+          "sha256": "53519b1caa430392f32778e5b0d598a845abe889cbcf8ab8e671ce23ac475c22"
         }
       ],
       "id": "AC-25",
@@ -634,7 +634,7 @@
         "Three-mode and Answer-now routing",
         "Attempt-before-explanation and strict post-error hint-turn policy",
         "Deterministic renderer with automated accessibility-structure checks",
-        "Fresh all-case attempt 10 passed 8 of 8 with failures and ineligible attempts retained"
+        "Fresh all-case attempt 21 passed 8 of 8 with failures and ineligible attempts retained"
       ],
       "id": "phase-1",
       "parked": [

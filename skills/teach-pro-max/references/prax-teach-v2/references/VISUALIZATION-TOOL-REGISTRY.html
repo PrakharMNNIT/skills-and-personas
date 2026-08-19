@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="VISUALIZATION-TOOL-REGISTRY.md">
-  <meta name="source-sha256" content="89c7d2e7dc7c34ee11663a87357bd66b122cac6ce4539a803903e2f88ec76c8e">
+  <meta name="source-sha256" content="e6fe26230685f87d5914491a1a450b0b16d53a90e0a1ed653a84ee199c42f98a">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -195,15 +195,15 @@ python &lt;prax-teach-skill-dir&gt;/scripts/find_visualization_tool.py --check
 </tr>
 <tr>
 <td>Mathematical transformation</td>
-<td>Manim</td>
+<td>Manim 0.21.0</td>
 </tr>
 <tr>
-<td>TypeScript vector animation</td>
-<td>Motion Canvas</td>
+<td>General explanatory film</td>
+<td>HyperFrames</td>
 </tr>
 <tr>
-<td>React video</td>
-<td>Remotion</td>
+<td>TypeScript generator film</td>
+<td>Canvas Commons only after a demonstrated need</td>
 </tr>
 <tr>
 <td>Seekable HTML video</td>
@@ -359,15 +359,18 @@ the current user's standard agent-skill directories and reports
 <p>Notable snapshot caveats:</p>
 <ul>
 <li>Remotion’s MCP is deprecated; use its official skill/plugin.</li>
+<li>Motion Canvas and Remotion remain inspectable historical entries but are
+excluded from default Teach Pro Max routing; use HyperFrames or Manim.</li>
 <li>Sigma.js v4 is alpha; stable work should use v3 documentation unless deliberately testing v4.</li>
-<li>Manim Community v0.19+ uses PyAV internally; FFmpeg is not a core Manim prerequisite.</li>
+<li>Pin Manim Community 0.21.0 at first use. Modern Manim uses PyAV internally;
+FFmpeg is not a core Manim prerequisite.</li>
 <li>Unsplash Source is discontinued.</li>
 <li>Image-model capabilities and limitations change; verify the current official model page.</li>
 </ul>
 </main>
   <footer>
     Canonical source: <a href="./VISUALIZATION-TOOL-REGISTRY.md">VISUALIZATION-TOOL-REGISTRY.md</a><br>
-    SHA-256: <code>89c7d2e7dc7c34ee11663a87357bd66b122cac6ce4539a803903e2f88ec76c8e</code><br>
+    SHA-256: <code>e6fe26230685f87d5914491a1a450b0b16d53a90e0a1ed653a84ee199c42f98a</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

@@ -48,9 +48,10 @@ python3 scripts/prax_teach.py visual-verify \
 Use `--check` to recompute a frozen receipt. The command scans the exact source,
 generated HTML, accessibility text, hidden/default surfaces, and linked textual
 assets; checks structural/static-fallback integrity; and fails closed on
-opaque, animated, remote, executable, stale, or answer-leaking delivery.
-Interactive and motion routes can pass only for their static fallback and keep
-the requested runtime explicitly unverified.
+opaque, animated, remote, executable, stale, or answer-leaking delivery. For a
+Prax Visual Lab route it reruns the packaged runtime verifier and also checks
+the complete static fallback. Arbitrary external interactive, animation, or
+video runtimes remain unverified until their own bounded inspection path runs.
 
 The automated leakage check is limited to declared textual answers. It records
 semantic visual leakage through geometry, color, emphasis, or layout as

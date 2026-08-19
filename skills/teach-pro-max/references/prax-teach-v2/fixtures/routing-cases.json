@@ -33,6 +33,15 @@
         "mode": "course",
         "persistence": "consent_required"
       },
+      "id": "personal-multi-session-course",
+      "request": "Build me a six-week course on database performance and remember my progress across sessions."
+    },
+    {
+      "expected": {
+        "action": "teach",
+        "mode": "course",
+        "persistence": "consent_required"
+      },
       "id": "resuming-inflection",
       "request": "I am resuming: the state says one heavily hinted application answer"
     },
@@ -44,6 +53,15 @@
       },
       "id": "transfer-attempt-boundary",
       "request": "Teach a two-thread lost update and do not reveal the transfer answer before an attempt"
+    },
+    {
+      "expected": {
+        "action": "teach",
+        "mode": "lesson",
+        "persistence": false
+      },
+      "id": "practical-executable-lesson",
+      "request": "Teach me gradient descent practically. Use a real two-parameter model or the smallest executable example, let me change something, and make me debug a failed step. Do not take over a project for me."
     },
     {
       "answer_now": true,

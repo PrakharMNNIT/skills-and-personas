@@ -452,6 +452,177 @@ class TestStateSecurity(unittest.TestCase):
             self.assertEqual((parked / "state" / "sessions.jsonl").read_bytes(), b"")
 
     @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors required")
+    def test_state_journal_cleanup_cannot_delete_replacement_generation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            base = Path(temp)
+            workspace = base / "course"
+            replacement = base / "replacement"
+            parked = base / "parked-course"
+            self.init_workspace(workspace)
+            self.init_workspace(replacement)
+            workspace = state_module.secure_workspace(workspace)
+            replacement = state_module.secure_workspace(replacement)
+
+            transaction = state_module._state_transaction(workspace, [])
+            original_journal = workspace / "state" / state_module.STATE_TRANSACTION_NAME
+            replacement_journal = (
+                replacement / "state" / state_module.STATE_TRANSACTION_NAME
+            )
+            state_module.atomic_write_json(original_journal, transaction)
+            state_module.atomic_write_json(replacement_journal, transaction)
+
+            original_read_bytes = state_module.read_bytes
+            misconception_reads = 0
+
+            def swap_generation_before_journal_cleanup(
+                target_workspace: Path, relative: str | Path
+            ) -> bytes:
+                nonlocal misconception_reads
+                payload = original_read_bytes(target_workspace, relative)
+                if (
+                    target_workspace == workspace
+                    and str(relative) == "state/misconceptions.json"
+                ):
+                    misconception_reads += 1
+                    if misconception_reads == 2:
+                        workspace.rename(parked)
+                        replacement.rename(workspace)
+                return payload
+
+            with (
+                mock.patch.object(
+                    state_module,
+                    "read_bytes",
+                    side_effect=swap_generation_before_journal_cleanup,
+                ),
+                self.assertRaisesRegex(SafetyError, "generation changed"),
+                state_module.workspace_lock(workspace),
+            ):
+                state_module._apply_state_transaction(workspace, transaction)
+
+            parked = state_module.secure_workspace(parked)
+            self.assertTrue(
+                (parked / "state" / state_module.STATE_TRANSACTION_NAME).is_file()
+            )
+            self.assertTrue(
+                (workspace / "state" / state_module.STATE_TRANSACTION_NAME).is_file()
+            )
+
+            with state_module.workspace_lock(parked):
+                state_module._apply_state_transaction(parked, transaction)
+            self.assertFalse(
+                (parked / "state" / state_module.STATE_TRANSACTION_NAME).exists()
+            )
+            self.assertTrue(
+                (workspace / "state" / state_module.STATE_TRANSACTION_NAME).is_file()
+            )
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors required")
+    def test_full_delete_swap_preserves_replacement_and_journal(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            base = Path(temp).resolve()
+            workspace = base / "course"
+            quarantine = base / ".course.prax-teach-deleting"
+            displaced = base / "displaced-course"
+            replacement = base / "replacement"
+            journal = base / ".course.full-delete-transaction.json"
+            self.init_workspace(workspace)
+            replacement.mkdir(mode=0o700)
+            marker = replacement / "must-not-delete.txt"
+            marker.write_text("replacement", encoding="utf-8")
+
+            original_remove = state_module._remove_directory_contents
+            swapped = False
+
+            def swap_then_remove(descriptor: int) -> None:
+                nonlocal swapped
+                if not swapped:
+                    quarantine.rename(displaced)
+                    replacement.rename(quarantine)
+                    swapped = True
+                original_remove(descriptor)
+
+            with (
+                mock.patch.object(
+                    state_module,
+                    "_remove_directory_contents",
+                    side_effect=swap_then_remove,
+                ),
+                self.assertRaisesRegex(SafetyError, "changed during removal"),
+            ):
+                state_module.delete_workspace(
+                    str(workspace), dry_run=False, confirm=True
+                )
+
+            self.assertTrue(swapped)
+            self.assertEqual(
+                (quarantine / marker.name).read_text(encoding="utf-8"),
+                "replacement",
+            )
+            self.assertTrue(displaced.is_dir())
+            self.assertTrue(journal.is_file())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors required")
+    def test_full_delete_parent_swap_does_not_rename_replacement_workspace(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp).resolve()
+            original_parent = root / "original-parent"
+            replacement_parent = root / "replacement-parent"
+            parked_parent = root / "parked-parent"
+            original_parent.mkdir(mode=0o700)
+            replacement_parent.mkdir(mode=0o700)
+            workspace = original_parent / "course"
+            replacement_workspace = replacement_parent / workspace.name
+            self.init_workspace(workspace)
+            replacement_workspace.mkdir(mode=0o700)
+            replacement_marker = replacement_workspace / "must-not-move.txt"
+            replacement_marker.write_text("replacement", encoding="utf-8")
+            original_learner = (workspace / "state" / "learner.json").read_bytes()
+            original_plan = state_module._workspace_deletion_plan
+            plan_calls = 0
+
+            def plan_then_swap_parent(target: Path) -> dict[str, object]:
+                nonlocal plan_calls
+                plan = original_plan(target)
+                plan_calls += 1
+                if plan_calls == 2:
+                    original_parent.rename(parked_parent)
+                    replacement_parent.rename(original_parent)
+                return plan
+
+            with (
+                mock.patch.object(
+                    state_module,
+                    "_workspace_deletion_plan",
+                    side_effect=plan_then_swap_parent,
+                ),
+                self.assertRaises(SafetyError),
+            ):
+                state_module.delete_workspace(
+                    str(workspace), dry_run=False, confirm=True
+                )
+
+            replacement_workspace = original_parent / workspace.name
+            quarantine = parked_parent / ".course.prax-teach-deleting"
+            journal = parked_parent / ".course.full-delete-transaction.json"
+            self.assertEqual(plan_calls, 2)
+            self.assertEqual(
+                (replacement_workspace / replacement_marker.name).read_text(
+                    encoding="utf-8"
+                ),
+                "replacement",
+            )
+            self.assertFalse((original_parent / quarantine.name).exists())
+            self.assertFalse((parked_parent / workspace.name).exists())
+            self.assertEqual(
+                (quarantine / "state" / "learner.json").read_bytes(),
+                original_learner,
+            )
+            self.assertTrue(journal.is_file())
+
+    @unittest.skipUnless(os.name == "posix", "POSIX directory descriptors required")
     def test_locked_review_write_rejects_ancestor_swap_redirection(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

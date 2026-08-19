@@ -118,7 +118,9 @@ class VisualVerificationTests(unittest.TestCase):
             arguments.append("--check")
         return self.run_cli(*arguments)
 
-    def test_all_four_routes_verify_actual_static_delivery(self) -> None:
+    def test_all_four_routes_verify_fallback_and_packaged_runtime_delivery(
+        self,
+    ) -> None:
         with tempfile.TemporaryDirectory() as temp:
             base = Path(temp)
             for route in ("none", "static", "interactive", "motion"):

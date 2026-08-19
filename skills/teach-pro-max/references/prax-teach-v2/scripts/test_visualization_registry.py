@@ -80,6 +80,34 @@ class VisualizationRegistryTests(unittest.TestCase):
         self.assertTrue(selected)
         self.assertTrue(all("quantity" in tool["routes"] for tool in selected))
 
+    def test_default_motion_route_excludes_retired_video_engines(self) -> None:
+        result = self.run_cli("--route", "change-over-time", "--json", "--limit", "100")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        selected = {tool["id"] for tool in json.loads(result.stdout)}
+        self.assertFalse({"motion-canvas", "remotion"} & selected)
+        self.assertTrue({"manim", "hyperframes"} <= selected)
+
+    def test_documented_film_routes_are_canonical_and_executable(self) -> None:
+        router = (ROOT / "references/VISUALIZATION-ROUTER.md").read_text()
+        expected = {
+            "change-over-time": {"manim", "hyperframes"},
+            "mathematics": {"manim"},
+        }
+        for route, required in expected.items():
+            with self.subTest(route=route):
+                self.assertIn(f"--route {route}", router)
+                result = self.run_cli("--route", route, "--json", "--limit", "100")
+                self.assertEqual(result.returncode, 0, result.stderr)
+                selected = {tool["id"] for tool in json.loads(result.stdout)}
+                self.assertTrue(required <= selected)
+
+    def test_retired_engine_remains_inspectable_by_exact_name(self) -> None:
+        result = self.run_cli("motion-canvas", "--json", "--limit", "1")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        selected = json.loads(result.stdout)
+        self.assertEqual(selected[0]["id"], "motion-canvas")
+        self.assertEqual(selected[0]["disposition"], "do-not-route")
+
     def test_registry_is_portable_and_does_not_assert_installation(self) -> None:
         violations: list[str] = []
         for tool in self.tools:

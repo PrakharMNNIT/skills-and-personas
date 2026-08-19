@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RENDERER = path.join(ROOT, "scripts", "render_markdown.mjs");
+const RENDER_ALL = path.join(ROOT, "scripts", "render_all.mjs");
 
 function runRaw(args, expected = 0) {
   const completed = spawnSync(process.execPath, [RENDERER, ...args], {
@@ -44,6 +45,23 @@ function run(args, expected = 0, trustedRoot = undefined) {
 async function temporaryDirectory(prefix) {
   return realpath(await mkdtemp(path.join(os.tmpdir(), prefix)));
 }
+
+test("bulk rendering leaves immutable attempt snapshots untouched", async () => {
+  const directory = await temporaryDirectory("prax-render-all-");
+  const attempts = path.join(directory, "evidence", "forward", "attempts");
+  await mkdir(attempts, { recursive: true });
+  await writeFile(path.join(directory, "current.md"), "# Current\n", "utf8");
+  await writeFile(path.join(attempts, "snapshot.md"), "# Snapshot\n", "utf8");
+
+  const completed = spawnSync(process.execPath, [RENDER_ALL, directory], {
+    cwd: ROOT,
+    encoding: "utf8",
+    env: { ...process.env, SOURCE_DATE_EPOCH: "1785844800" },
+  });
+  assert.equal(completed.status, 0, completed.stderr);
+  await stat(path.join(directory, "current.html"));
+  await assert.rejects(stat(path.join(attempts, "snapshot.html")));
+});
 
 test("renderer requires an explicit trusted root", async () => {
   const directory = await temporaryDirectory("prax-render-root-required-");

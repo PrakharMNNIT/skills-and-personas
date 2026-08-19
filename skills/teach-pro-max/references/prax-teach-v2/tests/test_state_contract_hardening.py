@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -1098,13 +1099,15 @@ class StateContractHardeningTest(unittest.TestCase):
             parent_journal = base / ".course.full-delete-transaction.json"
             quarantine = base / ".course.prax-teach-deleting"
 
-            def partially_remove(path: Path) -> None:
-                (Path(path) / "state" / "sessions.jsonl").unlink()
+            def partially_remove(descriptor: int) -> None:
+                os.unlink("state/sessions.jsonl", dir_fd=descriptor)
                 raise OSError("injected partial recursive deletion")
 
             with (
                 mock.patch.object(
-                    state_module.shutil, "rmtree", side_effect=partially_remove
+                    state_module,
+                    "_remove_directory_contents",
+                    side_effect=partially_remove,
                 ),
                 self.assertRaisesRegex(OSError, "partial recursive deletion"),
             ):
@@ -1135,13 +1138,15 @@ class StateContractHardeningTest(unittest.TestCase):
             self.init_workspace(workspace)
             self.observe(workspace)
 
-            def partially_remove(path: Path) -> None:
-                (Path(path) / "state" / "sessions.jsonl").unlink()
+            def partially_remove(descriptor: int) -> None:
+                os.unlink("state/sessions.jsonl", dir_fd=descriptor)
                 raise OSError("injected partial recursive deletion")
 
             with (
                 mock.patch.object(
-                    state_module.shutil, "rmtree", side_effect=partially_remove
+                    state_module,
+                    "_remove_directory_contents",
+                    side_effect=partially_remove,
                 ),
                 self.assertRaisesRegex(OSError, "partial recursive deletion"),
             ):
@@ -1164,13 +1169,15 @@ class StateContractHardeningTest(unittest.TestCase):
             self.init_workspace(workspace)
             self.observe(workspace)
 
-            def partially_remove(path: Path) -> None:
-                (Path(path) / "state" / "sessions.jsonl").unlink()
+            def partially_remove(descriptor: int) -> None:
+                os.unlink("state/sessions.jsonl", dir_fd=descriptor)
                 raise OSError("injected partial recursive deletion")
 
             with (
                 mock.patch.object(
-                    state_module.shutil, "rmtree", side_effect=partially_remove
+                    state_module,
+                    "_remove_directory_contents",
+                    side_effect=partially_remove,
                 ),
                 self.assertRaisesRegex(OSError, "partial recursive deletion"),
             ):

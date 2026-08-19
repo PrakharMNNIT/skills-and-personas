@@ -67,7 +67,16 @@ def select_tools(
     trust: str | None,
 ) -> list[dict[str, Any]]:
     selected: list[tuple[int, dict[str, Any]]] = []
+    normalized_query = (query or "").strip().lower()
     for tool in tools:
+        if tool.get("disposition") == "do-not-route":
+            exact_names = {
+                str(tool.get("id", "")).lower(),
+                str(tool.get("name", "")).lower(),
+                *[str(item).lower() for item in tool.get("aliases", [])],
+            }
+            if normalized_query not in exact_names:
+                continue
         if route and route.lower() not in [
             str(item).lower() for item in tool.get("routes", [])
         ]:
@@ -143,6 +152,8 @@ def format_tool(tool: dict[str, Any]) -> str:
         f"trust={tool.get('trust', 'unspecified')}",
         str(tool.get("summary", "")).strip(),
     ]
+    if tool.get("disposition"):
+        lines.append(f"disposition={tool['disposition']}")
     official = tool.get("official", {})
     lines.extend(format_links("official docs", official.get("docs", [])))
     lines.extend(format_links("syntax/API", official.get("syntax", [])))

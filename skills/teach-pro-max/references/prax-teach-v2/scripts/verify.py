@@ -24,6 +24,8 @@ DEFAULT_EPOCH = "1785844800"
 FULL_RECEIPT = ROOT / "evidence/verification/full.json"
 RECEIPT_RELATIVE = FULL_RECEIPT.relative_to(ROOT).as_posix()
 PRUNED_DIRECTORIES = {
+    ".agent",
+    ".agents",
     ".git",
     ".mypy_cache",
     ".nox",
@@ -32,6 +34,7 @@ PRUNED_DIRECTORIES = {
     ".tox",
     ".venv",
     "__pycache__",
+    "attempts",
     "env",
     "hidden-bank",
     "hidden-banks",
@@ -47,6 +50,7 @@ PRUNED_DIRECTORIES = {
     "private_bank",
     "private_banks",
     "runs",
+    "openspec",
     "venv",
 }
 LOG_RETENTION = {
@@ -259,7 +263,11 @@ def main() -> int:
     environment["SOURCE_DATE_EPOCH"] = environment.get(
         "SOURCE_DATE_EPOCH", DEFAULT_EPOCH
     )
-    if sys.platform == "darwin" and Path("/usr/bin/sandbox-exec").is_file():
+    if (
+        sys.platform == "darwin"
+        and Path("/usr/bin/sandbox-exec").is_file()
+        and environment.get("PRAX_DISABLE_MACOS_SANDBOX_TESTS") != "1"
+    ):
         environment["PRAX_RUN_MACOS_SANDBOX_TESTS"] = "1"
     skillopt_source_receipt = None
     if args.skillopt_source:

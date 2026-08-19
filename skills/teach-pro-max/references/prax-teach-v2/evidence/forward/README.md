@@ -18,38 +18,50 @@ candidate superiority, field accessibility, or human learning outcomes.
 | 7 | 8/8, later invalidated | Retained under `attempts/attempt-7/`; it passed, then source changes made its exact bindings stale. |
 | 8 | Unscored | Retained under `attempts/attempt-8-driver-context/`; stopped after seven cases because the runner prompt confused the read-only package with the learner workspace. |
 | 9 | 8/8, later invalidated | Retained under `attempts/attempt-9/`; it passed, then final visual, isolation, scheduler, and routing remediation changed its bound source bytes. |
-| 10 | **8/8 passed** | Current `run.json`, eight fresh outputs, and independent `receipt.json`; all cases were regenerated against the remediated source. |
+| 10 | 8/8, later invalidated | Retained under `attempts/attempt-10/`; practical-learning and visual-runtime changes made its source bindings stale. |
+| 11 | Reported 8/8, rejected | Retained under `attempts/attempt-11/`; frozen-spec review found no bound execution and an incomplete project-takeover prohibition. |
+| 12 | 7/8, rejected | Retained under `attempts/attempt-12/`; the lesson omitted an explicit retrieval horizon, and review exposed two routing defects. |
+| 13 | 7/8, rejected | Retained under `attempts/attempt-13/`; routing was corrected, but the lesson still called its horizon unspecified. |
+| 14 | Reported 8/8, rejected | Retained under `attempts/attempt-14/`; frozen-spec review found transfer before explicit learner explanation, so the passing receipt overstated the bound sequence. |
+| 15 | 8/8, later invalidated | Retained under `attempts/attempt-15/`; it passed, then final runtime security remediation changed the bound routing source. |
+| 16 | 8/8, later invalidated | Retained under `attempts/attempt-16/`; it passed, then the runtime contracts tree was added to the bound routing source. |
+| 17 | 8/8, later invalidated | Retained under `attempts/attempt-17/`; it passed, then direct-model, canonical-route, and consent-source changes altered bound bytes. |
+| 18 | 7/8, rejected | Retained under `attempts/attempt-18/`; the course response omitted the required explicit ephemeral alternative, so no passing receipt was written. |
+| 19 | 8/8, later invalidated | Retained under `attempts/attempt-19/`; it passed, then final routing security and lesson-capability binding changed the bound source. |
+| 20 | 8/8, later invalidated | Retained under `attempts/attempt-20/`; formatter-only normalization changed the bound routing source. |
+| 21 | 8/8 passed | Current release-eligible run; all eight cases were regenerated from the final source and independently scored. |
 
-The frozen rubric is `../../evals/forward-behavior.json`. The current run binds
+The frozen rubric is `../../evals/forward-behavior.json`. An eligible run binds
 the rubric, its own byte-final run manifest, seven teaching sources, the supplied
-synthetic resume context, eight distinct fresh task identities, and every output
-byte. The independent reviewer recomputed all 18 declared bindings and recorded
-item-level judgments for every required and forbidden behavior.
+synthetic resume context, eight distinct fresh task identities, every output
+byte, and two replayable execution files. The independent reviewer recomputed
+all 20 declared bindings, replayed the execution fixture, and recorded item-level
+judgments for every required and forbidden behavior.
 
 ## Multi-turn lesson integrity
 
 The lesson case used one fresh `fork_turns:none` tutor. It received the candidate
 skill, the learner request, and only natural learner replies; it did not receive
 the rubric, prior outputs, or desired closing instructions. The exact transcript
-contains eight tutor and seven learner turns: unassisted initial diagnosis and
-discrimination, an unseen whole-document transfer, a learner-authored
-teach-back, a later CAS/retry error, one next-needed hint followed by a turn
-boundary, and a scaffolded repair. The transfer answer first appears in the
-learner attempt. The closing evidence statement separates unassisted from
-scaffolded performance, leaves delayed recall untested, and requests fresh
-no-notes retrieval in one to two days and again after one week.
+contains five tutor and five learner turns: one initial error, one next-needed
+hint followed by a turn boundary, a scaffolded repair, and an unseen unassisted
+transfer. The transfer answer first appears in the learner attempt. The closing
+evidence statement separates scaffolded from unassisted performance, leaves
+delayed recall untested, and names a provisional one-week horizon with a
+48-hour re-test.
 
-## Accessibility claim boundary
+## Practical executable-learning case
 
-The accessibility case uses host chat with no custom artifact controls or
-scripts. It supplies complete static instructions/data and explicit typed-action
-labels in reading order. It also states that host-UI keyboard, focus,
-reduced-motion, and assistive-technology behavior remains unverified. Automated
-artifact structure checks and this agent-behavior case do not satisfy EG-03.
+The practical case completes predict, run, inspect, modify, debug, explain, and
+transfer against one replayable two-parameter Python model. Its six tutor and
+six learner turns contain three exact command/output replays, separate runtime
+evidence from learner performance, preserve a
+complete script-free transcript, and require no optional dependency or second
+teaching skill.
 
 ## Claim boundary
 
-Attempt 10 is reproducible public engineering evidence about this package
-snapshot. It cannot satisfy EG-01 provider ablation, EG-02 measured SkillOpt
+Attempt 21 is current release-eligible engineering evidence for its exact bound
+bytes. It cannot satisfy EG-01 provider ablation, EG-02 measured SkillOpt
 gain, EG-03 representative accessibility field evidence, EG-04 immediate human
 benefit, EG-05 delayed retention and transfer, or EG-06 generalization.

@@ -1,6 +1,6 @@
 ---
 name: teach-pro-max
-description: Teach concepts and skills through adaptive, evidence-oriented tutoring for quick explanations, focused lessons, and consent-based multi-session courses. Use when the user asks to learn, understand, practice, be quizzed, build intuition, receive Socratic guidance, create an accessible lesson, or resume prior learning. Includes progressive hints, cautious mastery evidence, review scheduling, visual routing, durable learner state, evaluation tools, and offline optional adapters.
+description: Teach concepts and skills through adaptive, evidence-oriented tutoring and first-class immersive visualization for quick explanations, focused lessons, and consent-based multi-session courses. Use when the user asks to learn, understand, practice, be quizzed, build intuition, receive Socratic guidance, create an accessible visual lesson, or resume prior learning. Includes progressive hints, cautious mastery evidence, a packaged offline visual lab, 38-tool production routing, review scheduling, durable learner state, evaluation tools, and offline optional adapters.
 ---
 
 # Teach Pro Max
@@ -42,6 +42,35 @@ Use the embedded engine's modes:
 
 Infer the lightest suitable mode. Honor `quick`, `lesson`, `course`, `go
 deeper`, `keep it concise`, and **Answer now** overrides immediately.
+
+## Make visualization first-class
+
+`teach-pro-max` is the single complete teaching skill. Do not ask the learner to
+attach `prax-teach` or another teaching skill to restore advanced visuals.
+
+For every teaching response, choose internally among `none`, `static`,
+`interactive`, and `motion` by learning value. When a substantial visual is
+useful, follow the embedded visualization router and its full inherited
+Prax-Teach production handbook. Use the packaged Prax Visual Lab for compatible
+interactive and learner-controlled sequence work. For specialized diagrams,
+charts, generated imagery, 3D, animation, or video, inspect the current harness
+for an authorized equivalent skill, tool, MCP server, plugin, or CLI and query
+the embedded 38-tool registry. Specify the capability and outcome rather than a
+provider-specific command.
+
+Preserve editable semantic source, exact labels and data, provenance,
+accessibility, retrieval safety, and a complete static fallback. Render in the
+actual lesson environment, inspect, revise locally, and verify the delivered
+bytes. Static fallback is a resilience boundary, not the default replacement
+for an available rich route.
+
+For video, build the interactive lesson first, then project the same storyboard
+to HyperFrames or Manim plus captions and transcript. Pin Manim 0.21.0 at first
+use. Do not route new work through Motion Canvas or Remotion. Keep Canvas
+Commons, Olli, JSXGraph, Pyodide, MCP Apps, and 3D dependencies deferred until
+the embedded router's explicit trigger occurs. For LLM visuals, put one of
+`illustration`, `measured`, `correlational`, `intervention`, or `hypothesis` in
+the lesson `NOTES` and `CONTEXT`; never describe a visual as “the model thought.”
 
 ## Preserve the teaching invariants
 

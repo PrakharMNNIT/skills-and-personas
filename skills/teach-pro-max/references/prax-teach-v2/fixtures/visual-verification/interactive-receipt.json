@@ -11,7 +11,7 @@
     "unbundled_runtime_promoted": false
   },
   "claim_boundary": "Automated static-delivery bytes passed deterministic structure and declared textual-leakage checks. Geometry, color, emphasis, and other semantic visual leakage still require human review. No browser, assistive-technology, field-accessibility, factual-correctness, or human-learning claim is supported.",
-  "delivery_route": "static",
+  "delivery_route": "interactive",
   "inputs": {
     "forbidden_answer_rubric": {
       "path": "fixtures/visual-verification/rubric.json",
@@ -19,11 +19,11 @@
     },
     "generated_html": {
       "path": "fixtures/visual-verification/interactive.html",
-      "sha256": "7c294430b447a19199d02bb469aaa0e6331882feb373de3aa8dd667b3228f99c"
+      "sha256": "d0eff2ccfc75f79705ecbd437e67bfe65e9efd3b49cfb337de51d24596fff359"
     },
     "route_output": {
       "path": "fixtures/visual-verification/interactive-route.json",
-      "sha256": "670b945aa87bad87c532f3311dd5820f4d25898fbe3b35a089a0f67ea6f56c8c"
+      "sha256": "dfdc3f3f047dc71799ae480ed50abd047aa5ad8108343dd0646f8488c9399236"
     },
     "source": {
       "path": "fixtures/visual-verification/interactive.md",
@@ -32,18 +32,18 @@
   },
   "linked_textual_assets": [],
   "requested_runtime_applicable": true,
-  "requested_runtime_verified": false,
+  "requested_runtime_verified": true,
   "route": "interactive",
   "schema_version": 1,
   "status": "passed",
   "verifier": {
     "implementation": {
       "path": "scripts/praxteach/visual_verify.py",
-      "sha256": "98f48567f0ee362ad9ec1f67abfeee197d31c527c46a161a29ea7b0c99be805a"
+      "sha256": "141441810a63fcd73acfaeea2ddf152027fc18973a2ea15ee4bc8a9378dd26bb"
     },
     "renderer": {
       "path": "scripts/render_markdown.mjs",
-      "sha256": "7c4984014ce89e141ff60c678afef8e91f86c9cae078cca05a86da152a88ca59"
+      "sha256": "91e6dc2163465fc7417673234f99a6b1edc5f0d5a798df299d4afb49d3593342"
     },
     "version": "prax-teach-visual-verifier/1.1.0"
   }

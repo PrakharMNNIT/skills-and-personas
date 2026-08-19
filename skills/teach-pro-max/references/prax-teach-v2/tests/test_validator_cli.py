@@ -117,6 +117,9 @@ class ValidatorCliTest(unittest.TestCase):
         self.assertEqual(
             set(adapted),
             {
+                "assets/visualization-router.png",
+                "assets/visualization-router.svg",
+                "references/LEGACY-VISUALIZATION-ROUTER.md",
                 "references/VISUALIZATION-TOOL-REGISTRY.md",
                 "references/visualization-tool-registry.json",
                 "scripts/find_visualization_tool.py",

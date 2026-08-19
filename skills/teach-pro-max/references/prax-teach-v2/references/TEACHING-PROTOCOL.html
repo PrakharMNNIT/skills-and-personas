@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="TEACHING-PROTOCOL.md">
-  <meta name="source-sha256" content="a0f5ecf66ba512ac2e8dd2bcebbc51ba892f1212bbedd6a7f8e1d80bdd0948c9">
+  <meta name="source-sha256" content="6e7b61957b18673ebfd23cc0bcde034f288082aac5081eab6f984312e80ce98e">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -53,6 +53,7 @@
 <ol>
 <li><a href="#outcome-contract">Outcome contract</a></li>
 <li><a href="#teaching-sequence">Teaching sequence</a></li>
+<li><a href="#practical-executable-learning">Practical executable learning</a></li>
 <li><a href="#diagnostic-design">Diagnostic design</a></li>
 <li><a href="#hint-ladder">Hint ladder</a></li>
 <li><a href="#feedback-contract">Feedback contract</a></li>
@@ -147,6 +148,30 @@ stronger hint, or transfer answer in that turn unless the learner requests
 <li>Revisit failures and high-hint successes sooner.</li>
 <li>Keep stable unassisted retrievals farther apart.</li>
 </ul>
+<h2 id="practical-executable-learning">Practical executable learning</h2>
+<p>Practical learning is a mode of this teaching protocol, not a second teaching
+skill. When the outcome requires operating, building, or debugging a real
+system, use this loop:</p>
+<blockquote>
+<p>predict → run → inspect → modify → debug → explain → transfer</p>
+</blockquote>
+<ul>
+<li>Ask for a concrete prediction before execution when it tests the target idea.</li>
+<li>Run the smallest authentic program, command, model, or experiment that exposes
+the relevant behavior.</li>
+<li>Inspect observable state, output, traces, tests, or errors instead of narrating
+an imagined execution.</li>
+<li>Let the learner make one purposeful modification and diagnose the result.</li>
+<li>Ask the learner to explain the causal or procedural rule the run demonstrated.</li>
+<li>Finish with a changed task that requires the same rule without copying the
+worked path.</li>
+</ul>
+<p>Engineering evidence is not learning evidence. Passing tests, valid output,
+browser behavior, benchmarks, and generated artifacts show that the exercise
+works; only the learner's own retrieval, explanation, application,
+discrimination, or transfer attempt can update learning evidence. Route visuals
+through the existing visual router and keep the practical loop inside the
+existing lesson or course state.</p>
 <h2 id="diagnostic-design">Diagnostic design</h2>
 <p>Use the smallest diagnostic that changes instruction.</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
@@ -327,11 +352,15 @@ gate above, not a compressed correction-and-model turn.</p>
 <li>next retrieval and reason;</li>
 <li>files or state changed, if any.</li>
 </ul>
+<p>If the learner has not supplied a desired horizon, choose a provisional one and
+label it explicitly—for example, <code>Retention horizon: &lt;duration&gt;</code>—before naming
+the next retrieval. Do not call the horizon unspecified and then schedule with
+vague words such as “later” or “soon.”</p>
 <p>Never claim a learning gain from the tutor’s own artifact score.</p>
 </main>
   <footer>
     Canonical source: <a href="./TEACHING-PROTOCOL.md">TEACHING-PROTOCOL.md</a><br>
-    SHA-256: <code>a0f5ecf66ba512ac2e8dd2bcebbc51ba892f1212bbedd6a7f8e1d80bdd0948c9</code><br>
+    SHA-256: <code>6e7b61957b18673ebfd23cc0bcde034f288082aac5081eab6f984312e80ce98e</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

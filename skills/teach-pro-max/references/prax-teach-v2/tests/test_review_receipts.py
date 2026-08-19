@@ -41,10 +41,20 @@ class ReviewReceiptTests(unittest.TestCase):
         scripts.mkdir()
         shutil.copy2(ROOT / "scripts" / "prax_teach.py", scripts)
         shutil.copy2(ROOT / "scripts" / "render_markdown.mjs", scripts)
+        shutil.copy2(ROOT / "scripts" / "verify_visual_runtime.py", scripts)
         shutil.copytree(
             ROOT / "scripts" / "praxteach",
             scripts / "praxteach",
             ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+        )
+        shutil.copytree(
+            ROOT / "runtime" / "prax-visual-lab",
+            workspace / "runtime" / "prax-visual-lab",
+            ignore=shutil.ignore_patterns("node_modules"),
+        )
+        shutil.copytree(
+            ROOT / "examples" / "visual-lab",
+            workspace / "examples" / "visual-lab",
         )
         # Runtime dependencies are deliberately excluded from the immutable
         # review payload, but the copied renderer still needs its pinned local

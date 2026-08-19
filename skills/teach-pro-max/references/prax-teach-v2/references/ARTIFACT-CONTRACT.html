@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="ARTIFACT-CONTRACT.md">
-  <meta name="source-sha256" content="73f655e751b09d3ea0c8913c7c69484709bd61a9221314fdbf880677774a997c">
+  <meta name="source-sha256" content="ac36d9a07ef07d878a4ae6729faec584d9dc1079334736f57c3b2ca739eec120">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -117,9 +117,26 @@ disclosure only;</li>
 and grading;</li>
 <li>bundled HTML does not grade form answers, maintain stateful components, or
 write learner evidence or persistence;</li>
-<li>richer artifact interaction requires a separately versioned renderer/runtime,
+<li>compatible richer interaction uses the packaged, separately versioned Prax
+Visual Lab; other rich media require an approved versioned capability,
 independent tests, a complete static fallback, and manual browser review.</li>
 </ul>
+<p>Prax Visual Lab is part of this package, not a second teaching skill. Use it for
+state stepping, parameter manipulation, representation comparison, progressive
+hints, local receipts, and learner-controlled sequences. Use the visualization
+registry and current harness capabilities for specialized diagrams, charts,
+3D, animation, or video.</p>
+<p>Prefer direct reuse of one authoritative executable model across the lesson and
+its visual surfaces. Only when direct reuse is impossible and the duplicated
+calculation is deliberately small may an executable visual prove parity against
+independently specified literal parity vectors. Exercise those vectors through both
+implementations and fail verification when either disagrees. A browser self-check
+may expose the result for inspection, but it is engineering evidence, not
+evidence that a learner understood the model.</p>
+<p>Do not add a scene or trace schema until a real consumer uses it for playback,
+scrubbing, or synchronized state across two outputs. A future video or adapter
+is not a consumer; remove an unused schema instead of preserving speculative
+infrastructure.</p>
 <p>When no approved interaction runtime is present, an "interactive lesson" means
 a live host-chat attempt paired with complete static instructions and data. It
 does not create artifact controls. In that branch, review the prompt and static
@@ -134,14 +151,16 @@ learning-job <code>route</code> but sets <code>bundled_renderer_supported</code>
 <code>separately-versioned-tested-and-manually-reviewed</code>. Deliver through host chat or
 the declared static fallback; do not describe the bundled HTML as an interactive
 exercise merely because a learner can open a disclosure.</p>
-<p>The static-fallback claim is itself executable. <code>prax_teach.py visual-verify</code>
+<p>The static-fallback and packaged-runtime claims are executable.
+<code>prax_teach.py visual-verify</code>
 must recompute the Markdown/HTML companion, structural shell, local links,
 route/fallback agreement, visible retrieval-attempt prompt, and normalized
 answer-leakage scan over source, HTML, alternative text, captions, hidden
 markup, metadata, and linked textual assets. The content-bound receipt records
-the verifier and renderer hashes. It never upgrades an unbundled interactive
-or motion runtime, opaque media, factual correctness, real-browser behavior, or
-human learning evidence. Declared textual answers are machine-scanned;
+the verifier and renderer hashes. For a Prax Visual Lab route it also reruns the
+packaged runtime verifier. It never upgrades an arbitrary external runtime,
+opaque media, factual correctness, real-browser behavior, or human learning
+evidence. Declared textual answers are machine-scanned;
 geometry, color, emphasis, and other semantic visual leakage remain a required
 human review.</p>
 <p>Use semantic block types with stable IDs:</p>
@@ -337,7 +356,7 @@ remaining claim limitation.</li>
 </main>
   <footer>
     Canonical source: <a href="./ARTIFACT-CONTRACT.md">ARTIFACT-CONTRACT.md</a><br>
-    SHA-256: <code>73f655e751b09d3ea0c8913c7c69484709bd61a9221314fdbf880677774a997c</code><br>
+    SHA-256: <code>ac36d9a07ef07d878a4ae6729faec584d9dc1079334736f57c3b2ca739eec120</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

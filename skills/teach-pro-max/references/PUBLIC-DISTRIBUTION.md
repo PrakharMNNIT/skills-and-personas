@@ -5,13 +5,14 @@
 1. [Architecture](#architecture)
 2. [Naming and compatibility](#naming-and-compatibility)
 3. [Evidence boundary](#evidence-boundary)
-4. [Modification policy](#modification-policy)
-5. [Repository documentation](#repository-documentation)
+4. [Current visual-unification status](#current-visual-unification-status)
+5. [Modification policy](#modification-policy)
+6. [Repository documentation](#repository-documentation)
 
 ## Architecture
 
-`teach-pro-max` is a public alias and portable policy layer around a complete,
-byte-preserved `prax-teach-v2` engine.
+`teach-pro-max` is a public alias and portable policy layer around an embedded,
+content-manifested `prax-teach-v2` engine.
 
 ```text
 teach-pro-max/
@@ -24,10 +25,12 @@ teach-pro-max/
     └── prax-teach-v2/                complete embedded engine
 ```
 
-The wrapper adds portable capability-adaptive execution and explicit no-API,
-quota, authorization, and evidence rules. The embedded engine remains the
-normative detailed teaching, state, visualization, evaluation, and operations
-implementation.
+The wrapper adds portable capability-adaptive execution, first-class visual
+production, and explicit no-API, quota, authorization, and evidence rules. The
+embedded engine remains the normative detailed teaching, state, visualization,
+evaluation, and operations implementation. It includes the full inherited
+Prax-Teach visualization handbook, portable 38-tool registry, and packaged Prax
+Visual Lab; no second teaching skill is required for the visual route.
 
 ## Naming and compatibility
 
@@ -60,6 +63,20 @@ It does not demonstrate:
 The repository-level documentation archive preserves the broader research,
 failed attempts, upgrade plan, tracker, and original release archives without
 injecting them into the wrapper's default context.
+
+## Current visual-unification status
+
+The source working-tree candidate fixes the product-level visualization route,
+includes the packaged Prax Visual Lab, and adds the executable practical loop.
+Focused routing, contract, runtime, renderer, registry, and Markdown/HTML gates
+pass. Fresh forward-behavior attempt 21 passes 8/8 against 20 exact-byte
+bindings, including the runnable practical trace. Older forward receipts remain
+historical. Browser inspection passes on five named package pages, including
+Prax Visual Lab. Three independent reviews and exact full verification pass for
+the frozen embedded payload. Two clean-HEAD archives were byte-identical, and
+the global installed copy matches this distribution manifest. This is the newly
+reviewed engineering release; delayed human-learning and external-harness
+claims remain outside the evidence boundary.
 
 ## Modification policy
 

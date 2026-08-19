@@ -88,7 +88,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     visual_verify = subparsers.add_parser(
-        "visual-verify", help="verify actual static visual-delivery bytes"
+        "visual-verify", help="verify visual delivery and its static fallback"
     )
     visual_verify.add_argument("--route-output", required=True)
     visual_verify.add_argument("--source", required=True)

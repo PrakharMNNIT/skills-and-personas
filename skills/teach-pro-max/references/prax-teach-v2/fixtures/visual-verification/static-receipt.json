@@ -19,11 +19,11 @@
     },
     "generated_html": {
       "path": "fixtures/visual-verification/static.html",
-      "sha256": "b9fa9fe2a75c2dec74c9044220ea12a6a125ebe86e319e070c42919ba5609def"
+      "sha256": "adb8ac9f6be5e21e35a4875832aed81df8d5ad37e21f065b4de629230ef7fe8b"
     },
     "route_output": {
       "path": "fixtures/visual-verification/static-route.json",
-      "sha256": "b377eae0834f56e12679d5e9bea7f7067aab36e2d2280b4907f261c768f3ac73"
+      "sha256": "68e75c637e7f2045aa2fa9387d5cbbe4eda3a55ffc27bab0cfa2a5a2f80fe8bf"
     },
     "source": {
       "path": "fixtures/visual-verification/static.md",
@@ -39,11 +39,11 @@
   "verifier": {
     "implementation": {
       "path": "scripts/praxteach/visual_verify.py",
-      "sha256": "98f48567f0ee362ad9ec1f67abfeee197d31c527c46a161a29ea7b0c99be805a"
+      "sha256": "141441810a63fcd73acfaeea2ddf152027fc18973a2ea15ee4bc8a9378dd26bb"
     },
     "renderer": {
       "path": "scripts/render_markdown.mjs",
-      "sha256": "7c4984014ce89e141ff60c678afef8e91f86c9cae078cca05a86da152a88ca59"
+      "sha256": "91e6dc2163465fc7417673234f99a6b1edc5f0d5a798df299d4afb49d3593342"
     },
     "version": "prax-teach-visual-verifier/1.1.0"
   }

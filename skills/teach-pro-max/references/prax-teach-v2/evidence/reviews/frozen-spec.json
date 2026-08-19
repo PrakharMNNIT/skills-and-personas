@@ -7,8 +7,8 @@
   "findings": [],
   "fixes": [],
   "payload": "evidence/reviews/payload.json",
-  "payload_file_sha256": "23ea646a9e92c2d11f6fd8c17b8c42b467392d16ed5b23a7e57e515cac8e9439",
-  "payload_manifest_sha256": "0891015a8444d1dbee389191cff2e5913fc77e9e808afb057e108d887db740d9",
+  "payload_file_sha256": "4ff26fde759a8b3dd7b4c5cff3ae9fab1c1c24b106410dc190dc3ba81a8b22af",
+  "payload_manifest_sha256": "7cf9995e3ff84bca35acf55d2e24fbc756628299d90d7de61a920da071255df6",
   "recheck": {
     "reviewer_confirmed": true,
     "status": "passed"
@@ -17,7 +17,7 @@
   "reviewer": {
     "identity": "independent frozen-spec reviewer",
     "independent_from_implementation": true,
-    "task": "/root/final2_frozen_spec_review"
+    "task": "/root/final_frozen_spec_21"
   },
   "schema_version": 2,
   "status": "passed",

@@ -14,6 +14,8 @@ from pathlib import Path, PurePosixPath
 from typing import Any
 
 PRUNED_DIRECTORY_NAMES = {
+    ".agent",
+    ".agents",
     ".git",
     ".mypy_cache",
     ".nox",
@@ -37,6 +39,7 @@ PRUNED_DIRECTORY_NAMES = {
     "private_bank",
     "private_banks",
     "runs",
+    "openspec",
     "venv",
 }
 REVIEW_PAYLOAD_FILE = "evidence/reviews/payload.json"
@@ -57,12 +60,53 @@ class PayloadError(RuntimeError):
     """A payload cannot be represented safely."""
 
 
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def read_stable_regular(path: Path, expected: os.stat_result | None = None) -> bytes:
+    """Read one stable regular-file generation without following symlinks."""
+    before = expected or path.lstat()
+    if stat.S_ISLNK(before.st_mode):
+        raise PayloadError(f"review payload is a symlink: {path}")
+    if not stat.S_ISREG(before.st_mode):
+        raise PayloadError(f"review payload contains a non-regular file: {path}")
+    try:
+        descriptor = os.open(
+            path,
+            os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0),
+        )
+    except OSError as exc:
+        raise PayloadError(
+            f"review payload file changed while opening: {path}"
+        ) from exc
+    try:
+        opened = os.fstat(descriptor)
+        if not stat.S_ISREG(opened.st_mode) or (opened.st_dev, opened.st_ino) != (
+            before.st_dev,
+            before.st_ino,
+        ):
+            raise PayloadError(f"review payload file changed while opening: {path}")
+        contents = bytearray()
+        while chunk := os.read(descriptor, 1024 * 1024):
+            contents.extend(chunk)
+        finished = os.fstat(descriptor)
+        after = path.lstat()
+        stable_fields = ("st_size", "st_mtime_ns", "st_ctime_ns")
+        if (
+            stat.S_ISLNK(after.st_mode)
+            or (after.st_dev, after.st_ino) != (opened.st_dev, opened.st_ino)
+            or any(
+                getattr(finished, name) != getattr(opened, name)
+                for name in stable_fields
+            )
+        ):
+            raise PayloadError(f"review payload file changed while reading: {path}")
+        return bytes(contents)
+    finally:
+        os.close(descriptor)
+
+
+def sha256(path: Path, expected: os.stat_result | None = None) -> str:
+    """Hash one stable regular-file generation without following symlinks."""
+
+    return hashlib.sha256(read_stable_regular(path, expected)).hexdigest()
 
 
 def distributable_mode(mode: int) -> str:
@@ -101,7 +145,7 @@ def payload_manifest(root: Path) -> dict[str, Any]:
                 {
                     "mode": distributable_mode(metadata.st_mode),
                     "path": relative,
-                    "sha256": sha256(path),
+                    "sha256": sha256(path, metadata),
                 }
             )
     files.sort(key=lambda item: item["path"])
@@ -180,7 +224,7 @@ def main() -> int:
         expected = payload_manifest(root)
         if args.check:
             try:
-                actual = json.loads(output.read_text(encoding="utf-8"))
+                actual = json.loads(read_stable_regular(output))
             except (OSError, UnicodeError, json.JSONDecodeError) as exc:
                 raise PayloadError(
                     f"review payload is missing or invalid: {exc}"

@@ -20,6 +20,7 @@ PAYLOAD_BUILDER = ROOT / "scripts" / "review_payload.py"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 import build_package as package_builder
+import verify as verification_driver
 from validate_workspace import _release_file_manifest
 
 REVIEW_ATTESTATION = {
@@ -47,6 +48,21 @@ def process_umask(mask: int):
 
 
 class BuildPackageTest(unittest.TestCase):
+    def test_verifier_and_validator_manifest_scopes_match(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            workspace = Path(temp)
+            (workspace / "source.txt").write_text("release\n", encoding="utf-8")
+            attempt = workspace / "evidence/forward/attempts/attempt-1"
+            attempt.mkdir(parents=True)
+            (attempt / "historical.txt").write_text("history\n", encoding="utf-8")
+            original_root = verification_driver.ROOT
+            try:
+                verification_driver.ROOT = workspace
+                produced = verification_driver.release_file_manifest()
+            finally:
+                verification_driver.ROOT = original_root
+            self.assertEqual(produced, _release_file_manifest(workspace))
+
     def git(self, repository: Path, *arguments: str) -> None:
         completed = subprocess.run(
             ["git", *arguments],
@@ -101,6 +117,9 @@ class BuildPackageTest(unittest.TestCase):
         verify_script = scripts / "verify.py"
         verify_script.write_text("# fixture verifier\n", encoding="utf-8")
         (path / "reviewed.txt").write_text("reviewed bytes\n", encoding="utf-8")
+        attempt = path / "evidence/forward/attempts/attempt-1"
+        attempt.mkdir(parents=True)
+        (attempt / "history.txt").write_text("reviewed history\n", encoding="utf-8")
         lock_paths = (
             "package-lock.json",
             "uv.lock",
@@ -306,10 +325,29 @@ class BuildPackageTest(unittest.TestCase):
             repository = base / "candidate"
             self.reviewed_candidate(repository)
 
+            # OpenSpec and agent control files are validated separately from the
+            # distributable review payload and must not widen the archive.
+            for relative in (
+                ".agent/run.md",
+                ".agents/skills/local/SKILL.md",
+                "openspec/config.yaml",
+            ):
+                control_file = repository / relative
+                control_file.parent.mkdir(parents=True, exist_ok=True)
+                control_file.write_text("control plane\n", encoding="utf-8")
+            self.git(repository, "add", ".")
+            self.git(repository, "commit", "--quiet", "-m", "control metadata")
+
             completed = self.build(repository, base / "release.zip")
             receipt = json.loads(completed.stdout)
             self.assertEqual(receipt["release_gate"], "passed")
             with zipfile.ZipFile(base / "release.zip") as archive:
+                self.assertEqual(
+                    archive.read(
+                        "prax-teach-v2/evidence/forward/attempts/attempt-1/history.txt"
+                    ),
+                    b"reviewed history\n",
+                )
                 manifest = json.loads(
                     archive.read("prax-teach-v2/PACKAGE-MANIFEST.json")
                 )

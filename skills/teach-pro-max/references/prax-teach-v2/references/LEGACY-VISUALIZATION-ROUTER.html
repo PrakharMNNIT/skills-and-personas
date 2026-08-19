@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="LEGACY-VISUALIZATION-ROUTER.md">
-  <meta name="source-sha256" content="ef22cd7966b4060dff22787710670963a3d91641b6dcc5ae89469e33a8ed88e2">
+  <meta name="source-sha256" content="8162c0d4aa523167ede4fc8eebea40ef3c74b21f1e51f844df36716203759eb0">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -159,23 +159,23 @@
 </tr>
 <tr>
 <td>Mathematical or algorithmic transformation over time</td>
-<td>Manim</td>
-<td>Motion Canvas</td>
+<td>Manim 0.21.0</td>
+<td>HyperFrames</td>
 </tr>
 <tr>
 <td>Animated code, vector, or systems explainer</td>
-<td>Motion Canvas</td>
-<td>Manim, HyperFrames</td>
+<td>HyperFrames</td>
+<td>Manim</td>
 </tr>
 <tr>
-<td>React-based, templated, data-driven, or branded video</td>
-<td>Remotion</td>
+<td>Templated, data-driven, or branded video</td>
 <td>HyperFrames</td>
+<td>Manim when precision math dominates</td>
 </tr>
 <tr>
 <td>Agent-authored HTML/CSS/JS video</td>
 <td>HyperFrames</td>
-<td>Remotion</td>
+<td>Static sequence when film adds no learning value</td>
 </tr>
 <tr>
 <td>Small interactive vector state machine</td>
@@ -223,7 +223,7 @@ python &lt;prax-teach-skill-dir&gt;/scripts/find_visualization_tool.py mermaid
 </tr>
 <tr>
 <td>Exact frame timing</td>
-<td>Motion Canvas, Remotion, or HyperFrames</td>
+<td>HyperFrames or Manim</td>
 </tr>
 </tbody></table></div>
 <p>Never use an image model as the source of truth for text, equations, measurements, ordered steps, object counts, charts, architecture, or precise scientific, medical, legal, safety, or historical claims. Generate illustration separately and composite authoritative labels in SVG or HTML.</p>
@@ -239,7 +239,7 @@ python &lt;prax-teach-skill-dir&gt;/scripts/find_visualization_tool.py mermaid
 <h3 id="advanced-patterns">Advanced patterns</h3>
 <p>Use only when complexity earns them:</p>
 <ul>
-<li><strong>Scene-graph intermediate representation:</strong> typed nodes, edges, groups, values, and states before rendering.</li>
+<li><strong>Scene-graph intermediate representation:</strong> typed nodes, edges, groups, values, and states before rendering, only when a real playback, scrubbing, or synchronized-output consumer reads it.</li>
 <li><strong>Constraint-based layout:</strong> alignment, containment, non-overlap, equal spacing, and geometric invariants.</li>
 <li><strong>Structured edits:</strong> add, remove, reconnect, regroup, or restyle semantic objects rather than blind text replacement.</li>
 <li><strong>Progressive rendering:</strong> show a clearly labelled coarse result and refine without changing its encoding.</li>
@@ -344,12 +344,13 @@ python &lt;prax-teach-skill-dir&gt;/scripts/find_visualization_tool.py mermaid
 </ol>
 <p>Choose:</p>
 <ul>
-<li><strong>Manim:</strong> equations, proofs, geometry, science, and precise algorithms.</li>
-<li><strong>Motion Canvas:</strong> TypeScript vector explainers, animated code, and narration-synchronized diagrams.</li>
-<li><strong>Remotion:</strong> React-based reusable, branded, templated, or data-driven video.</li>
+<li><strong>Manim 0.21.0:</strong> equations, proofs, geometry, science, and precise algorithms.</li>
 <li><strong>HyperFrames:</strong> deterministic HTML/CSS/JS visual storytelling with seekable animation.</li>
 <li><strong>Rive/dotLottie:</strong> small interactive vector animations and state machines.</li>
 </ul>
+<p>Motion Canvas and Remotion remain historical registry entries, not default
+routes for new Teach Pro Max work. Consider Canvas Commons only if a future
+lesson demonstrates a requirement for TypeScript generators.</p>
 <p>Use an explicit timeline, frame, or seekable state when determinism matters. Do not rely on wall-clock playback.</p>
 <ul>
 <li>Keep narration and visual action complementary rather than duplicative.</li>
@@ -435,7 +436,7 @@ assets/video/0007-gradient-descent/render.mp4
 </main>
   <footer>
     Canonical source: <a href="./LEGACY-VISUALIZATION-ROUTER.md">LEGACY-VISUALIZATION-ROUTER.md</a><br>
-    SHA-256: <code>ef22cd7966b4060dff22787710670963a3d91641b6dcc5ae89469e33a8ed88e2</code><br>
+    SHA-256: <code>8162c0d4aa523167ede4fc8eebea40ef3c74b21f1e51f844df36716203759eb0</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

@@ -77,8 +77,8 @@
     <text x="820" y="405" text-anchor="middle" class="node-title">Change over time</text>
     <text x="820" y="433" text-anchor="middle" class="node-copy">Causality, transformation,</text>
     <text x="820" y="453" text-anchor="middle" class="node-copy">sequence, synchronization</text>
-    <text x="820" y="492" text-anchor="middle" class="tool">Manim · Motion Canvas</text>
-    <text x="820" y="514" text-anchor="middle" class="tool">Remotion · HyperFrames</text>
+    <text x="820" y="492" text-anchor="middle" class="tool">Manim 0.21 · HyperFrames</text>
+    <text x="820" y="514" text-anchor="middle" class="tool">interactive first · film projection</text>
   </g>
 
   <g id="route-appearance">

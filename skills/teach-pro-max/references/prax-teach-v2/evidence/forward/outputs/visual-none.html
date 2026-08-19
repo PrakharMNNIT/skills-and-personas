@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="visual-none.md">
-  <meta name="source-sha256" content="cf893e5f1a8bfe922ea79058a54ed43bb7cfed002dd8ba0f01ee890f4c7ff03c">
+  <meta name="source-sha256" content="7341656b646f058cd5e999d9d516aa38bce530a8927111bbd0110c027e812bae">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
-  <title>Visual route: none</title>
+  <title>Idempotence</title>
   <style>
     :root { color-scheme: light; --paper:#f7f3ea; --ink:#172235; --muted:#5d6674; --accent:#8f3b20; --teal:#176b69; --line:#d7cbb8; --surface:#fffdf8; --code:#1c2837; --code-ink:#f4f1ea; }
     @media (prefers-color-scheme: dark) { :root { color-scheme: dark; --paper:#111923; --ink:#edf2f5; --muted:#b4bdc8; --accent:#f19a72; --teal:#72cbc5; --line:#344355; --surface:#182331; --code:#09111a; --code-ink:#edf2f5; } }
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -48,13 +48,12 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header><div><strong>Prax Teach lesson</strong><a href="./visual-none.md">Markdown source</a></div></header>
-  <main id="main-content"><h1 id="visual-route-none">Visual route: none</h1>
-<p>Idempotence means applying an operation repeatedly has the same effect as applying it once.</p>
-<p>Example: <code>abs(abs(-3)) = abs(-3) = 3</code>.</p>
+  <main id="main-content"><h1 id="idempotence">Idempotence</h1>
+<p>Idempotence means applying an operation repeatedly has the same effect as applying it once. Example: setting <code>status = "done"</code> twice still leaves it <code>"done"</code>.</p>
 </main>
   <footer>
     Canonical source: <a href="./visual-none.md">visual-none.md</a><br>
-    SHA-256: <code>cf893e5f1a8bfe922ea79058a54ed43bb7cfed002dd8ba0f01ee890f4c7ff03c</code><br>
+    SHA-256: <code>7341656b646f058cd5e999d9d516aa38bce530a8927111bbd0110c027e812bae</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

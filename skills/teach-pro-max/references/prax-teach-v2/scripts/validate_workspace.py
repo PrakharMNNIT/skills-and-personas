@@ -281,9 +281,14 @@ BROWSER_CHECK_FIELDS = (
     "manual_assistive_technology_checked",
 )
 
-# Generated dependencies, transient learner data, and private evaluation material
-# are deliberately outside the durable-package validation surface.
+# Generated dependencies, immutable failed-attempt archives, transient learner
+# data, and private evaluation material are outside current-package validation.
 PRUNED_DIRECTORY_NAMES = {
+    # OpenSpec control files are deliberately outside the legacy package
+    # surface. The separately validated runtime remains in the release tree,
+    # while its script boundary is checked by its own verifier below.
+    ".agent",
+    ".agents",
     ".git",
     ".mypy_cache",
     ".nox",
@@ -292,6 +297,7 @@ PRUNED_DIRECTORY_NAMES = {
     ".tox",
     ".venv",
     "__pycache__",
+    "attempts",
     "env",
     "hidden-bank",
     "hidden-banks",
@@ -307,6 +313,7 @@ PRUNED_DIRECTORY_NAMES = {
     "private_bank",
     "private_banks",
     "runs",
+    "openspec",
     "venv",
 }
 
@@ -582,6 +589,19 @@ def parse_page(path: Path) -> PageParser:
     return parser
 
 
+def is_separately_validated_runtime(path: Path, root: Path) -> bool:
+    """Identify the zero-API runtime whose script boundary has its own verifier."""
+
+    try:
+        relative = path.relative_to(root)
+    except ValueError:
+        return False
+    return len(relative.parts) >= 2 and relative.parts[:2] == (
+        "runtime",
+        "prax-visual-lab",
+    )
+
+
 def validate_companion_metadata(
     markdown: Path, html: Path, parser: PageParser, root: Path
 ) -> list[str]:
@@ -664,7 +684,10 @@ def validate_html_document(
     ):
         errors.append(f"{rel}: {problem}")
 
+    separately_validated_runtime = is_separately_validated_runtime(path, root)
     for tag in parser.dangerous_tags:
+        if separately_validated_runtime and tag == "script":
+            continue
         errors.append(f"{rel}: dangerous tag <{tag}>")
     for tag, attribute in parser.event_attributes:
         errors.append(f"{rel}: event attribute {attribute!r} on <{tag}>")
@@ -1890,7 +1913,7 @@ def validate_legacy_asset_provenance(root: Path) -> tuple[int, list[str]]:
     if (
         not isinstance(registry, dict)
         or registry.get("expected_tool_count") != 38
-        or registry.get("test_count") != 9
+        or registry.get("test_count") != 12
         or not isinstance(tools, list)
         or len(tools) != 38
     ):
@@ -2011,7 +2034,7 @@ def validate_forward_behavior_receipt(root: Path) -> tuple[int, list[str]]:
     evaluation = rubric.get("evaluation")
     if (
         rubric.get("schema_version") != 1
-        or rubric.get("rubric_version") != "1.0.0"
+        or rubric.get("rubric_version") != "1.1.0"
         or not isinstance(rubric_cases, list)
         or len(rubric_cases) != 8
         or not isinstance(evaluation, dict)
@@ -2130,6 +2153,33 @@ def validate_forward_behavior_receipt(root: Path) -> tuple[int, list[str]]:
                 )
             )
 
+    execution_files = run.get("execution_files")
+    required_execution_files = {
+        "evidence/forward/execution/practical_gradient_descent.py",
+        "evidence/forward/execution/practical_gradient_descent.stdout",
+    }
+    execution_binding_count = (
+        len(execution_files) if isinstance(execution_files, dict) else 0
+    )
+    if (
+        not isinstance(execution_files, dict)
+        or set(execution_files) != required_execution_files
+    ):
+        errors.append(f"{label}: practical execution bindings are missing or invalid")
+    else:
+        for relative, digest in execution_files.items():
+            errors.extend(
+                _bound_regular_file(
+                    root,
+                    relative,
+                    digest,
+                    label=f"{label} execution",
+                )
+            )
+    practical_run = run_by_id.get("practical-executable-learning", {})
+    if practical_run.get("execution_files") != sorted(required_execution_files):
+        errors.append(f"{label}: practical case is not bound to its execution evidence")
+
     if (
         receipt.get("schema_version") != 1
         or receipt.get("rubric_sha256") != rubric_digest
@@ -2163,6 +2213,7 @@ def validate_forward_behavior_receipt(root: Path) -> tuple[int, list[str]]:
         "source_count": source_binding_count,
         "context_count": context_binding_count,
         "output_count": output_binding_count,
+        "execution_count": execution_binding_count,
     }
     expected_hash_counts["checked_count"] = sum(expected_hash_counts.values())
     if not isinstance(hash_verification, dict) or any(

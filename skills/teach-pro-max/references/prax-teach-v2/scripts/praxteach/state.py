@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import contextlib
 import hashlib
 import json
 import math
@@ -20,6 +21,7 @@ from urllib.parse import urlparse
 from . import CORE_VERSION, SCHEMA_VERSION
 from .errors import ConsentRequired, SafetyError, ValidationError
 from .io import (
+    _ACTIVE_WORKSPACE_IO,
     PRIVATE_DIR_MODE,
     atomic_write,
     atomic_write_json,
@@ -1349,6 +1351,58 @@ def _load_state_transaction(workspace: Path) -> dict[str, Any] | None:
     return value
 
 
+def _validate_held_workspace_generation(workspace: Path) -> Any:
+    anchor = _ACTIVE_WORKSPACE_IO.get()
+    if anchor is None or anchor.workspace != workspace:
+        raise SafetyError("state journal cleanup requires a held workspace generation")
+    try:
+        current_workspace = workspace.lstat()
+        current_state = (workspace / "state").lstat()
+    except FileNotFoundError as exc:
+        raise SafetyError(
+            "learner workspace generation changed during journal cleanup"
+        ) from exc
+    if (current_workspace.st_dev, current_workspace.st_ino) != (
+        anchor.workspace_device,
+        anchor.workspace_inode,
+    ) or (current_state.st_dev, current_state.st_ino) != (
+        anchor.state_device,
+        anchor.state_inode,
+    ):
+        raise SafetyError("learner workspace generation changed during journal cleanup")
+    return anchor
+
+
+def _validate_journal_entry(
+    directory_descriptor: int, name: str, *, label: str
+) -> os.stat_result:
+    try:
+        entry = os.stat(name, dir_fd=directory_descriptor, follow_symlinks=False)
+    except FileNotFoundError as exc:
+        raise SafetyError(f"{label} disappeared during cleanup") from exc
+    if (
+        stat.S_ISLNK(entry.st_mode)
+        or not stat.S_ISREG(entry.st_mode)
+        or entry.st_nlink != 1
+        or stat.S_IMODE(entry.st_mode) & 0o077
+    ):
+        raise SafetyError(f"{label} is unsafe")
+    return entry
+
+
+def _unlink_state_journal(
+    workspace: Path, name: str, *, label: str = "state transaction journal"
+) -> None:
+    anchor = _validate_held_workspace_generation(workspace)
+    _validate_journal_entry(anchor.state_descriptor, name, label=label)
+    try:
+        os.unlink(name, dir_fd=anchor.state_descriptor)
+    except FileNotFoundError as exc:
+        raise SafetyError(f"{label} disappeared during cleanup") from exc
+    os.fsync(anchor.state_descriptor)
+    _validate_held_workspace_generation(workspace)
+
+
 def _apply_state_transaction(workspace: Path, transaction: dict[str, Any]) -> None:
     before, payloads = _validate_state_transaction(transaction)
     state_directory = workspace / "state"
@@ -1365,9 +1419,7 @@ def _apply_state_transaction(workspace: Path, transaction: dict[str, Any]) -> No
     for name in STATE_TARGET_FILES:
         if read_bytes(workspace, f"state/{name}") != payloads[name]:
             raise SafetyError(f"state transaction verification failed for {name}")
-    journal = state_directory / STATE_TRANSACTION_NAME
-    journal.unlink()
-    fsync_directory(state_directory)
+    _unlink_state_journal(workspace, STATE_TRANSACTION_NAME)
 
 
 def _recover_state_transaction(workspace: Path) -> dict[str, Any] | None:
@@ -2169,9 +2221,11 @@ def _apply_deletion_transaction(workspace: Path, transaction: dict[str, Any]) ->
     for name in DELETE_TARGET_FILES:
         if read_bytes(workspace, f"state/{name}") != payloads[name]:
             raise SafetyError(f"deletion transaction verification failed for {name}")
-    journal = state_directory / DELETE_TRANSACTION_NAME
-    journal.unlink()
-    fsync_directory(state_directory)
+    _unlink_state_journal(
+        workspace,
+        DELETE_TRANSACTION_NAME,
+        label="deletion transaction journal",
+    )
 
 
 def _recover_deletion_transaction(workspace: Path) -> dict[str, Any] | None:
@@ -2388,9 +2442,98 @@ def _validate_full_delete_transaction(
     return plan
 
 
-def _read_parent_delete_journal(journal: Path) -> Any:
+@contextlib.contextmanager
+def _held_journal_parent(workspace: Path) -> Iterable[int]:
+    if not _supports_full_delete_directory_fds():
+        raise SafetyError("descriptor-relative journal cleanup is unavailable")
+    flags = (
+        os.O_RDONLY
+        | getattr(os, "O_DIRECTORY", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+        | getattr(os, "O_CLOEXEC", 0)
+    )
+    anchor = _ACTIVE_WORKSPACE_IO.get()
+    if anchor is not None and anchor.workspace == workspace:
+        try:
+            descriptor = os.open("..", flags, dir_fd=anchor.workspace_descriptor)
+        except OSError as exc:
+            raise SafetyError("workspace parent cannot be held safely") from exc
+    else:
+        try:
+            descriptor = os.open(workspace.parent, flags)
+        except OSError as exc:
+            raise SafetyError("workspace parent cannot be held safely") from exc
     try:
-        journal_stat = journal.lstat()
+        yield descriptor
+    finally:
+        os.close(descriptor)
+
+
+def _supports_full_delete_directory_fds() -> bool:
+    return (
+        os.name == "posix"
+        and hasattr(os, "O_DIRECTORY")
+        and hasattr(os, "O_NOFOLLOW")
+        and os.scandir in os.supports_fd
+        and all(
+            operation in os.supports_dir_fd
+            for operation in (os.open, os.rename, os.rmdir, os.stat, os.unlink)
+        )
+    )
+
+
+def _validate_held_journal_parent(workspace: Path, descriptor: int) -> None:
+    try:
+        parent_stat = workspace.parent.lstat()
+    except FileNotFoundError as exc:
+        raise SafetyError("workspace parent changed during journal cleanup") from exc
+    if stat.S_ISLNK(parent_stat.st_mode) or not stat.S_ISDIR(parent_stat.st_mode):
+        raise SafetyError("workspace parent changed into a symlink or non-directory")
+    held_stat = os.fstat(descriptor)
+    if (held_stat.st_dev, held_stat.st_ino) != (
+        parent_stat.st_dev,
+        parent_stat.st_ino,
+    ):
+        raise SafetyError("workspace parent changed during journal cleanup")
+
+
+def _entry_exists_at(descriptor: int, name: str) -> bool:
+    try:
+        os.stat(name, dir_fd=descriptor, follow_symlinks=False)
+    except FileNotFoundError:
+        return False
+    return True
+
+
+def _unlink_parent_journal(workspace: Path, journal: Path, descriptor: int) -> None:
+    _validate_held_journal_parent(workspace, descriptor)
+    _validate_journal_entry(
+        descriptor,
+        journal.name,
+        label="full deletion transaction journal",
+    )
+    try:
+        os.unlink(journal.name, dir_fd=descriptor)
+    except FileNotFoundError as exc:
+        raise SafetyError(
+            "full deletion transaction journal disappeared during cleanup"
+        ) from exc
+    os.fsync(descriptor)
+    _validate_held_journal_parent(workspace, descriptor)
+
+
+def _read_parent_delete_journal(
+    journal: Path, *, parent_descriptor: int | None = None
+) -> Any:
+    try:
+        if parent_descriptor is None:
+            journal_stat = journal.lstat()
+        else:
+            journal_stat = os.stat(
+                journal.name,
+                dir_fd=parent_descriptor,
+                follow_symlinks=False,
+            )
     except FileNotFoundError as exc:
         raise SafetyError("recoverable full deletion is missing its journal") from exc
     if (
@@ -2404,7 +2547,10 @@ def _read_parent_delete_journal(journal: Path) -> Any:
         raise SafetyError("full deletion transaction journal is unexpectedly large")
     flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
     try:
-        descriptor = os.open(journal, flags)
+        if parent_descriptor is None:
+            descriptor = os.open(journal, flags)
+        else:
+            descriptor = os.open(journal.name, flags, dir_fd=parent_descriptor)
     except OSError as exc:
         raise SafetyError(
             "full deletion transaction journal cannot be opened safely"
@@ -2429,9 +2575,12 @@ def _read_parent_delete_journal(journal: Path) -> Any:
 
 
 def _load_full_delete_transaction(
-    expected_workspace: Path,
+    expected_workspace: Path, *, parent_descriptor: int | None = None
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    transaction = _read_parent_delete_journal(_full_delete_journal(expected_workspace))
+    transaction = _read_parent_delete_journal(
+        _full_delete_journal(expected_workspace),
+        parent_descriptor=parent_descriptor,
+    )
     if not isinstance(transaction, dict):
         raise ValidationError("full deletion transaction journal must be an object")
     plan = _validate_full_delete_transaction(
@@ -2459,52 +2608,175 @@ def _validate_full_delete_generation(path: Path, transaction: dict[str, Any]) ->
 
 
 def _remove_full_delete_quarantine(
-    workspace: Path, quarantine: Path, journal: Path
+    workspace: Path,
+    quarantine: Path,
+    journal: Path,
+    parent_descriptor: int,
+    transaction: dict[str, Any],
 ) -> None:
-    if not getattr(shutil.rmtree, "avoids_symlink_attacks", False):
-        raise SafetyError("platform lacks symlink-safe recursive deletion")
-    shutil.rmtree(quarantine)
-    fsync_directory(workspace.parent)
-    journal.unlink()
-    fsync_directory(workspace.parent)
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0)
+    try:
+        quarantine_descriptor = os.open(
+            quarantine.name,
+            flags,
+            dir_fd=parent_descriptor,
+        )
+    except OSError as exc:
+        raise SafetyError("full deletion quarantine cannot be opened safely") from exc
+    try:
+        opened_stat = os.fstat(quarantine_descriptor)
+        current_stat = os.stat(
+            quarantine.name,
+            dir_fd=parent_descriptor,
+            follow_symlinks=False,
+        )
+        expected_generation = (
+            transaction["workspace_device"],
+            transaction["workspace_inode"],
+        )
+        if (opened_stat.st_dev, opened_stat.st_ino) != expected_generation or (
+            current_stat.st_dev,
+            current_stat.st_ino,
+        ) != expected_generation:
+            raise SafetyError(
+                "full deletion workspace generation does not match its journal"
+            )
+        _remove_directory_contents(quarantine_descriptor)
+        current_stat = os.stat(
+            quarantine.name,
+            dir_fd=parent_descriptor,
+            follow_symlinks=False,
+        )
+        if (current_stat.st_dev, current_stat.st_ino) != expected_generation:
+            raise SafetyError(
+                "full deletion workspace generation changed during removal"
+            )
+        os.rmdir(quarantine.name, dir_fd=parent_descriptor)
+    except FileNotFoundError as exc:
+        raise SafetyError(
+            "full deletion workspace generation changed during removal"
+        ) from exc
+    finally:
+        os.close(quarantine_descriptor)
+    os.fsync(parent_descriptor)
+    _unlink_parent_journal(workspace, journal, parent_descriptor)
+
+
+def _remove_directory_contents(directory_descriptor: int) -> None:
+    with os.scandir(directory_descriptor) as iterator:
+        names = [entry.name for entry in iterator]
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | getattr(os, "O_CLOEXEC", 0)
+    for name in names:
+        try:
+            entry_stat = os.stat(
+                name,
+                dir_fd=directory_descriptor,
+                follow_symlinks=False,
+            )
+        except FileNotFoundError:
+            continue
+        if not stat.S_ISDIR(entry_stat.st_mode):
+            try:
+                os.unlink(name, dir_fd=directory_descriptor)
+            except FileNotFoundError:
+                pass
+            continue
+        try:
+            child_descriptor = os.open(
+                name,
+                flags,
+                dir_fd=directory_descriptor,
+            )
+        except FileNotFoundError:
+            continue
+        except OSError as exc:
+            raise SafetyError(
+                "full deletion directory changed during recursive removal"
+            ) from exc
+        try:
+            opened_stat = os.fstat(child_descriptor)
+            if (opened_stat.st_dev, opened_stat.st_ino) != (
+                entry_stat.st_dev,
+                entry_stat.st_ino,
+            ):
+                raise SafetyError(
+                    "full deletion directory changed during recursive removal"
+                )
+            _remove_directory_contents(child_descriptor)
+            current_stat = os.stat(
+                name,
+                dir_fd=directory_descriptor,
+                follow_symlinks=False,
+            )
+            if (current_stat.st_dev, current_stat.st_ino) != (
+                opened_stat.st_dev,
+                opened_stat.st_ino,
+            ):
+                raise SafetyError(
+                    "full deletion directory changed during recursive removal"
+                )
+            os.rmdir(name, dir_fd=directory_descriptor)
+        except FileNotFoundError as exc:
+            raise SafetyError(
+                "full deletion directory changed during recursive removal"
+            ) from exc
+        finally:
+            os.close(child_descriptor)
 
 
 def _recover_quarantined_workspace_deletion(workspace: Path) -> dict[str, Any] | None:
     """Finish a confirmed deletion, including a partially removed quarantine."""
 
-    quarantine = _full_delete_quarantine(workspace)
-    journal = _full_delete_journal(workspace)
-    journal_exists = journal.exists() or journal.is_symlink()
-    quarantine_exists = quarantine.exists() or quarantine.is_symlink()
-    workspace_exists = workspace.exists() or workspace.is_symlink()
-    if not journal_exists:
+    with _held_journal_parent(workspace) as parent_descriptor:
+        _validate_held_journal_parent(workspace, parent_descriptor)
+        quarantine = _full_delete_quarantine(workspace)
+        journal = _full_delete_journal(workspace)
+        journal_exists = _entry_exists_at(parent_descriptor, journal.name)
+        quarantine_exists = _entry_exists_at(parent_descriptor, quarantine.name)
+        workspace_exists = _entry_exists_at(parent_descriptor, workspace.name)
+        if not journal_exists:
+            if quarantine_exists:
+                raise SafetyError("full deletion quarantine exists without its journal")
+            return None
+        transaction, plan = _load_full_delete_transaction(
+            workspace,
+            parent_descriptor=parent_descriptor,
+        )
+        if workspace_exists and quarantine_exists:
+            raise SafetyError(
+                "full deletion found both live and quarantined workspaces"
+            )
+        if workspace_exists:
+            _validate_full_delete_generation(workspace, transaction)
+            current_plan = _workspace_deletion_plan(workspace)
+            if current_plan != plan:
+                raise SafetyError("full deletion live workspace content has diverged")
+            os.rename(
+                workspace.name,
+                quarantine.name,
+                src_dir_fd=parent_descriptor,
+                dst_dir_fd=parent_descriptor,
+            )
+            os.fsync(parent_descriptor)
+            quarantine_exists = True
         if quarantine_exists:
-            raise SafetyError("full deletion quarantine exists without its journal")
-        return None
-    transaction, plan = _load_full_delete_transaction(workspace)
-    if workspace_exists and quarantine_exists:
-        raise SafetyError("full deletion found both live and quarantined workspaces")
-    if workspace_exists:
-        _validate_full_delete_generation(workspace, transaction)
-        current_plan = _workspace_deletion_plan(workspace)
-        if current_plan != plan:
-            raise SafetyError("full deletion live workspace content has diverged")
-        workspace.rename(quarantine)
-        fsync_directory(workspace.parent)
-        quarantine_exists = True
-    if quarantine_exists:
-        _validate_full_delete_generation(quarantine, transaction)
-        _remove_full_delete_quarantine(workspace, quarantine, journal)
-    else:
-        # The subtree was completely removed before interruption; the durable
-        # parent tombstone is deliberately removed last.
-        journal.unlink()
-        fsync_directory(workspace.parent)
-    return {
-        "plan": plan,
-        "status": "all_state_deletion_recovered",
-        "workspace": str(workspace),
-    }
+            _validate_full_delete_generation(quarantine, transaction)
+            _remove_full_delete_quarantine(
+                workspace,
+                quarantine,
+                journal,
+                parent_descriptor,
+                transaction,
+            )
+        else:
+            # The subtree was completely removed before interruption; the durable
+            # parent tombstone is deliberately removed last.
+            _unlink_parent_journal(workspace, journal, parent_descriptor)
+        return {
+            "plan": plan,
+            "status": "all_state_deletion_recovered",
+            "workspace": str(workspace),
+        }
 
 
 def delete_workspace(path: str, *, dry_run: bool, confirm: bool) -> dict[str, Any]:
@@ -2539,7 +2811,7 @@ def delete_workspace(path: str, *, dry_run: bool, confirm: bool) -> dict[str, An
             raise ConfirmationRequired(
                 "full workspace deletion requires --confirm; run with --dry-run to preview the exact tree"
             )
-        if not getattr(shutil.rmtree, "avoids_symlink_attacks", False):
+        if not _supports_full_delete_directory_fds():
             raise SafetyError("platform lacks symlink-safe recursive deletion")
         quarantine = _full_delete_quarantine(workspace)
         if quarantine.exists() or quarantine.is_symlink():

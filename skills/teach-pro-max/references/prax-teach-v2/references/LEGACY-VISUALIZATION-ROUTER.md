@@ -55,10 +55,10 @@ For formulas, notation, protocols, architecture labels, or recurring entities, m
 | Large graph, map, spatial dataset, or 3D relationship | Canvas/WebGL | deck.gl, Three.js, Sigma.js |
 | Nodes the learner must expand, drag, connect, or inspect | React Flow | Cytoscape.js, custom SVG |
 | Mathematical geometry or constrained relationship | Penrose or SVG | TikZ, Manim |
-| Mathematical or algorithmic transformation over time | Manim | Motion Canvas |
-| Animated code, vector, or systems explainer | Motion Canvas | Manim, HyperFrames |
-| React-based, templated, data-driven, or branded video | Remotion | HyperFrames |
-| Agent-authored HTML/CSS/JS video | HyperFrames | Remotion |
+| Mathematical or algorithmic transformation over time | Manim 0.21.0 | HyperFrames |
+| Animated code, vector, or systems explainer | HyperFrames | Manim |
+| Templated, data-driven, or branded video | HyperFrames | Manim when precision math dominates |
+| Agent-authored HTML/CSS/JS video | HyperFrames | Static sequence when film adds no learning value |
 | Small interactive vector state machine | Rive or dotLottie | Animated SVG |
 | Many diagram languages behind one gateway | Kroki | Direct local renderer |
 
@@ -80,7 +80,7 @@ Inspect tools already available in the workspace before installing anything. Pre
 | Exact labels, arrows, and geometry | SVG or diagram-as-code |
 | Exact quantitative encoding | Vega-Lite, Observable Plot, ECharts, domain plot |
 | Exact mathematical transformation | Manim or Penrose |
-| Exact frame timing | Motion Canvas, Remotion, or HyperFrames |
+| Exact frame timing | HyperFrames or Manim |
 
 Never use an image model as the source of truth for text, equations, measurements, ordered steps, object counts, charts, architecture, or precise scientific, medical, legal, safety, or historical claims. Generate illustration separately and composite authoritative labels in SVG or HTML.
 
@@ -100,7 +100,7 @@ Styling changes must not rewrite meaning. When practical, generate several views
 
 Use only when complexity earns them:
 
-- **Scene-graph intermediate representation:** typed nodes, edges, groups, values, and states before rendering.
+- **Scene-graph intermediate representation:** typed nodes, edges, groups, values, and states before rendering, only when a real playback, scrubbing, or synchronized-output consumer reads it.
 - **Constraint-based layout:** alignment, containment, non-overlap, equal spacing, and geometric invariants.
 - **Structured edits:** add, remove, reconnect, regroup, or restyle semantic objects rather than blind text replacement.
 - **Progressive rendering:** show a clearly labelled coarse result and refine without changing its encoding.
@@ -217,11 +217,13 @@ Before implementation, create a storyboard containing:
 
 Choose:
 
-- **Manim:** equations, proofs, geometry, science, and precise algorithms.
-- **Motion Canvas:** TypeScript vector explainers, animated code, and narration-synchronized diagrams.
-- **Remotion:** React-based reusable, branded, templated, or data-driven video.
+- **Manim 0.21.0:** equations, proofs, geometry, science, and precise algorithms.
 - **HyperFrames:** deterministic HTML/CSS/JS visual storytelling with seekable animation.
 - **Rive/dotLottie:** small interactive vector animations and state machines.
+
+Motion Canvas and Remotion remain historical registry entries, not default
+routes for new Teach Pro Max work. Consider Canvas Commons only if a future
+lesson demonstrates a requirement for TypeScript generators.
 
 Use an explicit timeline, frame, or seekable state when determinism matters. Do not rely on wall-clock playback.
 

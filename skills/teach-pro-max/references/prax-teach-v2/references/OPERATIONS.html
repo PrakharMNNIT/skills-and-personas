@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="OPERATIONS.md">
-  <meta name="source-sha256" content="1dafb4f28f8c84a64203a5afa5079fc51614dcfd81c356010cce992a8944a3da">
+  <meta name="source-sha256" content="53519b1caa430392f32778e5b0d598a845abe889cbcf8ab8e671ce23ac475c22">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -113,9 +113,10 @@ bytes rather than treating the route decision as evidence:</p>
 <p>Use <code>--check</code> to recompute a frozen receipt. The command scans the exact source,
 generated HTML, accessibility text, hidden/default surfaces, and linked textual
 assets; checks structural/static-fallback integrity; and fails closed on
-opaque, animated, remote, executable, stale, or answer-leaking delivery.
-Interactive and motion routes can pass only for their static fallback and keep
-the requested runtime explicitly unverified.</p>
+opaque, animated, remote, executable, stale, or answer-leaking delivery. For a
+Prax Visual Lab route it reruns the packaged runtime verifier and also checks
+the complete static fallback. Arbitrary external interactive, animation, or
+video runtimes remain unverified until their own bounded inspection path runs.</p>
 <p>The automated leakage check is limited to declared textual answers. It records
 semantic visual leakage through geometry, color, emphasis, or layout as
 <code>manual_review_required</code> rather than pretending to evaluate meaning.</p>
@@ -567,7 +568,7 @@ accessibility field checks, and replication.</p>
 </main>
   <footer>
     Canonical source: <a href="./OPERATIONS.md">OPERATIONS.md</a><br>
-    SHA-256: <code>1dafb4f28f8c84a64203a5afa5079fc51614dcfd81c356010cce992a8944a3da</code><br>
+    SHA-256: <code>53519b1caa430392f32778e5b0d598a845abe889cbcf8ab8e671ce23ac475c22</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

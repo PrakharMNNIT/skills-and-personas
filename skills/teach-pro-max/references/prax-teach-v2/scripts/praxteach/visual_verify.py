@@ -1,4 +1,4 @@
-"""Verify actual visual-delivery bytes without promoting unbundled runtimes."""
+"""Verify visual-delivery bytes without promoting unverified runtimes."""
 
 from __future__ import annotations
 
@@ -191,12 +191,26 @@ def _forbidden_terms(document: dict[str, Any], *, retrieval: bool) -> list[str]:
     return normalized
 
 
-def _route_contract(document: dict[str, Any]) -> tuple[str, str, bool]:
+def _route_contract(document: dict[str, Any]) -> tuple[str, str, bool, bool]:
     route = document.get("route")
     delivery = document.get("delivery_route")
     if route not in {"none", "static", "interactive", "motion"}:
         raise ValidationError("route output has an invalid requested route")
-    expected_delivery = route if route in {"none", "static"} else "static"
+    runtime = document.get("visual_runtime")
+    runtime_direct = route in {"interactive", "motion"} and (
+        document.get("visual_runtime_supported") is True
+        and isinstance(runtime, dict)
+        and runtime.get("id") == "prax-visual-lab"
+        and isinstance(runtime.get("version"), str)
+        and runtime.get("entrypoint") == "runtime/prax-visual-lab/dist/index.html"
+        and runtime.get("manifest") == "runtime/prax-visual-lab/dist/manifest.json"
+        and runtime.get("verification_receipt")
+        == "evidence/zero-api-visual-runtime/verification.json"
+        and document.get("runtime_requirement") is None
+    )
+    expected_delivery = (
+        route if route in {"none", "static"} or runtime_direct else "static"
+    )
     if delivery != expected_delivery:
         raise ValidationError(
             "route output does not fail closed to its supported delivery"
@@ -238,20 +252,44 @@ def _route_contract(document: dict[str, Any]) -> tuple[str, str, bool]:
         or set(declared_surfaces) != required_surfaces
     ):
         raise ValidationError("route output has an invalid retrieval surface contract")
-    if route in {"interactive", "motion"} and (
-        document.get("bundled_renderer_supported") is not False
-        or document.get("runtime_requirement")
-        != "separately-versioned-tested-and-manually-reviewed"
-    ):
-        raise ValidationError(
-            "unbundled visual runtime was promoted as verified delivery"
+    if route in {"interactive", "motion"}:
+        fallback_only = (
+            not runtime_direct
+            and document.get("bundled_renderer_supported") is False
+            and document.get("runtime_requirement")
+            == "separately-versioned-tested-and-manually-reviewed"
         )
+        if document.get("bundled_renderer_supported") is not False or not (
+            runtime_direct or fallback_only
+        ):
+            raise ValidationError(
+                "unverified visual runtime was promoted as verified delivery"
+            )
     if (
         route in {"none", "static"}
         and document.get("bundled_renderer_supported") is not True
     ):
         raise ValidationError("bundled static route support is inconsistent")
-    return route, delivery, retrieval_required
+    return route, delivery, retrieval_required, runtime_direct
+
+
+def _verify_packaged_visual_runtime() -> None:
+    completed = subprocess.run(
+        [str(ROOT / "scripts/verify_visual_runtime.py")],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    try:
+        result = json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        raise ValidationError(
+            "packaged visual runtime verifier emitted invalid JSON"
+        ) from exc
+    if completed.returncode != 0 or result.get("status") != "passed":
+        detail = completed.stderr.strip() or completed.stdout.strip()
+        raise ValidationError(f"packaged visual runtime verification failed: {detail}")
 
 
 def _asset_references(markdown: str, generated_html: str) -> list[str]:
@@ -756,7 +794,9 @@ def verify_visual_delivery(
         forbidden_answer_file, label="forbidden-answer rubric"
     )
     route_document = _json_document(route_bytes, label="route output")
-    route, delivery, retrieval = _route_contract(route_document)
+    route, delivery, retrieval, runtime_direct = _route_contract(route_document)
+    if runtime_direct:
+        _verify_packaged_visual_runtime()
     rubric_document = _json_document(rubric_bytes, label="forbidden-answer rubric")
     forbidden = _forbidden_terms(rubric_document, retrieval=retrieval)
     try:
@@ -812,7 +852,7 @@ def verify_visual_delivery(
         "route": route,
         "delivery_route": delivery,
         "requested_runtime_applicable": route in {"interactive", "motion"},
-        "requested_runtime_verified": False,
+        "requested_runtime_verified": runtime_direct,
         "checks": {
             "actual_bytes_scanned_for_declared_textual_leakage": True,
             "attempt_before_reveal": "passed" if retrieval else "not_applicable",

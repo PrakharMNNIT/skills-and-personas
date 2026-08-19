@@ -10,9 +10,12 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "review_payload.py"
+sys.path.insert(0, str(ROOT / "scripts"))
+import review_payload
 
 
 class ReviewPayloadTests(unittest.TestCase):
@@ -128,6 +131,48 @@ class ReviewPayloadTests(unittest.TestCase):
             completed = self.run_script(workspace)
             self.assertEqual(completed.returncode, 2)
             self.assertIn("symlink", completed.stderr.lower())
+
+    def test_leaf_swap_to_symlink_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            workspace = Path(temp) / "workspace"
+            workspace.mkdir()
+            victim = workspace / "reviewed.txt"
+            victim.write_text("reviewed\n", encoding="utf-8")
+            external = Path(temp) / "external.txt"
+            external.write_text("external\n", encoding="utf-8")
+            real_open = os.open
+            swapped = False
+
+            def swap_before_open(path, flags, *args, **kwargs):
+                nonlocal swapped
+                if Path(path) == victim and not swapped:
+                    victim.unlink()
+                    victim.symlink_to(external)
+                    swapped = True
+                return real_open(path, flags, *args, **kwargs)
+
+            with (
+                patch.object(review_payload.os, "open", side_effect=swap_before_open),
+                self.assertRaises(review_payload.PayloadError),
+            ):
+                review_payload.payload_manifest(workspace)
+
+    def test_check_rejects_symlinked_output_leaf(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            workspace = Path(temp) / "workspace"
+            workspace.mkdir()
+            (workspace / "source.txt").write_text("review me\n", encoding="utf-8")
+
+            generated = self.run_script(workspace)
+            self.assertEqual(generated.returncode, 0, generated.stderr)
+            output = workspace / "evidence/reviews/payload.json"
+            outside = Path(temp) / "outside-payload.json"
+            output.replace(outside)
+            output.symlink_to(outside)
+
+            checked = self.run_script(workspace, "--check")
+            self.assertEqual(checked.returncode, 2)
+            self.assertIn("symlink", checked.stderr.lower())
 
 
 if __name__ == "__main__":

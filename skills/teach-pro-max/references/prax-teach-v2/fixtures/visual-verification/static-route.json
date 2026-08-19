@@ -28,5 +28,7 @@
     "verification_status": "not_run"
   },
   "route": "static",
-  "runtime_requirement": null
+  "runtime_requirement": null,
+  "visual_runtime": null,
+  "visual_runtime_supported": false
 }

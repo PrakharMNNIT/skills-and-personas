@@ -70,6 +70,15 @@
       "forbidden": ["pointer-only control", "answer visible in default state"]
     },
     {
+      "id": "practical-executable-learning",
+      "kind": "positive",
+      "prompt": "Teach me gradient descent by letting me change a real two-parameter model, run it, diagnose a bad step, and then transfer the rule to new data.",
+      "expected_mode": "lesson",
+      "expected_visual_route": "interactive",
+      "required": ["prediction before execution", "runnable smallest model with exact command and output evidence", "authentic run", "observable inspection", "purposeful modification", "debugging", "learner explanation", "unseen transfer", "engineering evidence separated from learning evidence"],
+      "forbidden": ["simulated execution presented as observed", "mastery from passing tests", "new teaching skill", "duplicated executable model without parity evidence", "takes over or completes the learner's project"]
+    },
+    {
       "id": "visual-motion",
       "kind": "positive",
       "prompt": "Teach me how a race condition unfolds over time between two threads.",

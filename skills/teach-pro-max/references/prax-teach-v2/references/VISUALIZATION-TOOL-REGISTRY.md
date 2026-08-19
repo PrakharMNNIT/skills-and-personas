@@ -77,9 +77,9 @@ Pin a reviewed version or commit, test it in isolation, and compare its output w
 | Browser-native lesson interaction | HTML, CSS, JavaScript, SVG |
 | Dense raster interaction | Canvas 2D |
 | GPU or 3D spatial system | WebGL, Three.js |
-| Mathematical transformation | Manim |
-| TypeScript vector animation | Motion Canvas |
-| React video | Remotion |
+| Mathematical transformation | Manim 0.21.0 |
+| General explanatory film | HyperFrames |
+| TypeScript generator film | Canvas Commons only after a demonstrated need |
 | Seekable HTML video | HyperFrames |
 | Interactive vector state machine | Rive, dotLottie |
 | Illustrative appearance | OpenAI image generation |
@@ -155,7 +155,10 @@ The JSON’s `checked_at` date is a snapshot, not a promise of permanent currenc
 Notable snapshot caveats:
 
 - Remotion’s MCP is deprecated; use its official skill/plugin.
+- Motion Canvas and Remotion remain inspectable historical entries but are
+  excluded from default Teach Pro Max routing; use HyperFrames or Manim.
 - Sigma.js v4 is alpha; stable work should use v3 documentation unless deliberately testing v4.
-- Manim Community v0.19+ uses PyAV internally; FFmpeg is not a core Manim prerequisite.
+- Pin Manim Community 0.21.0 at first use. Modern Manim uses PyAV internally;
+  FFmpeg is not a core Manim prerequisite.
 - Unsplash Source is discontinued.
 - Image-model capabilities and limitations change; verify the current official model page.

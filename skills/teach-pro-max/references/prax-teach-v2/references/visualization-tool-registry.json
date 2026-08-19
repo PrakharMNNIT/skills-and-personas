@@ -771,7 +771,7 @@
       "aliases": ["manim video", "math animation", "3blue1brown style"],
       "routes": ["change-over-time", "mathematics"],
       "capabilities": ["equations", "proofs", "geometry", "algorithm animation"],
-      "summary": "Python animation for precise mathematical and technical transformations.",
+      "summary": "Preferred Python film route for precise mathematical and technical transformations; pin 0.21.0 at first use.",
       "trust": "first-party-tool-docs",
       "official": {
         "docs": [{"label": "Manim documentation", "url": "https://docs.manim.community/en/stable/"}],
@@ -780,8 +780,8 @@
         "source": [{"label": "Manim Community source", "url": "https://github.com/ManimCommunity/manim"}]
       },
       "install": [
-        {"environment": "uv project", "command": "uv init manimations && cd manimations && uv add manim"},
-        {"environment": "pip", "command": "pip install manim"}
+        {"environment": "uv project", "command": "uv init manimations && cd manimations && uv add manim==0.21.0"},
+        {"environment": "pip", "command": "pip install manim==0.21.0"}
       ],
       "agent_integrations": [
         {
@@ -802,7 +802,8 @@
       "aliases": ["motioncanvas", "typescript animation"],
       "routes": ["change-over-time"],
       "capabilities": ["vector explainers", "animated code", "narration-synchronized scenes"],
-      "summary": "TypeScript/TSX generator-based technical animation.",
+      "summary": "Historical TypeScript/TSX animation entry retained for provenance; do not route new Teach Pro Max work here.",
+      "disposition": "do-not-route",
       "trust": "first-party-tool-docs",
       "official": {
         "docs": [{"label": "Motion Canvas quickstart", "url": "https://motioncanvas.io/docs/quickstart/"}],
@@ -821,7 +822,8 @@
       "aliases": ["react video", "remotion video"],
       "routes": ["change-over-time"],
       "capabilities": ["React video", "data-driven video", "templates", "branded compositions"],
-      "summary": "React-based programmatic video with official skills and a Codex plugin.",
+      "summary": "Legacy React-video adapter retained for provenance; use HyperFrames or Manim for new Teach Pro Max work.",
+      "disposition": "do-not-route",
       "trust": "first-party-agent-integration",
       "official": {
         "docs": [{"label": "Remotion fundamentals", "url": "https://www.remotion.dev/docs/the-fundamentals"}],
@@ -849,7 +851,7 @@
           "url": "https://www.remotion.dev/docs/ai/codex-plugin"
         }
       ],
-      "fallback": "Use the official React API without a skill, or use HyperFrames/Motion Canvas if licensing is unsuitable.",
+      "fallback": "Use HyperFrames for general film or Manim for mathematical and algorithmic film.",
       "verification": ["Inspect frame 0, proof frames, and final frame in Studio; render and validate streams with ffprobe."],
       "licensing": "Source-available with usage-dependent licensing. Check current pricing for organizations. Do not recommend the deprecated Remotion MCP."
     },

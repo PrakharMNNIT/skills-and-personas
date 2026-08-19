@@ -6,7 +6,7 @@
   "goal": "10-zero-api-autonomous-goal.md",
   "candidate_root": "./prax-teach-v2",
   "created_at": "2026-08-05T00:00:00+05:30",
-  "updated_at": "2026-08-05T00:00:00+05:30",
+  "updated_at": "2026-08-04T12:00:00+00:00",
   "status_vocabulary": [
     "pending",
     "in_progress",
@@ -26,9 +26,17 @@
     ]
   },
   "progress": {
-    "engineering": { "verified": 0, "total": 36, "percent": 0 },
-    "external": { "verified": 0, "total": 4, "percent": 0 },
-    "overall_claim": "NOT_STARTED"
+    "engineering": {
+      "verified": 30,
+      "total": 36,
+      "percent": 83
+    },
+    "external": {
+      "verified": 0,
+      "total": 4,
+      "percent": 0
+    },
+    "overall_claim": "ENGINEERING_IN_PROGRESS / SCIENTIFIC_EVIDENCE_PENDING"
   },
   "criteria": [
     {
@@ -36,250 +44,522 @@
       "phase": 0,
       "type": "engineering",
       "title": "Freeze and inventory current candidate",
-      "status": "pending",
+      "status": "verified",
       "dependencies": [],
       "acceptance": "Record absolute root, branch, HEAD, dirty state, toolchain, existing runtime boundary, relevant tests, and source hashes before modification.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/baseline.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-01",
       "phase": 0,
       "type": "engineering",
       "title": "Approve runtime-boundary ADR",
-      "status": "pending",
-      "dependencies": ["ZV-00"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-00"
+      ],
       "acceptance": "ADR preserves the bundled static renderer, creates a separately versioned local runtime, defines fail-closed routing, and documents rollback.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/NO-API-ARCHITECTURE.md",
+          "kind": "path"
+        },
+        {
+          "path": "openspec/changes/zero-api-visual-runtime/design.md",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-02",
       "phase": 0,
       "type": "engineering",
       "title": "Enforce no-API and no-network architecture",
-      "status": "pending",
-      "dependencies": ["ZV-01"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-01"
+      ],
       "acceptance": "Contract, CSP, allowlist, and automated interception fail on telemetry, remote assets, provider SDKs, API-key paths, or any runtime request.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "scripts/verify_visual_runtime.py",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/verification.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-03",
       "phase": 0,
       "type": "engineering",
       "title": "Add capability-adaptive execution policy",
-      "status": "pending",
-      "dependencies": ["ZV-00"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-00"
+      ],
       "acceptance": "Core policy is harness-neutral, separates capability from authorization, bounds delegation and quota, preserves primary ownership, and has single-agent fallback.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/CAPABILITY-ADAPTIVE-EXECUTION.md",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-04",
       "phase": 0,
       "type": "engineering",
       "title": "Define lesson and learning-receipt schemas",
-      "status": "pending",
-      "dependencies": ["ZV-01"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-01"
+      ],
       "acceptance": "Versioned schemas, positive/negative fixtures, canonical serialization, import validation, and forward-incompatibility behavior pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/contracts/visual-lesson.schema.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "runtime/prax-visual-lab/contracts/learning-receipt.schema.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-05",
       "phase": 0,
       "type": "engineering",
       "title": "Freeze static baseline and comparison protocol",
-      "status": "pending",
-      "dependencies": ["ZV-00"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-00"
+      ],
       "acceptance": "Current static lesson behavior, hashes, task script, outcome measures, exclusions, and hard failures are frozen before pilot construction.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/EVIDENCE-PROTOCOL.md",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/src/index.html",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-06",
       "phase": 1,
       "type": "engineering",
       "title": "Scaffold independently versioned runtime",
-      "status": "pending",
-      "dependencies": ["ZV-01", "ZV-02", "ZV-04"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-01",
+        "ZV-02",
+        "ZV-04"
+      ],
       "acceptance": "Local package has pinned project-scoped dependencies, deterministic scripts, no remote runtime dependency, and a documented public boundary.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/package.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "runtime/prax-visual-lab/build.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-07",
       "phase": 1,
       "type": "engineering",
       "title": "Implement accessible state-stepper",
-      "status": "pending",
-      "dependencies": ["ZV-06"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-06"
+      ],
       "acceptance": "Previous, next, jump, reset, keyboard, focus, announcements, stable state IDs, property tests, and complete static sequence pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/components.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-08",
       "phase": 1,
       "type": "engineering",
       "title": "Implement local receipt panel",
-      "status": "pending",
-      "dependencies": ["ZV-04", "ZV-06"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-04",
+        "ZV-06"
+      ],
       "acceptance": "Preview, copy, download, validated import, corruption isolation, delete, privacy copy, and round-trip tests pass without automatic transfer.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/components.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-09",
       "phase": 1,
       "type": "engineering",
       "title": "Implement ordered hint state",
-      "status": "pending",
-      "dependencies": ["ZV-06"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-06"
+      ],
       "acceptance": "One next-needed level is exposed only after an attempt; order, reset, receipt capture, and answer-leakage fixtures pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/core.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-10",
       "phase": 1,
       "type": "engineering",
       "title": "Build Python floating-point pilot",
-      "status": "pending",
-      "dependencies": ["ZV-07", "ZV-08", "ZV-09"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-07",
+        "ZV-08",
+        "ZV-09"
+      ],
       "acceptance": "Prediction, construction, comparison, rounding, explanation, unfamiliar transfer, and receipt sequence works from one validated lesson spec.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "examples/visual-lab/python-floating-point/pilot.py",
+          "kind": "path"
+        },
+        {
+          "path": "tests/test_visual_lab_pilot.py",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-11",
       "phase": 1,
       "type": "engineering",
       "title": "Preserve static, no-script, print, and reduced-motion routes",
-      "status": "pending",
-      "dependencies": ["ZV-10"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-10"
+      ],
       "acceptance": "Essential meaning and learner sequence remain complete with JavaScript off, motion reduced, printing, and runtime absence; router fails closed accurately.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/index.html",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/verification.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-12",
       "phase": 1,
       "type": "engineering",
       "title": "Pass pilot browser, accessibility, privacy, and security gates",
-      "status": "pending",
-      "dependencies": ["ZV-02", "ZV-10", "ZV-11"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-02",
+        "ZV-10",
+        "ZV-11"
+      ],
       "acceptance": "Recorded browser matrix, keyboard route, zoom/reflow, CSP, no-network interception, injection fixtures, storage inspection, and accessibility engineering checks pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/verification.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/verification/full.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-13",
       "phase": 1,
       "type": "engineering",
       "title": "Pilot independent review and stop/go decision",
-      "status": "pending",
-      "dependencies": ["ZV-12"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-12"
+      ],
       "acceptance": "Exact-byte code, architecture, learning-design, accessibility, privacy, and claim reviews close all high findings and record an explicit MVP go/no-go.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/pilot-review.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-14",
       "phase": 2,
       "type": "engineering",
       "title": "Implement parameter-lab",
-      "status": "pending",
-      "dependencies": ["ZV-13"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-13"
+      ],
       "acceptance": "Labeled native controls, exact values, announced results, valid ranges, reset, keyboard operation, property tests, and static samples pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/components.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-15",
       "phase": 2,
       "type": "engineering",
       "title": "Implement compare-views",
-      "status": "pending",
-      "dependencies": ["ZV-13"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-13"
+      ],
       "acceptance": "Synchronized selection and explicit mappings across views have semantic table/text equivalents and never rely on color alone.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/components.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-16",
       "phase": 2,
       "type": "engineering",
       "title": "Harden shared hint engine and deterministic graders",
-      "status": "pending",
-      "dependencies": ["ZV-09", "ZV-13"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-09",
+        "ZV-13"
+      ],
       "acceptance": "Hint state is reusable; exact/structural grading limits are explicit; ambiguous natural language routes to host tutor rather than false certainty.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/src/core.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-17",
       "phase": 2,
       "type": "engineering",
       "title": "Add deterministic lesson builder and manifest",
-      "status": "pending",
-      "dependencies": ["ZV-14", "ZV-15", "ZV-16"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-14",
+        "ZV-15",
+        "ZV-16"
+      ],
       "acceptance": "Validated spec-to-artifact builds are reproducible, content-addressed, source-mapped, CSP-bound, and reject unsupported components or versions.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/build.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "runtime/prax-visual-lab/dist/manifest.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-18",
       "phase": 2,
       "type": "engineering",
       "title": "Build Rubik’s move laboratory",
-      "status": "pending",
-      "dependencies": ["ZV-17"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-17"
+      ],
       "acceptance": "Legal-state manipulation, notation/permutation/spatial comparison, novel transfer, cube invariants, receipt, and static route pass without core forks.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "examples/visual-lab/rubiks-move-lab/lesson.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-19",
       "phase": 2,
       "type": "engineering",
       "title": "Build lost-update laboratory",
-      "status": "pending",
-      "dependencies": ["ZV-17"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-17"
+      ],
       "acceptance": "Learner-controlled interleavings, synchronized timeline/state table, race diagnosis, unfamiliar transfer, schedule properties, receipt, and static route pass.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "examples/visual-lab/lost-update-lab/lesson.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-20",
       "phase": 2,
       "type": "engineering",
       "title": "Prove runtime reuse across three domains",
-      "status": "pending",
-      "dependencies": ["ZV-18", "ZV-19"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-18",
+        "ZV-19"
+      ],
       "acceptance": "Three lesson specs use shared public components without lesson-specific core branches; differences remain data or bounded adapters.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "runtime/prax-visual-lab/tests/core.test.mjs",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-21",
       "phase": 2,
       "type": "engineering",
       "title": "Pass full MVP verification",
-      "status": "pending",
-      "dependencies": ["ZV-20"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-20"
+      ],
       "acceptance": "Focused, full, property, integration, browser, accessibility, privacy, security, no-network, deterministic-build, and independent review gates pass on exact bytes.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/verification/full.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/verification.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-22",
       "phase": 3,
       "type": "engineering",
       "title": "Approve one-experiment Lean ADR",
-      "status": "pending",
-      "dependencies": ["ZV-21"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-21"
+      ],
       "acceptance": "ADR names the learning claim, why Lean fits, pinned boundary, costs, success threshold, stop rule, browser exclusion, and removal path.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/FORMAL-VERIFICATION.md",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/lean-decision.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-23",
       "phase": 3,
       "type": "engineering",
       "title": "Implement pinned build-time Lean adapter",
-      "status": "pending",
-      "dependencies": ["ZV-22"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-22"
+      ],
       "acceptance": "Pinned local verifier emits validated proof states and a formal receipt binding version, imports, axioms, warnings, source hash, and result.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "integrations/formal/lean/adapter.py",
+          "kind": "path"
+        },
+        {
+          "path": "tests/test_formal_adapter.py",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-24",
       "phase": 3,
       "type": "engineering",
       "title": "Build proof-state lesson with static equivalent",
-      "status": "pending",
-      "dependencies": ["ZV-23"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-23"
+      ],
       "acceptance": "Preverified proof states render through shared components, remain intelligible in static form, and never imply a live browser theorem prover.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "examples/visual-lab/lean-proof-state/lesson.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "examples/visual-lab/lean-proof-state/proof-state.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-25",
@@ -287,49 +567,96 @@
       "type": "engineering",
       "title": "Make evidence-based Lean keep-or-revert decision",
       "status": "pending",
-      "dependencies": ["ZV-24"],
+      "dependencies": [
+        "ZV-24"
+      ],
       "acceptance": "Measured correctness/learning value is weighed against authoring, build, maintenance, accessibility, and cognitive cost; adapter is explicitly kept or cleanly removed.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/lean-decision.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-26",
       "phase": 4,
       "type": "engineering",
       "title": "Predeclare evaluation protocol",
-      "status": "pending",
-      "dependencies": ["ZV-05", "ZV-21"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-05",
+        "ZV-21"
+      ],
       "acceptance": "Frozen comparison, hypotheses, outcomes, exclusions, sample rationale, stopping rules, uncertainty, hard failures, and claim language exist before observations.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/EVIDENCE-PROTOCOL.md",
+          "kind": "path"
+        }
+      ]
     },
     {
       "id": "ZV-27",
       "phase": 4,
       "type": "engineering",
       "title": "Implement evaluation capture and analysis",
-      "status": "pending",
-      "dependencies": ["ZV-26"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-26"
+      ],
       "acceptance": "Randomization where applicable, pseudonymous local capture, validation, exclusion logging, analysis, confidence/uncertainty, and immutable receipts pass on synthetic fixtures.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "scripts/visual_evidence.py",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/evidence-receipt.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-28",
       "phase": 4,
       "type": "engineering",
       "title": "Prepare representative accessibility field protocol",
-      "status": "pending",
-      "dependencies": ["ZV-12", "ZV-21", "ZV-26"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-12",
+        "ZV-21",
+        "ZV-26"
+      ],
       "acceptance": "Keyboard, zoom, reduced motion, assistive technology, consent, task script, issue severity, and evidence-capture protocol are ready without claiming field passage.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "references/EVIDENCE-PROTOCOL.md",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/study-operations.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-29",
       "phase": 4,
       "type": "engineering",
       "title": "Prepare immediate, delayed, and transfer study operations",
-      "status": "pending",
-      "dependencies": ["ZV-26", "ZV-27"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-26",
+        "ZV-27"
+      ],
       "acceptance": "Recruitment boundary, consent, scheduling, instruments, receipt handling, dropout rules, analysis commands, and no-fabrication guard are executable.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/study-operations.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "EG-ZV-01",
@@ -337,7 +664,9 @@
       "type": "external",
       "title": "Representative accessibility field evidence",
       "status": "waiting_external",
-      "dependencies": ["ZV-28"],
+      "dependencies": [
+        "ZV-28"
+      ],
       "acceptance": "Real representative users complete critical tasks with recorded accessibility evidence; hard failures are absent or remediated and retested.",
       "evidence": []
     },
@@ -347,7 +676,9 @@
       "type": "external",
       "title": "Immediate learner-outcome evidence",
       "status": "waiting_external",
-      "dependencies": ["ZV-29"],
+      "dependencies": [
+        "ZV-29"
+      ],
       "acceptance": "Real learners provide predeclared retrieval, explanation, application, discrimination, transfer, cognitive-load, agency, and trust observations.",
       "evidence": []
     },
@@ -357,7 +688,9 @@
       "type": "external",
       "title": "Delayed 7–14 day retention evidence",
       "status": "waiting_external",
-      "dependencies": ["EG-ZV-02"],
+      "dependencies": [
+        "EG-ZV-02"
+      ],
       "acceptance": "The declared interval actually elapses and real learners complete unassisted delayed retrieval and explanation under the frozen protocol.",
       "evidence": []
     },
@@ -367,7 +700,9 @@
       "type": "external",
       "title": "Novel-transfer and generalization evidence",
       "status": "waiting_external",
-      "dependencies": ["EG-ZV-03"],
+      "dependencies": [
+        "EG-ZV-03"
+      ],
       "acceptance": "Real delayed participants solve predeclared unfamiliar cases and results support only the bounded claim allowed by the protocol.",
       "evidence": []
     },
@@ -376,10 +711,17 @@
       "phase": 5,
       "type": "engineering",
       "title": "Gate optional SkillOpt, Flint, and future adapters",
-      "status": "pending",
-      "dependencies": ["ZV-27"],
+      "status": "verified",
+      "dependencies": [
+        "ZV-27"
+      ],
       "acceptance": "Optional integrations remain off by default; each has a named job, frozen baseline, hard gates, cost boundary, fallback, and keep/reject decision.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/optional-adapters.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-31",
@@ -387,9 +729,22 @@
       "type": "engineering",
       "title": "Synchronize canonical documentation and HTML",
       "status": "pending",
-      "dependencies": ["ZV-25", "ZV-29", "ZV-30"],
+      "dependencies": [
+        "ZV-25",
+        "ZV-29",
+        "ZV-30"
+      ],
       "acceptance": "All durable Markdown has exact generated HTML companions with source path/hash, accessible structure, print/reduced-motion support, and no stale claims.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "scripts/render_all.mjs",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/verification/full.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-32",
@@ -397,9 +752,30 @@
       "type": "engineering",
       "title": "Run independent code and architecture review",
       "status": "pending",
-      "dependencies": ["ZV-21", "ZV-25", "ZV-31"],
+      "dependencies": [
+        "ZV-21",
+        "ZV-25",
+        "ZV-31"
+      ],
       "acceptance": "Bounded independent reviews inspect exact payload, criteria, architecture, security/privacy, accessibility, pedagogy, and claims; all critical/high findings close.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/reviews/payload.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/reviews/code-standards.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/reviews/frozen-spec.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/reviews/architecture-council.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-33",
@@ -407,9 +783,20 @@
       "type": "engineering",
       "title": "Run clean-room full verification",
       "status": "pending",
-      "dependencies": ["ZV-32"],
+      "dependencies": [
+        "ZV-32"
+      ],
       "acceptance": "A clean environment recomputes focused and full tests, builds, hashes, CSP/no-network gates, browser checks, schemas, manifests, and documentation parity.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/clean-room.json",
+          "kind": "receipt"
+        },
+        {
+          "path": "evidence/verification/full.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-34",
@@ -417,9 +804,16 @@
       "type": "engineering",
       "title": "Create immutable candidate package and rollback receipt",
       "status": "pending",
-      "dependencies": ["ZV-33"],
+      "dependencies": [
+        "ZV-33"
+      ],
       "acceptance": "Clean-HEAD package, inventory, hashes, SBOM/dependency record, verification receipt, known limits, static rollback, and restore instructions bind the same bytes.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/archive-receipt.json",
+          "kind": "receipt"
+        }
+      ]
     },
     {
       "id": "ZV-35",
@@ -427,9 +821,20 @@
       "type": "engineering",
       "title": "Issue truthful completion and promotion handoff",
       "status": "pending",
-      "dependencies": ["ZV-34"],
+      "dependencies": [
+        "ZV-34"
+      ],
       "acceptance": "Handoff distinguishes engineering from scientific state, lists parked gates, provides exact commands/paths/hashes, and requests approval before merge, push, deploy, or canonical install.",
-      "evidence": []
+      "evidence": [
+        {
+          "path": "evidence/zero-api-visual-runtime/rollback.md",
+          "kind": "path"
+        },
+        {
+          "path": "evidence/zero-api-visual-runtime/truthful-handoff.md",
+          "kind": "path"
+        }
+      ]
     }
   ],
   "audit_log": []

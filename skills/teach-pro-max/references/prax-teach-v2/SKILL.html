@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="SKILL.md">
-  <meta name="source-sha256" content="900170167de9a019c4ed1f97fdef530412b862c016868ea7be726e79253d8506">
+  <meta name="source-sha256" content="4a33806843f31a046677fb80d7e72a523ac4c23dae28f7ddd086cd90bbca0e68">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -118,6 +118,9 @@ say that no learner performance has been observed; name the remaining
 uncertainty and tie the next retrieval to an explicit retention horizon.</li>
 <li>In course mode, name the resolved storage location and offer to continue
 ephemerally without learner-state files before asking for persistence consent.
+Use this order: first say “If you decline persistence, we can continue in
+this chat without creating learner-state files.” Then name the path and ask
+whether to persist.
 Do not write anything until the learner accepts.</li>
 <li>On resume, resolve and validate the intended workspace before claiming to have
 read it. Preserve the original response and exact hint level unchanged and
@@ -162,39 +165,42 @@ dependency is unavailable, report that boundary; do not simulate its behavior.</
 <p>For every teaching response, explicitly decide internally among <code>none</code>, <code>static</code>, <code>interactive</code>, and <code>motion</code>.</p>
 <p>Use a visual only when it materially helps the learner see, compare, predict, manipulate, or watch a relevant change. Prefer the smallest accurate representation. Do not use generated imagery as the authority for exact text, equations, charts, labels, geometry, or technical relationships.</p>
 <p>Sequence alone does not require animation or interaction: a labeled static state table may be clearer. Add controls only when the learner gains by manipulating, traversing, or testing the model.</p>
-<p>Read <a href="./references/VISUALIZATION-ROUTER.html">references/VISUALIZATION-ROUTER.md</a> completely before producing a substantial visual, interaction, or motion artifact.</p>
-<p>The bundled artifact path is static: it supports ordinary content, exact static
-visuals, and reviewed native disclosure such as <code>&lt;details&gt;</code>. Live attempts,
-answer interpretation, feedback, and grading happen through the host chat. If a
-separately versioned and tested interaction runtime is not available, route an
-<code>interactive</code> job to host chat or to a static state sequence; never imply that
-the bundled HTML grades answers, stores interaction state, or persists evidence.
-The executable visual router preserves the requested <code>route</code> and
-<code>requested_medium</code> for auditability, but reports
-<code>bundled_renderer_supported: false</code>, <code>delivery_route: static</code>, a
-<code>delivery_reason</code>, and
-<code>runtime_requirement: separately-versioned-tested-and-manually-reviewed</code> for
-<code>interactive</code> and <code>motion</code> requests.</p>
+<p>Read <a href="./references/VISUALIZATION-ROUTER.html">references/VISUALIZATION-ROUTER.md</a>
+and its linked full Prax-Teach production handbook completely before producing
+a substantial visual, interaction, or motion artifact. This is one unified
+skill: never tell the learner to attach <code>prax-teach</code> separately to obtain the
+visual experience.</p>
+<p>The package has two native delivery surfaces: the deterministic Markdown
+renderer for exact static lessons and the separately versioned, tested Prax
+Visual Lab for interactive state, parameter, comparison, hint, and
+learner-controlled sequence work. For specialized diagrams, charts, generated
+imagery, 3D, animation, or video, inspect the current harness for an authorized
+equivalent skill, tool, MCP server, plugin, or CLI and query the bundled 38-tool
+registry. Describe the capability and required outcome rather than hardcoding a
+provider command. Preserve editable sources, accessibility, provenance, and a
+complete static fallback. Downgrade to host chat or static delivery only after
+the packaged runtime and suitable authorized harness capabilities are actually
+unavailable.</p>
 <p>For a durable retrieval or visual artifact, bind the actual route JSON,
 canonical Markdown, generated HTML, and forbidden-answer rubric with
 <code>prax_teach.py visual-verify</code>. A route decision is not a delivery check. The
 verifier must pass on the exact bytes before claiming a bundled static
-fallback; rich interaction or motion remains unverified until its separate
-runtime and browser review exist. Do not describe an opaque or animated asset
+fallback; when the route declares Prax Visual Lab, it also reruns the packaged
+runtime verifier. Real-browser review is still required for a browser-inspected
+claim. Do not describe an opaque or animated asset
 as answer-leakage-verified when the automated verifier cannot inspect it.
 The automated scan covers declared textual answers only; geometry, color,
 emphasis, and other semantic visual cues still require human review.</p>
 <p>When the chosen job is an exact quantitative comparison or distribution and a table is insufficient, <a href="./references/FLINT-CHARTS.html">references/FLINT-CHARTS.md</a> defines an optional Flint-to-SVG path. Keep the editable spec, source data, warnings, accessible table/text equivalent, and native fallback. Flint availability never changes a <code>none</code> decision into a chart.</p>
 <h2 id="keep-markdown-canonical">Keep Markdown canonical</h2>
 <p>When a durable instructional Markdown file is created, generate a same-basename HTML companion from it. Do not maintain two authored versions.</p>
-<p>Default to ordinary GFM plus the static native semantic HTML supported by the
-bundled renderer. Do not invent a custom Markdown directive language, renderer,
-or component framework for one lesson. The bundled renderer does not implement
-custom-JavaScript or form answer grading, stateful components, or persistence.
-When a learner action genuinely requires those capabilities, use a separately
-versioned and independently tested renderer/runtime with a static fallback and
-manual review; otherwise keep the artifact static and conduct the attempt in
-host chat.</p>
+<p>Default to ordinary GFM plus the native semantic HTML supported by the bundled
+renderer. Do not invent a custom Markdown directive language, renderer, or
+component framework for one lesson. The Markdown renderer remains static; use
+the packaged Prax Visual Lab for compatible stateful interaction and an
+authorized registry-selected capability for specialized visuals. Every rich
+route retains a static fallback and requires manual browser review before a
+browser-inspected claim.</p>
 <p>The HTML must expose the source path and SHA-256, use semantic landmarks, keep
 its static and native-disclosure surface keyboard-operable, support zoom/reflow,
 print and reduced motion, retain a no-script/static path, and avoid mandatory CDN
@@ -220,7 +226,7 @@ field-accessibility claim.</p>
 </main>
   <footer>
     Canonical source: <a href="./SKILL.md">SKILL.md</a><br>
-    SHA-256: <code>900170167de9a019c4ed1f97fdef530412b862c016868ea7be726e79253d8506</code><br>
+    SHA-256: <code>4a33806843f31a046677fb80d7e72a523ac4c23dae28f7ddd086cd90bbca0e68</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

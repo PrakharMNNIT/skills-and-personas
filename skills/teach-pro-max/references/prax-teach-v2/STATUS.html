@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="STATUS.md">
-  <meta name="source-sha256" content="22bc36398196c5d3b08c6457bc759f17b417096030348609faf732502486298f">
+  <meta name="source-sha256" content="71dc754ecc7e80e18ddf5b6b67cdf58b2385ec00c7980e327afc3b5f2871d423">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -142,12 +142,12 @@ a learner-outcome study was run.</p>
 <tbody><tr>
 <td>Legacy templates and 38-tool visual registry</td>
 <td>Implemented</td>
-<td>8 assets are byte-identical or renamed-byte-identical; 4 registry/helper assets are explicitly portability-adapted; 9 registry tests pass; no learner-benefit claim</td>
+<td>5 assets remain byte-identical; 7 registry/router/helper assets are explicitly portability-adapted; 12 registry tests pass; no learner-benefit claim</td>
 </tr>
 <tr>
 <td>Mode, teaching, and visual behavior</td>
 <td>Evaluated</td>
-<td>Frozen public rubric passed 8/8 on fresh all-case attempt 10; not held-out quality, provider ablation, field accessibility, or learner outcomes</td>
+<td>Attempt 21 passed 8/8 with 20 exact bindings, replayable execution, and independent item-level review; not held-out quality, provider ablation, field accessibility, or learner outcomes</td>
 </tr>
 <tr>
 <td>Learner state, correction, deletion, and export</td>
@@ -234,8 +234,9 @@ invalidating the review cycle. <code>AC-25</code> remains pending in the committ
 the non-circular sibling release JSON is the durable record that closes the
 clean-HEAD commit/archive event.</p>
 <h2 id="forward-behavior-history">Forward behavior history</h2>
-<p>The public AC-23 gate is green only because a complete post-fix rerun passed;
-earlier failures were not erased:</p>
+<p>The public AC-23 gate passed on attempt 21: all eight cases were regenerated in
+distinct fresh tasks, hash-bound, and independently scored. Earlier failures and
+superseded passes are not erased:</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
 <thead>
 <tr>
@@ -291,22 +292,78 @@ earlier failures were not erased:</p>
 </tr>
 <tr>
 <td>10</td>
-<td align="right"><strong>8/8</strong></td>
-<td>All eight cases regenerated against the remediated source; all 18 bindings independently verified</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then the practical-learning and visual-runtime contracts changed; retained as historical evidence only</td>
+</tr>
+<tr>
+<td>11</td>
+<td align="right">Reported 8/8, rejected</td>
+<td>Frozen-spec review found no bound execution and an incomplete project-takeover prohibition</td>
+</tr>
+<tr>
+<td>12</td>
+<td align="right">7/8</td>
+<td>Explicit retrieval horizon missing; review also exposed two routing defects</td>
+</tr>
+<tr>
+<td>13</td>
+<td align="right">7/8</td>
+<td>Corrected routes, but the lesson still called its horizon unspecified</td>
+</tr>
+<tr>
+<td>14</td>
+<td align="right">Reported 8/8, rejected</td>
+<td>Frozen-spec review found transfer before explicit learner explanation; the over-optimistic receipt and exact bytes are retained</td>
+</tr>
+<tr>
+<td>15</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then final runtime security remediation changed the bound routing source; retained as historical evidence</td>
+</tr>
+<tr>
+<td>16</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then the runtime contracts tree was added to the bound routing source; exact evidence retained</td>
+</tr>
+<tr>
+<td>17</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then the direct-model, canonical-route, and consent-source changes altered bound bytes; exact evidence retained</td>
+</tr>
+<tr>
+<td>18</td>
+<td align="right">7/8</td>
+<td>Rejected because the course response omitted an explicit ephemeral alternative; exact failed corpus retained</td>
+</tr>
+<tr>
+<td>19</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then final routing security and lesson-capability binding changed the bound source; exact evidence retained</td>
+</tr>
+<tr>
+<td>20</td>
+<td align="right">8/8, later invalidated</td>
+<td>Passed, then formatter-only normalization changed the bound routing source; exact evidence retained</td>
+</tr>
+<tr>
+<td>21</td>
+<td align="right">8/8</td>
+<td>Current release-eligible fresh-context run for the exact 20 bound artifacts</td>
 </tr>
 </tbody></table></div>
-<p>The current lesson transcript contains unassisted diagnosis and discrimination,
-an unseen whole-document transfer, a learner-authored teach-back, a later learner
-error, exactly one next-needed hint followed by a turn boundary, and scaffolded
-repair. Its closing judgment separates unassisted from scaffolded evidence and
-explicitly leaves delayed recall untested.
+<p>The current lesson transcript contains an initial learner error, exactly one
+next-needed hint followed by a turn boundary, scaffolded repair, an unseen
+unassisted transfer, and a provisional one-week horizon with a 48-hour re-test. The practical case completes
+predict, run, inspect, modify, debug, explain, and transfer in six tutor and
+six learner turns against one replayable model with three exact command/output
+replays. Both cases separate engineering output from learning evidence and leave
+delayed recall untested.
 See <a href="./evidence/forward/README.html">forward evidence</a>.</p>
 <h2 id="accessibility-inspection-boundary">Accessibility inspection boundary</h2>
-<p>The in-app browser rejected local-file navigation. The blocked receipt records
-zero observed runtime pages and no keyboard, focus, responsive, accessibility
-tree, or assistive-technology checks. Automated structure gates passed, but
-browser and representative field accessibility remain unverified; EG-03 stays
-parked.</p>
+<p>Five named package pages, including Prax Visual Lab, passed real-Chrome console, responsive-layout, and
+accessibility-tree checks at desktop and narrow viewports. Manual
+assistive-technology, WCAG-conformance, and representative-user evidence remain
+unverified; EG-03 stays parked.</p>
 <h2 id="external-gates">External gates</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
 <thead>
@@ -359,7 +416,7 @@ commands and <a href="./references/EVALUATION.html">Evaluation</a> for the rollo
 </main>
   <footer>
     Canonical source: <a href="./STATUS.md">STATUS.md</a><br>
-    SHA-256: <code>22bc36398196c5d3b08c6457bc759f17b417096030348609faf732502486298f</code><br>
+    SHA-256: <code>71dc754ecc7e80e18ddf5b6b67cdf58b2385ec00c7980e327afc3b5f2871d423</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

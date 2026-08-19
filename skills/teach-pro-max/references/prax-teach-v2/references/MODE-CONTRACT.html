@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="source-path" content="MODE-CONTRACT.md">
-  <meta name="source-sha256" content="522d5a13bcb69fb230125acd9f239bad640afdcfb36a0b8a4bf52075fbd48dce">
+  <meta name="source-sha256" content="39c1b77171f789adcde1db7091149f038b1d8ab0ba5f44e154e6112ab9038ddc">
   <meta name="generated-at" content="2026-08-04T12:00:00.000Z">
   <meta name="renderer-version" content="prax-teach-markdown/2.2.0">
   <meta name="template-version" content="prax-teach-lesson/2.0.0">
@@ -31,9 +31,9 @@
     h3 { margin:2.1rem 0 .6rem; font-size:1.35rem; }
     p,li { max-width:72ch; }
     blockquote { margin:1.4rem 0; padding:.75rem 1.1rem; border-left:.3rem solid var(--accent); background:var(--surface); }
-    code { padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
+    code { overflow-wrap:anywhere; padding:.1em .3em; border:1px solid var(--line); border-radius:.3rem; font: .88em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace; }
     pre { overflow:auto; padding:1rem 1.1rem; border-radius:.65rem; background:var(--code); color:var(--code-ink); }
-    pre code { padding:0; border:0; color:inherit; }
+    pre code { overflow-wrap:normal; padding:0; border:0; color:inherit; }
     .table-wrap { overflow:auto; margin:1.4rem 0; border:1px solid var(--line); border-radius:.65rem; }
     table { width:100%; border-collapse:collapse; background:var(--surface); font-size:.92rem; }
     th,td { padding:.72rem .8rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
@@ -155,7 +155,15 @@
 <li>Maintain a review queue and use later-session evidence before durable-mastery claims.</li>
 <li>Let learner questions, annotations, errors, and goals change the next lesson.</li>
 <li>Show every material learner-state update at session close.</li>
+<li>Resume with exactly one next learner action selected from current goals, due
+review, and the strongest unresolved evidence gap.</li>
 </ul>
+<h2 id="host-adapters">Host adapters</h2>
+<p>Adapters contain no teaching policy. They may map host capabilities, file
+locations, tool names, and input/output formats onto the core mode and teaching
+contracts, but must not redefine routing, evidence, hinting, mastery, or visual
+selection. Describe required capabilities rather than hardcoding one agent
+harness when an equivalent native capability can satisfy the contract.</p>
 <h2 id="persistence-consent">Persistence consent</h2>
 <p>Before the first durable write, say in one sentence:</p>
 <blockquote>
@@ -259,7 +267,7 @@
 </main>
   <footer>
     Canonical source: <a href="./MODE-CONTRACT.md">MODE-CONTRACT.md</a><br>
-    SHA-256: <code>522d5a13bcb69fb230125acd9f239bad640afdcfb36a0b8a4bf52075fbd48dce</code><br>
+    SHA-256: <code>39c1b77171f789adcde1db7091149f038b1d8ab0ba5f44e154e6112ab9038ddc</code><br>
     Generated: 2026-08-04T12:00:00.000Z<br>
     Renderer: prax-teach-markdown/2.2.0<br>
     Template: prax-teach-lesson/2.0.0

@@ -19,6 +19,7 @@ from typing import Any
 
 from praxteach.errors import SafetyError, ValidationError
 from praxteach.io import prepare_private_parent
+from verify import PRUNED_DIRECTORIES
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_PARTS = {
@@ -33,6 +34,10 @@ FORBIDDEN_PARTS = {
     "private-banks",
     "runs",
 }
+# Control-plane files are reviewed and validated separately from the
+# distributable candidate.  Keep them out of the immutable release inventory;
+# including them would make the archive disagree with evidence/reviews/payload.json.
+CONTROL_PLANE_PARTS = {".agent", ".agents", "openspec"}
 FORBIDDEN_SUFFIXES = {".log", ".pyc", ".pyo"}
 ALLOWED_GIT_MODES = {"100644": 0o644, "100755": 0o755}
 REVIEW_PAYLOAD = "evidence/reviews/payload.json"
@@ -112,6 +117,10 @@ def frozen_release_files(root: Path, commit: str) -> list[FrozenFile]:
             object_text = object_id.decode("ascii")
         except (UnicodeDecodeError, ValueError) as exc:
             raise PackageError("Git tree contains an undecodable entry") from exc
+        if any(
+            part in CONTROL_PLANE_PARTS for part in PurePosixPath(relative_text).parts
+        ):
+            continue
         relative = validate_relative_path(relative_text)
         if relative.as_posix() in seen:
             raise PackageError(f"duplicate tracked path: {relative_text}")
@@ -203,6 +212,10 @@ def _verified_manifest_matches_head(document: Any, files: list[FrozenFile]) -> b
         item.name: (item.mode, sha256(item.data))
         for item in files
         if item.name != FULL_VERIFICATION
+        and not any(
+            part in PRUNED_DIRECTORIES or part.endswith(("_cache", "-cache"))
+            for part in PurePosixPath(item.name).parts[:-1]
+        )
     }
     return actual == expected
 

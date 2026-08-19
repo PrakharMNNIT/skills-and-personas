@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -15,6 +19,26 @@ class SkillContractTests(unittest.TestCase):
             encoding="utf-8"
         )
         cls.protocol = " ".join(protocol.split())
+        artifact = (ROOT / "references" / "ARTIFACT-CONTRACT.md").read_text(
+            encoding="utf-8"
+        )
+        cls.artifact = " ".join(artifact.split())
+        mode = (ROOT / "references" / "MODE-CONTRACT.md").read_text(encoding="utf-8")
+        cls.mode = " ".join(mode.split())
+        router = (ROOT / "references" / "VISUALIZATION-ROUTER.md").read_text(
+            encoding="utf-8"
+        )
+        legacy_router = (
+            ROOT / "references" / "LEGACY-VISUALIZATION-ROUTER.md"
+        ).read_text(encoding="utf-8")
+        cls.router = " ".join(router.split())
+        cls.legacy_router = " ".join(legacy_router.split())
+        cls.public_cases = json.loads(
+            (ROOT / "references" / "eval-cases.json").read_text(encoding="utf-8")
+        )["cases"]
+        cls.forward_cases = json.loads(
+            (ROOT / "evals" / "forward-behavior.json").read_text(encoding="utf-8")
+        )["cases"]
 
     def test_live_lesson_gate_requires_turn_boundary_and_complete_close(self) -> None:
         required = (
@@ -35,6 +59,10 @@ class SkillContractTests(unittest.TestCase):
             self.skill,
         )
         self.assertIn("before asking for persistence consent", self.skill)
+        ephemeral = "If you decline persistence, we can continue in"
+        consent = "whether to persist"
+        self.assertIn(ephemeral, self.skill)
+        self.assertLess(self.skill.index(ephemeral), self.skill.index(consent))
 
     def test_resume_gate_preserves_scaffold_metadata_and_retests(self) -> None:
         required = (
@@ -59,6 +87,10 @@ class SkillContractTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, self.protocol)
 
+    def test_session_close_labels_a_provisional_retention_horizon(self) -> None:
+        self.assertIn("Retention horizon: <duration>", self.protocol)
+        self.assertIn("Do not call the horizon unspecified", self.protocol)
+
     def test_unbundled_interaction_response_keeps_accessibility_claim_bounded(
         self,
     ) -> None:
@@ -71,6 +103,77 @@ class SkillContractTests(unittest.TestCase):
         for phrase in required:
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, self.skill)
+
+    def test_practical_learning_is_one_existing_teaching_mode(self) -> None:
+        required = (
+            "predict → run → inspect → modify → debug → explain → transfer",
+            "Practical learning is a mode of this teaching protocol",
+            "Engineering evidence is not learning evidence",
+        )
+        for phrase in required:
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, self.protocol)
+
+    def test_executable_visuals_share_an_authoritative_model_or_prove_parity(
+        self,
+    ) -> None:
+        required = (
+            "authoritative executable model",
+            "independently specified literal parity vectors",
+            "Do not add a scene or trace schema",
+        )
+        for phrase in required:
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase, self.artifact)
+        self.assertIn(
+            "Prefer direct reuse of one authoritative executable model",
+            self.artifact,
+        )
+
+    def test_course_resume_and_adapters_keep_pedagogy_in_the_core(self) -> None:
+        self.assertIn("exactly one next learner action", self.mode)
+        self.assertIn("Adapters contain no teaching policy", self.mode)
+
+    def test_public_and_forward_fixtures_cover_practical_execution(self) -> None:
+        public_ids = {case["id"] for case in self.public_cases}
+        forward_ids = {case["id"] for case in self.forward_cases}
+        self.assertIn("practical-executable-learning", public_ids)
+        self.assertIn("practical-executable-learning", forward_ids)
+        self.assertNotIn("accessible-interaction-fallback", forward_ids)
+        self.assertEqual(len(self.forward_cases), 8)
+        takeover = "takes over or completes the learner's project"
+        for cases in (self.public_cases, self.forward_cases):
+            practical = next(
+                case for case in cases if case["id"] == "practical-executable-learning"
+            )
+            self.assertIn(takeover, practical["forbidden"])
+
+    def test_practical_forward_case_binds_replayable_execution(self) -> None:
+        script = ROOT / "evidence/forward/execution/practical_gradient_descent.py"
+        expected = ROOT / "evidence/forward/execution/practical_gradient_descent.stdout"
+        completed = subprocess.run(
+            [sys.executable, str(script)],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.stderr, "")
+        self.assertEqual(completed.stdout, expected.read_text(encoding="utf-8"))
+        run = json.loads(
+            (ROOT / "evidence/forward/run.json").read_text(encoding="utf-8")
+        )
+        execution = run["execution_files"]
+        for path in (script, expected):
+            relative = path.relative_to(ROOT).as_posix()
+            self.assertEqual(
+                execution[relative], hashlib.sha256(path.read_bytes()).hexdigest()
+            )
+
+    def test_scene_graph_requires_a_real_state_consumer(self) -> None:
+        required = "playback, scrubbing, or synchronized-output consumer"
+        self.assertIn(required, self.router)
+        self.assertIn(required, self.legacy_router)
 
 
 if __name__ == "__main__":
