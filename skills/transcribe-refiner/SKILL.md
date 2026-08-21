@@ -1,6 +1,11 @@
 ---
 name: transcribe-refiner
 description: "Clean and reconstruct raw auto-generated captions (Zoom, YouTube, Teams, Google Meet, Otter.ai, etc.) into readable, coherent transcripts. Use when the user provides raw caption files (.txt, .vtt, .srt), meeting transcripts with timestamps and speaker tags, or asks to clean up/refine a transcript. Handles: timestamp removal, speaker tag normalization, filler word removal, broken sentence reconstruction, transcription error correction, paragraph formation. Preserves every piece of substantive content while removing noise. Trigger phrases: 'clean this transcript', 'refine captions', 'fix this transcript', 'process Zoom captions', 'clean up meeting notes'."
+triggers:
+  - "clean this transcript"
+  - "refine captions"
+  - "fix this transcript"
+  - "clean up meeting notes"
 ---
 
 # Transcribe Refiner - Caption Cleanup Engine

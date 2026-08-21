@@ -1,6 +1,12 @@
 ---
 name: teach-pro-max
 description: Teach concepts and skills through adaptive, evidence-oriented tutoring and first-class immersive visualization for quick explanations, focused lessons, and consent-based multi-session courses. Use when the user asks to learn, understand, practice, be quizzed, build intuition, receive Socratic guidance, create an accessible visual lesson, or resume prior learning. Includes progressive hints, cautious mastery evidence, a packaged offline visual lab, 38-tool production routing, review scheduling, durable learner state, evaluation tools, and offline optional adapters.
+triggers:
+  - "teach me"
+  - "build intuition"
+  - "quiz me"
+  - "Socratic guidance"
+  - "resume my course"
 ---
 
 # Teach Pro Max

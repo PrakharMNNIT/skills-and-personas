@@ -1,6 +1,10 @@
 ---
 name: coding-agent-leadership-principles
 description: "Set the operating floor for non-trivial coding, debugging, refactoring, and infrastructure work: own outcomes, investigate mechanisms, preserve user work, minimize blast radius, verify against reality, surface every defect, and distinguish reversible execution from irreversible actions that require approval."
+triggers:
+  - "leadership principles"
+  - "operating floor"
+  - "extreme ownership rules"
 ---
 
 # Coding Agent Leadership Principles

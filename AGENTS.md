@@ -38,3 +38,17 @@ No automated tests are present. Validate changes by reading for clarity, consist
 - For UI/UX tasks, apply frontend-design guidance (`md-personas/FRONTEND-DESIGN.md`).
 - For architecture, security, reliability, or deep reasoning, apply kingmode or super-mode (`md-personas/KINGMODE.md`, `md-personas/SUPER-MODE.md`).
 - Ask for missing requirements, state assumptions explicitly, and do not claim to run tests or commands unless they were executed.
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked as GitHub issues on `praxstack/skills-and-personas` via the `gh` CLI; local markdown tickets under `.scratch/<feature>/` mirror them for offline work. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout: one `CONTEXT.md` at the repo root (created lazily) plus `docs/adr/`. See `docs/agents/domain.md`.

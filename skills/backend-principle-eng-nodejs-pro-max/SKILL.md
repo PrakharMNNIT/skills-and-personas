@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-nodejs-pro-max
 description: "Principal backend engineering intelligence for Node.js runtime systems. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, reliability, performance, security, observability, scalability, operability, cost."
+triggers:
+  - "Node.js backend design"
+  - "NodeJS service performance"
+  - "express service review"
 ---
 
 # Backend Principle Eng Node.js Pro Max

@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-python-pro-max
 description: "Principal backend engineering intelligence for Python services and data systems. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, reliability, performance, security, observability, scalability, operability, cost."
+triggers:
+  - "Python backend design"
+  - "FastAPI service architecture"
+  - "python service reliability"
 ---
 
 # Backend Principle Eng Python Pro Max

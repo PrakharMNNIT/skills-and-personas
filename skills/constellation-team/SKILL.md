@@ -1,6 +1,11 @@
 ---
 name: constellation-team
 description: Coordinate a cross-functional star-team workflow (Product Manager, Principal Engineer, Backend, Frontend, QA/Security, DevOps) with mandatory architecture and code-review checkpoints. Use when a request needs end-to-end product delivery, multi-role collaboration, or explicit role-based outputs (PM/PE/Backend/Frontend/QA/DevOps), or when the user asks for "star team", "cross-functional", "full lifecycle", or "multi-role" planning.
+triggers:
+  - "star team"
+  - "cross-functional workflow"
+  - "full lifecycle planning"
+  - "multi-role planning"
 ---
 
 # Constellation Team

@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-java-pro-max
 description: "Principal backend engineering intelligence for Java services and distributed systems. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, reliability, performance, security, observability, scalability, operability, cost."
+triggers:
+  - "Java backend design"
+  - "Java microservice architecture"
+  - "JVM service reliability"
 ---
 
 # Backend Principle Eng Java Pro Max

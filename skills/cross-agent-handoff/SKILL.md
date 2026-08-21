@@ -1,6 +1,11 @@
 ---
 name: cross-agent-handoff
 description: "Prepare or consume a precise, privacy-safe handoff between agent sessions, harnesses, subagents, CLIs, or humans. Use when work crosses contexts, survives compaction, is delegated, or must be resumed without trusting narrative completion claims."
+triggers:
+  - "hand off to another agent"
+  - "prepare a handoff"
+  - "resume work in another session"
+  - "cross-session handoff"
 ---
 
 # Cross-Agent Handoff

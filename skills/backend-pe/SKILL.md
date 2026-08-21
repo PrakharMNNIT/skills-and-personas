@@ -1,6 +1,11 @@
 ---
 name: backend-pe
 description: Distinguished Principal Engineer backend/system architecture skill. Use when the user demands "BackendPE", "Supermode", "Antigravity", or requests high-performance, unlimited-context, world-class backend and distributed systems design. This skill maximizes depth, rigor, and production readiness.
+triggers:
+  - "backend PE"
+  - "distinguished engineer review"
+  - "high-performance backend design"
+  - "production readiness review"
 ---
 
 # BACKEND-PE (Distinguished Principal Engineer)
