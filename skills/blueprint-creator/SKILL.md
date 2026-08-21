@@ -1,11 +1,6 @@
 ---
 name: blueprint-creator
 description: >
-triggers:
-  - "create a blueprint"
-  - "expand this spec into a blueprint"
-  - "implementation bible"
-  - "BLUEPRINT.md"
   Create exhaustive BLUEPRINT.md files — the implementation bible that expands a SPEC.md into
   maximum granular detail so an AI coding agent can translate it line-by-line into code with zero
   interpretation. This skill REQUIRES a SPEC.md to already exist. Use this skill whenever the user
@@ -17,6 +12,11 @@ triggers:
   message, sequence, and example so nothing is left to judgment. Works for any software domain.
   If no SPEC.md exists, this skill MUST redirect the user to generate one first using the
   spec-creator skill.
+triggers:
+  - "create a blueprint"
+  - "expand this spec into a blueprint"
+  - "implementation bible"
+  - "BLUEPRINT.md"
 ---
 
 # Blueprint Creator

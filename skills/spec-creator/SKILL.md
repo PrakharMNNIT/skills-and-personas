@@ -1,11 +1,6 @@
 ---
 name: spec-creator
 description: >
-triggers:
-  - "write a spec"
-  - "create SPEC.md"
-  - "implementation contract"
-  - "spec out this feature"
   Create production-grade SPEC.md files — portable implementation contracts that any AI coding agent
   can build from without follow-up questions. Use this skill whenever the user wants to write a spec,
   specification, technical spec, implementation contract, SPEC.md, or service specification for any
@@ -15,6 +10,11 @@ triggers:
   developer tools, and any domain. It produces specs at the level of a principal-engineer-authored
   portable implementation contract — not a PRD, not an HLD, but the artifact that sits between
   architecture and code.
+triggers:
+  - "write a spec"
+  - "create SPEC.md"
+  - "implementation contract"
+  - "spec out this feature"
 ---
 
 # Spec Creator

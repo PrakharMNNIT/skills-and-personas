@@ -1,13 +1,6 @@
 ---
 name: ultra-reasoning-operator
 description: >
-triggers:
-  - "ultra reasoning"
-  - "think harder"
-  - "verify everything"
-  - "adversarial review"
-  - "war room"
-  - "no hallucinations"
   Scope-calibrated ultra-rigor workflow for hard reasoning, high-risk code changes,
   architecture decisions, debugging with multiple plausible root causes, security-sensitive
   work, and user requests like "ultra reasoning", "think harder", "verify everything",
@@ -15,6 +8,12 @@ triggers:
   Use to force evidence-first planning, assumption tracking, hypothesis falsification,
   adversarial self-review, verification gates, and clear uncertainty without overloading
   trivial tasks.
+triggers:
+  - "ultra reasoning"
+  - "think harder"
+  - "verify everything"
+  - "war room"
+  - "no hallucinations"
 ---
 
 # Ultra Reasoning Operator

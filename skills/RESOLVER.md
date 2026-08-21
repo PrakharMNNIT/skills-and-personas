@@ -21,7 +21,7 @@ Human-readable dispatch map over `skills/<slug>/SKILL.md`. Frontmatter `triggers
 | [book-mirror](book-mirror/SKILL.md) | `personalized version of this book`, `mirror this book`, `two-column book analysis`, `apply this book to my life`, `how does this book apply to me` |
 | [brain-ingest-gate](brain-ingest-gate/SKILL.md) | `move this to brain`, `migrate to brain`, `copy these files into the brain`, `is this already in the brain`, `check for duplicates before writing`, `dedup before saving`, `raw copy to brain` |
 | [brain-link-discipline](brain-link-discipline/SKILL.md) | `give me the link`, `where is the page`, `why does this link 404`, `brain link discipline`, `rewrite subagent paths`, `report the pages you created`, `send me a clickable link`, `link the page in the same message` |
-| [brain-ops](brain-ops/SKILL.md) | — |
+| [brain-ops](brain-ops/SKILL.md) | `any brain read/write/lookup/citation` |
 | [brain-pdf](brain-pdf/SKILL.md) | `make pdf from brain`, `brain pdf`, `convert brain page to pdf`, `publish this page as pdf`, `export brain page` |
 | [brain-taxonomist](brain-taxonomist/SKILL.md) | `where does this brain page go`, `file this in the brain`, `brain taxonomist`, `taxonomy check`, `refile brain page`, `create brain page`, `which directory does this go`, `which directory does this page go` |
 | [briefing](briefing/SKILL.md) | `daily briefing`, `morning briefing`, `what's happening today`, `brain pulse`, `pre-briefing pull` |
@@ -54,14 +54,14 @@ Human-readable dispatch map over `skills/<slug>/SKILL.md`. Frontmatter `triggers
 | [functional-area-resolver](functional-area-resolver/SKILL.md) | `compress agents.md`, `compress my resolver`, `resolver too big`, `resolver.md too big`, `agents.md too large`, `shrink routing table`, `slim down agents.md`, `functional area resolver`, `functional area dispatcher`, `context-health agents`, `context-health resolver`, `reduce context budget` |
 | [gbrain-advisor](gbrain-advisor/SKILL.md) | `what should I do to get more out of gbrain`, `is my brain set up right`, `gbrain advisor`, `advise me on my brain`, `weekly brain checkup` |
 | [idea-capturer](idea-capturer/SKILL.md) | `capture an idea`, `develop a raw idea`, `organize my ideas` |
-| [idea-ingest](idea-ingest/SKILL.md) | `read this`, `save this`, `think about this`, `put this in brain` |
+| [idea-ingest](idea-ingest/SKILL.md) | `shares a link or URL`, `read this`, `save this`, `think about this`, `put this in brain` |
 | [idea-lineage](idea-lineage/SKILL.md) | `idea lineage`, `trace the lineage of this idea`, `how my thinking about`, `how has my thinking about`, `current version of this idea`, `what is my current version of`, `show reversals in my thinking about`, `where did this idea come from` |
 | [ingest](ingest/SKILL.md) | `ingest this`, `save this to brain`, `process this meeting` |
 | [lecture-alchemist](lecture-alchemist/SKILL.md) | `process this transcript`, `convert lecture to notes`, `lecture notes`, `study material from lecture` |
 | [maintain](maintain/SKILL.md) | `brain health`, `check backlinks`, `maintenance`, `orphan pages`, `stale pages`, `extract links`, `build link graph`, `populate timeline`, `populate links`, `backfill graph`, `extract timeline entries`, `retriage the backlog`, `re-score the triage`, `run dream`, `process today's session`, `process yesterday's transcripts`, `synthesize my conversations`, `what patterns did you see`, `did the dream cycle run`, `consolidate yesterday's conversations` |
 | [measure-before-you-fix](measure-before-you-fix/SKILL.md) | `keeps timing out`, `ETIMEDOUT`, `why is this data stale`, `freshness alert`, `wedged`, `job is slow`, `sync is stuck`, `raise the timeout` |
 | [media-ingest](media-ingest/SKILL.md) | `watch this video`, `process this YouTube link`, `ingest this PDF`, `save this podcast`, `process this book`, `PDF book`, `summarize this book`, `ingest it into my brain`, `what's in this screenshot`, `check out this repo` |
-| [meeting-ingestion](meeting-ingestion/SKILL.md) | `meeting transcript`, `process this meeting`, `meeting notes`, `meeting recorder`, `ingest this recording`, `capture meetings`, `audit this meeting`, `check the sequence`, `did I get the order right` |
+| [meeting-ingestion](meeting-ingestion/SKILL.md) | `meeting transcript`, `process this meeting`, `meeting notes`, `meeting recorder`, `ingest this recording`, `capture meetings`, `audit this meeting`, `check the sequence`, `did I get the order right`, `meeting transcript received` |
 | [minion-orchestrator](minion-orchestrator/SKILL.md) | `gbrain jobs submit`, `submit a gbrain job`, `submit a shell job`, `shell job`, `run shell command in background`, `deterministic background task`, `spawn agent`, `background task`, `run in background`, `check on agent`, `agent progress`, `what's running`, `steer agent`, `change direction`, `tell the agent`, `pause agent`, `stop agent`, `resume agent`, `parallel tasks`, `fan out`, `do these in parallel`, `long operation`, `durable execution`, `arm a deadman`, `the job went silent`, `operation died in the background`, `make this pipeline resumable` |
 | [obsidian-cli](obsidian-cli/SKILL.md) | `obsidian vault operations`, `obsidian command line`, `search my obsidian vault` |
 | [perplexity-research](perplexity-research/SKILL.md) | `perplexity research`, `perplexity-research`, `what's new about`, `current state of`, `web research`, `what changed about`, `surface new developments` |
@@ -71,7 +71,7 @@ Human-readable dispatch map over `skills/<slug>/SKILL.md`. Frontmatter `triggers
 | [reports](reports/SKILL.md) | `save report`, `load latest report`, `what's the latest briefing`, `show me the pulse`, `report quality`, `link quality check`, `validate report links` |
 | [research-compendium](research-compendium/SKILL.md) | `compendium`, `research everything about`, `read them all and summarize`, `definitive guide`, `comprehensive guide to`, `deep research and write up`, `archive the sources then summarize`, `deepen the compendium` |
 | [resolve-before-asking](resolve-before-asking/SKILL.md) | `resolve before asking`, `before asking the user`, `unidentified contact`, `unknown relationship`, `should I ask who`, `don't know who this is`, `to be filled by content analysis`, `placeholder on this page` |
-| [signal-detector](signal-detector/SKILL.md) | — |
+| [signal-detector](signal-detector/SKILL.md) | `every inbound message (always-on)` |
 | [skill-autobench](skill-autobench/SKILL.md) | `skill autobench`, `autobench`, `write the eval from usage history`, `synthesize an eval for this skill`, `mine how this skill is actually used`, `build a benchmark from my corrections`, `verify the eval panel`, `did all providers return` |
 | [skill-creator](skill-creator/SKILL.md) | `create a skill`, `new skill`, `improve this skill` |
 | [skillify](skillify/SKILL.md) | `skillify this`, `skillify`, `is this a skill?`, `make this proper`, `add tests and evals for this`, `check skill completeness`, `run skillify on a skill`, `did this skill regress` |
@@ -88,6 +88,6 @@ Human-readable dispatch map over `skills/<slug>/SKILL.md`. Frontmatter `triggers
 | [transcribe-refiner](transcribe-refiner/SKILL.md) | `clean this transcript`, `refine captions`, `fix this transcript`, `clean up meeting notes` |
 | [transcript-pipeline](transcript-pipeline/SKILL.md) | `run transcript pipeline`, `generate class tutorial`, `validate transcript coverage`, `enrich class resources` |
 | [two-tier-extraction](two-tier-extraction/SKILL.md) | `two-tier extraction`, `triage then deep read`, `smart model routing`, `cheap triage expensive analysis`, `model escalation pattern`, `route models by content value`, `which model tier for bulk extraction` |
-| [ultra-reasoning-operator](ultra-reasoning-operator/SKILL.md) | `ultra reasoning`, `think harder`, `verify everything`, `adversarial review`, `war room`, `no hallucinations` |
+| [ultra-reasoning-operator](ultra-reasoning-operator/SKILL.md) | `ultra reasoning`, `think harder`, `verify everything`, `war room`, `no hallucinations` |
 | [voice-note-ingest](voice-note-ingest/SKILL.md) | `voice note`, `ingest this voice memo`, `transcribe and file`, `voice note ingest`, `save this audio note`, `audio message` |
 | [webhook-transforms](webhook-transforms/SKILL.md) | `set up webhook`, `process webhook event`, `transform this event` |
