@@ -28,6 +28,8 @@ The canonical, production-ready portfolio lives in `new-skills/` — 38 skills t
 | `team-personas/constellation-team/` | Six role-based team skills (principal, backend-system-design, frontend-uiux, devops-sre, product, QA-security) |
 | `knowledge-packs/` | Reference material (ATLAS / Gabriel Petersson learning mentor knowledge packs) |
 | `prompts/` | Agent-builder prompts, AI-therapist prompt versions (superseded by mental-health-screening-companion), memory-bank templates |
+| `prompts/project-alignment/` | Generic paste prompts: reconstruct any project, install gstack / Superpowers / Matt Pocock / OpenSpec / deep-research, optional report-only QA |
+| `prompts/high-end-operator/` | Lifecycle paste-prompt family (Think → Plan → Build → Review → Test → Ship → Reflect). Invokes installed skills; does not copy skill bodies |
 | `.claude/agents/` | Claude Code subagents for the constellation-team workflow |
 | `.clinerules/` | Cline rules and workflows |
 | `opencode-setup/` | OpenCode configuration |
