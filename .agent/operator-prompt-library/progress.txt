@@ -1,0 +1,20 @@
+# progress.txt — 2026-08-21 operator-prompt-library
+2026-08-21T00:00Z BOOT baseline frozen: main=930c112 origin/main=930c112 feature=3459563 dirty(README.md + 12 untracked)
+2026-08-21T00:01Z MERGE ff main->3459563 OK rollback: git branch -f main 930c112
+2026-08-21T00:02Z BRANCH feat/operator-prompt-library created off merged main
+2026-08-21T00:05Z SKILL_SETUP matt-pocock: docs/agents/{issue-tracker,triage-labels,domain}.md written from seed templates; AGENTS.md ## Agent skills block appended (GitHub tracker, default labels, single-context)
+2026-08-21T00:06Z SKILL_SETUP pstack: ~/.config/pstack/models.md written 21 roles inherit-parent (no host model inventory -> per skill spec inherit-parent is the valid output); fixed self-introduced typo hillclimb/judgment-and-prose line
+2026-08-21T00:07Z SKILL_SETUP gstack: suite verified installed at ~/.agents/skills/gstack (bin/ present); gstack-* skills registered in opencode host
+2026-08-21T00:08Z SKILL_SETUP memory-leak-debugging: verified installed ~/.config/opencode/skills/memory-leak-debugging (frontmatter parses)
+2026-08-21T00:09Z GBRAIN detect: v0.46.24.0 on PATH engine=pglite doctor_ok=false local_status=broken-config
+2026-08-21T00:10Z GBRAIN root cause: NOT db. resolver_health fail = 26x unreachable (no RESOLVER.md rows) + 26x mece_gap (no triggers frontmatter); brain score 100. check-resolvable --fix did NOT auto-fix either class (fixer writes nothing for these; convention doc says RESOLVER.md is human-readable map, frontmatter authoritative)
+2026-08-21T00:11Z GBRAIN skillpack sync: 61 built-in skills scaffolded into skills/ (+_AGENT_README,_brain-filing-rules,_output-rules)
+2026-08-21T00:12Z ATOM A3 START: generate triggers for 26 legacy skills + write skills/RESOLVER.md + verify
+2026-08-21T00:20Z ATOM A3 DONE: triggers x26 + RESOLVER.md(87 rows); check-resolvable ok=true
+2026-08-21T00:22Z COMMITS 0f336b9 bc504de 2dd8435 e0545f0 (groups a-d per AC6)
+2026-08-21T00:25Z TICKETS issues #2-#6 + .scratch mirrors committed
+2026-08-21T00:27Z QA v1 PASS was FALSE CONFIDENCE (key-presence only) — caught by fresh-context review
+2026-08-21T00:28Z REVIEW FINDINGS: critical=block-scalar YAML corruption x3 (spec-creator, ultra-reasoning-operator, blueprint-creator); major=get_triggers dropped unquoted entries (RESOLVER drift x4), QA gate structurally blind; minor=MECE overlap 'adversarial review', techtutor manifest orphans; nit=idempotency stickiness, dead code
+2026-08-21T00:35Z FIXES: 3 files hand-repaired (triggers moved after scalar close, verified ruby YAML.safe_load); add_triggers.py insert-after-block + unquoted parsing; qa_collect.sh v2 real-parse fail-closed (ruby lambda syntax error in v2 caught by own gate -> extracted fm_scan.rb, /m flag fix); 'adversarial review' removed from ultra-reasoning-operator (disambiguation); committed 9d1c42f
+2026-08-21T00:36Z POST-FIX VERIFY: check-resolvable ok=true warnings=0; QA PASS all categories exit=0
+2026-08-21T00:37Z ATOM A8 START validator pass

@@ -1,0 +1,14 @@
+{
+  "run": "2026-08-21-operator-prompt-library",
+  "atoms": [
+    {"id": "A1", "criterion": "AC2 matt-pocock scaffold", "status": "done", "evidence": "docs/agents/{issue-tracker,triage-labels,domain}.md byte-identical to seeds + AGENTS.md block; reviewer-verified"},
+    {"id": "A2", "criterion": "AC3 pstack config", "status": "done", "evidence": "~/.config/pstack/models.md, 21 roles inherit-parent"},
+    {"id": "A3", "criterion": "AC4+AC5 gbrain resolver conformance", "status": "done", "evidence": "check-resolvable ok=true, 0 unreachable, 0 gaps, 0 warnings; RESOLVER.md 87 rows; 26 frontmatters + 3 hand-repairs"},
+    {"id": "A4", "criterion": "AC6 grouped commits", "status": "done", "evidence": "0f336b9 prompts / bc504de zips / 2dd8435 vendored state / e0545f0 fleet setup / 9d1c42f review fixes / ticket-mirror commit"},
+    {"id": "A5", "criterion": "tickets md + gh issues", "status": "done", "evidence": "issues #2-#6 created+labelled; .scratch mirrors committed; reviewer cross-checked vs GitHub"},
+    {"id": "A6", "criterion": "AC8 review gates", "status": "done", "evidence": "fresh-context review: 1 critical + 2 major + 2 minor + 2 nit found; critical+majors FIXED (9d1c42f); minors: MECE fixed via trigger removal, manifest.json deferred to #3; unslop vocab scan clean"},
+    {"id": "A7", "criterion": "AC7 QA evidence logs", "status": "done", "evidence": ".agent/operator-prompt-library/qa/*.log — QA PASS all categories (v2 gate with real YAML parse); first gate's false-PASS documented as lesson"},
+    {"id": "A8", "criterion": "validator pass fresh-context", "status": "doing", "evidence": null},
+    {"id": "A9", "criterion": "AC9 push + PR", "status": "todo", "evidence": null}
+  ]
+}
