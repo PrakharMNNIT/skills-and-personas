@@ -18,3 +18,6 @@
 2026-08-21T00:35Z FIXES: 3 files hand-repaired (triggers moved after scalar close, verified ruby YAML.safe_load); add_triggers.py insert-after-block + unquoted parsing; qa_collect.sh v2 real-parse fail-closed (ruby lambda syntax error in v2 caught by own gate -> extracted fm_scan.rb, /m flag fix); 'adversarial review' removed from ultra-reasoning-operator (disambiguation); committed 9d1c42f
 2026-08-21T00:36Z POST-FIX VERIFY: check-resolvable ok=true warnings=0; QA PASS all categories exit=0
 2026-08-21T00:37Z ATOM A8 START validator pass
+2026-08-21T00:40Z VALIDATOR PASS: READY_FOR_PR (AC6 partial closed by audit-trail commit ec7c141; models.md repeated inherit-parent is spec'd behavior not artifact)
+2026-08-21T00:41Z GITIGNORE exception !.agent/**/*.log added; audit trail committed ec7c141
+2026-08-21T00:42Z ATOM A9 START: push + PR
