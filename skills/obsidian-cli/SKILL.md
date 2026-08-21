@@ -1,6 +1,10 @@
 ---
 name: obsidian-cli
 description: Control Obsidian from the terminal using CLI v2 (1.12+). Create, read, append, search files; manage properties, tags, tasks; query bases; use templates; analyze links. Use when performing vault operations, automating note workflows, appending content to notes, managing frontmatter properties, or searching the vault from the command line. Requires Obsidian app to be running.
+triggers:
+  - "obsidian vault operations"
+  - "obsidian command line"
+  - "search my obsidian vault"
 ---
 
 # Obsidian CLI Skill

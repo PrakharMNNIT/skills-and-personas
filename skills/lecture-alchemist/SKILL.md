@@ -1,6 +1,11 @@
 ---
 name: lecture-alchemist
 description: "Transform raw lecture transcripts (Zoom, YouTube, etc.) into structured, retention-optimized study notes. Use when the user provides a lecture transcript, class recording text, or asks to process/convert lecture notes. Handles WebDev, AI/ML, Web3, DSA, and general tech domains. Produces hierarchical topic breakdowns, cleaned code artifacts, intuition builders, flashcards, spaced repetition plans, and actionable study materials. Trigger phrases: 'process this transcript', 'convert lecture to notes', 'lecture notes', 'transcript to study material', 'Lecture Alchemist'."
+triggers:
+  - "process this transcript"
+  - "convert lecture to notes"
+  - "lecture notes"
+  - "study material from lecture"
 ---
 
 # Lecture Alchemist - Technical Learning Transformer

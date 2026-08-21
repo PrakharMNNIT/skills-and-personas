@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-python-ml-pro-max
 description: "Principal backend engineering intelligence for Python AI/ML systems. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale ML services and pipelines. Focus: data quality, reproducibility, reliability, performance, security, observability, model evaluation, MLOps."
+triggers:
+  - "Python ML pipeline design"
+  - "MLOps architecture"
+  - "model serving review"
 ---
 
 # Backend Principle Eng Python ML Pro Max

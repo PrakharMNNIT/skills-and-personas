@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Run Report — operator-prompt-library · 2026-08-21</title>
+<style>
+  :root{--ok:#0a7d33;--warn:#b45309;--gate:#7c2d92;--ink:#1a1a1a;--mut:#667}
+  *{box-sizing:border-box}
+  body{font:15px/1.55 -apple-system,"Segoe UI",sans-serif;color:var(--ink);max-width:960px;margin:32px auto;padding:0 20px;background:#fafaf8}
+  h1{font-size:22px;margin-bottom:2px} h2{font-size:17px;margin-top:28px;border-bottom:2px solid #e5e5e0;padding-bottom:4px}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:18px}
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px}
+  th,td{border:1px solid #ddd;text-align:left;padding:6px 10px;vertical-align:top}
+  th{background:#f0efe9}
+  .ok{color:var(--ok);font-weight:600}.warn{color:var(--warn);font-weight:600}.gate{color:var(--gate);font-weight:600}
+  code{background:#eee;font-size:12.5px;padding:1px 5px;border-radius:3px}
+  .card{border:1px solid #ddd;border-left:4px solid var(--gate);background:#fff;padding:12px 16px;margin:10px 0;border-radius:4px}
+  .card.ok{border-left-color:var(--ok)}
+  ul{margin:6px 0} li{margin:3px 0}
+</style>
+</head>
+<body>
+<h1>Run report — operator-prompt-library</h1>
+<div class="sub">skills-and-personas · branch <code>feat/operator-prompt-library</code> · PR <a href="https://github.com/praxstack/skills-and-personas/pull/7">#7</a> · 2026-08-21 · autonomous run per operator directive</div>
+
+<h2>1 · Done &amp; verified</h2>
+<table>
+<tr><th>Work</th><th>Evidence</th><th>Status</th></tr>
+<tr><td>Merge teach-pro-max feature work → <code>main</code> (local ff)</td><td><code>main = 3459563</code>; origin/main untouched beyond that</td><td class="ok">DONE</td></tr>
+<tr><td>matt-pocock repo scaffold</td><td><code>docs/agents/{issue-tracker,triage-labels,domain}.md</code> + AGENTS.md block; byte-checked vs seed templates</td><td class="ok">DONE</td></tr>
+<tr><td>pstack model map</td><td><code>~/.config/pstack/models.md</code>, 21 roles (all inherit-parent — valid output absent host model inventory)</td><td class="ok">DONE</td></tr>
+<tr><td>gstack suite + memory-leak-debugging</td><td>verified installed (<code>~/.agents/skills/gstack</code> bin/; skill frontmatter parses)</td><td class="ok">DONE</td></tr>
+<tr><td>gbrain resolver conformance ("set all skills")</td><td>26 legacy skills got curated <code>triggers:</code>; <code>skills/RESOLVER.md</code> generated (87 rows); 61 built-in skillpacks synced; <code>check-resolvable</code>: ok=true, 0 issues, 0 warnings</td><td class="ok">DONE</td></tr>
+<tr><td>WIP committed in grouped commits</td><td>prompts library / zips / vendored prax-teach-v2 state / fleet setup / review fixes / tickets / audit trail</td><td class="ok">DONE</td></tr>
+<tr><td>Tickets: GitHub + markdown mirrors</td><td>issues <a href="https://github.com/praxstack/skills-and-personas/issues/2">#2</a>–<a href="https://github.com/praxstack/skills-and-personas/issues/6">#6</a> labelled; mirrors in <code>.scratch/operator-prompt-library/</code></td><td class="ok">DONE</td></tr>
+<tr><td>Fresh-context code review gate</td><td>found critical YAML corruption (3 block-scalar skills) my first QA gate missed → hand-repaired, verified via real parser; gate hardened (v2)</td><td class="ok">DONE</td></tr>
+<tr><td>QA evidence logs</td><td><code>.agent/operator-prompt-library/qa/*.log</code> — 87/87 frontmatter valid, 8/8 zips intact, 0 broken links, exit 0</td><td class="ok">DONE</td></tr>
+<tr><td>Validator pass (fresh subagent vs original SPEC)</td><td>verdict READY_FOR_PR; all ACs re-derived from reality; non-goals respected; zero secrets</td><td class="ok">DONE</td></tr>
+<tr><td>Push + PR</td><td><a href="https://github.com/praxstack/skills-and-personas/pull/7">PR #7</a> opened after purging an oversized blob (142MB zip) from branch history</td><td class="ok">DONE</td></tr>
+<tr><td>gbrain MCP "stall" diagnosed</td><td>see §3 — registration was live all along; detection tooling was blind to OpenCode</td><td class="ok">DIAGNOSED</td></tr>
+</table>
+
+<h2>2 · Open items and exactly why</h2>
+<table>
+<tr><th>Item</th><th>Why still open</th><th>Owner</th></tr>
+<tr><td><a href="https://github.com/praxstack/skills-and-personas/issues/2">#2</a> Curate 61 scaffolded skillpacks</td><td>Genuine curation judgment (keep/prune per skill) — bundle defaults landed verbatim; repack zips before external publishing</td><td class="warn">agent-ready</td></tr>
+<tr><td><a href="https://github.com/praxstack/skills-and-personas/issues/3">#3</a> skillpack drift check post-upgrade</td><td>By design runs after next <code>gbrain upgrade</code> (0.46.25.0 available but deferred while live serve holds DB lock)</td><td class="warn">agent-ready</td></tr>
+<tr><td><a href="https://github.com/praxstack/skills-and-personas/issues/5">#5</a> artifacts_sync_mode privacy choice</td><td>Your data leaves the machine under options A/B — a privacy decision I will not make for you</td><td class="gate">GATED ON PRAX (one word: A/B/C)</td></tr>
+<tr><td><a href="https://github.com/praxstack/skills-and-personas/issues/6">#6</a> fleet-digest regeneration</td><td><code>fleet-digest</code>/<code>fleet-note</code> binaries not on PATH and not in this session's toolset — cannot regenerate honestly</td><td class="gate">GATED (needs tool/source)</td></tr>
+<tr><td>PR #7 merge</td><td>Awaiting your review of the diff — merging is yours, not mine</td><td class="gate">GATED ON PRAX</td></tr>
+<tr><td>Session rename</td><td>No rename tool exposed in this host session</td><td class="warn">manual</td></tr>
+</table>
+
+<h2>3 · Why gbrain MCP looked stalled (root cause)</h2>
+<div class="card ok">
+<strong>It wasn't stalled — it was running the whole time.</strong>
+<ul>
+<li><code>opencode.json</code> already registers <code>mcp.gbrain → gbrain serve</code> (enabled).</li>
+<li><code>ps -p 43487</code>: the server is alive right now and holds the PGLite single-writer lock.</li>
+<li><strong>Detection gap:</strong> gstack's <code>setup-gbrain</code> detect reads <code>~/.claude.json</code> only, so it reports <code>mcp_mode: none</code> on OpenCode hosts. That false negative is what made it look unregistered.</li>
+<li><strong>Attachment gap:</strong> MCP tools attach at session start. Any session opened before registration sees no gbrain tools until restart.</li>
+<li>Side effect worth knowing: while <code>serve</code> runs, CLI write commands are lock-blocked by design; sync delegates through the live server.</li>
+</ul>
+<b>Unblock:</b> restart an agent session → gbrain tools appear. Issue <a href="https://github.com/praxstack/skills-and-personas/issues/4">#4 closed</a> with this evidence.
+</div>
+
+<h2>4 · Category verdict (operator ask)</h2>
+<p>This repo is <strong>agent-skill portfolio curation + agent tooling</strong>. Three workstreams shipped: education-skill authoring (teach-pro-max), prompt-library content (operator lifecycle packs), skill-fleet integration (resolver/skillpacks/setup scaffolds). No application code, no UI, no production surface — so "production QA logs/images" were replaced by honest validation evidence rather than fabricated artifacts.</p>
+
+<h2>5 · Audit trail</h2>
+<ul>
+<li>SPEC / prd / progress / QA logs / fixer scripts: <code>.agent/operator-prompt-library/</code> (committed)</li>
+<li>Commits: <code>0f336b9→9046097</code> rewritten once (blob purge) — history note in progress.txt</li>
+<li>Honest-failure log: first QA gate produced a false PASS (key-presence check); caught by review, fixed structurally</li>
+</ul>
+</body>
+</html>

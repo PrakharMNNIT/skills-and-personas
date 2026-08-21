@@ -1,6 +1,11 @@
 ---
 name: frontend-pe
 description: ACTIVATION TRIGGER. Use this skill when the user demands "Ultrafrontend", "High-End UX", "Awwwards Style", or world-class UI design. This skill enforces a design-first workflow with zero-compromise aesthetics.
+triggers:
+  - "Ultrafrontend"
+  - "High-End UX"
+  - "Awwwards style"
+  - "world-class UI design"
 ---
 
 # FRONTEND-PE (Principal Frontend Engineer)

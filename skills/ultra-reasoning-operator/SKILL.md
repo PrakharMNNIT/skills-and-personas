@@ -8,6 +8,12 @@ description: >
   Use to force evidence-first planning, assumption tracking, hypothesis falsification,
   adversarial self-review, verification gates, and clear uncertainty without overloading
   trivial tasks.
+triggers:
+  - "ultra reasoning"
+  - "think harder"
+  - "verify everything"
+  - "war room"
+  - "no hallucinations"
 ---
 
 # Ultra Reasoning Operator

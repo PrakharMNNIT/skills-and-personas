@@ -1,6 +1,9 @@
 ---
 name: backend-principle-eng-javascript-pro-max
 description: "Principal backend engineering intelligence for JavaScript services. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, reliability, performance, security, observability, scalability, operability, cost."
+triggers:
+  - "JavaScript backend design"
+  - "Node service architecture"
 ---
 
 # Backend Principle Eng JavaScript Pro Max

@@ -1,6 +1,11 @@
 ---
 name: svg-logo-designer
 description: "Elite SVG logo design intelligence. Creates professional hand-crafted SVG logos, brand marks, icons, wordmarks, lettermarks, emblems, abstract marks, and visual identities. Uses a rigorous multi-phase discovery interview (2-3 rounds) to extract brand DNA, emotional tone, and design intent before generating. Produces multiple concepts with layout variations, full color systems, design tokens (CSS custom properties, JSON, Figma-ready specs), and optimized SVG using advanced techniques (gradients, masks, filters, blend modes, animations). Self-evaluates every concept against a 7-criterion quality rubric. Structured iterative refinement loop. Use when creating logos, brand marks, icons, symbols, visual identities, wordmarks, lettermarks, emblems, mascot marks, scalable vector branding, brand guidelines, or design systems from logos."
+triggers:
+  - "design an SVG logo"
+  - "brand mark"
+  - "wordmark design"
+  - "vector logo"
 ---
 
 # SVG Logo Designer

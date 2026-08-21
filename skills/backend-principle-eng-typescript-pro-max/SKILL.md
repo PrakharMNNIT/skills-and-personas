@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-typescript-pro-max
 description: "Principal backend engineering intelligence for TypeScript services. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, reliability, performance, security, observability, scalability, operability, cost."
+triggers:
+  - "TypeScript backend design"
+  - "TS service architecture"
+  - "type-safe API review"
 ---
 
 # Backend Principle Eng TypeScript Pro Max

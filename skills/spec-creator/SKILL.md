@@ -10,6 +10,11 @@ description: >
   developer tools, and any domain. It produces specs at the level of a principal-engineer-authored
   portable implementation contract — not a PRD, not an HLD, but the artifact that sits between
   architecture and code.
+triggers:
+  - "write a spec"
+  - "create SPEC.md"
+  - "implementation contract"
+  - "spec out this feature"
 ---
 
 # Spec Creator

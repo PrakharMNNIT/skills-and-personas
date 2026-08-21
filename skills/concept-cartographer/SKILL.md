@@ -1,6 +1,12 @@
 ---
 name: concept-cartographer
 description: "Generate visual concept maps, flowcharts, architecture diagrams, and relationship diagrams from structured notes or technical content using Mermaid syntax. Use when the user has lecture notes, study materials, or technical documentation and wants visual diagrams to aid understanding. Produces multiple diagram types: concept hierarchy maps, process flowcharts, architecture diagrams, comparison matrices, timeline diagrams, and mind maps. Trigger phrases: 'create diagrams from notes', 'visualize concepts', 'concept map', 'make flowcharts', 'diagram this', 'visual notes'."
+triggers:
+  - "create diagrams from notes"
+  - "visualize concepts"
+  - "make a flowchart"
+  - "diagram this"
+  - "concept map"
 ---
 
 # Concept Cartographer - Visual Knowledge Mapper

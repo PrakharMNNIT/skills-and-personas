@@ -1,6 +1,11 @@
 ---
 name: superimprove
 description: "Run a bounded, evidence-first audit-fix-review-verify loop on a codebase when the user asks to improve, harden, overhaul, or fix all confirmed defects. Use only with explicit edit authority in a git repository. Do not use for advisory-only reviews, a single narrow bug, or when the worktree is dirty and the owner has not chosen how to preserve it."
+triggers:
+  - "improve this codebase"
+  - "harden the codebase"
+  - "fix all confirmed defects"
+  - "overhaul this repo"
 ---
 
 # SuperImprove

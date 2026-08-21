@@ -1,6 +1,11 @@
 ---
 name: transcript-pipeline
 description: This skill should be used when the user asks to "process this transcript", "convert lecture to notes", "run transcript pipeline", "generate class tutorial from Zoom captions", "validate transcript coverage", or "enrich class resources" (Notion/Canva/Drive links) for bootcamp notes.
+triggers:
+  - "run transcript pipeline"
+  - "generate class tutorial"
+  - "validate transcript coverage"
+  - "enrich class resources"
 version: 0.2.0
 ---
 

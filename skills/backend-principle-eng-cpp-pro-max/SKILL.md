@@ -1,6 +1,10 @@
 ---
 name: backend-principle-eng-cpp-pro-max
 description: "Principal backend engineering intelligence for C++ systems and performance-critical services. Actions: plan, design, build, implement, review, fix, optimize, refactor, debug, secure, scale backend code and architectures. Focus: correctness, memory safety, latency, reliability, observability, scalability, operability."
+triggers:
+  - "C++ backend design"
+  - "cpp performance service"
+  - "low latency C++ systems"
 ---
 
 # Backend Principle Eng C++ Pro Max

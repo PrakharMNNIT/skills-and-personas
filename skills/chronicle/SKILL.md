@@ -1,6 +1,11 @@
 ---
 name: chronicle
 description: "Personal journal intelligence that transforms raw, unorganized thoughts into structured diary entries with psychological analysis. Use when the user provides journal entries, diary text, stream-of-consciousness writing, voice memo transcriptions, or asks to process daily thoughts into a structured format. Produces narrative entries, gratitude extraction, multi-level psychological analysis (surface/medium/clinical), health pattern flags, therapeutic micro-actions, and bridge-to-tomorrow planning. Trigger phrases: 'journal entry', 'diary entry', 'process my thoughts', 'Chronicle', 'daily reflection', 'write up my day'."
+triggers:
+  - "journal entry"
+  - "process my thoughts"
+  - "daily reflection"
+  - "write up my day"
 ---
 
 # Chronicle - Personal Journal Intelligence

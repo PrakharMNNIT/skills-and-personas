@@ -1,6 +1,10 @@
 ---
 name: idea-capturer
 description: Provides a structured system for capturing fleeting thoughts, developing raw ideas into actionable concepts, and organizing your creative thinking.
+triggers:
+  - "capture an idea"
+  - "develop a raw idea"
+  - "organize my ideas"
 ---
 
 # Idea Capturer

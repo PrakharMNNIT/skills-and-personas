@@ -12,6 +12,11 @@ description: >
   message, sequence, and example so nothing is left to judgment. Works for any software domain.
   If no SPEC.md exists, this skill MUST redirect the user to generate one first using the
   spec-creator skill.
+triggers:
+  - "create a blueprint"
+  - "expand this spec into a blueprint"
+  - "implementation bible"
+  - "BLUEPRINT.md"
 ---
 
 # Blueprint Creator

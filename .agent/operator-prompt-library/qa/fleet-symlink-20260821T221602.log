@@ -1,0 +1,676 @@
+== /Users/prax/.codex/skills ==
+ALREADY_LINKED _gstack-command -> /Users/prax/.agents/skills/_gstack-command
+ALREADY_LINKED academic-cv-builder -> ../../.agents/skills/academic-cv-builder
+RELINKED academic-verify
+ALREADY_LINKED adhd -> ../../.agents/skills/adhd
+ALREADY_LINKED advise-project-approach -> ../../.agents/skills/advise-project-approach
+ALREADY_LINKED advisor-orchestrator-worker -> ../../.agents/skills/advisor-orchestrator-worker
+ALREADY_LINKED agentic-deep-research -> ../../.agents/skills/agentic-deep-research
+ALREADY_LINKED algo-sensei -> ../../.agents/skills/algo-sensei
+ALREADY_LINKED algorithmic-art -> ../../.agents/skills/algorithmic-art
+ALREADY_LINKED analyze-feature-requests -> ../../.agents/skills/analyze-feature-requests
+RELINKED apex-autonomous-mode
+ALREADY_LINKED api-and-interface-design -> ../../.agents/skills/api-and-interface-design
+ALREADY_LINKED application-form-filler -> ../../.agents/skills/application-form-filler
+ALREADY_LINKED architect -> ../../.agents/skills/architect
+RELINKED archive-crawler
+ALREADY_LINKED arena -> ../../.agents/skills/arena
+RELINKED article-enrichment
+ALREADY_LINKED ask-matt -> ../../.agents/skills/ask-matt
+RELINKED ask-user
+ALREADY_LINKED audit -> ../../.agents/skills/audit
+ALREADY_LINKED automate -> ../../.agents/skills/automate
+ALREADY_LINKED automate-me -> ../../.agents/skills/automate-me
+ALREADY_LINKED autonomous-agent -> ../../.agents/skills/autonomous-agent
+RELINKED autonomous-orchestrion
+ALREADY_LINKED autonomous-orchestrion-v6 -> ../../.agents/skills/autonomous-orchestrion-v6
+ALREADY_LINKED autopilot -> ../../.agents/skills/autopilot
+ALREADY_LINKED autoplan -> ../../.agents/skills/autoplan
+RELINKED backend-architecture-standards
+ALREADY_LINKED backend-pe -> ../../.agents/skills/backend-pe
+RELINKED backend-pe-cpp
+RELINKED backend-pe-java
+RELINKED backend-pe-javascript
+RELINKED backend-pe-nodejs
+RELINKED backend-pe-python
+RELINKED backend-pe-python-ml
+RELINKED backend-pe-typescript
+ALREADY_LINKED backend-principle-eng-cpp-pro-max -> ../../.agents/skills/backend-principle-eng-cpp-pro-max
+ALREADY_LINKED backend-principle-eng-java-pro-max -> ../../.agents/skills/backend-principle-eng-java-pro-max
+ALREADY_LINKED backend-principle-eng-javascript-pro-max -> ../../.agents/skills/backend-principle-eng-javascript-pro-max
+ALREADY_LINKED backend-principle-eng-nodejs-pro-max -> ../../.agents/skills/backend-principle-eng-nodejs-pro-max
+ALREADY_LINKED backend-principle-eng-python-ml-pro-max -> ../../.agents/skills/backend-principle-eng-python-ml-pro-max
+ALREADY_LINKED backend-principle-eng-python-pro-max -> ../../.agents/skills/backend-principle-eng-python-pro-max
+ALREADY_LINKED backend-principle-eng-typescript-pro-max -> ../../.agents/skills/backend-principle-eng-typescript-pro-max
+ALREADY_LINKED backend-provider-evaluations -> ../../.agents/skills/backend-provider-evaluations
+RELINKED backend-system-design-expert
+ALREADY_LINKED banner-design -> ../../.agents/skills/banner-design
+RELINKED baron-von-markup
+ALREADY_LINKED benchmark -> ../../.agents/skills/benchmark
+ALREADY_LINKED benchmark-models -> ../../.agents/skills/benchmark-models
+ALREADY_LINKED blank-stare -> ../../.agents/skills/blank-stare
+ALREADY_LINKED blast-radius -> ../../.agents/skills/blast-radius
+RELINKED blog-ingest
+ALREADY_LINKED blueprint-creator -> ../../.agents/skills/blueprint-creator
+RELINKED book-mirror
+RELINKED brain-ingest-gate
+RELINKED brain-link-discipline
+RELINKED brain-ops
+RELINKED brain-pdf
+RELINKED brain-taxonomist
+ALREADY_LINKED brainstorm-ideas-existing -> ../../.agents/skills/brainstorm-ideas-existing
+ALREADY_LINKED brainstorming -> ../../.agents/skills/brainstorming
+ALREADY_LINKED brand -> ../../.agents/skills/brand
+ALREADY_LINKED brand-guidelines -> ../../.agents/skills/brand-guidelines
+ALREADY_LINKED brandkit -> ../../.agents/skills/brandkit
+RELINKED briefing
+ALREADY_LINKED bro -> ../../.agents/skills/bro
+ALREADY_LINKED browse -> ../../.agents/skills/browse
+ALREADY_LINKED browser-testing-with-devtools -> ../../.agents/skills/browser-testing-with-devtools
+RELINKED bulk-ingestion
+ALREADY_LINKED canary -> ../../.agents/skills/canary
+ALREADY_LINKED canvas -> ../../.agents/skills/canvas
+ALREADY_LINKED canvas-design -> ../../.agents/skills/canvas-design
+ALREADY_LINKED captions-overlay -> ../../.agents/skills/captions-overlay
+RELINKED capture
+ALREADY_LINKED career-changer-translator -> ../../.agents/skills/career-changer-translator
+ALREADY_LINKED career-ops -> ../../.agents/skills/career-ops
+ALREADY_LINKED careful -> ../../.agents/skills/careful
+ALREADY_LINKED cavecrew -> ../../.agents/skills/cavecrew
+ALREADY_LINKED caveman -> ../../.agents/skills/caveman
+ALREADY_LINKED caveman-commit -> ../../.agents/skills/caveman-commit
+ALREADY_LINKED caveman-compress -> ../../.agents/skills/caveman-compress
+ALREADY_LINKED caveman-help -> ../../.agents/skills/caveman-help
+ALREADY_LINKED caveman-review -> ../../.agents/skills/caveman-review
+ALREADY_LINKED caveman-stats -> ../../.agents/skills/caveman-stats
+ALREADY_LINKED changelog-video -> ../../.agents/skills/changelog-video
+ALREADY_LINKED chronicle -> ../../.agents/skills/chronicle
+ALREADY_LINKED ci-cd-and-automation -> ../../.agents/skills/ci-cd-and-automation
+RELINKED citation-fixer
+RELINKED citation-graph-ingest
+ALREADY_LINKED claude-api -> ../../.agents/skills/claude-api
+ALREADY_LINKED claude-handoff -> ../../.agents/skills/claude-handoff
+ALREADY_LINKED cmux -> ../../.agents/skills/cmux
+ALREADY_LINKED cmux-browser -> ../../.agents/skills/cmux-browser
+ALREADY_LINKED cmux-custom-sidebar -> ../../.agents/skills/cmux-custom-sidebar
+ALREADY_LINKED cmux-customization -> ../../.agents/skills/cmux-customization
+ALREADY_LINKED cmux-diagnostics -> ../../.agents/skills/cmux-diagnostics
+ALREADY_LINKED cmux-keyboard-shortcuts -> ../../.agents/skills/cmux-keyboard-shortcuts
+ALREADY_LINKED cmux-markdown -> ../../.agents/skills/cmux-markdown
+ALREADY_LINKED cmux-settings -> ../../.agents/skills/cmux-settings
+ALREADY_LINKED cmux-workspace -> ../../.agents/skills/cmux-workspace
+ALREADY_LINKED code-review -> ../../.agents/skills/code-review
+ALREADY_LINKED code-review-and-quality -> ../../.agents/skills/code-review-and-quality
+ALREADY_LINKED code-simplification -> ../../.agents/skills/code-simplification
+ALREADY_LINKED codebase-design -> ../../.agents/skills/codebase-design
+ALREADY_LINKED codex -> ../../.agents/skills/codex
+ALREADY_LINKED coding-agent-leadership-principles -> ../../.agents/skills/coding-agent-leadership-principles
+ALREADY_LINKED cold-email-writer -> ../../.agents/skills/cold-email-writer
+RELINKED cold-start
+ALREADY_LINKED commit-archaeologist -> ../../.agents/skills/commit-archaeologist
+RELINKED company-brainify
+ALREADY_LINKED computer-use -> ../../.agents/skills/computer-use
+ALREADY_LINKED concept-cartographer -> ../../.agents/skills/concept-cartographer
+RELINKED concept-synthesis
+ALREADY_LINKED connect-chrome -> ../../.agents/skills/connect-chrome
+ALREADY_LINKED constellation-team -> ../../.agents/skills/constellation-team
+ALREADY_LINKED container-dev -> ../../.agents/skills/container-dev
+RELINKED context-audit
+ALREADY_LINKED context-engineering -> ../../.agents/skills/context-engineering
+ALREADY_LINKED context-restore -> ../../.agents/skills/context-restore
+ALREADY_LINKED context-save -> ../../.agents/skills/context-save
+RELINKED conversation-archive
+RELINKED correction-pipeline
+ALREADY_LINKED council -> ../../.agents/skills/council
+ALREADY_LINKED cover-letter-generator -> ../../.agents/skills/cover-letter-generator
+ALREADY_LINKED create-hook -> ../../.agents/skills/create-hook
+ALREADY_LINKED create-rule -> ../../.agents/skills/create-rule
+ALREADY_LINKED create-skill -> ../../.agents/skills/create-skill
+ALREADY_LINKED create-subagent -> ../../.agents/skills/create-subagent
+ALREADY_LINKED create-verification-skill -> ../../.agents/skills/create-verification-skill
+ALREADY_LINKED creative-portfolio-resume -> ../../.agents/skills/creative-portfolio-resume
+RELINKED cron-scheduler
+ALREADY_LINKED cross-agent-handoff -> ../../.agents/skills/cross-agent-handoff
+RELINKED cross-modal-review
+ALREADY_LINKED crush-grade-tui-design -> ../../.agents/skills/crush-grade-tui-design
+ALREADY_LINKED cso -> ../../.agents/skills/cso
+ALREADY_LINKED cut-the-curve -> ../../.agents/skills/cut-the-curve
+RELINKED daily-task-manager
+RELINKED daily-task-prep
+ALREADY_LINKED data -> ../../.agents/skills/data
+RELINKED data-loss-gate
+RELINKED data-research
+ALREADY_LINKED database-migration-safety -> ../../.agents/skills/database-migration-safety
+ALREADY_LINKED dcanvas -> ../../.agents/skills/dcanvas
+ALREADY_LINKED debug -> ../../.agents/skills/debug
+ALREADY_LINKED debugging-and-error-recovery -> ../../.agents/skills/debugging-and-error-recovery
+ALREADY_LINKED debugging-wizard -> ../../.agents/skills/debugging-wizard
+ALREADY_LINKED decision-framework -> ../../.agents/skills/decision-framework
+ALREADY_LINKED decisions -> ../../.agents/skills/decisions
+ALREADY_LINKED deep-research -> ../../.agents/skills/deep-research
+ALREADY_LINKED dependency-doctor -> ../../.agents/skills/dependency-doctor
+ALREADY_LINKED dependency-review -> ../../.agents/skills/dependency-review
+ALREADY_LINKED deploy-to-vercel -> ../../.agents/skills/deploy-to-vercel
+ALREADY_LINKED deprecation-and-migration -> ../../.agents/skills/deprecation-and-migration
+ALREADY_LINKED design -> ../../.agents/skills/design
+ALREADY_LINKED design-consultation -> ../../.agents/skills/design-consultation
+ALREADY_LINKED design-html -> ../../.agents/skills/design-html
+ALREADY_LINKED design-qa -> ../../.agents/skills/design-qa
+ALREADY_LINKED design-review -> ../../.agents/skills/design-review
+ALREADY_LINKED design-shotgun -> ../../.agents/skills/design-shotgun
+ALREADY_LINKED design-system -> ../../.agents/skills/design-system
+ALREADY_LINKED design-taste-frontend -> ../../.agents/skills/design-taste-frontend
+ALREADY_LINKED design-taste-frontend-v1 -> ../../.agents/skills/design-taste-frontend-v1
+ALREADY_LINKED develop-secure-contracts -> ../../.agents/skills/develop-secure-contracts
+ALREADY_LINKED devex-review -> ../../.agents/skills/devex-review
+RELINKED devops-sre-engineer
+ALREADY_LINKED diagnosing-bugs -> ../../.agents/skills/diagnosing-bugs
+ALREADY_LINKED diagram -> ../../.agents/skills/diagram
+ALREADY_LINKED dispatching-parallel-agents -> ../../.agents/skills/dispatching-parallel-agents
+ALREADY_LINKED doc-coauthoring -> ../../.agents/skills/doc-coauthoring
+ALREADY_LINKED document-generate -> ../../.agents/skills/document-generate
+ALREADY_LINKED document-release -> ../../.agents/skills/document-release
+ALREADY_LINKED documentation-and-adrs -> ../../.agents/skills/documentation-and-adrs
+ALREADY_LINKED docx -> ../../.agents/skills/docx
+ALREADY_LINKED dogfood -> ../../.agents/skills/dogfood
+ALREADY_LINKED domain-modeling -> ../../.agents/skills/domain-modeling
+ALREADY_LINKED doubt-driven-development -> ../../.agents/skills/doubt-driven-development
+RELINKED draft-in-voice
+ALREADY_LINKED edit-article -> ../../.agents/skills/edit-article
+RELINKED eiirp
+ALREADY_LINKED embedded-captions -> ../../.agents/skills/embedded-captions
+RELINKED enrich
+ALREADY_LINKED eval-audit -> ../../.agents/skills/eval-audit
+ALREADY_LINKED executing-plans -> ../../.agents/skills/executing-plans
+ALREADY_LINKED executive-resume-writer -> ../../.agents/skills/executive-resume-writer
+ALREADY_LINKED faceless-explainer -> ../../.agents/skills/faceless-explainer
+RELINKED fact-check
+ALREADY_LINKED figma -> ../../.agents/skills/figma
+ALREADY_LINKED figure-it-out -> ../../.agents/skills/figure-it-out
+ALREADY_LINKED find-skills -> ../../.agents/skills/find-skills
+ALREADY_LINKED finishing-a-development-branch -> ../../.agents/skills/finishing-a-development-branch
+ALREADY_LINKED freeze -> ../../.agents/skills/freeze
+ALREADY_LINKED frontend-design -> ../../.agents/skills/frontend-design
+RELINKED frontend-design-excellence
+ALREADY_LINKED frontend-design-pro -> ../../.agents/skills/frontend-design-pro
+RELINKED frontend-excellence-standards
+ALREADY_LINKED frontend-pe -> ../../.agents/skills/frontend-pe
+ALREADY_LINKED frontend-pro-max -> ../../.agents/skills/frontend-pro-max
+ALREADY_LINKED frontend-ui-engineering -> ../../.agents/skills/frontend-ui-engineering
+RELINKED frontend-uiux-designer
+ALREADY_LINKED full-output-enforcement -> ../../.agents/skills/full-output-enforcement
+RELINKED functional-area-resolver
+RELINKED gabriel-petersson-topdown-mentor
+RELINKED gbrain-advisor
+ALREADY_LINKED general-video -> ../../.agents/skills/general-video
+ALREADY_LINKED git-guardrails-claude-code -> ../../.agents/skills/git-guardrails-claude-code
+ALREADY_LINKED git-workflow-and-versioning -> ../../.agents/skills/git-workflow-and-versioning
+ALREADY_LINKED goal -> /Users/prax/.agents/skills/goal
+ALREADY_LINKED godplans -> ../../.agents/skills/godplans
+ALREADY_LINKED gpt-taste -> ../../.agents/skills/gpt-taste
+ALREADY_LINKED graphify -> ../../.agents/skills/graphify
+ALREADY_LINKED grill-me -> ../../.agents/skills/grill-me
+ALREADY_LINKED grill-with-docs -> ../../.agents/skills/grill-with-docs
+ALREADY_LINKED grilling -> ../../.agents/skills/grilling
+ALREADY_LINKED gstack -> ../../.agents/skills/gstack
+ALREADY_LINKED gstack-autoplan -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-autoplan/
+ALREADY_LINKED gstack-benchmark -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-benchmark/
+ALREADY_LINKED gstack-benchmark-models -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-benchmark-models/
+ALREADY_LINKED gstack-browse -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-browse/
+ALREADY_LINKED gstack-canary -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-canary/
+ALREADY_LINKED gstack-careful -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-careful/
+ALREADY_LINKED gstack-codex -> ../../.agents/skills/gstack-codex
+ALREADY_LINKED gstack-connect-chrome -> ../../.agents/skills/gstack-connect-chrome
+ALREADY_LINKED gstack-context-restore -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-context-restore/
+ALREADY_LINKED gstack-context-save -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-context-save/
+ALREADY_LINKED gstack-cso -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-cso/
+ALREADY_LINKED gstack-design-consultation -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-design-consultation/
+ALREADY_LINKED gstack-design-html -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-design-html/
+ALREADY_LINKED gstack-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-design-review/
+ALREADY_LINKED gstack-design-shotgun -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-design-shotgun/
+ALREADY_LINKED gstack-devex-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-devex-review/
+ALREADY_LINKED gstack-diagram -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-diagram/
+ALREADY_LINKED gstack-document-generate -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-document-generate/
+ALREADY_LINKED gstack-document-release -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-document-release/
+ALREADY_LINKED gstack-freeze -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-freeze/
+ALREADY_LINKED gstack-guard -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-guard/
+ALREADY_LINKED gstack-health -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-health/
+ALREADY_LINKED gstack-investigate -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-investigate/
+ALREADY_LINKED gstack-ios-clean -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ios-clean/
+ALREADY_LINKED gstack-ios-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ios-design-review/
+ALREADY_LINKED gstack-ios-fix -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ios-fix/
+ALREADY_LINKED gstack-ios-qa -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ios-qa/
+ALREADY_LINKED gstack-ios-sync -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ios-sync/
+ALREADY_LINKED gstack-land-and-deploy -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-land-and-deploy/
+ALREADY_LINKED gstack-landing-report -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-landing-report/
+ALREADY_LINKED gstack-learn -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-learn/
+ALREADY_LINKED gstack-make-pdf -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-make-pdf/
+ALREADY_LINKED gstack-office-hours -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-office-hours/
+ALREADY_LINKED gstack-open-gstack-browser -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-open-gstack-browser/
+RELINKED gstack-openclaw-ceo-review
+RELINKED gstack-openclaw-investigate
+RELINKED gstack-openclaw-office-hours
+RELINKED gstack-openclaw-retro
+ALREADY_LINKED gstack-pair-agent -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-pair-agent/
+ALREADY_LINKED gstack-plan-ceo-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-plan-ceo-review/
+ALREADY_LINKED gstack-plan-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-plan-design-review/
+ALREADY_LINKED gstack-plan-devex-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-plan-devex-review/
+ALREADY_LINKED gstack-plan-eng-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-plan-eng-review/
+ALREADY_LINKED gstack-plan-tune -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-plan-tune/
+ALREADY_LINKED gstack-qa -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-qa/
+ALREADY_LINKED gstack-qa-only -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-qa-only/
+ALREADY_LINKED gstack-retro -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-retro/
+ALREADY_LINKED gstack-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-review/
+ALREADY_LINKED gstack-scrape -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-scrape/
+ALREADY_LINKED gstack-setup-browser-cookies -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-setup-browser-cookies/
+ALREADY_LINKED gstack-setup-deploy -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-setup-deploy/
+ALREADY_LINKED gstack-setup-gbrain -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-setup-gbrain/
+ALREADY_LINKED gstack-ship -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-ship/
+ALREADY_LINKED gstack-skillify -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-skillify/
+ALREADY_LINKED gstack-spec -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-spec/
+ALREADY_LINKED gstack-sync-gbrain -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-sync-gbrain/
+ALREADY_LINKED gstack-unfreeze -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-unfreeze/
+ALREADY_LINKED gstack-upgrade -> /Users/prax/Developer/agent-stack/.runtime/gstack/.agents/skills/gstack-upgrade/
+ALREADY_LINKED guard -> ../../.agents/skills/guard
+ALREADY_LINKED hallmark -> ../../.agents/skills/hallmark
+ALREADY_LINKED handoff -> ../../.agents/skills/handoff
+ALREADY_LINKED hatch-pet -> ../../.agents/skills/hatch-pet
+ALREADY_LINKED health -> ../../.agents/skills/health
+ALREADY_LINKED hermes-desktop-plugins -> ../../.agents/skills/hermes-desktop-plugins
+ALREADY_LINKED high-end-visual-design -> ../../.agents/skills/high-end-visual-design
+ALREADY_LINKED how -> ../../.agents/skills/how
+ALREADY_LINKED humanizer -> ../../.agents/skills/humanizer
+ALREADY_LINKED hyperframes -> ../../.agents/skills/hyperframes
+ALREADY_LINKED hyperframes-animation -> ../../.agents/skills/hyperframes-animation
+ALREADY_LINKED hyperframes-cli -> ../../.agents/skills/hyperframes-cli
+ALREADY_LINKED hyperframes-core -> ../../.agents/skills/hyperframes-core
+ALREADY_LINKED hyperframes-creative -> ../../.agents/skills/hyperframes-creative
+ALREADY_LINKED hyperframes-keyframes -> ../../.agents/skills/hyperframes-keyframes
+ALREADY_LINKED hyperframes-registry -> ../../.agents/skills/hyperframes-registry
+ALREADY_LINKED i-have-adhd -> ../../.agents/skills/i-have-adhd
+ALREADY_LINKED idea-capturer -> ../../.agents/skills/idea-capturer
+RELINKED idea-ingest
+RELINKED idea-lineage
+ALREADY_LINKED idea-refine -> ../../.agents/skills/idea-refine
+ALREADY_LINKED identity-preservation -> ../../.agents/skills/identity-preservation
+ALREADY_LINKED image-to-code -> ../../.agents/skills/image-to-code
+ALREADY_LINKED imagegen-frontend-mobile -> ../../.agents/skills/imagegen-frontend-mobile
+ALREADY_LINKED imagegen-frontend-web -> ../../.agents/skills/imagegen-frontend-web
+ALREADY_LINKED implement -> ../../.agents/skills/implement
+ALREADY_LINKED implement-from-spec -> ../../.agents/skills/implement-from-spec
+ALREADY_LINKED implement-spec -> ../../.agents/skills/implement-spec
+ALREADY_LINKED improve -> ../../.agents/skills/improve
+ALREADY_LINKED improve-codebase-architecture -> ../../.agents/skills/improve-codebase-architecture
+ALREADY_LINKED incident-debug -> ../../.agents/skills/incident-debug
+ALREADY_LINKED incremental-implementation -> ../../.agents/skills/incremental-implementation
+ALREADY_LINKED industrial-brutalist-ui -> ../../.agents/skills/industrial-brutalist-ui
+RELINKED ingest
+ALREADY_LINKED interface-design -> ../../.agents/skills/interface-design
+ALREADY_LINKED internal-comms -> ../../.agents/skills/internal-comms
+ALREADY_LINKED interrogate -> ../../.agents/skills/interrogate
+ALREADY_LINKED interview-coach -> ../../.agents/skills/interview-coach
+ALREADY_LINKED interview-me -> ../../.agents/skills/interview-me
+ALREADY_LINKED interview-prep -> ../../.agents/skills/interview-prep
+ALREADY_LINKED interview-prep-generator -> ../../.agents/skills/interview-prep-generator
+ALREADY_LINKED investigate -> ../../.agents/skills/investigate
+ALREADY_LINKED ios-clean -> ../../.agents/skills/ios-clean
+ALREADY_LINKED ios-design-review -> ../../.agents/skills/ios-design-review
+ALREADY_LINKED ios-fix -> ../../.agents/skills/ios-fix
+ALREADY_LINKED ios-networking -> ../../.agents/skills/ios-networking
+ALREADY_LINKED ios-qa -> ../../.agents/skills/ios-qa
+ALREADY_LINKED ios-sync -> ../../.agents/skills/ios-sync
+ALREADY_LINKED job-description-analyzer -> ../../.agents/skills/job-description-analyzer
+ALREADY_LINKED json-canvas -> ../../.agents/skills/json-canvas
+RELINKED kingmode
+ALREADY_LINKED land-and-deploy -> ../../.agents/skills/land-and-deploy
+ALREADY_LINKED landing-report -> ../../.agents/skills/landing-report
+ALREADY_LINKED last30days -> ../../.agents/skills/last30days
+ALREADY_LINKED learn -> ../../.agents/skills/learn
+ALREADY_LINKED lecture-alchemist -> ../../.agents/skills/lecture-alchemist
+ALREADY_LINKED ledger-atlas-orchestrion -> ../../.agents/skills/ledger-atlas-orchestrion
+ALREADY_LINKED linkedin-profile-optimizer -> ../../.agents/skills/linkedin-profile-optimizer
+ALREADY_LINKED llm-evaluation -> ../../.agents/skills/llm-evaluation
+ALREADY_LINKED local-deep-research -> ../../.agents/skills/local-deep-research
+ALREADY_LINKED loop -> ../../.agents/skills/loop
+ALREADY_LINKED loop-me -> ../../.agents/skills/loop-me
+RELINKED maintain
+ALREADY_LINKED maintain-verification-skill -> ../../.agents/skills/maintain-verification-skill
+ALREADY_LINKED make-pdf -> ../../.agents/skills/make-pdf
+ALREADY_LINKED manim-video -> ../../.agents/skills/manim-video
+ALREADY_LINKED mcp-builder -> ../../.agents/skills/mcp-builder
+RELINKED measure-before-you-fix
+RELINKED media-ingest
+ALREADY_LINKED media-use -> ../../.agents/skills/media-use
+ALREADY_LINKED mediabunny -> ../../.agents/skills/mediabunny
+RELINKED meeting-ingestion
+ALREADY_LINKED memory-leak-debugging -> ../../.agents/skills/memory-leak-debugging
+RELINKED mental-health-screening-companion
+ALREADY_LINKED migrate-to-shoehorn -> ../../.agents/skills/migrate-to-shoehorn
+ALREADY_LINKED migrate-to-skills -> ../../.agents/skills/migrate-to-skills
+ALREADY_LINKED minimalist-ui -> ../../.agents/skills/minimalist-ui
+RELINKED minion-orchestrator
+ALREADY_LINKED modern-web-guidance -> ../../.agents/skills/modern-web-guidance
+ALREADY_LINKED motion-doctrine -> ../../.agents/skills/motion-doctrine
+ALREADY_LINKED motion-graphics -> ../../.agents/skills/motion-graphics
+ALREADY_LINKED music-to-video -> ../../.agents/skills/music-to-video
+ALREADY_LINKED neuroarxiv -> ../../.agents/skills/neuroarxiv
+ALREADY_LINKED no-comments -> ../../.agents/skills/no-comments
+ALREADY_LINKED observability-and-instrumentation -> ../../.agents/skills/observability-and-instrumentation
+ALREADY_LINKED obsidian-bases -> ../../.agents/skills/obsidian-bases
+ALREADY_LINKED obsidian-cli -> ../../.agents/skills/obsidian-cli
+ALREADY_LINKED obsidian-markdown -> ../../.agents/skills/obsidian-markdown
+ALREADY_LINKED obsidian-vault -> ../../.agents/skills/obsidian-vault
+ALREADY_LINKED offer-comparison-analyzer -> ../../.agents/skills/offer-comparison-analyzer
+ALREADY_LINKED office-hours -> ../../.agents/skills/office-hours
+ALREADY_LINKED onboard -> ../../.agents/skills/onboard
+ALREADY_LINKED open-gstack-browser -> ../../.agents/skills/open-gstack-browser
+ALREADY_LINKED openspec-apply-change -> ../../.agents/skills/openspec-apply-change
+ALREADY_LINKED openspec-archive-change -> ../../.agents/skills/openspec-archive-change
+ALREADY_LINKED openspec-bulk-archive-change -> ../../.agents/skills/openspec-bulk-archive-change
+ALREADY_LINKED openspec-continue-change -> ../../.agents/skills/openspec-continue-change
+ALREADY_LINKED openspec-explore -> ../../.agents/skills/openspec-explore
+ALREADY_LINKED openspec-ff-change -> ../../.agents/skills/openspec-ff-change
+ALREADY_LINKED openspec-new-change -> ../../.agents/skills/openspec-new-change
+ALREADY_LINKED openspec-onboard -> ../../.agents/skills/openspec-onboard
+ALREADY_LINKED openspec-propose -> ../../.agents/skills/openspec-propose
+ALREADY_LINKED openspec-sync-specs -> ../../.agents/skills/openspec-sync-specs
+ALREADY_LINKED openspec-update-change -> ../../.agents/skills/openspec-update-change
+ALREADY_LINKED openspec-verify-change -> ../../.agents/skills/openspec-verify-change
+RELINKED orchestrion-universal-agent-router
+ALREADY_LINKED oversized-cursor -> ../../.agents/skills/oversized-cursor
+ALREADY_LINKED pair-agent -> ../../.agents/skills/pair-agent
+ALREADY_LINKED pass-the-mic -> ../../.agents/skills/pass-the-mic
+ALREADY_LINKED pdf -> ../../.agents/skills/pdf
+ALREADY_LINKED performance-optimization -> ../../.agents/skills/performance-optimization
+RELINKED perplexity-research
+ALREADY_LINKED plan-ceo-review -> ../../.agents/skills/plan-ceo-review
+ALREADY_LINKED plan-design-review -> ../../.agents/skills/plan-design-review
+ALREADY_LINKED plan-devex-review -> ../../.agents/skills/plan-devex-review
+ALREADY_LINKED plan-eng-review -> ../../.agents/skills/plan-eng-review
+ALREADY_LINKED plan-tune -> ../../.agents/skills/plan-tune
+ALREADY_LINKED planning-and-task-breakdown -> ../../.agents/skills/planning-and-task-breakdown
+ALREADY_LINKED portfolio-case-study-writer -> ../../.agents/skills/portfolio-case-study-writer
+ALREADY_LINKED poteto-mode -> ../../.agents/skills/poteto-mode
+ALREADY_LINKED pptx -> ../../.agents/skills/pptx
+ALREADY_LINKED pr-ready -> ../../.agents/skills/pr-ready
+ALREADY_LINKED pr-to-video -> ../../.agents/skills/pr-to-video
+ALREADY_LINKED prax-teach -> ../../.agents/skills/prax-teach
+ALREADY_LINKED prax-tech-eval -> ../../.agents/skills/prax-tech-eval
+ALREADY_LINKED premortem -> ../../.agents/skills/premortem
+RELINKED principal-engineer
+ALREADY_LINKED principle-boundary-discipline -> ../../.agents/skills/principle-boundary-discipline
+ALREADY_LINKED principle-build-the-lever -> ../../.agents/skills/principle-build-the-lever
+ALREADY_LINKED principle-encode-lessons-in-structure -> ../../.agents/skills/principle-encode-lessons-in-structure
+ALREADY_LINKED principle-exhaust-the-design-space -> ../../.agents/skills/principle-exhaust-the-design-space
+ALREADY_LINKED principle-experience-first -> ../../.agents/skills/principle-experience-first
+ALREADY_LINKED principle-fix-root-causes -> ../../.agents/skills/principle-fix-root-causes
+ALREADY_LINKED principle-foundational-thinking -> ../../.agents/skills/principle-foundational-thinking
+ALREADY_LINKED principle-guard-the-context-window -> ../../.agents/skills/principle-guard-the-context-window
+ALREADY_LINKED principle-laziness-protocol -> ../../.agents/skills/principle-laziness-protocol
+ALREADY_LINKED principle-make-operations-idempotent -> ../../.agents/skills/principle-make-operations-idempotent
+ALREADY_LINKED principle-migrate-callers-then-delete-legacy-apis -> ../../.agents/skills/principle-migrate-callers-then-delete-legacy-apis
+ALREADY_LINKED principle-minimize-reader-load -> ../../.agents/skills/principle-minimize-reader-load
+ALREADY_LINKED principle-model-the-domain -> ../../.agents/skills/principle-model-the-domain
+ALREADY_LINKED principle-never-block-on-the-human -> ../../.agents/skills/principle-never-block-on-the-human
+ALREADY_LINKED principle-outcome-oriented-execution -> ../../.agents/skills/principle-outcome-oriented-execution
+ALREADY_LINKED principle-prove-it-works -> ../../.agents/skills/principle-prove-it-works
+ALREADY_LINKED principle-redesign-from-first-principles -> ../../.agents/skills/principle-redesign-from-first-principles
+ALREADY_LINKED principle-separate-before-serializing-shared-state -> ../../.agents/skills/principle-separate-before-serializing-shared-state
+ALREADY_LINKED principle-sequence-verifiable-units -> ../../.agents/skills/principle-sequence-verifiable-units
+ALREADY_LINKED principle-subtract-before-you-add -> ../../.agents/skills/principle-subtract-before-you-add
+ALREADY_LINKED principle-type-system-discipline -> ../../.agents/skills/principle-type-system-discipline
+ALREADY_LINKED prioritize-features -> ../../.agents/skills/prioritize-features
+ALREADY_LINKED product-launch-video -> ../../.agents/skills/product-launch-video
+RELINKED product-manager
+RELINKED professor-alex-interview
+ALREADY_LINKED project-e2e -> ../../.agents/skills/project-e2e
+ALREADY_LINKED project-graveyard -> ../../.agents/skills/project-graveyard
+ALREADY_LINKED prototype -> ../../.agents/skills/prototype
+RELINKED publish
+ALREADY_LINKED qa -> ../../.agents/skills/qa
+ALREADY_LINKED qa-only -> ../../.agents/skills/qa-only
+RELINKED qa-security-engineer
+RELINKED query
+ALREADY_LINKED rabbit-hole -> ../../.agents/skills/rabbit-hole
+ALREADY_LINKED recall -> ../../.agents/skills/recall
+ALREADY_LINKED receiving-code-review -> ../../.agents/skills/receiving-code-review
+ALREADY_LINKED redesign-existing-projects -> ../../.agents/skills/redesign-existing-projects
+ALREADY_LINKED reference-list-builder -> ../../.agents/skills/reference-list-builder
+ALREADY_LINKED reflect -> ../../.agents/skills/reflect
+ALREADY_LINKED release-openspec -> ../../.agents/skills/release-openspec
+ALREADY_LINKED remotion-best-practices -> ../../.agents/skills/remotion-best-practices
+ALREADY_LINKED remotion-captions -> ../../.agents/skills/remotion-captions
+ALREADY_LINKED remotion-create -> ../../.agents/skills/remotion-create
+ALREADY_LINKED remotion-docs -> ../../.agents/skills/remotion-docs
+ALREADY_LINKED remotion-interactivity -> ../../.agents/skills/remotion-interactivity
+ALREADY_LINKED remotion-markup -> ../../.agents/skills/remotion-markup
+ALREADY_LINKED remotion-render -> ../../.agents/skills/remotion-render
+ALREADY_LINKED remotion-saas -> ../../.agents/skills/remotion-saas
+ALREADY_LINKED remotion-to-hyperframes -> ../../.agents/skills/remotion-to-hyperframes
+ALREADY_LINKED remotion-upgrade -> ../../.agents/skills/remotion-upgrade
+ALREADY_LINKED rename-chat -> ../../.agents/skills/rename-chat
+RELINKED repo-architecture
+ALREADY_LINKED repo-doctor -> ../../.agents/skills/repo-doctor
+RELINKED reports
+ALREADY_LINKED requesting-code-review -> ../../.agents/skills/requesting-code-review
+ALREADY_LINKED research -> ../../.agents/skills/research
+RELINKED research-compendium
+RELINKED resolve-before-asking
+ALREADY_LINKED resolving-merge-conflicts -> ../../.agents/skills/resolving-merge-conflicts
+ALREADY_LINKED resume-ats-optimizer -> ../../.agents/skills/resume-ats-optimizer
+ALREADY_LINKED resume-bullet-writer -> ../../.agents/skills/resume-bullet-writer
+ALREADY_LINKED resume-formatter -> ../../.agents/skills/resume-formatter
+ALREADY_LINKED resume-quantifier -> ../../.agents/skills/resume-quantifier
+ALREADY_LINKED resume-section-builder -> ../../.agents/skills/resume-section-builder
+ALREADY_LINKED resume-tailor -> ../../.agents/skills/resume-tailor
+ALREADY_LINKED resume-version-manager -> ../../.agents/skills/resume-version-manager
+ALREADY_LINKED retro -> ../../.agents/skills/retro
+ALREADY_LINKED review -> ../../.agents/skills/review
+ALREADY_LINKED review-bugbot -> ../../.agents/skills/review-bugbot
+ALREADY_LINKED review-security -> ../../.agents/skills/review-security
+ALREADY_LINKED review-sui-contracts -> ../../.agents/skills/review-sui-contracts
+ALREADY_LINKED salary-negotiation-prep -> ../../.agents/skills/salary-negotiation-prep
+ALREADY_LINKED say-back -> ../../.agents/skills/say-back
+ALREADY_LINKED scaffold-exercises -> ../../.agents/skills/scaffold-exercises
+ALREADY_LINKED scope-creep-detector -> ../../.agents/skills/scope-creep-detector
+ALREADY_LINKED scrape -> ../../.agents/skills/scrape
+ALREADY_LINKED sdk -> ../../.agents/skills/sdk
+ALREADY_LINKED seam-craft -> ../../.agents/skills/seam-craft
+ALREADY_LINKED security-and-hardening -> ../../.agents/skills/security-and-hardening
+RELINKED security-compliance-standards
+ALREADY_LINKED setup-browser-cookies -> ../../.agents/skills/setup-browser-cookies
+ALREADY_LINKED setup-cairo-contracts -> ../../.agents/skills/setup-cairo-contracts
+ALREADY_LINKED setup-deploy -> ../../.agents/skills/setup-deploy
+ALREADY_LINKED setup-gbrain -> ../../.agents/skills/setup-gbrain
+ALREADY_LINKED setup-matt-pocock-skills -> ../../.agents/skills/setup-matt-pocock-skills
+ALREADY_LINKED setup-pre-commit -> ../../.agents/skills/setup-pre-commit
+ALREADY_LINKED setup-pstack -> ../../.agents/skills/setup-pstack
+ALREADY_LINKED setup-solidity-contracts -> ../../.agents/skills/setup-solidity-contracts
+ALREADY_LINKED setup-stellar-contracts -> ../../.agents/skills/setup-stellar-contracts
+ALREADY_LINKED setup-stylus-contracts -> ../../.agents/skills/setup-stylus-contracts
+ALREADY_LINKED setup-sui-contracts -> ../../.agents/skills/setup-sui-contracts
+ALREADY_LINKED setup-ts-deep-modules -> ../../.agents/skills/setup-ts-deep-modules
+ALREADY_LINKED shell -> ../../.agents/skills/shell
+ALREADY_LINKED ship -> ../../.agents/skills/ship
+ALREADY_LINKED shipping-and-launch -> ../../.agents/skills/shipping-and-launch
+ALREADY_LINKED show-me-your-work -> ../../.agents/skills/show-me-your-work
+RELINKED signal-detector
+RELINKED skill-autobench
+ALREADY_LINKED skill-creator -> ../../.agents/skills/skill-creator
+ALREADY_LINKED skill-upper -> ../../.agents/skills/skill-upper
+ALREADY_LINKED skillify -> ../../.agents/skills/skillify
+RELINKED skillpack-check
+RELINKED skillpack-harvest
+ALREADY_LINKED skills-lock.json -> /Users/prax/.agents/skills/skills-lock.json
+ALREADY_LINKED slack-gif-creator -> ../../.agents/skills/slack-gif-creator
+ALREADY_LINKED slides -> ../../.agents/skills/slides
+ALREADY_LINKED slideshow -> ../../.agents/skills/slideshow
+ALREADY_LINKED soul-audit -> ../../.agents/skills/soul-audit
+ALREADY_LINKED source-driven-development -> ../../.agents/skills/source-driven-development
+ALREADY_LINKED spec -> ../../.agents/skills/spec
+ALREADY_LINKED spec-creator -> ../../.agents/skills/spec-creator
+ALREADY_LINKED spec-driven-development -> ../../.agents/skills/spec-driven-development
+ALREADY_LINKED spec-miner -> ../../.agents/skills/spec-miner
+ALREADY_LINKED spec-reviewer -> ../../.agents/skills/spec-reviewer
+ALREADY_LINKED spec-to-plan -> ../../.agents/skills/spec-to-plan
+ALREADY_LINKED split-to-prs -> ../../.agents/skills/split-to-prs
+ALREADY_LINKED statusline -> ../../.agents/skills/statusline
+ALREADY_LINKED stitch-design-taste -> ../../.agents/skills/stitch-design-taste
+RELINKED strategic-reading
+ALREADY_LINKED subagent-driven-development -> ../../.agents/skills/subagent-driven-development
+RELINKED super-mode-core
+ALREADY_LINKED superimprove -> ../../.agents/skills/superimprove
+ALREADY_LINKED svg-logo-designer -> ../../.agents/skills/svg-logo-designer
+ALREADY_LINKED svg-principal-engineer -> ../../.agents/skills/svg-principal-engineer
+ALREADY_LINKED swarm -> ../../.agents/skills/swarm
+ALREADY_LINKED swift-charts -> ../../.agents/skills/swift-charts
+ALREADY_LINKED swift-concurrency -> ../../.agents/skills/swift-concurrency
+ALREADY_LINKED swift-language -> ../../.agents/skills/swift-language
+ALREADY_LINKED swift-testing -> ../../.agents/skills/swift-testing
+ALREADY_LINKED swiftdata -> ../../.agents/skills/swiftdata
+ALREADY_LINKED swiftui-animation -> ../../.agents/skills/swiftui-animation
+ALREADY_LINKED swiftui-navigation -> ../../.agents/skills/swiftui-navigation
+ALREADY_LINKED swiftui-patterns -> ../../.agents/skills/swiftui-patterns
+ALREADY_LINKED swiftui-performance -> ../../.agents/skills/swiftui-performance
+ALREADY_LINKED swiftui-pro -> ../../.agents/skills/swiftui-pro
+ALREADY_LINKED sync-gbrain -> ../../.agents/skills/sync-gbrain
+ALREADY_LINKED system-design -> ../../.agents/skills/system-design
+ALREADY_LINKED systematic-debugging -> ../../.agents/skills/systematic-debugging
+ALREADY_LINKED talking-head-recut -> ../../.agents/skills/talking-head-recut
+ALREADY_LINKED tdd -> ../../.agents/skills/tdd
+ALREADY_LINKED teach -> ../../.agents/skills/teach
+ALREADY_LINKED teach-pro-max -> ../../.agents/skills/teach-pro-max
+ALREADY_LINKED teach-pro-max.backup-20260819-150336Z -> ../../.agents/skills/teach-pro-max.backup-20260819-150336Z
+ALREADY_LINKED teach-pro-max.backup-20260819-150436Z -> ../../.agents/skills/teach-pro-max.backup-20260819-150436Z
+ALREADY_LINKED tech-resume-optimizer -> ../../.agents/skills/tech-resume-optimizer
+ALREADY_LINKED tech-tutor-ren-nakamura-persona -> ../../.agents/skills/tech-tutor-ren-nakamura-persona
+ALREADY_LINKED technical-writing -> ../../.agents/skills/technical-writing
+ALREADY_LINKED techtutor -> ../../.agents/skills/techtutor
+ALREADY_LINKED template-skill -> ../../.agents/skills/template-skill
+ALREADY_LINKED test-driven-development -> ../../.agents/skills/test-driven-development
+RELINKED testing
+ALREADY_LINKED theme-factory -> ../../.agents/skills/theme-factory
+ALREADY_LINKED thinking-out-loud -> ../../.agents/skills/thinking-out-loud
+ALREADY_LINKED tldraw-offline -> ../../.agents/skills/tldraw-offline
+ALREADY_LINKED to-questionnaire -> ../../.agents/skills/to-questionnaire
+ALREADY_LINKED to-spec -> ../../.agents/skills/to-spec
+ALREADY_LINKED to-tickets -> ../../.agents/skills/to-tickets
+ALREADY_LINKED topdown-teacher -> ../../.agents/skills/topdown-teacher
+ALREADY_LINKED transcribe-refiner -> ../../.agents/skills/transcribe-refiner
+ALREADY_LINKED transcript-pipeline -> ../../.agents/skills/transcript-pipeline
+ALREADY_LINKED triage -> ../../.agents/skills/triage
+RELINKED two-tier-extraction
+ALREADY_LINKED typescript-best-practices -> ../../.agents/skills/typescript-best-practices
+ALREADY_LINKED ui-styling -> ../../.agents/skills/ui-styling
+ALREADY_LINKED ui-ux-pro-max -> ../../.agents/skills/ui-ux-pro-max
+ALREADY_LINKED ultra-reasoning-operator -> ../../.agents/skills/ultra-reasoning-operator
+ALREADY_LINKED ultrathink-frontend -> ../../.agents/skills/ultrathink-frontend
+ALREADY_LINKED understand -> ../../.agents/skills/understand
+ALREADY_LINKED understand-chat -> ../../.agents/skills/understand-chat
+ALREADY_LINKED understand-dashboard -> ../../.agents/skills/understand-dashboard
+ALREADY_LINKED understand-diff -> ../../.agents/skills/understand-diff
+ALREADY_LINKED understand-domain -> ../../.agents/skills/understand-domain
+ALREADY_LINKED understand-explain -> ../../.agents/skills/understand-explain
+ALREADY_LINKED understand-figma -> ../../.agents/skills/understand-figma
+ALREADY_LINKED understand-knowledge -> ../../.agents/skills/understand-knowledge
+ALREADY_LINKED understand-onboard -> ../../.agents/skills/understand-onboard
+ALREADY_LINKED unfreeze -> ../../.agents/skills/unfreeze
+ALREADY_LINKED unslop -> ../../.agents/skills/unslop
+ALREADY_LINKED update-cli-config -> ../../.agents/skills/update-cli-config
+ALREADY_LINKED update-cursor-settings -> ../../.agents/skills/update-cursor-settings
+ALREADY_LINKED update-swiftui-apis -> ../../.agents/skills/update-swiftui-apis
+ALREADY_LINKED upgrade-cairo-contracts -> ../../.agents/skills/upgrade-cairo-contracts
+ALREADY_LINKED upgrade-solidity-contracts -> ../../.agents/skills/upgrade-solidity-contracts
+ALREADY_LINKED upgrade-stellar-contracts -> ../../.agents/skills/upgrade-stellar-contracts
+ALREADY_LINKED upgrade-stylus-contracts -> ../../.agents/skills/upgrade-stylus-contracts
+ALREADY_LINKED using-agent-skills -> ../../.agents/skills/using-agent-skills
+ALREADY_LINKED using-git-worktrees -> ../../.agents/skills/using-git-worktrees
+ALREADY_LINKED using-superpowers -> ../../.agents/skills/using-superpowers
+ALREADY_LINKED using-tmux-for-interactive-commands -> ../../.agents/skills/using-tmux-for-interactive-commands
+ALREADY_LINKED vercel-cli-with-tokens -> ../../.agents/skills/vercel-cli-with-tokens
+ALREADY_LINKED vercel-composition-patterns -> ../../.agents/skills/vercel-composition-patterns
+ALREADY_LINKED vercel-optimize -> ../../.agents/skills/vercel-optimize
+ALREADY_LINKED vercel-react-best-practices -> ../../.agents/skills/vercel-react-best-practices
+ALREADY_LINKED vercel-react-native-skills -> ../../.agents/skills/vercel-react-native-skills
+ALREADY_LINKED vercel-react-view-transitions -> ../../.agents/skills/vercel-react-view-transitions
+ALREADY_LINKED verification-before-completion -> ../../.agents/skills/verification-before-completion
+ALREADY_LINKED verify-change -> ../../.agents/skills/verify-change
+RELINKED voice-note-ingest
+ALREADY_LINKED wait-what -> ../../.agents/skills/wait-what
+ALREADY_LINKED watch -> ../../.agents/skills/watch
+ALREADY_LINKED wayfinder -> ../../.agents/skills/wayfinder
+ALREADY_LINKED web-artifacts-builder -> ../../.agents/skills/web-artifacts-builder
+ALREADY_LINKED web-design-guidelines -> ../../.agents/skills/web-design-guidelines
+ALREADY_LINKED webapp-testing -> ../../.agents/skills/webapp-testing
+RELINKED webhook-transforms
+ALREADY_LINKED why -> ../../.agents/skills/why
+ALREADY_LINKED wizard -> ../../.agents/skills/wizard
+ALREADY_LINKED writing-beats -> ../../.agents/skills/writing-beats
+ALREADY_LINKED writing-for-agents -> ../../.agents/skills/writing-for-agents
+ALREADY_LINKED writing-fragments -> ../../.agents/skills/writing-fragments
+ALREADY_LINKED writing-great-skills -> ../../.agents/skills/writing-great-skills
+ALREADY_LINKED writing-guidelines -> ../../.agents/skills/writing-guidelines
+ALREADY_LINKED writing-plans -> ../../.agents/skills/writing-plans
+ALREADY_LINKED writing-shape -> ../../.agents/skills/writing-shape
+ALREADY_LINKED writing-skills -> ../../.agents/skills/writing-skills
+ALREADY_LINKED xlsx -> ../../.agents/skills/xlsx
+ALREADY_LINKED yuanbao -> ../../.agents/skills/yuanbao
+== /Users/prax/.config/opencode/skills ==
+ALREADY_LINKED _gstack-command -> /Users/prax/.claude/skills/_gstack-command
+ALREADY_LINKED gstack-autoplan -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-autoplan/
+ALREADY_LINKED gstack-benchmark -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-benchmark/
+ALREADY_LINKED gstack-benchmark-models -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-benchmark-models/
+ALREADY_LINKED gstack-browse -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-browse/
+ALREADY_LINKED gstack-canary -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-canary/
+ALREADY_LINKED gstack-careful -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-careful/
+ALREADY_LINKED gstack-claude -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-claude/
+ALREADY_LINKED gstack-codex -> /Users/prax/.claude/skills/gstack-codex
+ALREADY_LINKED gstack-connect-chrome -> /Users/prax/.claude/skills/gstack-connect-chrome
+ALREADY_LINKED gstack-context-restore -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-context-restore/
+ALREADY_LINKED gstack-context-save -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-context-save/
+ALREADY_LINKED gstack-cso -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-cso/
+ALREADY_LINKED gstack-design-consultation -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-design-consultation/
+ALREADY_LINKED gstack-design-html -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-design-html/
+ALREADY_LINKED gstack-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-design-review/
+ALREADY_LINKED gstack-design-shotgun -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-design-shotgun/
+ALREADY_LINKED gstack-devex-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-devex-review/
+ALREADY_LINKED gstack-diagram -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-diagram/
+ALREADY_LINKED gstack-document-generate -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-document-generate/
+ALREADY_LINKED gstack-document-release -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-document-release/
+ALREADY_LINKED gstack-freeze -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-freeze/
+ALREADY_LINKED gstack-guard -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-guard/
+ALREADY_LINKED gstack-health -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-health/
+ALREADY_LINKED gstack-investigate -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-investigate/
+ALREADY_LINKED gstack-ios-clean -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ios-clean/
+ALREADY_LINKED gstack-ios-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ios-design-review/
+ALREADY_LINKED gstack-ios-fix -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ios-fix/
+ALREADY_LINKED gstack-ios-qa -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ios-qa/
+ALREADY_LINKED gstack-ios-sync -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ios-sync/
+ALREADY_LINKED gstack-land-and-deploy -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-land-and-deploy/
+ALREADY_LINKED gstack-landing-report -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-landing-report/
+ALREADY_LINKED gstack-learn -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-learn/
+ALREADY_LINKED gstack-make-pdf -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-make-pdf/
+ALREADY_LINKED gstack-office-hours -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-office-hours/
+ALREADY_LINKED gstack-open-gstack-browser -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-open-gstack-browser/
+ALREADY_LINKED gstack-pair-agent -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-pair-agent/
+ALREADY_LINKED gstack-plan-ceo-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-plan-ceo-review/
+ALREADY_LINKED gstack-plan-design-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-plan-design-review/
+ALREADY_LINKED gstack-plan-devex-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-plan-devex-review/
+ALREADY_LINKED gstack-plan-eng-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-plan-eng-review/
+ALREADY_LINKED gstack-plan-tune -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-plan-tune/
+ALREADY_LINKED gstack-qa -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-qa/
+ALREADY_LINKED gstack-qa-only -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-qa-only/
+ALREADY_LINKED gstack-retro -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-retro/
+ALREADY_LINKED gstack-review -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-review/
+ALREADY_LINKED gstack-scrape -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-scrape/
+ALREADY_LINKED gstack-setup-browser-cookies -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-setup-browser-cookies/
+ALREADY_LINKED gstack-setup-deploy -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-setup-deploy/
+ALREADY_LINKED gstack-setup-gbrain -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-setup-gbrain/
+ALREADY_LINKED gstack-ship -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-ship/
+ALREADY_LINKED gstack-skillify -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-skillify/
+ALREADY_LINKED gstack-spec -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-spec/
+ALREADY_LINKED gstack-sync-gbrain -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-sync-gbrain/
+ALREADY_LINKED gstack-unfreeze -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-unfreeze/
+ALREADY_LINKED gstack-upgrade -> /Users/prax/Developer/agent-stack/.runtime/gstack/.opencode/skills/gstack-upgrade/
+ALREADY_LINKED memory-leak-debugging -> /Users/prax/.agents/skills/memory-leak-debugging
+SUMMARY migrated=0 relinked=88 already_linked=585 conflicts=0 failed=0 canonical=/Users/prax/.agents/skills
