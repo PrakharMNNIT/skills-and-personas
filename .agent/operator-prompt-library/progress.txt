@@ -26,3 +26,6 @@
 2026-08-21T22:10Z FLEET_SETUP VALIDATION ruby YAML.safe_load frontmatter scan x258 installed copies -> PASS; residual_gap=0; totals codex=610 agents=611
 2026-08-21T22:10Z DECISION claude/gemini/cline/kilocode/copilot host dirs not created: no such hosts exist on this machine; both live hosts covered. Rationale: dirs without a host add no capability.
 2026-08-21T22:12Z QA v3 rerun: qa_collect.sh PASS all categories (zip x7 OK, broken-links none, fm scan 87 skills clean); ANOMALY-NIT setopt zsh-ism in bash run of qa_collect.sh line 4 (script still completes; flagged to review)
+2026-08-21T22:16Z FLEET_SYMLINK symlink_fleet.sh v2 (v1 died on bash local-expansion unbound-var bug, no state mutated): canonical=~/.agents/skills; relinked=88 already_linked=585 migrated=0 conflicts=0 failed=0; clients ~/.codex/skills + ~/.config/opencode/skills now fully symlinks
+2026-08-21T22:17Z FLEET_SYMLINK VERIFY real-dirs-left codex=1 opencode=0; spot-reads through links OK (brain-ops, memory-leak-debugging YAML parse via link)
+2026-08-21T22:17Z DECISION ~/.codex/skills/.system left as real dir: Codex host-internal plumbing (plugin-creator/skill-installer/...); linking it would index system skills into user catalogs (collides with real skill-creator). Exception recorded; unblock = operator explicitly asks to link it.
