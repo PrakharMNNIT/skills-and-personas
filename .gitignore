@@ -47,3 +47,6 @@ AI_REVIEW.mdui-ux-pro-max-skill/
 
 # audit trail for agent runs: QA evidence logs are deliverables here
 !.agent/**/*.log
+
+# legacy 142MB archive exceeds GitHub hard limit; kept local-only
+prompts/agents/AI Therapist Agent Prompt.zip
