@@ -21,3 +21,8 @@
 2026-08-21T00:40Z VALIDATOR PASS: READY_FOR_PR (AC6 partial closed by audit-trail commit ec7c141; models.md repeated inherit-parent is spec'd behavior not artifact)
 2026-08-21T00:41Z GITIGNORE exception !.agent/**/*.log added; audit trail committed ec7c141
 2026-08-21T00:42Z ATOM A9 START: push + PR
+2026-08-21T22:06Z RESUME new DSH session: operator re-issued directive; prior run recovered via SPEC.md/progress.txt; branch feat/operator-prompt-library @ d2804ae
+2026-08-21T22:09Z FLEET_SETUP install_fleet_gaps.sh executed: installed_copies=168 failed=0 already=90 (never overwrite working copies); sources = repo skills/ + new-skills/ + ~/.config/opencode/skills/memory-leak-debugging; targets = ~/.codex/skills + ~/.agents/skills
+2026-08-21T22:10Z FLEET_SETUP VALIDATION ruby YAML.safe_load frontmatter scan x258 installed copies -> PASS; residual_gap=0; totals codex=610 agents=611
+2026-08-21T22:10Z DECISION claude/gemini/cline/kilocode/copilot host dirs not created: no such hosts exist on this machine; both live hosts covered. Rationale: dirs without a host add no capability.
+2026-08-21T22:12Z QA v3 rerun: qa_collect.sh PASS all categories (zip x7 OK, broken-links none, fm scan 87 skills clean); ANOMALY-NIT setopt zsh-ism in bash run of qa_collect.sh line 4 (script still completes; flagged to review)
