@@ -5,7 +5,8 @@
 
 set -euo pipefail
 
-SRC="/Users/praxlannister/Documents/workspace/skills-and-personas/new-skills"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC="$(cd "$SCRIPT_DIR/.." && pwd)"
 DEST="$HOME/.claude/skills"
 TS=$(date +%Y%m%d-%H%M%S)
 BACKUP="$HOME/.claude/skills/_backup-$TS"
