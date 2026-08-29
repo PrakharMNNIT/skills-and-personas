@@ -20,7 +20,7 @@ import yaml
 from pathlib import Path
 
 SKILLS_DIR = Path.home() / ".claude" / "skills"
-NEW_SKILLS_MANIFEST = Path("/Users/praxlannister/Documents/workspace/skills-and-personas/new-skills")
+NEW_SKILLS_MANIFEST = Path(__file__).resolve().parent.parent
 
 NAME_RE = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)*$")
 PERSONA_RE = re.compile(r"(?i)^\s*(You are\s+(a|an|the)\s+[A-Za-z])")

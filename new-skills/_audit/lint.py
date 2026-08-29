@@ -18,7 +18,7 @@ import json
 import yaml
 from pathlib import Path
 
-ROOT = Path("/Users/praxlannister/Documents/workspace/skills-and-personas/new-skills")
+ROOT = Path(__file__).resolve().parent.parent
 
 NAME_RE = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)*$")
 ASCII_ART_RE = re.compile(r"[─│┌┐└┘├┤┬┴┼╭╮╯╰═║╔╗╚╝╠╣╦╩╬↑↓←→↔⇒⇐⇔▲▼◄►]")
